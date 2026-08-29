@@ -1,0 +1,16 @@
+{
+  "name": "ssc-practice-platform",
+  "version": "1.0.0",
+  "description": "SSC Practice Platform for Quantitative Aptitude & Exam Prep",
+  "scripts": {
+    "dev": "python -m http.server 8080",
+    "start": "python -m http.server 8080"
+  },
+  "keywords": [
+    "ssc",
+    "exam-prep",
+    "quantitative-aptitude"
+  ],
+  "author": "",
+  "license": "ISC"
+}

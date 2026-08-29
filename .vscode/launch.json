@@ -1,0 +1,38 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "chrome",
+            "request": "launch",
+            "name": "🌐 Chrome: Dashboard (localhost:8080)",
+            "url": "http://localhost:8080/dashboard.html",
+            "webRoot": "${workspaceFolder}"
+        },
+        {
+            "type": "chrome",
+            "request": "launch",
+            "name": "🌐 Chrome: Login / Index (localhost:8080)",
+            "url": "http://localhost:8080/index.html",
+            "webRoot": "${workspaceFolder}"
+        },
+        {
+            "type": "msedge",
+            "request": "launch",
+            "name": "🌐 Edge: Dashboard (localhost:8080)",
+            "url": "http://localhost:8080/dashboard.html",
+            "webRoot": "${workspaceFolder}"
+        },
+        {
+            "type": "chrome",
+            "request": "launch",
+            "name": "📄 Direct File: Dashboard (No Server)",
+            "file": "${workspaceFolder}/dashboard.html"
+        },
+        {
+            "type": "chrome",
+            "request": "launch",
+            "name": "📄 Direct File: Index (No Server)",
+            "file": "${workspaceFolder}/index.html"
+        }
+    ]
+}

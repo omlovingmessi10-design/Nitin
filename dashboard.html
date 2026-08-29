@@ -1,0 +1,2635 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SSC Practice Platform - Topic Explorer & Exam Workspace</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- React & ReactDOM -->
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <!-- Babel for JSX -->
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <!-- Supabase JS Client -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400..800;1,6..72,400..800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      max-width: 100vw;
+      overflow-x: hidden;
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: #F3EFE6;
+      color: #2D3748;
+      -webkit-text-size-adjust: 100%;
+    }
+    #root {
+      width: 100%;
+      max-width: 100vw;
+      overflow-x: hidden;
+      background-color: #F3EFE6;
+    }
+    .font-serif {
+      font-family: 'Newsreader', Georgia, serif;
+    }
+    .font-mono {
+      font-family: 'JetBrains Mono', monospace;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .animate-fade-in {
+      animation: fadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    .glass-card {
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(12px);
+    }
+  </style>
+</head>
+<body class="bg-[#F3EFE6] text-slate-800 min-h-screen w-full max-w-full overflow-x-hidden">
+  <div id="root" class="w-full max-w-full overflow-x-hidden bg-[#F3EFE6]"></div>
+
+  <script type="text/babel">
+    const { useState, useEffect, useMemo, useRef } = React;
+
+    // --- 1. SUPABASE CLIENT CREDENTIALS ---
+    const SUPABASE_URL = "https://zgxskpqsjylbwrhhrzim.supabase.co"; 
+    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpneHNrcHFzanlsYndyaGhyemltIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODczODY0MDIsImV4cCI6MjEwMjk2MjQwMn0.1RSVtWx8gxJhQcmDfJMvRfRLMvl4ju9GuwxgiKn5f8w";
+    const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+    // --- 2. OFFICIAL TESTBOOK-ALIGNED SSC SYLLABUS DATA ---
+    const SYLLABUS_DATA = {
+      quant: {
+        id: "quant",
+        name: "Quantitative Aptitude",
+        shortName: "Quant",
+        hindiName: "मात्रात्मक रुझान (गणित)",
+        tagline: "Arithmetic Maths, Advanced Mathematics & Data Interpretation",
+        colorScheme: {
+          bgGrad: "from-indigo-600 to-blue-700",
+          cardBorder: "hover:border-indigo-500",
+          activeTab: "bg-indigo-600 text-white shadow-md shadow-indigo-600/30",
+          badgeBg: "bg-indigo-50 text-indigo-700 border-indigo-200",
+          btnColor: "bg-indigo-600 hover:bg-indigo-700 text-white",
+          tagColor: "bg-indigo-100 text-indigo-800"
+        },
+        categories: ["All", "Arithmetic", "Advanced Maths", "Data Interpretation"],
+        topics: [
+          {
+            id: "time-work",
+            title: "Time and Work & Pipes and Cisterns",
+            titleHi: "समय और कार्य / नल और टंकी",
+            category: "Arithmetic",
+            weightage: "High Weightage (2-3 Qs)",
+            isHighWeightage: true,
+            isLiveDatabase: true,
+            sets: ["Practice 1", "Practice 2"],
+            totalQuestions: 70,
+            desc: "Efficiency ratios, alternate days, wages division, inlet-outlet pipes, and work equivalence."
+          },
+          {
+            id: "percentage",
+            title: "Percentages",
+            titleHi: "प्रतिशतता",
+            category: "Arithmetic",
+            weightage: "High Weightage (2-3 Qs)",
+            isHighWeightage: true,
+            sets: ["Practice 1", "Practice 2"],
+            totalQuestions: 70,
+            desc: "Fraction-to-percentage conversion, population changes, election problems, and successive percentage change."
+          },
+          {
+            id: "profit-loss",
+            title: "Profit, Loss and Discount",
+            titleHi: "लाभ, हानि और छूट",
+            category: "Arithmetic",
+            weightage: "High Weightage (2-3 Qs)",
+            isHighWeightage: true,
+            sets: ["Practice 1", "Practice 2"],
+            totalQuestions: 70,
+            desc: "Cost price, marked price, selling price, dishonest shopkeeper tricks, and successive discounts."
+          },
+          {
+            id: "ratio-proportion",
+            title: "Ratio & Proportion & Partnership",
+            titleHi: "अनुपात और समानुपात / साझेदारी",
+            category: "Arithmetic",
+            weightage: "Moderate (1-2 Qs)",
+            isHighWeightage: false,
+            sets: ["Practice 1", "Practice 2"],
+            totalQuestions: 60,
+            desc: "Mean and third proportion, coin-based problems, income-expenditure ratios, and business partnerships."
+          },
+          {
+            id: "speed-distance",
+            title: "Time, Speed & Distance, Trains & Boats",
+            titleHi: "समय, गति और दूरी / रेलगाड़ी, नाव और धारा",
+            category: "Arithmetic",
+            weightage: "High Weightage (2-3 Qs)",
+            isHighWeightage: true,
+            sets: ["Practice 1", "Practice 2"],
+            totalQuestions: 70,
+            desc: "Relative speed, crossing poles & platforms, upstream & downstream river speeds, circular tracks."
+          },
+          {
+            id: "simple-compound-interest",
+            title: "Simple & Compound Interest",
+            titleHi: "साधारण और चक्रवृद्धि ब्याज",
+            category: "Arithmetic",
+            weightage: "High Weightage (2 Qs)",
+            isHighWeightage: true,
+            sets: ["Practice 1", "Practice 2"],
+            totalQuestions: 60,
+            desc: "Annual vs semi-annual compounding, CI - SI difference formulas, installments & rate calculation."
+          },
+          {
+            id: "average-mixture",
+            title: "Averages, Mixture and Alligation",
+            titleHi: "औसत और मिश्रण एवं पृथ्थीकरण",
+            category: "Arithmetic",
+            weightage: "Moderate (1-2 Qs)",
+            isHighWeightage: false,
+            sets: ["Practice 1", "Practice 2"],
+            totalQuestions: 50,
+            desc: "Weighted averages, age-based averages, replacement rule, and cross-alligation method."
+          },
+          {
+            id: "number-system",
+            title: "Number System & Simplification",
+            titleHi: "संख्या पद्धति और सरलीकरण",
+            category: "Arithmetic",
+            weightage: "High Weightage (2 Qs)",
+            isHighWeightage: true,
+            sets: ["Practice 1", "Practice 2"],
+            totalQuestions: 60,
+            desc: "Divisibility rules (7, 11, 72, 88), unit digits, remainder theorem, HCF & LCM, and BODMAS."
+          },
+          {
+            id: "algebra",
+            title: "Algebra & Polynomial Identities",
+            titleHi: "बीजगणित और सर्वसमिकाएं",
+            category: "Advanced Maths",
+            weightage: "High Weightage (3-4 Qs)",
+            isHighWeightage: true,
+            sets: ["Practice 1", "Practice 2"],
+            totalQuestions: 80,
+            desc: "x + 1/x standard forms, a³+b³+c³-3abc formulas, quadratic equations, and maximum/minimum values."
+          },
+          {
+            id: "geometry",
+            title: "Geometry (Triangles, Circles & Chords)",
+            titleHi: "ज्यामिति (त्रिभुज, वृत्त और जीवाएं)",
+            category: "Advanced Maths",
+            weightage: "High Weightage (3-4 Qs)",
+            isHighWeightage: true,
+            sets: ["Practice 1", "Practice 2"],
+            totalQuestions: 80,
+            desc: "Centers of triangles (Incenter, Circumcenter, Centroid), cyclic quadrilaterals, tangents & secants."
+          },
+          {
+            id: "mensuration",
+            title: "Mensuration 2D & 3D",
+            titleHi: "क्षेत्रमिति (2D और 3D)",
+            category: "Advanced Maths",
+            weightage: "High Weightage (2-3 Qs)",
+            isHighWeightage: true,
+            sets: ["Practice 1", "Practice 2"],
+            totalQuestions: 70,
+            desc: "Perimeter, surface areas, volumes of prisms, pyramids, cones, cylinders, spheres & frustums."
+          },
+          {
+            id: "trigonometry",
+            title: "Trigonometry & Heights and Distances",
+            titleHi: "त्रिकोणमिति और ऊंचाई एवं दूरी",
+            category: "Advanced Maths",
+            weightage: "High Weightage (3 Qs)",
+            isHighWeightage: true,
+            sets: ["Practice 1", "Practice 2"],
+            totalQuestions: 70,
+            desc: "Trigonometric identities, angle conversion, complementary angles, min/max values, angle of elevation."
+          },
+          {
+            id: "coordinate-geometry",
+            title: "Coordinate Geometry",
+            titleHi: "निर्देशांक ज्यामिति",
+            category: "Advanced Maths",
+            weightage: "Moderate (1 Q)",
+            isHighWeightage: false,
+            sets: ["Practice 1", "Practice 2"],
+            totalQuestions: 40,
+            desc: "Slope of lines, distance & section formula, equation of line, reflection of points."
+          },
+          {
+            id: "data-interpretation",
+            title: "Data Interpretation (Pie Chart, Bar & Tables)",
+            titleHi: "आंकड़ों का विश्लेषण (पाई चार्ट, बार व तालिकाएं)",
+            category: "Data Interpretation",
+            weightage: "High Weightage (3-4 Qs)",
+            isHighWeightage: true,
+            sets: ["Practice 1", "Practice 2"],
+            totalQuestions: 60,
+            desc: "Tabular DI, pie charts with percentage/degree conversion, multi-bar graphs, line charts."
+          }
+        ]
+      },
+      reasoning: {
+        id: "reasoning",
+        name: "General Intelligence & Reasoning",
+        shortName: "Reasoning",
+        hindiName: "सामान्य बुद्धिमत्ता एवं तर्कशक्ति",
+        tagline: "Verbal Reasoning, Logical Deduction & Non-Verbal Patterns",
+        colorScheme: {
+          bgGrad: "from-purple-600 to-indigo-700",
+          cardBorder: "hover:border-purple-500",
+          activeTab: "bg-purple-600 text-white shadow-md shadow-purple-600/30",
+          badgeBg: "bg-purple-50 text-purple-700 border-purple-200",
+          btnColor: "bg-purple-600 hover:bg-purple-700 text-white",
+          tagColor: "bg-purple-100 text-purple-800"
+        },
+        categories: ["All", "Verbal Reasoning", "Analytical Reasoning", "Non-Verbal"],
+        topics: [
+          {
+            id: "analogy",
+            title: "Analogy & Similarity",
+            titleHi: "सादृश्यता एवं समरूपता",
+            category: "Verbal Reasoning",
+            weightage: "High Weightage (3-4 Qs)",
+            isHighWeightage: true,
+            sets: ["Practice 1", "Practice 2"],
+            totalQuestions: 70,
+            desc: "Word analogies, GK-based capitals/currencies, letter pairs, and number relationship patterns."
+          },
+          {
+            id: "classification",
+            title: "Classification / Odd One Out",
+            titleHi: "वर्गीकरण / विषम पद का चयन",
+            category: "Verbal Reasoning",
+            weightage: "High Weightage (2-3 Qs)",
+            isHighWeightage: true,
+            sets: ["Practice 1", "Practice 2"],
+            totalQuestions: 60,
+            desc: "Word classification, numerical logic (prime, square, cube), and alphabetical group difference."
+          },
+          {
+            id: "coding-decoding",
+            title: "Coding-Decoding",
+            titleHi: "कूटलेखन और कूटवाचन",
+            category: "Verbal Reasoning",
+            weightage: "High Weightage (3-4 Qs)",
+            isHighWeightage: true,
+            sets: ["Practice 1", "Practice 2"],
+            totalQuestions: 70,
+            desc: "Letter shifting (+n/-n), opposite letter pairs (AZ, BY), number-symbol coding, substitution cipher."
+          },
+          {
+            id: "number-series",
+            title: "Number & Alphabet Series",
+            titleHi: "संख्या और वर्णमाला श्रृंखला",
+            category: "Verbal Reasoning",
+            weightage: "High Weightage (3-4 Qs)",
+            isHighWeightage: true,
+            sets: ["Practice 1", "Practice 2"],
+            totalQuestions: 80,
+            desc: "Arithmetic progression, double difference series, alternating sequences, alphanumeric combinations."
+          },
+          {
+            id: "syllogism",
+            title: "Syllogism & Venn Diagrams",
+            titleHi: "न्याय निगमन और वेन आरेख",
+            category: "Verbal Reasoning",
+            weightage: "High Weightage (2-3 Qs)",
+            isHighWeightage: true,
+            sets: ["Practice 1", "Practice 2"],
+            totalQuestions: 60,
+            desc: "Statement & conclusions, 'All/Some/No/Some Not' cases, Venn diagram representations."
+          },
+          {
+            id: "blood-relations",
+            title: "Blood Relations",
+            titleHi: "रक्त संबंध",
+            category: "Verbal Reasoning",
+            weightage: "Moderate (1-2 Qs)",
+            isHighWeightage: false,
+            sets: ["Practice 1", "Practice 2"],
+            totalQuestions: 50,
+            desc: "Family tree generation, pointing to photograph/person statements, coded blood relations (A+B means father)."
+          },
+          {
+            id: "direction-distance",
+            title: "Direction & Distance Sense",
+            titleHi: "दिशा और दूरी परीक्षण",
+            category: "Verbal Reasoning",
+            weightage: "Moderate (1-2 Qs)",
+            isHighWeightage: false,
+            sets: ["Practice 1", "Practice 2"],
+            totalQuestions: 50,
+            desc: "Cardinals & sub-cardinals, angle turns (90°, 135°, 180°), shadow concepts at sunrise & sunset, Pythagoras theorem."
+          },
+          {
+            id: "order-ranking",
+            title: "Order and Ranking",
+            titleHi: "क्रम और रैंकिंग",
+            category: "Analytical Reasoning",
+            weightage: "Moderate (1-2 Qs)",
+            isHighWeightage: false,
+            sets: ["Practice 1", "Practice 2"],
+            totalQuestions: 40,
+            desc: "Position from left/right, total person calculation, rank interchange, and comparison hierarchies."
+          },
+          {
+            id: "math-operations",
+            title: "Mathematical Operations & Signs",
+            titleHi: "गणितीय संक्रियाएं और चिन्ह प्रतिस्थापन",
+            category: "Analytical Reasoning",
+            weightage: "High Weightage (2 Qs)",
+            isHighWeightage: true,
+            sets: ["Practice 1", "Practice 2"],
+            totalQuestions: 50,
+            desc: "Interchanging + with -, * with /, number balancing equations following BODMAS rules."
+          },
+          {
+            id: "clock-calendar",
+            title: "Clock and Calendar",
+            titleHi: "घड़ी और कैलेंडर",
+            category: "Analytical Reasoning",
+            weightage: "Moderate (1 Q)",
+            isHighWeightage: false,
+            sets: ["Practice 1", "Practice 2"],
+            totalQuestions: 40,
+            desc: "Angle between hands, clock coincidence & straight line, leap years, odd days calculation for dates."
+          },
+          {
+            id: "mirror-water-images",
+            title: "Mirror and Water Images",
+            titleHi: "दर्पण और जल प्रतिबिंब",
+            category: "Non-Verbal",
+            weightage: "High Weightage (2 Qs)",
+            isHighWeightage: true,
+            sets: ["Practice 1", "Practice 2"],
+            totalQuestions: 50,
+            desc: "Vertical mirror flips (Left-Right reversal) and horizontal water surface reflections (Top-Bottom reversal)."
+          },
+          {
+            id: "paper-folding",
+            title: "Paper Folding & Cutting",
+            titleHi: "कागज मोड़ना और काटना",
+            category: "Non-Verbal",
+            weightage: "High Weightage (2 Qs)",
+            isHighWeightage: true,
+            sets: ["Practice 1", "Practice 2"],
+            totalQuestions: 50,
+            desc: "Visualizing unfolded punched holes, symmetric unfolding sequence."
+          },
+          {
+            id: "embedded-figures",
+            title: "Embedded Figures & Pattern Completion",
+            titleHi: "सन्निहित आकृतियां एवं पैटर्न पूर्ति",
+            category: "Non-Verbal",
+            weightage: "Moderate (1-2 Qs)",
+            isHighWeightage: false,
+            sets: ["Practice 1", "Practice 2"],
+            totalQuestions: 40,
+            desc: "Identifying hidden figures inside composite shapes, completing 4th quadrant pattern."
+          },
+          {
+            id: "cube-dice",
+            title: "Cubes & Dice",
+            titleHi: "घन और पासा",
+            category: "Non-Verbal",
+            weightage: "High Weightage (1-2 Qs)",
+            isHighWeightage: true,
+            sets: ["Practice 1", "Practice 2"],
+            totalQuestions: 50,
+            desc: "Standard vs general dice, opposite faces from two views with common side, open dice folding."
+          }
+        ]
+      },
+      english: {
+        id: "english",
+        name: "English Comprehension",
+        shortName: "English",
+        hindiName: "अंग्रेजी भाषा और समझ",
+        tagline: "Grammar Rules, Vocabulary Enrichment & Reading Comprehension",
+        colorScheme: {
+          bgGrad: "from-emerald-600 to-teal-700",
+          cardBorder: "hover:border-emerald-500",
+          activeTab: "bg-emerald-600 text-white shadow-md shadow-emerald-600/30",
+          badgeBg: "bg-emerald-50 text-emerald-700 border-emerald-200",
+          btnColor: "bg-emerald-600 hover:bg-emerald-700 text-white",
+          tagColor: "bg-emerald-100 text-emerald-800"
+        },
+        categories: ["All", "Grammar", "Vocabulary", "Comprehension"],
+        topics: [
+          {
+            id: "spotting-errors",
+            title: "Spotting the Error",
+            titleHi: "व्याकरण त्रुटि पहचान",
+            category: "Grammar",
+            weightage: "High Weightage (3-4 Qs)",
+            isHighWeightage: true,
+            sets: ["Practice 1", "Practice 2"],
+            totalQuestions: 80,
+            desc: "Subject-Verb agreement, tense consistency, prepositions, articles, conditional clauses, and conjunction errors."
+          },
+          {
+            id: "sentence-improvement",
+            title: "Sentence Improvement & Phrase Replacement",
+            titleHi: "वाक्य सुधार और वाक्यांश प्रतिस्थापन",
+            category: "Grammar",
+            weightage: "High Weightage (3 Qs)",
+            isHighWeightage: true,
+            sets: ["Practice 1", "Practice 2"],
+            totalQuestions: 70,
+            desc: "Upgrading sentence structure, fixing misplaced modifiers, correcting idiomatic prepositions."
+          },
+          {
+            id: "fill-blanks",
+            title: "Fill in the Blanks",
+            titleHi: "रिक्त स्थान की पूर्ति",
+            category: "Grammar",
+            weightage: "High Weightage (2-3 Qs)",
+            isHighWeightage: true,
+            sets: ["Practice 1", "Practice 2"],
+            totalQuestions: 60,
+            desc: "Single & double blanks testing phrasal verbs, collocations, context vocabulary, and grammar rules."
+          },
+          {
+            id: "active-passive",
+            title: "Active & Passive Voice",
+            titleHi: "कर्तृवाच्य और कर्मवाच्य",
+            category: "Grammar",
+            weightage: "High Weightage (3-4 Qs in Tier 2)",
+            isHighWeightage: true,
+            sets: ["Practice 1", "Practice 2"],
+            totalQuestions: 70,
+            desc: "Tense transformations, modal verbs in passive, imperative sentence conversion (Let / You are requested)."
+          },
+          {
+            id: "direct-indirect",
+            title: "Direct and Indirect Speech (Narration)",
+            titleHi: "प्रत्यक्ष और अप्रत्यक्ष कथन",
+            category: "Grammar",
+            weightage: "High Weightage (3-4 Qs in Tier 2)",
+            isHighWeightage: true,
+            sets: ["Practice 1", "Practice 2"],
+            totalQuestions: 70,
+            desc: "Reporting verbs (said to -> told/asked), tense backshifting, pronoun shifts, universal truth exceptions."
+          },
+          {
+            id: "synonyms-antonyms",
+            title: "Synonyms and Antonyms",
+            titleHi: "समानार्थी एवं विलोम शब्द",
+            category: "Vocabulary",
+            weightage: "High Weightage (4-5 Qs)",
+            isHighWeightage: true,
+            sets: ["Practice 1", "Practice 2"],
+            totalQuestions: 100,
+            desc: "High-frequency SSC past year words, root word derivations, contextual word meanings."
+          },
+          {
+            id: "idioms-phrases",
+            title: "Idioms & Phrases",
+            titleHi: "मुहावरे और लोकोक्तियां",
+            category: "Vocabulary",
+            weightage: "High Weightage (3-4 Qs)",
+            isHighWeightage: true,
+            sets: ["Practice 1", "Practice 2"],
+            totalQuestions: 80,
+            desc: "Classic English idioms, figurative meanings, situational expressions, and proverbs."
+          },
+          {
+            id: "one-word-substitution",
+            title: "One Word Substitution",
+            titleHi: "अनेक शब्दों के लिए एक शब्द",
+            category: "Vocabulary",
+            weightage: "High Weightage (3-4 Qs)",
+            isHighWeightage: true,
+            sets: ["Practice 1", "Practice 2"],
+            totalQuestions: 80,
+            desc: "Scientific fields (Ologies), fears (Phobias), manias, governmental types (Cracies), personalities."
+          },
+          {
+            id: "spelling-correction",
+            title: "Spelling Correction / Misspelt Words",
+            titleHi: "वर्तनी शुद्धि / अशुद्ध शब्द",
+            category: "Vocabulary",
+            weightage: "High Weightage (2-3 Qs)",
+            isHighWeightage: true,
+            sets: ["Practice 1", "Practice 2"],
+            totalQuestions: 60,
+            desc: "Frequently confused spellings (Accommodate, Millennium, Embarrass, Occurrence, Bureaucracy)."
+          },
+          {
+            id: "cloze-test",
+            title: "Cloze Test Passage",
+            titleHi: "क्लोज टेस्ट गद्यांश",
+            category: "Comprehension",
+            weightage: "High Weightage (5 Qs)",
+            isHighWeightage: true,
+            sets: ["Practice 1", "Practice 2"],
+            totalQuestions: 50,
+            desc: "Paragraph with 5 blanks testing overall passage tone, contextual vocabulary, and grammatical flow."
+          },
+          {
+            id: "reading-comprehension",
+            title: "Reading Comprehension Passages",
+            titleHi: "गद्यांश बोध",
+            category: "Comprehension",
+            weightage: "High Weightage (5 Qs)",
+            isHighWeightage: true,
+            sets: ["Practice 1", "Practice 2"],
+            totalQuestions: 50,
+            desc: "Fact-based direct questions, central idea/theme, author's tone, title inference, and vocabulary in context."
+          },
+          {
+            id: "para-jumbles",
+            title: "Para Jumbles & Sentence Rearrangement (PQRS)",
+            titleHi: "पैरा जंबल्स / वाक्य पुनर्व्यवस्था",
+            category: "Comprehension",
+            weightage: "High Weightage (2-3 Qs)",
+            isHighWeightage: true,
+            sets: ["Practice 1", "Practice 2"],
+            totalQuestions: 60,
+            desc: "Connecting mandatory pairs (Noun-Pronoun), chronological events, contrast indicators (However, But, Although)."
+          }
+        ]
+      }
+    };
+
+    // --- 3. DYNAMIC REALISTIC QUESTION GENERATOR PER TOPIC ---
+    function getTopicQuestions(subjectId, topicObj, practiceSet) {
+      if (subjectId === "quant" && topicObj.id === "time-work") {
+        // Will be fetched from Supabase, or fallbacks if offline
+        return [];
+      }
+
+      // High quality curated practice set generator for all syllabus topics
+      const topicName = topicObj.title;
+      const topicNameHi = topicObj.titleHi;
+
+      if (subjectId === "reasoning") {
+        return [
+          {
+            question_number: 1,
+            practice_set: practiceSet,
+            level: "Moderate",
+            type_category: topicName,
+            question_text: `[${topicName}] Select the option that correctly satisfies the given relationship or completes the logical pattern:\n\nStatement: 'A' is twice as fast as 'B', and 'B' is thrice as fast as 'C'. If 'C' covers a distance in 54 minutes, how much time will 'A' take?`,
+            question_text_hi: `[${topicNameHi}] उस विकल्प का चयन करें जो दिए गए संबंध को सही रूप से संतुष्ट करता है:\n\nकथन: 'A', 'B' से दोगुना तेज है और 'B', 'C' से तीन गुना तेज है। यदि 'C' 54 मिनट में दूरी तय करता है, तो 'A' कितना समय लेगा?`,
+            options: { a: "9 minutes", b: "18 minutes", c: "27 minutes", d: "12 minutes" },
+            options_hi: { a: "9 मिनट", b: "18 मिनट", c: "27 मिनट", d: "12 मिनट" },
+            correct_option: "a",
+            solution_text: "Speed Ratio: A : B : C = 6 : 3 : 1.\nTime is inversely proportional to speed.\nTime Ratio: A : B : C = (1/6) : (1/3) : 1 = 1 : 2 : 6.\nSince C takes 6 units = 54 minutes, 1 unit = 9 minutes.\nThus, A takes 9 minutes (Option A).",
+            solution_text_hi: "गति का अनुपात: A : B : C = 6 : 3 : 1। समय गति के व्युत्क्रमानुपाती होता है। अतः समय अनुपात = 1 : 2 : 6। यदि 6 इकाई = 54 मिनट, तो 1 इकाई = 9 मिनट। अतः A को 9 मिनट लगेंगे (विकल्प A)।"
+          },
+          {
+            question_number: 2,
+            practice_set: practiceSet,
+            level: "Easy",
+            type_category: topicName,
+            question_text: `[${topicName}] Find the odd one out among the given options based on official SSC examination logic:`,
+            question_text_hi: `[${topicNameHi}] आधिकारिक SSC तर्क के आधार पर दिए गए विकल्पों में से विषम का चयन करें:`,
+            options: { a: "144 (12²)", b: "196 (14²)", c: "256 (16²)", d: "220 (Not a perfect square)" },
+            options_hi: { a: "144 (12²)", b: "196 (14²)", c: "256 (16²)", d: "220 (पूर्ण वर्ग नहीं है)" },
+            correct_option: "d",
+            solution_text: "Logic: Numbers 144, 196, and 256 are all perfect squares of even integers (12, 14, 16), whereas 220 is not a perfect square.\nTherefore, 220 is the odd one out (Option D).",
+            solution_text_hi: "तर्क: 144, 196 और 256 सम संख्याओं के पूर्ण वर्ग हैं, जबकि 220 पूर्ण वर्ग नहीं है। अतः 220 विषम है (विकल्प D)।"
+          },
+          {
+            question_number: 3,
+            practice_set: practiceSet,
+            level: "Moderate",
+            type_category: topicName,
+            question_text: `[${topicName}] In a certain code language, if 'TIGER' is coded as 'GRTVH', how will 'HORSE' be coded in that same language?`,
+            question_text_hi: `[${topicNameHi}] एक निश्चित कूट भाषा में, यदि 'TIGER' को 'GRTVH' लिखा जाता है, तो उसी भाषा में 'HORSE' को कैसे लिखा जाएगा?`,
+            options: { a: "SLIHV", b: "SLIVH", c: "SKJHV", d: "TLIHW" },
+            options_hi: { a: "SLIHV", b: "SLIVH", c: "SKJHV", d: "TLIHW" },
+            correct_option: "a",
+            solution_text: "Logic: Opposite letter pairs from alphabet:\nH ↔ S, O ↔ L, R ↔ I, S ↔ H, E ↔ V.\nResult: SLIHV (Option A).",
+            solution_text_hi: "तर्क: वर्णमाला में विपरीत अक्षरों के जोड़े:\nH ↔ S, O ↔ L, R ↔ I, S ↔ H, E ↔ V। सही उत्तर SLIHV है (विकल्प A)।"
+          },
+          {
+            question_number: 4,
+            practice_set: practiceSet,
+            level: "Moderate",
+            type_category: topicName,
+            question_text: `[${topicName}] Statements:\n1. All pencils are pens.\n2. Some pens are erasers.\n\nConclusions:\nI. Some erasers are pencils.\nII. Some pens are pencils.`,
+            question_text_hi: `[${topicNameHi}] कथन:\n1. सभी पेंसिल पेन हैं।\n2. कुछ पेन इरेज़र हैं।\n\nनिष्कर्ष:\nI. कुछ इरेज़र पेंसिल हैं।\nII. कुछ पेन पेंसिल हैं।`,
+            options: { a: "Only conclusion I follows", b: "Only conclusion II follows", c: "Both follow", d: "Neither follows" },
+            options_hi: { a: "केवल निष्कर्ष I अनुसरण करता है", b: "केवल निष्कर्ष II अनुसरण करता है", c: "दोनों अनुसरण करते हैं", d: "कोई अनुसरण नहीं करता" },
+            correct_option: "b",
+            solution_text: "Conclusion I is uncertain (cannot be definitely concluded). Conclusion II is the direct converse of statement 1 (All Pencils are Pens -> Some Pens are Pencils, which is True). Thus, only II follows (Option B).",
+            solution_text_hi: "निष्कर्ष I अनिश्चित है। निष्कर्ष II कथन 1 का प्रत्यक्ष प्रतिलोम है (सत्य)। अतः केवल II अनुसरण करता है (विकल्प B)।"
+          },
+          {
+            question_number: 5,
+            practice_set: practiceSet,
+            level: "Hard",
+            type_category: topicName,
+            question_text: `[${topicName}] Pointing to a gentleman, Sneha said, 'His only brother is the father of my daughter's father.' How is the gentleman related to Sneha?`,
+            question_text_hi: `[${topicNameHi}] एक सज्जन की ओर इशारा करते हुए स्नेहा ने कहा, 'उनका इकलौता भाई मेरी बेटी के पिता का पिता है।' वह सज्जन स्नेहा से किस प्रकार संबंधित हैं?`,
+            options: { a: "Uncle-in-law (चाचा ससुर)", b: "Father-in-law (ससुर)", c: "Brother-in-law (देवर/जेठ)", d: "Maternal Uncle (मामा)" },
+            options_hi: { a: "चाचा ससुर (Uncle-in-law)", b: "ससुर (Father-in-law)", c: "देवर/जेठ (Brother-in-law)", d: "मामा (Maternal Uncle)" },
+            correct_option: "a",
+            solution_text: "Sneha's daughter's father = Sneha's Husband.\nFather of Sneha's husband = Sneha's Father-in-law.\nBrother of Father-in-law = Uncle-in-law.\nCorrect Answer: Option (A).",
+            solution_text_hi: "स्नेहा की बेटी के पिता = स्नेहा के पति। पति के पिता = ससुर। ससुर का भाई = चाचा ससुर। अतः सही उत्तर (A) है।"
+          }
+        ];
+      }
+
+      if (subjectId === "english") {
+        return [
+          {
+            question_number: 1,
+            practice_set: practiceSet,
+            level: "Moderate",
+            type_category: topicName,
+            question_text: `[${topicName}] Select the segment with a grammatical or contextual error, or choose the most appropriate answer:\n\n'Scarcely had the minister entered the hall than the audience stood up to applaud his achievement.'`,
+            question_text_hi: `[${topicNameHi}] वाक्य के उस भाग की पहचान करें जिसमें व्याकरण संबंधी त्रुटि है:\n\n'Scarcely had the minister entered the hall than the audience stood up to applaud his achievement.'`,
+            options: { a: "Scarcely had the minister", b: "entered the hall than", c: "the audience stood up", d: "No error" },
+            options_hi: { a: "Scarcely had the minister", b: "entered the hall than", c: "the audience stood up", d: "No error" },
+            correct_option: "b",
+            solution_text: "Grammar Rule: Correlative conjunction 'Scarcely / Hardly' is always paired with 'when' or 'before', NEVER with 'than' ('No sooner' takes 'than').\nCorrection: 'entered the hall when the audience...'\nTherefore, segment (B) is erroneous.",
+            solution_text_hi: "व्याकरण नियम: 'Scarcely / Hardly' के साथ सदैव 'when' या 'before' आता है, 'than' नहीं ('No sooner' के साथ 'than' आता है)। अतः खंड (B) में त्रुटि है।"
+          },
+          {
+            question_number: 2,
+            practice_set: practiceSet,
+            level: "Moderate",
+            type_category: topicName,
+            question_text: `[${topicName}] Select the most accurate and high-frequency synonym/antonym or substitution:\n\nWord: 'UBIQUITOUS'`,
+            question_text_hi: `[${topicNameHi}] दिए गए शब्द का सबसे सटीक पर्यायवाची या अर्थ चुनें:\n\nशब्द: 'UBIQUITOUS'`,
+            options: { a: "Omnipresent / Present everywhere", b: "Extremely rare", c: "Harmful and dangerous", d: "Ancient and historic" },
+            options_hi: { a: "सर्वव्यापी (Omnipresent / Present everywhere)", b: "अति दुर्लभ (Extremely rare)", c: "हानिकारक (Harmful)", d: "प्राचीन (Ancient)" },
+            correct_option: "a",
+            solution_text: "Meaning: 'Ubiquitous' means present, appearing, or found everywhere (omnipresent, pervasive).\nCorrect Answer: Option (A).",
+            solution_text_hi: "अर्थ: 'Ubiquitous' का अर्थ है जो हर जगह मौजूद हो (सर्वव्यापी / Omnipresent)। अतः सही विकल्प (A) है।"
+          },
+          {
+            question_number: 3,
+            practice_set: practiceSet,
+            level: "Easy",
+            type_category: topicName,
+            question_text: `[${topicName}] Select the appropriate meaning of the given idiom:\n\n'To burn the midnight oil'`,
+            question_text_hi: `[${topicNameHi}] दिए गए मुहावरे का सही अर्थ चुनें:\n\n'To burn the midnight oil'`,
+            options: { a: "To work or study late into the night", b: "To waste precious resources recklessly", c: "To start a dangerous fire", d: "To be afraid of darkness" },
+            options_hi: { a: "देर रात तक कठिन परिश्रम या अध्ययन करना", b: "संसाधनों की बर्बादी करना", c: "आग लगाना", d: "अंधेरे से डरना" },
+            correct_option: "a",
+            solution_text: "Idiom Meaning: 'To burn the midnight oil' means to read, study, or work late into the night.\nCorrect Answer: Option (A).",
+            solution_text_hi: "मुहावरे का अर्थ: देर रात तक जागकर मेहनत या पढ़ाई करना। अतः सही उत्तर (A) है।"
+          },
+          {
+            question_number: 4,
+            practice_set: practiceSet,
+            level: "Hard",
+            type_category: topicName,
+            question_text: `[${topicName}] Convert the following into PASSIVE VOICE:\n\n'The jury will announce the verdict tomorrow morning.'`,
+            question_text_hi: `[${topicNameHi}] निम्नलिखित वाक्य को कर्मवाच्य (Passive Voice) में बदलें:\n\n'The jury will announce the verdict tomorrow morning.'`,
+            options: { 
+              a: "The verdict will be announced by the jury tomorrow morning.", 
+              b: "The verdict is announced by the jury tomorrow morning.", 
+              c: "The verdict shall have been announced by the jury tomorrow morning.", 
+              d: "The verdict was announced by the jury tomorrow morning." 
+            },
+            options_hi: { 
+              a: "The verdict will be announced by the jury tomorrow morning.", 
+              b: "The verdict is announced by the jury tomorrow morning.", 
+              c: "The verdict shall have been announced by the jury tomorrow morning.", 
+              d: "The verdict was announced by the jury tomorrow morning." 
+            },
+            correct_option: "a",
+            solution_text: "Passive Structure for Simple Future (will + V1):\nSubject (The verdict) + will be + Past Participle (announced) + by + Agent (the jury) + time adverbial.\nCorrect Answer: Option (A).",
+            solution_text_hi: "Simple Future Passive नियम: will + be + V3 (announced)। अतः सही उत्तर (A) है।"
+          },
+          {
+            question_number: 5,
+            practice_set: practiceSet,
+            level: "Easy",
+            type_category: topicName,
+            question_text: `[${topicName}] Select the ONE-WORD SUBSTITUTION for:\n\n'A person who loves books and spends a lot of time reading or collecting them'`,
+            question_text_hi: `[${topicNameHi}] वाक्यांश के लिए एक शब्द का चयन करें:\n\n'A person who loves books and spends a lot of time reading or collecting them'`,
+            options: { a: "Bibliophile", b: "Philatelist", c: "Numismatist", d: "Polyglot" },
+            options_hi: { a: "पुस्तकप प्रेमी (Bibliophile)", b: "डाक टिकट संग्रहकर्ता (Philatelist)", c: "मुद्रा संग्रहकर्ता (Numismatist)", d: "बहुभाषी (Polyglot)" },
+            correct_option: "a",
+            solution_text: "• Bibliophile: Lover and collector of books.\n• Philatelist: Collector of postage stamps.\n• Numismatist: Collector of coins.\n• Polyglot: Person knowing many languages.\nCorrect Answer: Option (A).",
+            solution_text_hi: "• Bibliophile: पुस्तक प्रेमी।\n• Philatelist: डाक टिकट संग्रहकर्ता।\n• Numismatist: सिक्कों का संग्रहकर्ता।\n• Polyglot: बहुभाषाविद्।\nअतः सही उत्तर (A) है।"
+          }
+        ];
+      }
+
+      // Default Quant topic generator if not Time & Work
+      return [
+        {
+          question_number: 1,
+          practice_set: practiceSet,
+          level: "Moderate",
+          type_category: topicName,
+          question_text: `[${topicName}] If 20% of (A + B) = 50% of (A - B), then find the ratio of A : B.`,
+          question_text_hi: `[${topicNameHi}] यदि (A + B) का 20% = (A - B) का 50% है, तो A : B का अनुपात ज्ञात कीजिए।`,
+          options: { a: "7 : 3", b: "3 : 7", c: "5 : 2", d: "2 : 5" },
+          options_hi: { a: "7 : 3", b: "3 : 7", c: "5 : 2", d: "2 : 5" },
+          correct_option: "a",
+          solution_text: "20(A + B) = 50(A - B)\n2A + 2B = 5A - 5B\n3A = 7B => A/B = 7/3.\nRatio A : B = 7 : 3 (Option A).",
+          solution_text_hi: "20(A + B) = 50(A - B) => 2A + 2B = 5A - 5B => 3A = 7B => A : B = 7 : 3 (विकल्प A)।"
+        },
+        {
+          question_number: 2,
+          practice_set: practiceSet,
+          level: "Hard",
+          type_category: topicName,
+          question_text: `[${topicName}] A shopkeeper sells an article at a discount of 15% on marked price and still gains 19%. If the cost price is ₹850, find its marked price.`,
+          question_text_hi: `[${topicNameHi}] एक दुकानदार अंकित मूल्य पर 15% छूट देकर भी 19% का लाभ कमाता है। यदि क्रय मूल्य ₹850 है, तो अंकित मूल्य ज्ञात कीजिए।`,
+          options: { a: "₹1,190", b: "₹1,250", c: "₹1,150", d: "₹1,300" },
+          options_hi: { a: "₹1,190", b: "₹1,250", c: "₹1,150", d: "₹1,300" },
+          correct_option: "a",
+          solution_text: "Formula: MP / CP = (100 + Profit%) / (100 - Discount%)\nMP / 850 = (100 + 19) / (100 - 15) = 119 / 85\nMP = 850 × (119 / 85) = 10 × 119 = ₹1,190 (Option A).",
+          solution_text_hi: "सूत्र: MP / CP = (100 + Profit%) / (100 - Discount%)\nMP / 850 = 119 / 85 => MP = ₹1,190 (विकल्प A)।"
+        },
+        {
+          question_number: 3,
+          practice_set: practiceSet,
+          level: "Moderate",
+          type_category: topicName,
+          question_text: `[${topicName}] If x + 1/x = 5, find the value of x³ + 1/x³.`,
+          question_text_hi: `[${topicNameHi}] यदि x + 1/x = 5 है, तो x³ + 1/x³ का मान ज्ञात कीजिए।`,
+          options: { a: "110", b: "125", c: "140", d: "115" },
+          options_hi: { a: "110", b: "125", c: "140", d: "115" },
+          correct_option: "a",
+          solution_text: "Identity: If x + 1/x = k, then x³ + 1/x³ = k³ - 3k.\nHere k = 5, so value = 5³ - 3(5) = 125 - 15 = 110 (Option A).",
+          solution_text_hi: "सूत्र: यदि x + 1/x = k, तो x³ + 1/x³ = k³ - 3k। यहाँ k = 5, अतः 125 - 15 = 110 (विकल्प A)।"
+        },
+        {
+          question_number: 4,
+          practice_set: practiceSet,
+          level: "Moderate",
+          type_category: topicName,
+          question_text: `[${topicName}] In a right-angled triangle ABC right angled at B, if tan A = 3/4, find the value of (sin A + cos A).`,
+          question_text_hi: `[${topicNameHi}] एक समकोण त्रिभुज ABC में जिसका कोण B समकोण है, यदि tan A = 3/4 है, तो (sin A + cos A) का मान ज्ञात कीजिए।`,
+          options: { a: "7/5", b: "5/7", c: "1/5", d: "12/25" },
+          options_hi: { a: "7/5", b: "5/7", c: "1/5", d: "12/25" },
+          correct_option: "a",
+          solution_text: "tan A = P / B = 3 / 4. Hypotenuse H = √(3² + 4²) = 5.\nsin A = P / H = 3 / 5, cos A = B / H = 4 / 5.\nsin A + cos A = 3/5 + 4/5 = 7/5 (Option A).",
+          solution_text_hi: "tan A = 3/4, अतः कर्ण = 5। sin A = 3/5, cos A = 4/5। sin A + cos A = 7/5 (विकल्प A)।"
+        },
+        {
+          question_number: 5,
+          practice_set: practiceSet,
+          level: "Hard",
+          type_category: topicName,
+          question_text: `[${topicName}] Two circles of radii 9 cm and 4 cm touch each other externally. Find the length of their direct common tangent (DCT).`,
+          question_text_hi: `[${topicNameHi}] 9 सेमी और 4 सेमी त्रिज्या वाले दो वृत्त एक दूसरे को बाह्य रूप से स्पर्श करते हैं। उनकी उभयनिष्ठ अनुस्पर्श रेखा (DCT) की लंबाई ज्ञात कीजिए।`,
+          options: { a: "12 cm", b: "13 cm", c: "10 cm", d: "14 cm" },
+          options_hi: { a: "12 सेमी", b: "13 सेमी", c: "10 सेमी", d: "14 सेमी" },
+          correct_option: "a",
+          solution_text: "Formula for DCT of externally touching circles: Length = 2√(r1 × r2).\nLength = 2√(9 × 4) = 2√(36) = 2 × 6 = 12 cm (Option A).",
+          solution_text_hi: "बाह्य स्पर्श करने वाले वृत्तों के लिए DCT की लंबाई = 2√(r1 × r2) = 2√(36) = 12 सेमी (विकल्प A)।"
+        }
+      ];
+    }
+
+    // --- 3.1 DEFAULT ASPIRANT BASELINE ANALYTICS & WEAK AREAS DATA ---
+    const DEFAULT_PERFORMANCE_RECORDS = [
+      {
+        id: 'test_demo_1',
+        timestamp: Date.now() - 86400000 * 2,
+        dateStr: 'Yesterday, 10:30 AM',
+        subjectId: 'quant',
+        subjectName: 'Quant',
+        topicId: 'time-work',
+        topicTitle: 'Time and Work & Pipes and Cisterns',
+        practiceSet: 'Practice 1',
+        totalQuestions: 15,
+        attemptedCount: 14,
+        correctCount: 6,
+        incorrectCount: 8,
+        unattemptedCount: 1,
+        score: 8.0,
+        accuracy: 43, // WEAK TOPIC (<60%)
+        questions: [
+          { qNum: 1, topicId: 'time-work', topicTitle: 'Time and Work & Pipes and Cisterns', subjectId: 'quant', typeCategory: 'Alternate Days Work', level: 'Moderate', isAttempted: true, isCorrect: false },
+          { qNum: 2, topicId: 'time-work', topicTitle: 'Time and Work & Pipes and Cisterns', subjectId: 'quant', typeCategory: 'Pipes & Cisterns Inlets', level: 'Easy', isAttempted: true, isCorrect: true },
+          { qNum: 3, topicId: 'time-work', topicTitle: 'Time and Work & Pipes and Cisterns', subjectId: 'quant', typeCategory: 'Wages Division by Work', level: 'Moderate', isAttempted: true, isCorrect: false },
+          { qNum: 4, topicId: 'time-work', topicTitle: 'Time and Work & Pipes and Cisterns', subjectId: 'quant', typeCategory: 'Efficiency Ratios', level: 'Hard', isAttempted: true, isCorrect: false },
+          { qNum: 5, topicId: 'time-work', topicTitle: 'Time and Work & Pipes and Cisterns', subjectId: 'quant', typeCategory: 'Man-Days Equivalence', level: 'Moderate', isAttempted: true, isCorrect: true }
+        ]
+      },
+      {
+        id: 'test_demo_2',
+        timestamp: Date.now() - 86400000,
+        dateStr: 'Yesterday, 04:15 PM',
+        subjectId: 'reasoning',
+        subjectName: 'Reasoning',
+        topicId: 'analogy',
+        topicTitle: 'Analogy & Similarity',
+        practiceSet: 'Practice 1',
+        totalQuestions: 15,
+        attemptedCount: 15,
+        correctCount: 13,
+        incorrectCount: 2,
+        unattemptedCount: 0,
+        score: 25.0,
+        accuracy: 87, // STRONG TOPIC (>75%)
+        questions: [
+          { qNum: 1, topicId: 'analogy', topicTitle: 'Analogy & Similarity', subjectId: 'reasoning', typeCategory: 'Word Analogy', level: 'Easy', isAttempted: true, isCorrect: true },
+          { qNum: 2, topicId: 'analogy', topicTitle: 'Analogy & Similarity', subjectId: 'reasoning', typeCategory: 'Number Patterns', level: 'Moderate', isAttempted: true, isCorrect: true },
+          { qNum: 3, topicId: 'analogy', topicTitle: 'Analogy & Similarity', subjectId: 'reasoning', typeCategory: 'Letter Shifts', level: 'Easy', isAttempted: true, isCorrect: true }
+        ]
+      },
+      {
+        id: 'test_demo_3',
+        timestamp: Date.now() - 3600000 * 5,
+        dateStr: 'Today, 09:45 AM',
+        subjectId: 'english',
+        subjectName: 'English',
+        topicId: 'para-jumbles',
+        topicTitle: 'Para Jumbles / Sentence Rearrangement',
+        practiceSet: 'Practice 1',
+        totalQuestions: 15,
+        attemptedCount: 13,
+        correctCount: 5,
+        incorrectCount: 8,
+        unattemptedCount: 2,
+        score: 6.0,
+        accuracy: 38, // WEAK TOPIC (<60%)
+        questions: [
+          { qNum: 1, topicId: 'para-jumbles', topicTitle: 'Para Jumbles / Sentence Rearrangement', subjectId: 'english', typeCategory: 'Chronological Sequencing', level: 'Moderate', isAttempted: true, isCorrect: false },
+          { qNum: 2, topicId: 'para-jumbles', topicTitle: 'Para Jumbles / Sentence Rearrangement', subjectId: 'english', typeCategory: 'Pronoun Antecedent Links', level: 'Hard', isAttempted: true, isCorrect: false },
+          { qNum: 3, topicId: 'para-jumbles', topicTitle: 'Para Jumbles / Sentence Rearrangement', subjectId: 'english', typeCategory: 'Transition Words (However/But)', level: 'Moderate', isAttempted: true, isCorrect: true }
+        ]
+      },
+      {
+        id: 'test_demo_4',
+        timestamp: Date.now() - 3600000 * 2,
+        dateStr: 'Today, 01:20 PM',
+        subjectId: 'quant',
+        subjectName: 'Quant',
+        topicId: 'percentage',
+        topicTitle: 'Percentages',
+        practiceSet: 'Practice 1',
+        totalQuestions: 15,
+        attemptedCount: 15,
+        correctCount: 12,
+        incorrectCount: 3,
+        unattemptedCount: 0,
+        score: 22.5,
+        accuracy: 80, // STRONG TOPIC (>75%)
+        questions: [
+          { qNum: 1, topicId: 'percentage', topicTitle: 'Percentages', subjectId: 'quant', typeCategory: 'Successive Percentage Change', level: 'Moderate', isAttempted: true, isCorrect: true },
+          { qNum: 2, topicId: 'percentage', topicTitle: 'Percentages', subjectId: 'quant', typeCategory: 'Election Problems', level: 'Moderate', isAttempted: true, isCorrect: true }
+        ]
+      },
+      {
+        id: 'test_demo_5',
+        timestamp: Date.now() - 1800000,
+        dateStr: 'Today, 02:40 PM',
+        subjectId: 'reasoning',
+        subjectName: 'Reasoning',
+        topicId: 'syllogism',
+        topicTitle: 'Syllogism & Logical Deduction',
+        practiceSet: 'Practice 1',
+        totalQuestions: 15,
+        attemptedCount: 14,
+        correctCount: 7,
+        incorrectCount: 7,
+        unattemptedCount: 1,
+        score: 10.5,
+        accuracy: 50, // WEAK TOPIC (<60%)
+        questions: [
+          { qNum: 1, topicId: 'syllogism', topicTitle: 'Syllogism & Logical Deduction', subjectId: 'reasoning', typeCategory: 'Possibility Conclusions', level: 'Hard', isAttempted: true, isCorrect: false },
+          { qNum: 2, topicId: 'syllogism', topicTitle: 'Syllogism & Logical Deduction', subjectId: 'reasoning', typeCategory: 'Only / A few cases', level: 'Hard', isAttempted: true, isCorrect: false },
+          { qNum: 3, topicId: 'syllogism', topicTitle: 'Syllogism & Logical Deduction', subjectId: 'reasoning', typeCategory: 'Standard All/Some Venn', level: 'Easy', isAttempted: true, isCorrect: true }
+        ]
+      }
+    ];
+
+    function App() {
+      // User Auth State
+      const [currentUser, setCurrentUser] = useState(null);
+      const [authLoading, setAuthLoading] = useState(true);
+
+      // Main Navigation State: 
+      // 'hub': Subject Overview Landing
+      // 'topics': Testbook-Style Topic Breakdown for active subject
+      // 'quiz': Practice Workspace & Test Engine
+      const [viewMode, setViewMode] = useState("topics");
+
+      // App Hierarchy States
+      const [exam] = useState("SSC Practice");
+      const [activeSubjectId, setActiveSubjectId] = useState("quant");
+      const [selectedTopicObj, setSelectedTopicObj] = useState(SYLLABUS_DATA.quant.topics[0]);
+      const [practiceSet, setPracticeSet] = useState("Practice 1");
+
+      // Topic Screen Filter & Search
+      const [activeCategory, setActiveCategory] = useState("All");
+      const [searchQuery, setSearchQuery] = useState("");
+
+      // Quiz Engine States
+      const [questions, setQuestions] = useState([]);
+      const [currentIndex, setCurrentIndex] = useState(0);
+      const [selectedAnswers, setSelectedAnswers] = useState({});
+      const [markedForReview, setMarkedForReview] = useState(new Set());
+      const [loading, setLoading] = useState(false);
+      const [submitted, setSubmitted] = useState(false);
+
+      // Feedback States
+      const [feedbacks, setFeedbacks] = useState({});
+      const [feedbackStatus, setFeedbackStatus] = useState(null);
+
+      // Top Bar States
+      const [language, setLanguage] = useState("EN");
+      const [timeLeft, setTimeLeft] = useState(35 * 60);
+
+      // Carousel Ref for Question Number Strip
+      const carouselRef = useRef(null);
+
+      // Auto-scroll Carousel to keep current question visible
+      useEffect(() => {
+        if (carouselRef.current && carouselRef.current.children[currentIndex]) {
+          carouselRef.current.children[currentIndex].scrollIntoView({
+            behavior: 'smooth',
+            inline: 'center',
+            block: 'nearest'
+          });
+        }
+      }, [currentIndex]);
+
+      // --- USER PERFORMANCE & WEAK TYPES ANALYTICS STATES ---
+      const [performanceRecords, setPerformanceRecords] = useState(() => {
+        try {
+          const saved = localStorage.getItem('ssc_user_performance_records_v1');
+          if (saved) {
+            const parsed = JSON.parse(saved);
+            if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+          }
+        } catch (e) {
+          console.warn("Storage load error:", e);
+        }
+        return DEFAULT_PERFORMANCE_RECORDS;
+      });
+
+      const [showAnalyticsModal, setShowAnalyticsModal] = useState(false);
+      const [analyticsSubjectFilter, setAnalyticsSubjectFilter] = useState("all");
+      const [analyticsActiveTab, setAnalyticsActiveTab] = useState("weak_types"); // 'weak_types' | 'subjects' | 'history'
+
+      // Get Active Subject Details
+      const currentSubject = useMemo(() => {
+        return SYLLABUS_DATA[activeSubjectId] || SYLLABUS_DATA.quant;
+      }, [activeSubjectId]);
+
+      // --- 4. AUTH STATUS CHECK ---
+      useEffect(() => {
+        async function checkSession() {
+          try {
+            const { data: { session } } = await supabase.auth.getSession();
+            if (session?.user) {
+              setCurrentUser(session.user);
+            }
+          } catch (e) {
+            console.warn("Session check error:", e);
+          } finally {
+            setAuthLoading(false);
+          }
+        }
+        checkSession();
+
+        const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+          setCurrentUser(session?.user || null);
+        });
+
+        return () => subscription.unsubscribe();
+      }, []);
+
+      const handleSignOut = async () => {
+        try {
+          await supabase.auth.signOut();
+        } catch (e) {
+          console.error("Sign out error:", e);
+        }
+        window.location.href = "index.html";
+      };
+
+      // --- 5. SWITCH SUBJECT HANDLER ---
+      const handleSelectSubject = (subjectId) => {
+        setActiveSubjectId(subjectId);
+        setActiveCategory("All");
+        setSearchQuery("");
+        const subj = SYLLABUS_DATA[subjectId] || SYLLABUS_DATA.quant;
+        setSelectedTopicObj(subj.topics[0]);
+        // Open Topics List screen for that subject
+        setViewMode("topics");
+      };
+
+      // --- 6. LAUNCH QUIZ FOR TOPIC & SET ---
+      const handleStartTopicQuiz = (topicObj, setNumber = "Practice 1") => {
+        setSelectedTopicObj(topicObj);
+        setPracticeSet(setNumber);
+        setViewMode("quiz");
+      };
+
+      // --- 7. FETCH QUESTIONS ACCORDING TO ACTIVE SUBJECT & TOPIC ---
+      useEffect(() => {
+        if (viewMode !== "quiz") return;
+
+        async function loadQuestions() {
+          setLoading(true);
+          try {
+            if (activeSubjectId === "quant" && selectedTopicObj.isLiveDatabase) {
+              // Fetch Quant Time & Work questions from Supabase table
+              const { data, error } = await supabase
+                .from('time_and_work_questions')
+                .select('*')
+                .eq('practice_set', practiceSet)
+                .order('question_number', { ascending: true });
+
+              if (error || !data || data.length === 0) {
+                console.warn("Supabase fetch returned empty, using curated questions.");
+                const fallback = getTopicQuestions(activeSubjectId, selectedTopicObj, practiceSet);
+                setQuestions(fallback);
+              } else {
+                setQuestions(data);
+              }
+            } else {
+              // Load curated questions for the selected topic
+              const dataset = getTopicQuestions(activeSubjectId, selectedTopicObj, practiceSet);
+              setQuestions(dataset);
+            }
+
+            // Reset quiz states for fresh set
+            setSelectedAnswers({});
+            setMarkedForReview(new Set());
+            setFeedbacks({});
+            setCurrentIndex(0);
+            setSubmitted(false);
+            setTimeLeft(35 * 60);
+          } catch (err) {
+            console.error("Fetch error:", err.message);
+          } finally {
+            setLoading(false);
+          }
+        }
+
+        loadQuestions();
+      }, [activeSubjectId, selectedTopicObj, practiceSet, viewMode]);
+
+      // --- 8. COUNTDOWN TIMER ---
+      useEffect(() => {
+        if (viewMode !== "quiz" || submitted) return;
+        const timer = setInterval(() => {
+          setTimeLeft(prev => {
+            if (prev <= 1) {
+              clearInterval(timer);
+              setSubmitted(true);
+              return 0;
+            }
+            return prev - 1;
+          });
+        }, 1000);
+        return () => clearInterval(timer);
+      }, [viewMode, submitted]);
+
+      const formatTime = (seconds) => {
+        const mins = Math.floor(seconds / 60);
+        const secs = seconds % 60;
+        return `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+      };
+
+      // --- 9. QUIZ INTERACTIONS ---
+      const handleOptionSelect = (optionKey) => {
+        if (submitted) return;
+        setSelectedAnswers({ ...selectedAnswers, [currentIndex]: optionKey });
+      };
+
+      const toggleReview = () => {
+        const updated = new Set(markedForReview);
+        if (updated.has(currentIndex)) updated.delete(currentIndex);
+        else updated.add(currentIndex);
+        setMarkedForReview(updated);
+      };
+
+      // --- 10. SUBMIT FEEDBACK TO SUPABASE ---
+      const handleFeedbackSubmit = async (rating) => {
+        const currentQNum = questions[currentIndex]?.question_number;
+        if (!currentQNum) return;
+
+        setFeedbacks(prev => ({ ...prev, [currentQNum]: rating }));
+        setFeedbackStatus("saving");
+
+        try {
+          const { error } = await supabase
+            .from('question_feedback')
+            .insert([{
+              practice_set: `${currentSubject.shortName} - ${selectedTopicObj.title} - ${practiceSet}`,
+              question_number: currentQNum,
+              rating: rating
+            }]);
+
+          if (error) throw error;
+          setFeedbackStatus("saved");
+          setTimeout(() => setFeedbackStatus(null), 2500);
+        } catch (err) {
+          console.error("Error saving feedback:", err.message);
+          setFeedbackStatus("error");
+          setTimeout(() => setFeedbackStatus(null), 3000);
+        }
+      };
+
+      // --- 11. SCORING & TEST SUBMISSION RECORDING ---
+      const scoreData = useMemo(() => {
+        let correct = 0, incorrect = 0, unattempted = 0;
+        questions.forEach((q, idx) => {
+          const ans = selectedAnswers[idx];
+          if (!ans) unattempted++;
+          else if (ans === q.correct_option) correct++;
+          else incorrect++;
+        });
+        const totalScore = (correct * 2) - (incorrect * 0.5); // Standard SSC Tier 1 Marking
+        return { correct, incorrect, unattempted, totalScore };
+      }, [submitted, selectedAnswers, questions]);
+
+      const handleTestSubmit = () => {
+        if (submitted) return;
+        setSubmitted(true);
+
+        // Record test metrics for analytics & weak areas diagnosis
+        let correct = 0, incorrect = 0, unattempted = 0;
+        const questionDetails = questions.map((q, idx) => {
+          const userAns = selectedAnswers[idx];
+          const isAttempted = userAns !== undefined && userAns !== null;
+          const isCorrect = isAttempted && userAns.toLowerCase() === (q.correct_option || '').toLowerCase();
+          if (!isAttempted) unattempted++;
+          else if (isCorrect) correct++;
+          else incorrect++;
+
+          return {
+            qNum: q.question_number || (idx + 1),
+            topicId: selectedTopicObj.id,
+            topicTitle: selectedTopicObj.title,
+            subjectId: activeSubjectId,
+            typeCategory: q.type_category || selectedTopicObj.title,
+            level: q.level || "Moderate",
+            isAttempted,
+            isCorrect
+          };
+        });
+
+        const attempted = correct + incorrect;
+        const score = (correct * 2) - (incorrect * 0.5);
+        const accuracy = attempted > 0 ? Math.round((correct / attempted) * 100) : 0;
+
+        const newRecord = {
+          id: 'test_' + Date.now(),
+          timestamp: Date.now(),
+          dateStr: 'Just now (' + new Date().toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' }) + ')',
+          subjectId: activeSubjectId,
+          subjectName: currentSubject.shortName,
+          topicId: selectedTopicObj.id,
+          topicTitle: selectedTopicObj.title,
+          practiceSet: practiceSet,
+          totalQuestions: questions.length,
+          attemptedCount: attempted,
+          correctCount: correct,
+          incorrectCount: incorrect,
+          unattemptedCount: unattempted,
+          score: score,
+          accuracy: accuracy,
+          questions: questionDetails
+        };
+
+        setPerformanceRecords(prev => {
+          const updated = [newRecord, ...prev];
+          try {
+            localStorage.setItem('ssc_user_performance_records_v1', JSON.stringify(updated));
+          } catch (e) {
+            console.warn("Storage error:", e);
+          }
+          return updated;
+        });
+      };
+
+      const handleResetAnalytics = () => {
+        if (window.confirm("Are you sure you want to reset all practice analytics and history?")) {
+          setPerformanceRecords([]);
+          try {
+            localStorage.removeItem('ssc_user_performance_records_v1');
+          } catch (e) {}
+        }
+      };
+
+      const handleLoadSampleData = () => {
+        setPerformanceRecords(DEFAULT_PERFORMANCE_RECORDS);
+        try {
+          localStorage.setItem('ssc_user_performance_records_v1', JSON.stringify(DEFAULT_PERFORMANCE_RECORDS));
+        } catch (e) {}
+      };
+
+      const handleLaunchWeakTopicPractice = (subjectId, topicId) => {
+        const subj = SYLLABUS_DATA[subjectId] || SYLLABUS_DATA.quant;
+        const targetTopic = subj.topics.find(t => t.id === topicId) || subj.topics[0];
+        setActiveSubjectId(subjectId);
+        setSelectedTopicObj(targetTopic);
+        setPracticeSet("Practice 1");
+        setViewMode("quiz");
+        setShowAnalyticsModal(false);
+      };
+
+      // --- 12. COMPREHENSIVE PERFORMANCE & WEAK TYPES AGGREGATOR ---
+      const analyticsData = useMemo(() => {
+        const records = performanceRecords;
+        const filtered = analyticsSubjectFilter === "all"
+          ? records
+          : records.filter(r => r.subjectId === analyticsSubjectFilter);
+
+        let totalQuestions = 0;
+        let totalAttempted = 0;
+        let totalCorrect = 0;
+        let totalIncorrect = 0;
+        let totalScore = 0;
+
+        filtered.forEach(r => {
+          totalQuestions += r.totalQuestions || 0;
+          totalAttempted += r.attemptedCount || 0;
+          totalCorrect += r.correctCount || 0;
+          totalIncorrect += r.incorrectCount || 0;
+          totalScore += r.score || 0;
+        });
+
+        const accuracy = totalAttempted > 0 ? Math.round((totalCorrect / totalAttempted) * 100) : 0;
+
+        // Group by Topic and Sub-Question Types
+        const topicMap = {};
+        filtered.forEach(r => {
+          const tId = r.topicId;
+          if (!topicMap[tId]) {
+            topicMap[tId] = {
+              topicId: r.topicId,
+              topicTitle: r.topicTitle,
+              subjectId: r.subjectId,
+              subjectName: r.subjectName,
+              totalAttempted: 0,
+              totalCorrect: 0,
+              totalIncorrect: 0,
+              testsCount: 0,
+              questionTypes: {}
+            };
+          }
+          topicMap[tId].totalAttempted += r.attemptedCount;
+          topicMap[tId].totalCorrect += r.correctCount;
+          topicMap[tId].totalIncorrect += r.incorrectCount;
+          topicMap[tId].testsCount += 1;
+
+          (r.questions || []).forEach(q => {
+            if (q.isAttempted) {
+              const qType = q.typeCategory || r.topicTitle;
+              if (!topicMap[tId].questionTypes[qType]) {
+                topicMap[tId].questionTypes[qType] = { name: qType, attempted: 0, correct: 0, incorrect: 0 };
+              }
+              topicMap[tId].questionTypes[qType].attempted += 1;
+              if (q.isCorrect) topicMap[tId].questionTypes[qType].correct += 1;
+              else topicMap[tId].questionTypes[qType].incorrect += 1;
+            }
+          });
+        });
+
+        const topicList = Object.values(topicMap).map(t => {
+          const acc = t.totalAttempted > 0 ? Math.round((t.totalCorrect / t.totalAttempted) * 100) : 0;
+          let category = "strong";
+          let badgeText = "Mastered (Strong)";
+          let badgeColor = "bg-emerald-500/20 text-emerald-300 border-emerald-500/40";
+          let progressColor = "bg-emerald-500";
+          let advice = "Solid conceptual mastery! Maintain regular revision.";
+
+          if (acc < 55) {
+            category = "critical_weak";
+            badgeText = "🚨 Critical Weak Area";
+            badgeColor = "bg-rose-500/20 text-rose-300 border-rose-500/40";
+            progressColor = "bg-rose-500";
+            advice = "High error rate detected. Review fundamental formulas, short-tricks, and concept notes.";
+          } else if (acc < 75) {
+            category = "moderate_weak";
+            badgeText = "⚠️ Needs Practice";
+            badgeColor = "bg-amber-500/20 text-amber-300 border-amber-500/40";
+            progressColor = "bg-amber-500";
+            advice = "Moderate accuracy. Eliminate silly mistakes by practicing timed 15-question sets.";
+          }
+
+          const typesArr = Object.values(t.questionTypes).map(qt => ({
+            ...qt,
+            accuracy: qt.attempted > 0 ? Math.round((qt.correct / qt.attempted) * 100) : 0
+          })).sort((a, b) => a.accuracy - b.accuracy);
+
+          return {
+            ...t,
+            accuracy: acc,
+            category,
+            badgeText,
+            badgeColor,
+            progressColor,
+            advice,
+            types: typesArr
+          };
+        });
+
+        const weakTopics = topicList
+          .filter(t => t.category === "critical_weak" || t.category === "moderate_weak")
+          .sort((a, b) => a.accuracy - b.accuracy);
+
+        const strongTopics = topicList
+          .filter(t => t.category === "strong")
+          .sort((a, b) => b.accuracy - a.accuracy);
+
+        // Subject comparison cards
+        const subjectsBreakdown = ["quant", "reasoning", "english"].map(sId => {
+          const sRecords = records.filter(r => r.subjectId === sId);
+          let sAttempted = 0, sCorrect = 0, sScore = 0;
+          sRecords.forEach(r => {
+            sAttempted += r.attemptedCount;
+            sCorrect += r.correctCount;
+            sScore += r.score;
+          });
+          const sAcc = sAttempted > 0 ? Math.round((sCorrect / sAttempted) * 100) : 0;
+          return {
+            id: sId,
+            name: SYLLABUS_DATA[sId]?.name || sId,
+            shortName: SYLLABUS_DATA[sId]?.shortName || sId,
+            testsCount: sRecords.length,
+            attempted: sAttempted,
+            correct: sCorrect,
+            score: Math.round(sScore * 10) / 10,
+            accuracy: sAcc
+          };
+        });
+
+        return {
+          totalQuestions,
+          totalAttempted,
+          totalCorrect,
+          totalIncorrect,
+          totalScore: Math.round(totalScore * 10) / 10,
+          accuracy,
+          weakTopics,
+          strongTopics,
+          allTopics: topicList,
+          subjectsBreakdown,
+          records: filtered
+        };
+      }, [performanceRecords, analyticsSubjectFilter]);
+
+      // Global Live Stats for Top Navbar & Hub
+      const globalOverallStats = useMemo(() => {
+        let attempted = 0, correct = 0;
+        performanceRecords.forEach(r => {
+          attempted += r.attemptedCount || 0;
+          correct += r.correctCount || 0;
+        });
+        const acc = attempted > 0 ? Math.round((correct / attempted) * 100) : 0;
+        return { attempted, correct, accuracy: acc, totalTests: performanceRecords.length };
+      }, [performanceRecords]);
+
+      const currentQ = questions[currentIndex];
+      const currentFeedback = feedbacks[currentQ?.question_number];
+
+      // Exact Database Field Rendering based on Language Toggle
+      const currentQuestionText = (language === 'HI' && currentQ?.question_text_hi) ? currentQ.question_text_hi : currentQ?.question_text;
+      const currentOptions = (language === 'HI' && currentQ?.options_hi) ? currentQ.options_hi : (currentQ?.options || {});
+      const currentSolution = (language === 'HI' && currentQ?.solution_text_hi) ? currentQ.solution_text_hi : currentQ?.solution_text;
+
+      const userName = currentUser?.user_metadata?.full_name || currentUser?.email?.split('@')[0] || "Aspirant";
+      const userInitial = userName.charAt(0).toUpperCase();
+
+      // Filtered Topics for Topic Explorer Screen
+      const filteredTopics = useMemo(() => {
+        return currentSubject.topics.filter(t => {
+          const matchesCategory = activeCategory === "All" || t.category === activeCategory;
+          const matchesSearch = searchQuery.trim() === "" || 
+            t.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            t.titleHi.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            t.desc.toLowerCase().includes(searchQuery.toLowerCase());
+          return matchesCategory && matchesSearch;
+        });
+      }, [currentSubject, activeCategory, searchQuery]);
+
+      return (
+        <div className="min-h-screen flex flex-col bg-slate-100 text-slate-800">
+          
+          {/* ============================================================ */}
+          {/* ============================================================ */}
+          {/* TOP GLOBAL NAVBAR WITH EDITORIAL AVATAR & 3-SUBJECT SWITCHER */}
+          {/* ============================================================ */}
+          <header className="bg-[#F3EFE6] text-slate-800 border-b border-[#E2DDD3] sticky top-0 z-30 shadow-sm w-full max-w-full overflow-hidden">
+            {/* Top Tier: Brand, Avatar & Circular Tool Buttons */}
+            <div className="w-full max-w-7xl mx-auto px-3 sm:px-6 py-2.5 flex items-center justify-between gap-2 border-b border-[#E8E3D8] min-w-0">
+              
+              {/* Left Side: Menu Icon & User Avatar Card (Matching screenshot) */}
+              <div className="flex items-center space-x-2.5 min-w-0">
+                <button
+                  onClick={() => setViewMode("topics")}
+                  className="p-1.5 rounded-xl text-slate-700 hover:bg-[#EAE5DA] transition"
+                  title="SSC Portal Home"
+                >
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M4 6h16M4 12h16M4 18h16" />
+                  </svg>
+                </button>
+
+                <div 
+                  onClick={() => setViewMode("topics")}
+                  className="flex items-center space-x-2.5 cursor-pointer group"
+                >
+                  {/* Round Emoji Avatar */}
+                  <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#FDE68A] border-2 border-[#E5DFD5] flex items-center justify-center text-lg shadow-sm shrink-0 group-hover:scale-105 transition">
+                    🧑‍🎓
+                  </div>
+                  <div className="text-left min-w-0">
+                    <span className="font-extrabold text-xs sm:text-sm text-slate-900 tracking-tight block uppercase truncate">
+                      {currentUser ? userName : "OM SOLANKI"}
+                    </span>
+                    <span className="font-mono text-[9px] sm:text-[10px] text-[#8C827A] font-bold tracking-wider block -mt-0.5">
+                      CSE 2027 • SSC ASPIRANT
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Right Side: Circular Tools & Diagnostics Pill */}
+              <div className="flex items-center space-x-1.5 sm:space-x-2 min-w-0 shrink-0">
+                
+                {/* Fullscreen / Focus Icon */}
+                <button
+                  onClick={() => {
+                    if (!document.fullscreenElement) {
+                      document.documentElement.requestFullscreen().catch(() => {});
+                    } else {
+                      document.exitFullscreen().catch(() => {});
+                    }
+                  }}
+                  className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white border border-[#E2DDD3] flex items-center justify-center text-slate-700 shadow-sm hover:bg-[#FAF8F5] transition text-sm"
+                  title="Focus / Fullscreen Mode"
+                >
+                  ⛶
+                </button>
+
+                {/* Font / Language Toggle */}
+                <button
+                  onClick={() => setLanguage(l => l === 'EN' ? 'HI' : 'EN')}
+                  className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white border border-[#E2DDD3] flex items-center justify-center text-slate-700 font-bold text-xs shadow-sm hover:bg-[#FAF8F5] transition"
+                  title={`Toggle Language (${language})`}
+                >
+                  Aa
+                </button>
+
+                {/* Notifications / Weak Alert Bell */}
+                <button
+                  onClick={() => {
+                    setAnalyticsSubjectFilter("all");
+                    setShowAnalyticsModal(true);
+                  }}
+                  className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white border border-[#E2DDD3] flex items-center justify-center text-slate-700 shadow-sm hover:bg-[#FAF8F5] transition text-xs relative"
+                  title="Diagnostics Notifications"
+                >
+                  🔔
+                  {analyticsData.weakTopics.length > 0 && (
+                    <span className="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-rose-500 animate-pulse"></span>
+                  )}
+                </button>
+
+                {/* Dark Analytics Widget Pill */}
+                <button
+                  onClick={() => {
+                    setAnalyticsSubjectFilter("all");
+                    setShowAnalyticsModal(true);
+                  }}
+                  className="flex items-center space-x-1.5 bg-[#182030] hover:bg-slate-800 text-white px-3 sm:px-3.5 py-1.5 rounded-full text-xs font-bold shadow-sm transition shrink-0"
+                  title="Open Performance, Accuracy & Weak Types Diagnostics Tool"
+                >
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                  <span className="hidden sm:inline">Analytics</span>
+                  <span className="font-mono text-[10px] font-semibold text-slate-300">
+                    {globalOverallStats.accuracy}%
+                  </span>
+                </button>
+
+                {/* Auth / Logout Button */}
+                {currentUser ? (
+                  <button
+                    onClick={handleSignOut}
+                    title="Sign Out"
+                    className="text-slate-500 hover:text-rose-600 transition p-1.5 hover:bg-[#EAE5DA] rounded-full"
+                  >
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                    </svg>
+                  </button>
+                ) : (
+                  <a
+                    href="index.html"
+                    className="inline-flex items-center bg-white border border-[#E2DDD3] text-slate-700 hover:bg-[#FAF8F5] px-2.5 py-1 rounded-full text-xs font-bold shadow-sm"
+                  >
+                    Login
+                  </a>
+                )}
+              </div>
+
+            </div>
+
+            {/* Bottom Tier: 3-Subject Segmented Pill Switcher (Quant | Reasoning | English) */}
+            <div className="px-3 sm:px-6 py-2 bg-[#F3EFE6]">
+              <div className="max-w-md mx-auto grid grid-cols-3 bg-[#EAE5DA] p-1 rounded-full border border-[#DDD7CC] shadow-inner gap-1 w-full">
+                {Object.values(SYLLABUS_DATA).map((subj) => {
+                  const isActive = activeSubjectId === subj.id;
+                  return (
+                    <button
+                      key={subj.id}
+                      onClick={() => handleSelectSubject(subj.id)}
+                      className={`w-full py-1.5 rounded-full text-xs sm:text-sm font-bold transition-all duration-200 text-center truncate ${
+                        isActive
+                          ? "bg-[#182030] text-white shadow-sm"
+                          : "text-[#5A544C] hover:text-slate-900 hover:bg-white/60"
+                      }`}
+                    >
+                      <span>{subj.shortName}</span>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+          </header>
+
+          {/* ============================================================ */}
+          {/* VIEW 1: TESTBOOK-ALIGNED TOPIC SELECTION SCREEN (THEME MATCH) */}
+          {/* ============================================================ */}
+          {viewMode === "topics" && (
+            <main className="max-w-6xl mx-auto w-full p-3.5 sm:p-6 lg:p-8 space-y-6 flex-1 animate-fade-in overflow-hidden">
+              
+              {/* TOP CARD: "TODAY'S REGISTER" / ASPIRANT STATUS (1:1 MATCH WITH SCREENSHOT) */}
+              <div className="bg-white rounded-3xl p-5 sm:p-7 border border-[#E2DDD3] shadow-[0_2px_12px_rgba(0,0,0,0.03)] space-y-4 w-full">
+                
+                {/* Header: Date & Tag */}
+                <div className="space-y-1">
+                  <span className="font-mono text-[10px] font-bold text-[#8C827A] tracking-widest uppercase block">
+                    TODAY'S REGISTER • ASPIRANT PROGRESSION
+                  </span>
+                  <h1 className="font-serif text-2xl sm:text-4xl font-black text-[#182030] tracking-tight">
+                    {new Date().toLocaleDateString('en-US', { weekday: 'long', day: 'numeric', month: 'long' })}
+                  </h1>
+                </div>
+
+                {/* Filter / Status Pills Row (Matching GS 1, CA 2, CSAT 0 in screenshot) */}
+                <div className="flex items-center gap-2 overflow-x-auto pb-1 sm:pb-0 scrollbar-none">
+                  <div className="bg-[#182030] text-white rounded-full px-3.5 py-1.5 text-xs font-bold shadow-sm whitespace-nowrap flex items-center space-x-1.5">
+                    <span>{currentSubject.shortName}</span>
+                    <span className="bg-white/20 text-white text-[10px] px-1.5 py-0.2 rounded-full font-mono font-bold">
+                      {currentSubject.topics.length}
+                    </span>
+                  </div>
+
+                  <div className="bg-[#EAE5DA] text-[#4A453E] border border-[#DDD7CC] rounded-full px-3.5 py-1.5 text-xs font-semibold whitespace-nowrap flex items-center space-x-1.5">
+                    <span>Accuracy</span>
+                    <span className="font-mono font-bold text-slate-700">
+                      {analyticsData.accuracy}%
+                    </span>
+                  </div>
+
+                  <div className="bg-[#EAE5DA] text-[#4A453E] border border-[#DDD7CC] rounded-full px-3.5 py-1.5 text-xs font-semibold whitespace-nowrap flex items-center space-x-1.5">
+                    <span>Score</span>
+                    <span className="font-mono font-bold text-slate-700">
+                      +{analyticsData.totalScore}
+                    </span>
+                  </div>
+
+                  <div className={`rounded-full px-3.5 py-1.5 text-xs font-bold whitespace-nowrap flex items-center space-x-1.5 ${
+                    analyticsData.weakTopics.length > 0 
+                      ? "bg-rose-50 text-rose-800 border border-rose-200" 
+                      : "bg-[#EAE5DA] text-[#4A453E] border border-[#DDD7CC]"
+                  }`}>
+                    <span>Weak Types</span>
+                    <span className="font-mono font-bold">
+                      {analyticsData.weakTopics.length}
+                    </span>
+                  </div>
+                </div>
+
+                {/* Action Row & Button (Matching '+ Add task' in screenshot) */}
+                <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 pt-2">
+                  
+                  {/* Task / Weak Topic Diagnostic Item (Matching '⭕ test2 🗑️ :' in screenshot) */}
+                  <div className="flex items-center justify-between p-3.5 rounded-2xl bg-[#FAF8F5] border border-[#E5DFD5] text-xs flex-1">
+                    <div className="flex items-center space-x-2.5 min-w-0 pr-2">
+                      <span className="text-sm shrink-0">🎯</span>
+                      <span className="font-medium text-slate-800 truncate">
+                        {analyticsData.weakTopics.length > 0 
+                          ? `Target Priority: ${analyticsData.weakTopics[0].topicTitle} (${analyticsData.weakTopics[0].accuracy}% accuracy)`
+                          : `Solid endurance across all tested topics in ${currentSubject.shortName}`}
+                      </span>
+                    </div>
+                    {analyticsData.weakTopics.length > 0 ? (
+                      <button
+                        onClick={() => handleLaunchWeakTopicPractice(analyticsData.weakTopics[0].subjectId, analyticsData.weakTopics[0].topicId)}
+                        className="text-xs font-bold text-[#182030] hover:underline flex items-center gap-1 shrink-0"
+                      >
+                        Practice →
+                      </button>
+                    ) : (
+                      <span className="font-mono text-[10px] text-emerald-700 font-bold uppercase shrink-0">✓ Ready</span>
+                    )}
+                  </div>
+
+                  {/* + Inspect Diagnostics Tool Button */}
+                  <button
+                    onClick={() => {
+                      setAnalyticsSubjectFilter(activeSubjectId);
+                      setShowAnalyticsModal(true);
+                    }}
+                    className="bg-[#182030] hover:bg-slate-800 text-white px-4 py-2.5 rounded-xl text-xs font-bold shadow-sm transition flex items-center justify-center space-x-1.5 shrink-0"
+                  >
+                    <span>+ Inspect Diagnostics Tool</span>
+                  </button>
+
+                </div>
+
+              </div>
+
+              {/* SECTION 2: "MODULES" HEADER & TOPIC CARDS (1:1 MATCH WITH SCREENSHOT) */}
+              <div className="space-y-4">
+                
+                {/* Modules Section Title */}
+                <div className="flex items-baseline justify-between pt-2">
+                  <h2 className="font-serif text-2xl sm:text-3xl font-black text-[#182030] tracking-tight">
+                    Modules
+                  </h2>
+                  <span className="font-mono text-[11px] text-[#8C827A] font-medium hidden sm:inline">
+                    Track it • Analyse it in one preparation
+                  </span>
+                </div>
+
+                {/* Filter Pills & Search Bar */}
+                <div className="bg-white p-3 sm:p-4 rounded-2xl border border-[#E2DDD3] shadow-sm flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3 w-full overflow-hidden">
+                  
+                  {/* Category Pills */}
+                  <div className="flex items-center gap-1.5 overflow-x-auto pb-1 sm:pb-0 sm:flex-wrap w-full md:w-auto min-w-0 scrollbar-none">
+                    {currentSubject.categories.map((cat) => (
+                      <button
+                        key={cat}
+                        onClick={() => setActiveCategory(cat)}
+                        className={`px-3.5 py-1.5 rounded-full text-xs font-bold transition-all whitespace-nowrap shrink-0 ${
+                          activeCategory === cat
+                            ? "bg-[#182030] text-white shadow-sm"
+                            : "bg-[#EAE5DA] text-[#4A453E] hover:bg-white hover:text-slate-900 border border-[#DDD7CC]"
+                        }`}
+                      >
+                        {cat}
+                      </button>
+                    ))}
+                  </div>
+
+                  {/* Search Box */}
+                  <div className="relative w-full md:w-72 min-w-0">
+                    <span className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                      </svg>
+                    </span>
+                    <input
+                      type="text"
+                      value={searchQuery}
+                      onChange={(e) => setSearchQuery(e.target.value)}
+                      placeholder={`Search ${currentSubject.shortName} topics...`}
+                      className="w-full pl-9 pr-8 py-2 bg-[#FAF8F5] border border-[#DDD7CC] rounded-full text-xs font-medium text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-700"
+                    />
+                    {searchQuery && (
+                      <button
+                        onClick={() => setSearchQuery("")}
+                        className="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-400 hover:text-slate-600 text-xs font-bold"
+                      >
+                        ✕
+                      </button>
+                    )}
+                  </div>
+
+                </div>
+
+                {/* TOPIC MODULE CARDS (Obsidian / Notion-style layout matching screenshot) */}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 w-full">
+                  {filteredTopics.map((topic) => (
+                    <div
+                      key={topic.id}
+                      className="bg-white rounded-2xl p-5 sm:p-6 border border-[#E5DFD5] shadow-[0_2px_8px_rgba(0,0,0,0.03)] hover:shadow-md hover:border-[#CFC6B8] transition-all flex flex-col justify-between w-full min-w-0 group"
+                    >
+                      <div className="space-y-3 min-w-0">
+                        
+                        {/* Top Line: Icon box & Micro-tag */}
+                        <div className="flex items-center justify-between gap-2 min-w-0">
+                          <div className="w-9 h-9 rounded-xl bg-[#F4F0E8] border border-[#E2DDD3] flex items-center justify-center text-slate-700 text-sm font-bold shadow-xs">
+                            {topic.category.includes("Arithmetic") ? "📐" : topic.category.includes("Advanced") ? "📊" : topic.category.includes("Grammar") ? "🔤" : "🗺️"}
+                          </div>
+                          <span className="font-mono text-[9px] text-[#8C827A] font-semibold uppercase tracking-wider truncate">
+                            {topic.category} • {topic.weightage.split(' ')[0]}
+                          </span>
+                        </div>
+
+                        {/* Topic Title & Hindi Subtitle */}
+                        <div className="min-w-0 pt-1">
+                          <h3 className="text-base font-extrabold text-[#182030] leading-snug group-hover:text-slate-700 transition break-words">
+                            {topic.title}
+                          </h3>
+                          <p className="text-xs text-[#8C827A] font-medium mt-0.5 break-words">
+                            {topic.titleHi}
+                          </p>
+                        </div>
+
+                        {/* Topic Concepts Summary */}
+                        <p className="text-xs text-[#4A453E] leading-relaxed line-clamp-2 font-normal">
+                          {topic.desc}
+                        </p>
+                      </div>
+
+                      {/* Sets Action Buttons */}
+                      <div className="pt-4 mt-4 border-t border-[#F0EBE1] space-y-2 w-full min-w-0">
+                        <div className="flex items-center justify-between font-mono text-[10px] text-[#8C827A] mb-1">
+                          <span>AVAILABLE SETS</span>
+                          <span className="font-bold text-[#182030]">35 Qs / Set</span>
+                        </div>
+                        
+                        <div className="grid grid-cols-2 gap-2 w-full">
+                          <button
+                            onClick={() => handleStartTopicQuiz(topic, "Practice 1")}
+                            className="py-2.5 px-3 rounded-xl text-xs font-bold bg-[#182030] hover:bg-slate-800 text-white shadow-sm transition flex items-center justify-center space-x-1 w-full min-w-0"
+                          >
+                            <span className="truncate">Start Set 1</span>
+                            <span className="text-[11px] font-mono">→</span>
+                          </button>
+                          <button
+                            onClick={() => handleStartTopicQuiz(topic, "Practice 2")}
+                            className="py-2.5 px-3 rounded-xl text-xs font-bold bg-[#F4F0E8] hover:bg-[#EAE5DA] text-[#182030] border border-[#DDD7CC] transition flex items-center justify-center space-x-1 w-full min-w-0"
+                          >
+                            <span className="truncate">Start Set 2</span>
+                            <span className="text-[11px] font-mono">→</span>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {filteredTopics.length === 0 && (
+                  <div className="bg-white rounded-3xl p-8 sm:p-12 text-center border border-[#E2DDD3]">
+                    <div className="w-12 h-12 rounded-2xl bg-[#FAF8F5] border border-[#E5DFD5] text-slate-700 flex items-center justify-center mx-auto mb-3 text-lg">
+                      🔍
+                    </div>
+                    <h3 className="font-serif text-lg font-bold text-slate-800">No topics found matching "{searchQuery}"</h3>
+                    <p className="text-xs text-slate-500 mt-1 mb-4">Try clearing your search query or selecting a different category tab.</p>
+                    <button
+                      onClick={() => { setSearchQuery(""); setActiveCategory("All"); }}
+                      className="px-4 py-2 bg-[#182030] text-white font-bold text-xs rounded-xl shadow-sm"
+                    >
+                      Reset Filters
+                    </button>
+                  </div>
+                )}
+
+              </div>
+
+            </main>
+          )}
+
+          {/* ============================================================ */}
+          {/* VIEW 2: ACTIVE QUIZ PRACTICE WORKSPACE (MATCHING USER SCREENSHOT) */}
+          {/* ============================================================ */}
+          {viewMode === "quiz" && (
+            <div className="flex flex-col flex-1 animate-fade-in bg-[#F8F9FA] min-h-screen">
+              
+              {/* TOP SUB-HEADER: ROUND BACK BUTTON, TOPIC TITLE & LANGUAGE DROPDOWN */}
+              <div className="bg-white border-b border-slate-200/80 px-3 sm:px-6 py-2.5 shadow-xs sticky top-0 z-30">
+                <div className="max-w-2xl mx-auto flex items-center justify-between gap-3">
+                  
+                  {/* Left: Round Back Circle + Topic Name */}
+                  <div className="flex items-center space-x-3 min-w-0">
+                    <button
+                      onClick={() => setViewMode("topics")}
+                      className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-slate-100/90 hover:bg-slate-200 border border-slate-200 flex items-center justify-center text-slate-700 font-bold transition shadow-xs shrink-0"
+                      title="Back to Topics"
+                    >
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                      </svg>
+                    </button>
+                    <h2 className="font-extrabold text-base sm:text-lg text-slate-900 truncate">
+                      {selectedTopicObj.title}
+                    </h2>
+                  </div>
+
+                  {/* Right: Language Dropdown Button [文A English ⌄] */}
+                  <div className="relative shrink-0 flex items-center space-x-2">
+                    <button
+                      onClick={() => setLanguage(l => l === 'EN' ? 'HI' : 'EN')}
+                      className="inline-flex items-center space-x-1.5 bg-white border border-slate-200 hover:bg-slate-50 text-slate-700 px-3 py-1.5 rounded-xl text-xs sm:text-sm font-semibold shadow-xs transition"
+                      title="Toggle Question Language"
+                    >
+                      <span className="text-indigo-600 font-bold text-xs">文A</span>
+                      <span>{language === 'EN' ? 'English' : 'हिन्दी'}</span>
+                      <svg className="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </button>
+                  </div>
+
+                </div>
+              </div>
+
+              {/* LEVEL 1 SUB-BAR & TIMER */}
+              <div className="max-w-2xl mx-auto w-full px-4 pt-3 pb-1 flex items-center justify-between">
+                <div className="flex items-center space-x-2">
+                  <h3 className="font-black text-base sm:text-lg text-slate-900">
+                    Level 1
+                  </h3>
+                  <span className="text-slate-300">•</span>
+                  <span className="font-semibold text-xs text-slate-500">{practiceSet}</span>
+                </div>
+
+                {/* Countdown Timer */}
+                <div className="flex items-center space-x-1.5 bg-slate-900 text-white px-2.5 py-1 rounded-full text-xs font-mono font-bold shadow-xs">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                  <span>{formatTime(timeLeft)}</span>
+                </div>
+              </div>
+
+              {/* HORIZONTAL QUESTION NUMBER CAROUSEL STRIP (1, 2, 3, 4...) */}
+              <div className="max-w-2xl mx-auto w-full px-3 sm:px-4 py-2">
+                <div className="flex items-center justify-between gap-1 bg-white p-1.5 rounded-2xl border border-slate-200/80 shadow-xs">
+                  
+                  {/* Left Arrow Button */}
+                  <button
+                    disabled={currentIndex === 0}
+                    onClick={() => setCurrentIndex(prev => Math.max(0, prev - 1))}
+                    className="w-8 h-8 rounded-full flex items-center justify-center text-slate-500 hover:text-slate-900 hover:bg-slate-100 disabled:opacity-30 transition shrink-0"
+                    title="Previous Question"
+                  >
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M15 19l-7-7 7-7" />
+                    </svg>
+                  </button>
+
+                  {/* Scrollable Number Bubbles Strip */}
+                  <div 
+                    ref={carouselRef}
+                    className="flex items-center gap-2 overflow-x-auto py-2 px-1 scroll-smooth scrollbar-none flex-1 justify-start min-w-0"
+                  >
+                    {questions.map((_, idx) => {
+                      const isCurrent = idx === currentIndex;
+                      const isAnswered = selectedAnswers[idx] !== undefined;
+                      const isReview = markedForReview.has(idx);
+
+                      let bubbleStyle = "bg-white border border-[#CBD5E1] text-slate-600 font-semibold hover:border-slate-400";
+                      if (isCurrent) {
+                        // Solid Pink/Crimson with Active Down Pointer (exact match to screenshot)
+                        bubbleStyle = "bg-[#E11D48] text-white font-bold shadow-md ring-2 ring-rose-200";
+                      } else if (isReview) {
+                        bubbleStyle = "bg-amber-400 text-slate-900 font-bold border-amber-500";
+                      } else if (isAnswered) {
+                        bubbleStyle = "bg-[#7E8B9B] text-white font-bold border-[#7E8B9B]";
+                      }
+
+                      return (
+                        <div key={idx} className="relative shrink-0 flex flex-col items-center">
+                          <button
+                            onClick={() => setCurrentIndex(idx)}
+                            className={`w-8 h-8 sm:w-9 sm:h-9 rounded-full flex items-center justify-center text-xs sm:text-sm transition-all duration-150 ${bubbleStyle}`}
+                          >
+                            {idx + 1}
+                          </button>
+                          {/* Active Pointer Arrow pointing to question card */}
+                          {isCurrent && (
+                            <span className="w-0 h-0 border-l-[4px] border-l-transparent border-r-[4px] border-r-transparent border-t-[5px] border-t-[#E11D48] mt-0.5"></span>
+                          )}
+                        </div>
+                      );
+                    })}
+                  </div>
+
+                  {/* Right Arrow Button */}
+                  <button
+                    disabled={currentIndex === questions.length - 1}
+                    onClick={() => setCurrentIndex(prev => Math.min(questions.length - 1, prev + 1))}
+                    className="w-8 h-8 rounded-full flex items-center justify-center text-slate-500 hover:text-slate-900 hover:bg-slate-100 disabled:opacity-30 transition shrink-0"
+                    title="Next Question"
+                  >
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M9 5l7 7-7 7" />
+                    </svg>
+                  </button>
+
+                </div>
+              </div>
+
+              {/* LOADING STATE */}
+              {loading ? (
+                <div className="flex-1 flex items-center justify-center p-8 sm:p-12">
+                  <div className="text-center">
+                    <div className="w-10 h-10 border-4 border-[#E11D48] border-t-transparent rounded-full animate-spin mx-auto mb-3"></div>
+                    <p className="font-semibold text-slate-700 text-xs sm:text-sm">Loading {selectedTopicObj.title} ({practiceSet})...</p>
+                  </div>
+                </div>
+              ) : questions.length === 0 ? (
+                <div className="flex-1 flex items-center justify-center p-6 sm:p-12">
+                  <div className="text-center max-w-md bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-sm">
+                    <div className="w-12 h-12 rounded-2xl bg-slate-50 text-slate-700 flex items-center justify-center mx-auto mb-3 text-xl">
+                      📖
+                    </div>
+                    <h3 className="font-bold text-slate-800 text-base mb-1">No Questions Found</h3>
+                    <p className="text-xs text-slate-500 mb-4">This practice set is currently being updated. Try switching to Set 1 or another topic.</p>
+                    <button
+                      onClick={() => setViewMode("topics")}
+                      className="px-4 py-2 bg-slate-900 text-white font-bold text-xs rounded-xl shadow"
+                    >
+                      Back to Modules
+                    </button>
+                  </div>
+                </div>
+              ) : (
+                /* MAIN QUIZ WORKSPACE (CENTERED MOBILE-FIRST FORMAT) */
+                <main className="max-w-2xl mx-auto w-full px-3 sm:px-4 pb-16 space-y-3.5 flex-1">
+                  
+                  {/* QUESTION CARD (Matching '1 of 25', '🔖 Save', '⋮' in screenshot) */}
+                  <div className="bg-white rounded-2xl p-5 sm:p-6 shadow-[0_2px_12px_rgba(0,0,0,0.03)] border border-slate-200/90 space-y-4">
+                    
+                    {/* Top Meta Bar */}
+                    <div className="flex items-center justify-between text-xs sm:text-sm text-slate-600 border-b border-slate-100 pb-3">
+                      <div className="font-semibold text-slate-800">
+                        <span className="text-slate-950 font-bold">{currentIndex + 1}</span> of <span className="text-slate-500">{questions.length}</span>
+                      </div>
+
+                      <div className="flex items-center space-x-3">
+                        {/* Bookmark / Save Button */}
+                        <button
+                          onClick={toggleReview}
+                          className={`flex items-center space-x-1.5 text-xs font-bold transition px-2 py-0.5 rounded-lg ${
+                            markedForReview.has(currentIndex)
+                              ? "bg-amber-100 text-amber-900 font-extrabold"
+                              : "text-slate-500 hover:text-slate-900"
+                          }`}
+                          title="Save / Bookmark for Review"
+                        >
+                          <svg className="w-3.5 h-3.5" fill={markedForReview.has(currentIndex) ? "currentColor" : "none"} stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" />
+                          </svg>
+                          <span>Save</span>
+                        </button>
+
+                        {/* More Menu / Marks Badge */}
+                        <span className="font-mono text-[10px] text-slate-400 font-bold px-2 py-0.5 bg-slate-100 rounded-md">
+                          +2 / -0.5
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Question Text */}
+                    <div className="py-2">
+                      <p className="text-slate-900 text-sm sm:text-base font-semibold leading-relaxed whitespace-pre-line">
+                        {currentQuestionText}
+                      </p>
+                    </div>
+
+                  </div>
+
+                  {/* OPTION CARDS (Separate rectangular cards with numbered badge & bottom-right tag) */}
+                  <div className="space-y-2.5">
+                    {Object.entries(currentOptions).map(([key, val], optIdx) => {
+                      const isSelected = selectedAnswers[currentIndex] === key;
+                      const isAnswered = selectedAnswers[currentIndex] !== undefined;
+                      const isCorrectOption = key === currentQ?.correct_option;
+                      
+                      // Show immediate validation if option is selected or if test is submitted
+                      const showValidation = submitted || (isAnswered && isSelected);
+                      const isWrongSelection = showValidation && isSelected && !isCorrectOption;
+                      const isRightSelection = (showValidation && isSelected && isCorrectOption) || (submitted && isCorrectOption);
+
+                      let cardStyle = "bg-white border-slate-200 hover:border-slate-300 hover:bg-slate-50/70 text-slate-800 shadow-xs";
+                      let badgeStyle = "border-slate-300 bg-white text-slate-500 font-bold";
+
+                      if (isRightSelection) {
+                        cardStyle = "bg-[#F0FDF4] border-[#22C55E] shadow-sm";
+                        badgeStyle = "bg-[#10B981] border-[#10B981] text-white font-bold";
+                      } else if (isWrongSelection) {
+                        cardStyle = "bg-[#FFF0F3] border-[#F43F5E] shadow-sm";
+                        badgeStyle = "bg-[#E11D48] border-[#E11D48] text-white font-bold";
+                      } else if (isSelected) {
+                        cardStyle = "bg-slate-50 border-slate-800 ring-1 ring-slate-800 text-slate-900";
+                        badgeStyle = "bg-slate-900 border-slate-900 text-white font-bold";
+                      }
+
+                      return (
+                        <div
+                          key={key}
+                          onClick={() => handleOptionSelect(key)}
+                          className={`relative flex items-center p-3.5 sm:p-4 rounded-xl sm:rounded-2xl border transition-all cursor-pointer select-none overflow-hidden ${cardStyle}`}
+                        >
+                          {/* Number Badge Circle (1, 2, 3, 4) */}
+                          <span className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full border flex items-center justify-center font-bold text-xs sm:text-sm mr-3.5 shrink-0 transition-all ${badgeStyle}`}>
+                            {optIdx + 1}
+                          </span>
+
+                          {/* Option Content */}
+                          <span className="text-slate-900 font-medium text-xs sm:text-sm pr-20 leading-relaxed">
+                            {val}
+                          </span>
+
+                          {/* Status Tag on Bottom-Right Corner */}
+                          {isWrongSelection && (
+                            <span className="absolute bottom-0 right-0 bg-[#E11D48] text-white text-[10px] sm:text-[11px] font-bold px-3 py-0.5 rounded-tl-lg shadow-xs animate-fade-in">
+                              ✕ Incorrect
+                            </span>
+                          )}
+                          {isRightSelection && (
+                            <span className="absolute bottom-0 right-0 bg-[#10B981] text-white text-[10px] sm:text-[11px] font-bold px-3 py-0.5 rounded-tl-lg shadow-xs animate-fade-in">
+                              ✓ Correct Answer
+                            </span>
+                          )}
+                        </div>
+                      );
+                    })}
+                  </div>
+
+                  {/* SOLUTION DRAWER (Shown when answered or on test submit) */}
+                  {(submitted || selectedAnswers[currentIndex] !== undefined) && (
+                    <div className="bg-white border border-emerald-200/90 rounded-2xl p-4 sm:p-5 shadow-xs space-y-2 animate-fade-in mt-3">
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center space-x-1.5 text-emerald-800 font-bold text-xs sm:text-sm">
+                          <span>💡</span>
+                          <span>Solution & Explanation: Option ({currentQ?.correct_option?.toUpperCase()})</span>
+                        </div>
+                        <span className="font-mono text-[10px] bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded-full font-bold">
+                          Official Key
+                        </span>
+                      </div>
+                      <p className="text-slate-800 text-xs sm:text-sm leading-relaxed whitespace-pre-line bg-[#FAF8F5] p-3.5 rounded-xl border border-[#E5DFD5]">
+                        {currentSolution}
+                      </p>
+                    </div>
+                  )}
+
+                  {/* QUALITY FEEDBACK RATING BAR */}
+                  <div className="pt-2 flex items-center justify-between gap-2 bg-white p-3 rounded-xl border border-slate-200/80 text-xs">
+                    <div className="flex items-center space-x-1.5 text-slate-700 font-semibold">
+                      <span>⭐</span>
+                      <span>Quality Rating:</span>
+                    </div>
+
+                    <div className="flex items-center space-x-1.5">
+                      <button
+                        onClick={() => handleFeedbackSubmit('Good')}
+                        className={`py-1 px-2.5 rounded-lg text-xs font-bold border transition ${
+                          currentFeedback === 'Good'
+                            ? "bg-emerald-600 text-white border-emerald-600"
+                            : "bg-slate-50 text-slate-700 border-slate-200 hover:bg-slate-100"
+                        }`}
+                      >
+                        Good
+                      </button>
+                      <button
+                        onClick={() => handleFeedbackSubmit('Neutral')}
+                        className={`py-1 px-2.5 rounded-lg text-xs font-bold border transition ${
+                          currentFeedback === 'Neutral'
+                            ? "bg-slate-800 text-white border-slate-800"
+                            : "bg-slate-50 text-slate-700 border-slate-200 hover:bg-slate-100"
+                        }`}
+                      >
+                        Neutral
+                      </button>
+                      <button
+                        onClick={() => handleFeedbackSubmit('Bad')}
+                        className={`py-1 px-2.5 rounded-lg text-xs font-bold border transition ${
+                          currentFeedback === 'Bad'
+                            ? "bg-rose-600 text-white border-rose-600"
+                            : "bg-slate-50 text-slate-700 border-slate-200 hover:bg-slate-100"
+                        }`}
+                      >
+                        Bad
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* NAVIGATION & TEST SUBMISSION ACTION BUTTONS */}
+                  <div className="flex items-center justify-between gap-2 pt-2">
+                    <button
+                      onClick={() => {
+                        const updated = { ...selectedAnswers };
+                        delete updated[currentIndex];
+                        setSelectedAnswers(updated);
+                      }}
+                      className="py-2.5 px-3.5 rounded-xl text-xs font-bold bg-white border border-slate-300 text-slate-600 hover:bg-slate-50 text-center shadow-xs"
+                    >
+                      Clear
+                    </button>
+
+                    <div className="flex items-center space-x-2">
+                      <button
+                        disabled={currentIndex === 0}
+                        onClick={() => setCurrentIndex(prev => Math.max(0, prev - 1))}
+                        className="py-2.5 px-4 rounded-xl text-xs sm:text-sm font-bold bg-white border border-slate-300 text-slate-700 hover:bg-slate-50 disabled:opacity-40 text-center shadow-xs"
+                      >
+                        Previous
+                      </button>
+
+                      {currentIndex < questions.length - 1 ? (
+                        <button
+                          onClick={() => setCurrentIndex(prev => prev + 1)}
+                          className="py-2.5 px-5 sm:px-6 rounded-xl text-xs sm:text-sm font-bold bg-slate-900 text-white hover:bg-slate-800 shadow-sm text-center"
+                        >
+                          Next Question →
+                        </button>
+                      ) : (
+                        <button
+                          onClick={handleTestSubmit}
+                          className="py-2.5 px-5 sm:px-6 rounded-xl text-xs sm:text-sm font-bold bg-[#10B981] hover:bg-emerald-700 text-white shadow-sm text-center"
+                        >
+                          Submit Test ✓
+                        </button>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* SCORECARD ON SUBMISSION */}
+                  {submitted && (
+                    <div className="bg-white p-5 rounded-2xl shadow-sm border border-emerald-200 animate-fade-in space-y-3 mt-4">
+                      <h3 className="font-bold text-slate-900 text-sm">Performance Scorecard</h3>
+                      <div className="grid grid-cols-2 gap-2 text-center text-xs">
+                        <div className="p-2.5 bg-emerald-50 text-emerald-900 rounded-xl border border-emerald-200">
+                          <span className="block font-black text-base">{scoreData.correct}</span>
+                          Correct (+{scoreData.correct * 2})
+                        </div>
+                        <div className="p-2.5 bg-rose-50 text-rose-900 rounded-xl border border-rose-200">
+                          <span className="block font-black text-base">{scoreData.incorrect}</span>
+                          Wrong (-{scoreData.incorrect * 0.5})
+                        </div>
+                      </div>
+                      <div className="pt-2 border-t text-center">
+                        <span className="font-mono text-[10px] text-slate-500 font-bold uppercase tracking-wider">Total Score</span>
+                        <p className="text-xl font-black text-slate-900">{scoreData.totalScore} / {questions.length * 2}</p>
+                      </div>
+
+                      <button
+                        onClick={() => {
+                          setAnalyticsSubjectFilter(activeSubjectId);
+                          setShowAnalyticsModal(true);
+                        }}
+                        className="w-full py-2.5 bg-slate-900 hover:bg-slate-800 text-white rounded-xl text-xs font-bold transition shadow flex items-center justify-center space-x-1.5"
+                      >
+                        <span>📊 View Weak Areas & Diagnostics</span>
+                      </button>
+                    </div>
+                  )}
+
+                </main>
+              )}
+            </div>
+          )}
+
+          {/* ============================================================ */}
+          {/* PERFORMANCE & WEAK AREAS DIAGNOSTIC MODAL (THEME MATCH) */}
+          {/* ============================================================ */}
+          {showAnalyticsModal && (
+            <div className="fixed inset-0 z-50 flex items-center justify-center p-2.5 sm:p-6 bg-slate-950/60 backdrop-blur-sm animate-fade-in">
+              <div className="bg-[#F8F6F0] border border-[#DDD7CC] rounded-3xl w-full max-w-4xl max-h-[95vh] flex flex-col shadow-2xl overflow-hidden text-slate-800">
+                
+                {/* Modal Header */}
+                <div className="p-4 sm:p-6 bg-white border-b border-[#E2DDD3] flex items-center justify-between gap-3 shrink-0">
+                  <div className="space-y-0.5">
+                    <span className="font-mono text-[10px] font-bold text-[#8C827A] tracking-wider uppercase block">
+                      DIAGNOSTICS & WEAK AREAS TOOL
+                    </span>
+                    <h2 className="font-serif text-xl sm:text-2xl font-black text-[#182030] tracking-tight">
+                      Aspirant Performance & Focus Types
+                    </h2>
+                  </div>
+
+                  {/* Close Modal Button */}
+                  <button
+                    onClick={() => setShowAnalyticsModal(false)}
+                    className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-[#FAF8F5] hover:bg-[#EAE5DA] text-slate-700 flex items-center justify-center transition border border-[#DDD7CC] text-xs sm:text-sm font-bold shrink-0"
+                    title="Close Diagnostics"
+                  >
+                    ✕
+                  </button>
+                </div>
+
+                {/* Subject Filter Bar & Analytics Navigation Tabs */}
+                <div className="px-3 sm:px-6 py-2.5 bg-[#EFEAE1] border-b border-[#DDD7CC] flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2 shrink-0">
+                  
+                  {/* Subject Pills */}
+                  <div className="grid grid-cols-4 sm:flex items-center bg-white/70 p-1 rounded-full border border-[#DDD7CC] text-[11px] sm:text-xs font-bold gap-0.5">
+                    <button
+                      onClick={() => setAnalyticsSubjectFilter("all")}
+                      className={`py-1 px-2.5 rounded-full transition text-center truncate ${
+                        analyticsSubjectFilter === "all"
+                          ? "bg-[#182030] text-white shadow-sm"
+                          : "text-slate-600 hover:text-slate-900"
+                      }`}
+                    >
+                      All
+                    </button>
+                    {Object.values(SYLLABUS_DATA).map(subj => (
+                      <button
+                        key={subj.id}
+                        onClick={() => setAnalyticsSubjectFilter(subj.id)}
+                        className={`py-1 px-2.5 rounded-full transition text-center truncate ${
+                          analyticsSubjectFilter === subj.id
+                            ? "bg-[#182030] text-white shadow-sm"
+                            : "text-slate-600 hover:text-slate-900"
+                        }`}
+                      >
+                        {subj.shortName}
+                      </button>
+                    ))}
+                  </div>
+
+                  {/* Sub-tabs: Weak Types | Subject Matrix | History Log */}
+                  <div className="grid grid-cols-3 sm:flex items-center bg-white/70 p-1 rounded-full border border-[#DDD7CC] text-[11px] sm:text-xs font-bold gap-0.5">
+                    <button
+                      onClick={() => setAnalyticsActiveTab("weak_types")}
+                      className={`py-1 px-3 rounded-full transition text-center truncate ${
+                        analyticsActiveTab === "weak_types"
+                          ? "bg-[#182030] text-white shadow-sm"
+                          : "text-slate-600 hover:text-slate-900"
+                      }`}
+                    >
+                      <span>🎯 Weak ({analyticsData.weakTopics.length})</span>
+                    </button>
+                    <button
+                      onClick={() => setAnalyticsActiveTab("subjects")}
+                      className={`py-1 px-3 rounded-full transition text-center truncate ${
+                        analyticsActiveTab === "subjects"
+                          ? "bg-[#182030] text-white shadow-sm"
+                          : "text-slate-600 hover:text-slate-900"
+                      }`}
+                    >
+                      <span>📊 Matrix</span>
+                    </button>
+                    <button
+                      onClick={() => setAnalyticsActiveTab("history")}
+                      className={`py-1 px-3 rounded-full transition text-center truncate ${
+                        analyticsActiveTab === "history"
+                          ? "bg-[#182030] text-white shadow-sm"
+                          : "text-slate-600 hover:text-slate-900"
+                      }`}
+                    >
+                      <span>📜 Log ({analyticsData.records.length})</span>
+                    </button>
+                  </div>
+
+                </div>
+
+                {/* Scrollable Modal Content */}
+                <div className="p-4 sm:p-6 overflow-y-auto flex-1 space-y-4 sm:space-y-6">
+                  
+                  {/* TOP 4-METRIC CARDS GRID */}
+                  <div className="grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-4">
+                    
+                    {/* 1. Questions Attempted */}
+                    <div className="bg-white border border-[#E2DDD3] p-4 rounded-2xl shadow-xs">
+                      <span className="font-mono text-[10px] font-bold text-[#8C827A] uppercase tracking-wider block truncate">Attempted</span>
+                      <p className="font-serif text-2xl sm:text-3xl font-black text-[#182030] mt-0.5">
+                        {analyticsData.totalAttempted}
+                      </p>
+                      <div className="flex flex-col sm:flex-row items-start sm:items-center gap-0.5 mt-1.5 font-mono text-[10px] font-semibold">
+                        <span className="text-emerald-700">✓ {analyticsData.totalCorrect} Right</span>
+                        <span className="text-rose-700">✕ {analyticsData.totalIncorrect} Wrong</span>
+                      </div>
+                    </div>
+
+                    {/* 2. Overall Accuracy Rate */}
+                    <div className="bg-white border border-[#E2DDD3] p-4 rounded-2xl shadow-xs">
+                      <span className="font-mono text-[10px] font-bold text-[#8C827A] uppercase tracking-wider block truncate">Accuracy Rate</span>
+                      <div className="flex items-baseline space-x-1 mt-0.5">
+                        <p className="font-serif text-2xl sm:text-3xl font-black text-[#182030]">
+                          {analyticsData.accuracy}%
+                        </p>
+                      </div>
+                      <div className="w-full bg-[#EAE5DA] rounded-full h-1.5 mt-2 overflow-hidden">
+                        <div
+                          className="h-full bg-[#182030] transition-all duration-500"
+                          style={{ width: `${Math.min(100, Math.max(5, analyticsData.accuracy))}%` }}
+                        ></div>
+                      </div>
+                    </div>
+
+                    {/* 3. Net Tier-1 Score */}
+                    <div className="bg-white border border-[#E2DDD3] p-4 rounded-2xl shadow-xs">
+                      <span className="font-mono text-[10px] font-bold text-[#8C827A] uppercase tracking-wider block truncate">Net Exam Score</span>
+                      <p className="font-serif text-2xl sm:text-3xl font-black text-[#182030] mt-0.5">
+                        {analyticsData.totalScore > 0 ? `+${analyticsData.totalScore}` : analyticsData.totalScore}
+                      </p>
+                      <span className="block font-mono text-[10px] text-[#8C827A] font-medium mt-1 truncate">
+                        Tier-1 (+2, -0.5)
+                      </span>
+                    </div>
+
+                    {/* 4. Identified Weak Areas Count */}
+                    <div className="bg-white border border-[#E2DDD3] p-4 rounded-2xl shadow-xs">
+                      <span className="font-mono text-[10px] font-bold text-[#8C827A] uppercase tracking-wider block truncate">Weak Areas</span>
+                      <p className={`font-serif text-2xl sm:text-3xl font-black mt-0.5 ${analyticsData.weakTopics.length > 0 ? "text-rose-700" : "text-emerald-700"}`}>
+                        {analyticsData.weakTopics.length} <span className="font-sans text-xs font-normal text-[#8C827A]">Topics</span>
+                      </p>
+                      <span className="block font-mono text-[10px] text-[#8C827A] font-medium mt-1 truncate">
+                        {analyticsData.weakTopics.length > 0 ? "Targeted practice needed" : "Solid proficiency"}
+                      </span>
+                    </div>
+
+                  </div>
+
+                  {/* TAB 1: WEAK QUESTION TYPES & FOCUS AREAS */}
+                  {analyticsActiveTab === "weak_types" && (
+                    <div className="space-y-4 sm:space-y-6">
+                      
+                      <div>
+                        <div className="flex items-center justify-between mb-3">
+                          <h3 className="font-serif text-base sm:text-lg font-bold text-[#182030] flex items-center gap-1.5">
+                            <span>🚨 Identified Weak Topics & Sub-Types</span>
+                            <span className="font-mono text-[10px] text-rose-800 bg-rose-100 px-2 py-0.5 rounded-full border border-rose-200">
+                              {analyticsData.weakTopics.length} Focus
+                            </span>
+                          </h3>
+                        </div>
+
+                        {analyticsData.weakTopics.length === 0 ? (
+                          <div className="bg-white border border-[#E2DDD3] rounded-2xl p-6 sm:p-8 text-center space-y-2">
+                            <div className="w-10 h-10 rounded-full bg-emerald-50 text-emerald-700 flex items-center justify-center mx-auto text-lg">
+                              ✓
+                            </div>
+                            <h4 className="font-serif font-bold text-slate-800 text-sm">No Critical Weak Areas Detected</h4>
+                            <p className="text-xs text-slate-500 max-w-md mx-auto">
+                              Your accuracy across all attempted topics in this filter is above 75%. Keep practicing to maintain exam endurance.
+                            </p>
+                          </div>
+                        ) : (
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
+                            {analyticsData.weakTopics.map(topic => (
+                              <div
+                                key={topic.topicId}
+                                className="bg-white border border-[#E2DDD3] hover:border-[#CFC6B8] rounded-2xl p-4 sm:p-5 space-y-3 shadow-xs transition"
+                              >
+                                <div className="flex items-start justify-between gap-2">
+                                  <div className="min-w-0">
+                                    <div className="flex flex-wrap items-center gap-1.5 mb-1">
+                                      <span className="font-mono text-[9px] font-bold px-2 py-0.5 rounded-full uppercase bg-[#EAE5DA] text-slate-800 border border-[#DDD7CC]">
+                                        {topic.subjectName}
+                                      </span>
+                                      <span className="font-mono text-[9px] font-bold px-2 py-0.5 rounded-full border bg-rose-50 text-rose-800 border-rose-200">
+                                        {topic.badgeText}
+                                      </span>
+                                    </div>
+                                    <h4 className="font-bold text-[#182030] text-sm leading-snug">
+                                      {topic.topicTitle}
+                                    </h4>
+                                  </div>
+
+                                  <div className="text-right shrink-0">
+                                    <span className="font-serif text-lg sm:text-xl font-black text-rose-700">
+                                      {topic.accuracy}%
+                                    </span>
+                                    <span className="block font-mono text-[9px] text-[#8C827A] font-bold uppercase">Accuracy</span>
+                                  </div>
+                                </div>
+
+                                <div className="space-y-1">
+                                  <div className="flex justify-between font-mono text-[10px] text-[#8C827A]">
+                                    <span>{topic.totalAttempted} Qs Attempted</span>
+                                    <span className="text-rose-700 font-bold">{topic.totalIncorrect} Wrong</span>
+                                  </div>
+                                  <div className="w-full bg-[#EAE5DA] rounded-full h-1.5 overflow-hidden">
+                                    <div
+                                      className="h-full bg-rose-600"
+                                      style={{ width: `${Math.max(6, topic.accuracy)}%` }}
+                                    ></div>
+                                  </div>
+                                </div>
+
+                                {topic.types && topic.types.length > 0 && (
+                                  <div className="space-y-1 pt-2 border-t border-[#F0EBE1]">
+                                    <span className="font-mono text-[9px] font-bold text-[#8C827A] uppercase tracking-wider block">
+                                      Failing Question Types:
+                                    </span>
+                                    <div className="space-y-1">
+                                      {topic.types.map(tType => (
+                                        <div key={tType.name} className="flex items-center justify-between text-xs bg-[#FAF8F5] px-2.5 py-1 rounded-lg border border-[#E5DFD5]">
+                                          <span className="text-slate-700 truncate max-w-[170px] sm:max-w-[200px]">{tType.name}</span>
+                                          <span className="font-mono font-bold text-[11px] text-rose-700">
+                                            {tType.accuracy}% ({tType.correct}/{tType.attempted})
+                                          </span>
+                                        </div>
+                                      ))}
+                                    </div>
+                                  </div>
+                                )}
+
+                                <div className="pt-1">
+                                  <button
+                                    onClick={() => handleLaunchWeakTopicPractice(topic.subjectId, topic.topicId)}
+                                    className="w-full py-2 px-3 bg-[#182030] hover:bg-slate-800 text-white rounded-xl text-xs font-bold transition shadow flex items-center justify-center space-x-1.5"
+                                  >
+                                    <span>⚡ Practice This Weak Topic Now</span>
+                                  </button>
+                                </div>
+
+                              </div>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+
+                      {/* Mastered Topics Section */}
+                      {analyticsData.strongTopics.length > 0 && (
+                        <div className="pt-3 border-t border-[#DDD7CC]">
+                          <div className="flex items-center justify-between mb-2">
+                            <h3 className="font-serif text-sm sm:text-base font-bold text-emerald-800 flex items-center gap-1.5">
+                              <span>✓ Mastered & Strong Topics (&gt;75%)</span>
+                              <span className="font-mono text-[10px] text-emerald-800 bg-emerald-100 px-2 py-0.5 rounded-full border border-emerald-200">
+                                {analyticsData.strongTopics.length}
+                              </span>
+                            </h3>
+                          </div>
+
+                          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-3">
+                            {analyticsData.strongTopics.map(topic => (
+                              <div key={topic.topicId} className="bg-white border border-emerald-200 rounded-xl p-3.5 flex items-center justify-between">
+                                <div className="min-w-0 pr-2">
+                                  <span className="font-mono text-[9px] font-bold uppercase text-emerald-700">{topic.subjectName}</span>
+                                  <h5 className="font-bold text-[#182030] text-xs truncate">{topic.topicTitle}</h5>
+                                  <span className="font-mono text-[10px] text-[#8C827A]">{topic.totalAttempted} Qs Attempted</span>
+                                </div>
+                                <div className="text-right shrink-0">
+                                  <span className="font-serif text-base font-black text-emerald-700">{topic.accuracy}%</span>
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+
+                    </div>
+                  )}
+
+                  {/* TAB 2: SUBJECT MASTERY COMPARISON */}
+                  {analyticsActiveTab === "subjects" && (
+                    <div className="space-y-3 sm:space-y-4">
+                      <h3 className="font-serif text-base sm:text-lg font-bold text-[#182030]">
+                        Subject-wise Performance Matrix
+                      </h3>
+                      
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-4">
+                        {analyticsData.subjectsBreakdown.map(subj => (
+                          <div key={subj.id} className="bg-white border border-[#E2DDD3] rounded-2xl p-5 space-y-3 flex flex-col justify-between shadow-xs">
+                            <div>
+                              <div className="flex items-center justify-between mb-1.5">
+                                <span className="font-mono text-[10px] font-black uppercase text-[#8C827A] tracking-wider">
+                                  {subj.shortName}
+                                </span>
+                                <span className="font-mono text-[10px] font-bold px-2 py-0.5 rounded-full border bg-[#FAF8F5] text-[#182030] border-[#DDD7CC]">
+                                  {subj.accuracy}% Accuracy
+                                </span>
+                              </div>
+                              <h4 className="font-serif font-bold text-[#182030] text-base">{subj.name}</h4>
+                            </div>
+
+                            <div className="space-y-1.5 bg-[#FAF8F5] p-3 rounded-xl border border-[#E5DFD5] font-mono text-[11px]">
+                              <div className="flex justify-between text-slate-600">
+                                <span>Tests Completed:</span>
+                                <span className="font-bold text-[#182030]">{subj.testsCount}</span>
+                              </div>
+                              <div className="flex justify-between text-slate-600">
+                                <span>Questions Attempted:</span>
+                                <span className="font-bold text-[#182030]">{subj.attempted} Qs</span>
+                              </div>
+                              <div className="flex justify-between text-slate-600">
+                                <span>Correct Answers:</span>
+                                <span className="font-bold text-emerald-700">{subj.correct}</span>
+                              </div>
+                              <div className="flex justify-between text-slate-600">
+                                <span>Cumulative Score:</span>
+                                <span className="font-bold text-[#182030]">{subj.score} pts</span>
+                              </div>
+                            </div>
+
+                            <button
+                              onClick={() => {
+                                handleSelectSubject(subj.id);
+                                setShowAnalyticsModal(false);
+                              }}
+                              className="w-full py-2 bg-[#182030] hover:bg-slate-800 text-white rounded-xl text-xs font-bold transition flex items-center justify-center space-x-1"
+                            >
+                              <span>Explore {subj.shortName} Modules →</span>
+                            </button>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* TAB 3: PRACTICE HISTORY LOG */}
+                  {analyticsActiveTab === "history" && (
+                    <div className="space-y-3 sm:space-y-4">
+                      <div className="flex items-center justify-between">
+                        <h3 className="font-serif text-base sm:text-lg font-bold text-[#182030]">
+                          Test History & Attempt Log
+                        </h3>
+                        <span className="font-mono text-[11px] text-[#8C827A] font-semibold">{analyticsData.records.length} Tests</span>
+                      </div>
+
+                      {analyticsData.records.length === 0 ? (
+                        <div className="bg-white border border-[#E2DDD3] rounded-2xl p-6 text-center text-slate-500 text-xs">
+                          No practice records recorded yet. Start practicing topics to build your history log.
+                        </div>
+                      ) : (
+                        <div className="overflow-x-auto rounded-2xl border border-[#E2DDD3] bg-white">
+                          <table className="w-full text-left text-xs text-slate-700 min-w-[500px]">
+                            <thead className="bg-[#FAF8F5] text-[#8C827A] uppercase font-mono font-bold text-[9px] border-b border-[#E2DDD3]">
+                              <tr>
+                                <th className="px-3.5 py-2.5">Date / Time</th>
+                                <th className="px-3.5 py-2.5">Subject & Topic</th>
+                                <th className="px-3.5 py-2.5">Set</th>
+                                <th className="px-3.5 py-2.5 text-center">Attempted</th>
+                                <th className="px-3.5 py-2.5 text-center">Accuracy</th>
+                                <th className="px-3.5 py-2.5 text-right">Score</th>
+                              </tr>
+                            </thead>
+                            <tbody className="divide-y divide-[#F0EBE1]">
+                              {analyticsData.records.map((rec, idx) => (
+                                <tr key={rec.id || idx} className="hover:bg-[#FAF8F5] transition">
+                                  <td className="px-3.5 py-2.5 font-mono text-[#8C827A] text-[10px] whitespace-nowrap">{rec.dateStr}</td>
+                                  <td className="px-3.5 py-2.5 font-semibold text-slate-900">
+                                    <span className="text-[#8C827A] mr-1">[{rec.subjectName}]</span>
+                                    {rec.topicTitle}
+                                  </td>
+                                  <td className="px-3.5 py-2.5 whitespace-nowrap text-slate-500">{rec.practiceSet}</td>
+                                  <td className="px-3.5 py-2.5 text-center font-mono font-bold">
+                                    <span className="text-emerald-700">{rec.correctCount}</span> / <span className="text-slate-500">{rec.attemptedCount}</span>
+                                  </td>
+                                  <td className="px-3.5 py-2.5 text-center font-mono font-bold">
+                                    <span className={`px-1.5 py-0.5 rounded ${
+                                      rec.accuracy >= 75 ? "bg-emerald-50 text-emerald-800" : rec.accuracy >= 60 ? "bg-amber-50 text-amber-800" : "bg-rose-50 text-rose-800"
+                                    }`}>
+                                      {rec.accuracy}%
+                                    </span>
+                                  </td>
+                                  <td className="px-3.5 py-2.5 text-right font-mono font-bold text-[#182030]">+{rec.score}</td>
+                                </tr>
+                              ))}
+                            </tbody>
+                          </table>
+                        </div>
+                      )}
+                    </div>
+                  )}
+
+                </div>
+
+                {/* Modal Footer Utility Toolbar */}
+                <div className="p-4 bg-white border-t border-[#E2DDD3] flex flex-col-reverse sm:flex-row items-stretch sm:items-center justify-between gap-2 shrink-0">
+                  <div className="grid grid-cols-2 sm:flex items-center gap-1.5">
+                    <button
+                      onClick={handleLoadSampleData}
+                      className="py-1.5 px-3 bg-[#FAF8F5] hover:bg-[#EAE5DA] text-slate-700 rounded-lg text-[11px] font-semibold border border-[#DDD7CC] transition text-center"
+                    >
+                      ⚡ Load Sample Data
+                    </button>
+                    <button
+                      onClick={handleResetAnalytics}
+                      className="py-1.5 px-3 bg-[#FAF8F5] hover:bg-rose-50 text-slate-600 hover:text-rose-700 rounded-lg text-[11px] font-semibold border border-[#DDD7CC] transition text-center"
+                    >
+                      🗑️ Reset Stats
+                    </button>
+                  </div>
+
+                  <button
+                    onClick={() => setShowAnalyticsModal(false)}
+                    className="w-full sm:w-auto px-5 py-2 bg-[#182030] hover:bg-slate-800 text-white rounded-xl text-xs font-bold transition shadow-sm"
+                  >
+                    Close Diagnostics Tool
+                  </button>
+                </div>
+
+              </div>
+            </div>
+          )}
+
+          {/* FOOTER */}
+          <footer className="bg-[#F3EFE6] border-t border-[#E2DDD3] px-4 py-4 text-center text-[11px] text-[#8C827A] mt-auto font-mono">
+            <p>© {new Date().getFullYear()} SSC Practice Platform • Testbook-Aligned Syllabus for Quantitative Aptitude, Reasoning & English</p>
+          </footer>
+        </div>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+  </script>
+</body>
+</html>
