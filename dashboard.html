@@ -13,6 +13,8 @@
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <!-- Supabase JS Client -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <!-- Average Questions Dataset (Levels 1-5, English & Hindi) -->
+  <script src="average_questions.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400..800;1,6..72,400..800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -158,11 +160,11 @@
             title: "Averages, Mixture and Alligation",
             titleHi: "औसत और मिश्रण एवं पृथ्थीकरण",
             category: "Arithmetic",
-            weightage: "Moderate (1-2 Qs)",
-            isHighWeightage: false,
+            weightage: "High Weightage (2-3 Qs)",
+            isHighWeightage: true,
             sets: ["Practice 1", "Practice 2"],
-            totalQuestions: 50,
-            desc: "Weighted averages, age-based averages, replacement rule, and cross-alligation method."
+            totalQuestions: 40,
+            desc: "Complete 40 Questions (Levels 1-5): Fundamentals, Error Correction, Replacement, Consecutive, Weighted, Speed & Batting/Bowling Averages, Mixtures, Alligation & Integer Constraints."
           },
           {
             id: "number-system",
@@ -569,6 +571,15 @@
 
     // --- 3. DYNAMIC REALISTIC QUESTION GENERATOR PER TOPIC ---
     function getTopicQuestions(subjectId, topicObj, practiceSet) {
+      if ((subjectId === "quant" || !subjectId) && (topicObj.id === "average-mixture" || (topicObj.title && topicObj.title.toLowerCase().includes("average")))) {
+        if (typeof window !== "undefined" && window.AVERAGE_PRACTICE_1_QUESTIONS && window.AVERAGE_PRACTICE_1_QUESTIONS.length > 0) {
+          return window.AVERAGE_PRACTICE_1_QUESTIONS;
+        }
+        if (typeof AVERAGE_PRACTICE_1_QUESTIONS !== "undefined" && AVERAGE_PRACTICE_1_QUESTIONS.length > 0) {
+          return AVERAGE_PRACTICE_1_QUESTIONS;
+        }
+      }
+
       if (subjectId === "quant" && topicObj.id === "time-work") {
         // Will be fetched from Supabase, or fallbacks if offline
         return [];
@@ -950,6 +961,36 @@
       const [language, setLanguage] = useState("EN");
       const [timeLeft, setTimeLeft] = useState(35 * 60);
 
+      // Per-Question Mini Stopwatch States
+      const [questionTimes, setQuestionTimes] = useState({});
+      const [currentQuestionTime, setCurrentQuestionTime] = useState(0);
+
+      // Level Milestone Modal & Completion States
+      const [shownMilestoneLevels, setShownMilestoneLevels] = useState(new Set());
+      const [activeLevelMilestone, setActiveLevelMilestone] = useState(null);
+
+      // Per-Question Stopwatch Timer effect (counts elapsed seconds spent on current question)
+      useEffect(() => {
+        if (viewMode !== "quiz" || submitted || activeLevelMilestone) return;
+
+        const interval = setInterval(() => {
+          setCurrentQuestionTime(prev => {
+            const nextVal = prev + 1;
+            setQuestionTimes(qt => ({ ...qt, [currentIndex]: nextVal }));
+            return nextVal;
+          });
+        }, 1000);
+
+        return () => clearInterval(interval);
+      }, [viewMode, submitted, currentIndex, activeLevelMilestone]);
+
+      // When currentIndex changes, load that question's accumulated time
+      useEffect(() => {
+        if (viewMode === "quiz") {
+          setCurrentQuestionTime(questionTimes[currentIndex] || 0);
+        }
+      }, [currentIndex, viewMode]);
+
       // Carousel Ref for Question Number Strip
       const carouselRef = useRef(null);
 
@@ -1072,6 +1113,10 @@
             setCurrentIndex(0);
             setSubmitted(false);
             setTimeLeft(35 * 60);
+            setQuestionTimes({});
+            setCurrentQuestionTime(0);
+            setShownMilestoneLevels(new Set());
+            setActiveLevelMilestone(null);
           } catch (err) {
             console.error("Fetch error:", err.message);
           } finally {
@@ -1104,10 +1149,123 @@
         return `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
       };
 
-      // --- 9. QUIZ INTERACTIONS ---
+      // --- 9. QUIZ INTERACTIONS & LEVEL COMPLETION CHECK ---
       const handleOptionSelect = (optionKey) => {
         if (submitted) return;
-        setSelectedAnswers({ ...selectedAnswers, [currentIndex]: optionKey });
+        const newAnswers = { ...selectedAnswers, [currentIndex]: optionKey };
+        setSelectedAnswers(newAnswers);
+
+        // Level-wise Milestone Calculation (Each 8 questions denote a Level)
+        const QUESTIONS_PER_LEVEL = 8;
+        const currentLevel = Math.floor(currentIndex / QUESTIONS_PER_LEVEL) + 1;
+        const levelStart = (currentLevel - 1) * QUESTIONS_PER_LEVEL;
+        const levelEnd = Math.min(currentLevel * QUESTIONS_PER_LEVEL, questions.length);
+
+        // Check if all 8 questions in this level have been answered
+        let levelAllAnswered = true;
+        for (let idx = levelStart; idx < levelEnd; idx++) {
+          if (newAnswers[idx] === undefined || newAnswers[idx] === null) {
+            levelAllAnswered = false;
+            break;
+          }
+        }
+
+        if (levelAllAnswered && !shownMilestoneLevels.has(currentLevel)) {
+          const levelQs = questions.slice(levelStart, levelEnd);
+          let correctCount = 0;
+          const wrongList = [];
+
+          levelQs.forEach((q, i) => {
+            const actualIdx = levelStart + i;
+            const userChoice = newAnswers[actualIdx];
+            const isCorrect = (userChoice || '').toLowerCase() === (q.correct_option || '').toLowerCase();
+            if (isCorrect) {
+              correctCount++;
+            } else {
+              wrongList.push({
+                qNum: q.question_number || (actualIdx + 1),
+                text: q.question_text || '',
+                text_hi: q.question_text_hi || '',
+                chosen: userChoice,
+                correct_option: q.correct_option,
+                type_category: q.type_category || `Level ${currentLevel}`,
+                level: q.level || `Level ${currentLevel}`
+              });
+            }
+          });
+
+          const weakTypes = Array.from(new Set(wrongList.map(item => item.type_category)));
+          const totalInLevel = levelQs.length;
+          const accuracy = Math.round((correctCount / totalInLevel) * 100);
+          const score = (correctCount * 2) - (wrongList.length * 0.5);
+
+          const milestoneData = {
+            level: currentLevel,
+            levelTitle: questions[levelStart]?.level_group || `Level ${currentLevel}`,
+            total: totalInLevel,
+            correct: correctCount,
+            wrong: wrongList.length,
+            accuracy: accuracy,
+            score: score,
+            wrongQuestions: wrongList,
+            weakTypes: weakTypes,
+            nextLevel: (currentLevel < 5 && levelEnd < questions.length) ? currentLevel + 1 : null
+          };
+
+          // Mark this level milestone as triggered
+          setShownMilestoneLevels(prev => new Set(prev).add(currentLevel));
+          setActiveLevelMilestone(milestoneData);
+
+          // Save weak questions & category diagnosis to ANALYST tool / performance records
+          if (weakTypes.length > 0) {
+            const levelRecord = {
+              id: 'milestone_' + currentLevel + '_' + Date.now(),
+              timestamp: Date.now(),
+              dateStr: `Level ${currentLevel} Milestone (` + new Date().toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' }) + ')',
+              subjectId: activeSubjectId,
+              subjectName: currentSubject.shortName,
+              topicId: selectedTopicObj.id,
+              topicTitle: `${selectedTopicObj.title} (Level ${currentLevel})`,
+              practiceSet: practiceSet,
+              totalQuestions: totalInLevel,
+              attemptedCount: totalInLevel,
+              correctCount: correctCount,
+              incorrectCount: wrongList.length,
+              unattemptedCount: 0,
+              score: score,
+              accuracy: accuracy,
+              weakCategories: weakTypes,
+              questions: levelQs.map((q, i) => ({
+                qNum: q.question_number || (levelStart + i + 1),
+                topicId: selectedTopicObj.id,
+                topicTitle: selectedTopicObj.title,
+                subjectId: activeSubjectId,
+                typeCategory: q.type_category || `Level ${currentLevel}`,
+                level: q.level || `Level ${currentLevel}`,
+                isAttempted: true,
+                isCorrect: (newAnswers[levelStart + i] || '').toLowerCase() === (q.correct_option || '').toLowerCase()
+              }))
+            };
+
+            setPerformanceRecords(prev => {
+              const updated = [levelRecord, ...prev];
+              try {
+                localStorage.setItem('ssc_user_performance_records_v1', JSON.stringify(updated));
+              } catch (e) {}
+              return updated;
+            });
+          }
+        }
+      };
+
+      const handleReachNextLevel = (nextLvl) => {
+        setActiveLevelMilestone(null);
+        if (nextLvl) {
+          const nextIdx = (nextLvl - 1) * 8;
+          if (nextIdx < questions.length) {
+            setCurrentIndex(nextIdx);
+          }
+        }
       };
 
       const toggleReview = () => {
@@ -1403,6 +1561,7 @@
       const currentQuestionText = (language === 'HI' && currentQ?.question_text_hi) ? currentQ.question_text_hi : currentQ?.question_text;
       const currentOptions = (language === 'HI' && currentQ?.options_hi) ? currentQ.options_hi : (currentQ?.options || {});
       const currentSolution = (language === 'HI' && currentQ?.solution_text_hi) ? currentQ.solution_text_hi : currentQ?.solution_text;
+      const currentShortcut = (language === 'HI' && currentQ?.shortcut_text_hi) ? currentQ.shortcut_text_hi : currentQ?.shortcut_text;
 
       const userName = currentUser?.user_metadata?.full_name || currentUser?.email?.split('@')[0] || "Aspirant";
       const userInitial = userName.charAt(0).toUpperCase();
@@ -1566,45 +1725,6 @@
           </header>
 
           {/* ============================================================ */}
-          {/* VIEW 1: TESTBOOK-ALIGNED TOPIC SELECTION SCREEN (THEME MATCH) */}
-          {/* ============================================================ */}
-          {viewMode === "topics" && (
-            <main className="max-w-6xl mx-auto w-full p-3.5 sm:p-6 lg:p-8 space-y-6 flex-1 animate-fade-in overflow-hidden">
-              
-              {/* TOP CARD: "TODAY'S REGISTER" / ASPIRANT STATUS (1:1 MATCH WITH SCREENSHOT) */}
-              <div className="bg-white rounded-3xl p-5 sm:p-7 border border-[#E2DDD3] shadow-[0_2px_12px_rgba(0,0,0,0.03)] space-y-4 w-full">
-                
-                {/* Header: Date & Tag */}
-                <div className="space-y-1">
-                  <span className="font-mono text-[10px] font-bold text-[#8C827A] tracking-widest uppercase block">
-                    TODAY'S REGISTER • ASPIRANT PROGRESSION
-                  </span>
-                  <h1 className="font-serif text-2xl sm:text-4xl font-black text-[#182030] tracking-tight">
-                    {new Date().toLocaleDateString('en-US', { weekday: 'long', day: 'numeric', month: 'long' })}
-                  </h1>
-                </div>
-
-                {/* Filter / Status Pills Row (Matching GS 1, CA 2, CSAT 0 in screenshot) */}
-                <div className="flex items-center gap-2 overflow-x-auto pb-1 sm:pb-0 scrollbar-none">
-                  <div className="bg-[#182030] text-white rounded-full px-3.5 py-1.5 text-xs font-bold shadow-sm whitespace-nowrap flex items-center space-x-1.5">
-                    <span>{currentSubject.shortName}</span>
-                    <span className="bg-white/20 text-white text-[10px] px-1.5 py-0.2 rounded-full font-mono font-bold">
-                      {currentSubject.topics.length}
-                    </span>
-                  </div>
-
-                  <div className="bg-[#EAE5DA] text-[#4A453E] border border-[#DDD7CC] rounded-full px-3.5 py-1.5 text-xs font-semibold whitespace-nowrap flex items-center space-x-1.5">
-                    <span>Accuracy</span>
-                    <span className="font-mono font-bold text-slate-700">
-                      {analyticsData.accuracy}%
-                    </span>
-                  </div>
-
-                  <div className="bg-[#EAE5DA] text-[#4A453E] border border-[#DDD7CC] rounded-full px-3.5 py-1.5 text-xs font-semibold whitespace-nowrap flex items-center space-x-1.5">
-                    <span>Score</span>
-                    <span className="font-mono font-bold text-slate-700">
-                      +{analyticsData.totalScore}
-                    </span>
           {/* MAIN DASHBOARD: SYLLABUS & ASPIRANT HUB (ALWAYS PERSISTENT) */}
           {/* ============================================================ */}
           <main className="max-w-6xl mx-auto w-full p-3.5 sm:p-6 lg:p-8 space-y-6 flex-1 animate-fade-in overflow-hidden">
@@ -1849,29 +1969,49 @@
                     </div>
                   </div>
 
-                  {/* Right: Language Dropdown Button [文A English ⌄] */}
-                  <div className="relative shrink-0 flex items-center space-x-2">
+                  {/* Right: Language Conversion Tool Switch Buttons [ 🇬🇧 English | 🇮🇳 हिन्दी ] */}
+                  <div className="relative shrink-0 flex items-center bg-[#FAF8F5] border border-[#DDD7CC] p-0.5 rounded-full shadow-2xs">
                     <button
-                      onClick={() => setLanguage(l => l === 'EN' ? 'HI' : 'EN')}
-                      className="inline-flex items-center space-x-1.5 bg-white border border-[#DDD7CC] hover:bg-[#FAF8F5] text-slate-700 px-3 py-1.5 rounded-full text-xs font-semibold shadow-xs transition"
-                      title="Toggle Question Language"
+                      type="button"
+                      onClick={() => setLanguage('EN')}
+                      className={`px-3 py-1 rounded-full text-xs font-bold transition flex items-center space-x-1.5 ${
+                        language === 'EN'
+                          ? "bg-[#182030] text-white shadow-xs"
+                          : "text-slate-600 hover:text-slate-900 hover:bg-[#EAE5DA]"
+                      }`}
+                      title="Switch language to English"
                     >
-                      <span className="text-indigo-600 font-bold text-xs">文A</span>
-                      <span>{language === 'EN' ? 'English' : 'हिन्दी'}</span>
-                      <svg className="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
-                      </svg>
+                      <span>🇬🇧</span>
+                      <span>English</span>
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setLanguage('HI')}
+                      className={`px-3 py-1 rounded-full text-xs font-bold transition flex items-center space-x-1.5 ${
+                        language === 'HI'
+                          ? "bg-[#182030] text-white shadow-xs"
+                          : "text-slate-600 hover:text-slate-900 hover:bg-[#EAE5DA]"
+                      }`}
+                      title="Switch language to Hindi (हिन्दी)"
+                    >
+                      <span>🇮🇳</span>
+                      <span>हिन्दी</span>
                     </button>
                   </div>
 
                 </div>
 
-                {/* LEVEL 1 SUB-BAR & TIMER */}
-                <div className="px-4 sm:px-6 py-2 bg-[#EFEAE1] border-b border-[#DDD7CC] flex items-center justify-between shrink-0">
-                  <div className="flex items-center space-x-2 text-xs">
-                    <h3 className="font-black text-slate-900">
-                      Level 1
-                    </h3>
+                {/* DYNAMIC LEVEL & TYPE SUB-BAR & TIMER */}
+                <div className="px-4 sm:px-6 py-2 bg-[#EFEAE1] border-b border-[#DDD7CC] flex items-center justify-between shrink-0 flex-wrap gap-2">
+                  <div className="flex items-center space-x-2 text-xs flex-wrap">
+                    <span className="font-black text-slate-900 bg-white border border-[#DDD7CC] px-2.5 py-0.5 rounded-md shadow-2xs">
+                      {currentQ?.level_group || currentQ?.level || "Level 1"}
+                    </span>
+                    {currentQ?.type_category && (
+                      <span className="font-semibold text-indigo-700 bg-indigo-50 border border-indigo-200 px-2 py-0.5 rounded-md text-[11px]">
+                        Type: {currentQ.type_category}
+                      </span>
+                    )}
                     <span className="text-slate-400">•</span>
                     <span className="font-mono font-semibold text-slate-600">{practiceSet}</span>
                     <span className="hidden sm:inline-block text-slate-400">•</span>
@@ -1885,6 +2025,46 @@
                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
                     <span>{formatTime(timeLeft)}</span>
                   </div>
+                </div>
+
+                {/* 5-LEVEL PROGRESSION TABS BAR (8 Questions per Level) */}
+                <div className="px-3 sm:px-5 py-2 bg-[#F3EFE6] border-b border-[#E2DDD3] flex items-center gap-1.5 overflow-x-auto scrollbar-none shrink-0">
+                  {[1, 2, 3, 4, 5].map((lvlNum) => {
+                    const startIdx = (lvlNum - 1) * 8;
+                    const endIdx = Math.min(lvlNum * 8, questions.length);
+                    const isCurrentLevel = Math.floor(currentIndex / 8) + 1 === lvlNum;
+                    
+                    // Count how many answered in this level
+                    let answeredInLevel = 0;
+                    for (let k = startIdx; k < endIdx; k++) {
+                      if (selectedAnswers[k] !== undefined) answeredInLevel++;
+                    }
+                    const isLevelDone = (endIdx > startIdx) && (answeredInLevel === (endIdx - startIdx));
+
+                    let tabStyle = "bg-white border-[#DDD7CC] text-slate-700 hover:bg-[#EAE5DA]";
+                    if (isCurrentLevel) {
+                      tabStyle = "bg-[#182030] text-white border-[#182030] shadow-sm font-black ring-1 ring-slate-800";
+                    } else if (isLevelDone) {
+                      tabStyle = "bg-emerald-50 border-emerald-300 text-emerald-800 font-bold";
+                    }
+
+                    return (
+                      <button
+                        key={lvlNum}
+                        onClick={() => setCurrentIndex(startIdx)}
+                        className={`px-3 py-1 rounded-xl border text-xs font-semibold whitespace-nowrap transition-all flex items-center space-x-1.5 ${tabStyle}`}
+                        title={`Jump to Level ${lvlNum} (Q${startIdx + 1} - Q${endIdx})`}
+                      >
+                        <span className="text-[11px]">{isLevelDone ? "✓" : `L${lvlNum}`}</span>
+                        <span className="font-bold">Level {lvlNum}</span>
+                        <span className={`text-[10px] px-1.5 py-0.2 rounded-full font-mono font-bold ${
+                          isCurrentLevel ? "bg-white/20 text-white" : isLevelDone ? "bg-emerald-200/80 text-emerald-900" : "bg-slate-100 text-slate-600"
+                        }`}>
+                          {answeredInLevel}/8
+                        </span>
+                      </button>
+                    );
+                  })}
                 </div>
 
                 {/* HORIZONTAL QUESTION NUMBER CAROUSEL STRIP (1, 2, 3, 4...) */}
@@ -1982,16 +2162,72 @@
                     </div>
                   ) : (
                     <>
-                      {/* QUESTION CARD (Matching '1 of 25', '🔖 Save', '⋮' in screenshot) */}
+                      {/* QUESTION CARD */}
                       <div className="bg-white rounded-2xl p-5 sm:p-6 shadow-[0_2px_12px_rgba(0,0,0,0.03)] border border-[#E2DDD3] space-y-3.5">
                         
-                        {/* Top Meta Bar */}
-                        <div className="flex items-center justify-between text-xs sm:text-sm text-slate-600 border-b border-slate-100 pb-3">
-                          <div className="font-semibold text-slate-800">
-                            <span className="text-slate-950 font-bold">{currentIndex + 1}</span> of <span className="text-slate-500">{questions.length}</span>
+                        {/* Top Meta Bar with Language Switcher & Mini Stopwatch */}
+                        <div className="flex items-center justify-between text-xs sm:text-sm text-slate-600 border-b border-slate-100 pb-3 flex-wrap gap-2">
+                          <div className="flex items-center space-x-2 flex-wrap gap-1">
+                            <span className="font-bold text-slate-950">{currentIndex + 1}</span> of <span className="text-slate-500 font-semibold">{questions.length}</span>
+                            {currentQ?.type_category && (
+                              <span className="hidden sm:inline-block bg-slate-100 border border-slate-200 text-slate-700 text-[10px] font-bold px-2 py-0.5 rounded-full">
+                                {currentQ.type_category}
+                              </span>
+                            )}
+                            <span className="hidden sm:inline-block font-mono text-[10px] bg-indigo-50 border border-indigo-200 text-indigo-800 font-bold px-2 py-0.5 rounded-full">
+                              Level {Math.floor(currentIndex / 8) + 1}
+                            </span>
                           </div>
 
-                          <div className="flex items-center space-x-3">
+                          <div className="flex items-center space-x-2 flex-wrap gap-1">
+                            {/* Per-Question Mini Stopwatch (Turns RED beyond 40 seconds) */}
+                            <div
+                              className={`px-2.5 py-0.5 rounded-full text-xs font-mono font-bold flex items-center space-x-1 border transition-all ${
+                                currentQuestionTime > 40
+                                  ? "bg-rose-100 border-rose-400 text-rose-700 font-black animate-pulse shadow-xs ring-1 ring-rose-300"
+                                  : "bg-[#F3EFE6] border-[#DDD7CC] text-slate-700"
+                              }`}
+                              title={currentQuestionTime > 40 ? "Speed Alert: You have exceeded 40 seconds on this question!" : "Time spent on this question"}
+                            >
+                              <span className={currentQuestionTime > 40 ? "text-rose-600 font-black" : "text-slate-500"}>⏱️</span>
+                              <span>{currentQuestionTime}s</span>
+                              {currentQuestionTime > 40 && (
+                                <span className="text-[9px] bg-rose-600 text-white px-1.5 py-0.2 rounded font-sans font-bold uppercase tracking-wider">
+                                  &gt;40s Alert!
+                                </span>
+                              )}
+                            </div>
+
+                            {/* Inline Quick Language Switch Button */}
+                            <div className="inline-flex items-center bg-[#F3EFE6] border border-[#DDD7CC] p-0.5 rounded-full shadow-2xs">
+                              <button
+                                type="button"
+                                onClick={() => setLanguage('EN')}
+                                className={`px-2.5 py-0.5 rounded-full text-[11px] font-bold transition-all flex items-center space-x-1 ${
+                                  language === 'EN'
+                                    ? "bg-[#182030] text-white shadow-xs"
+                                    : "text-slate-600 hover:text-slate-900"
+                                }`}
+                                title="View in English"
+                              >
+                                <span>🇬🇧</span>
+                                <span>EN</span>
+                              </button>
+                              <button
+                                type="button"
+                                onClick={() => setLanguage('HI')}
+                                className={`px-2.5 py-0.5 rounded-full text-[11px] font-bold transition-all flex items-center space-x-1 ${
+                                  language === 'HI'
+                                    ? "bg-[#182030] text-white shadow-xs"
+                                    : "text-slate-600 hover:text-slate-900"
+                                }`}
+                                title="View in Hindi (हिन्दी)"
+                              >
+                                <span>🇮🇳</span>
+                                <span>HI</span>
+                              </button>
+                            </div>
+
                             {/* Bookmark / Save Button */}
                             <button
                               onClick={toggleReview}
@@ -2008,7 +2244,7 @@
                               <span>Save</span>
                             </button>
 
-                            {/* More Menu / Marks Badge */}
+                            {/* Marks Badge */}
                             <span className="font-mono text-[10px] text-slate-400 font-bold px-2 py-0.5 bg-slate-100 rounded-md">
                               +2 / -0.5
                             </span>
@@ -2017,7 +2253,7 @@
 
                         {/* Question Text */}
                         <div className="py-1">
-                          <p className="text-slate-900 text-sm sm:text-base font-semibold leading-relaxed whitespace-pre-line">
+                          <p className="text-slate-900 text-sm sm:text-base font-semibold leading-relaxed whitespace-pre-line font-['Plus_Jakarta_Sans','Noto_Sans_Devanagari',sans-serif]">
                             {currentQuestionText}
                           </p>
                         </div>
@@ -2062,7 +2298,7 @@
                               </span>
 
                               {/* Option Content */}
-                              <span className="text-slate-900 font-medium text-xs sm:text-sm pr-20 leading-relaxed">
+                              <span className="text-slate-900 font-medium text-xs sm:text-sm pr-20 leading-relaxed font-['Plus_Jakarta_Sans','Noto_Sans_Devanagari',sans-serif]">
                                 {val}
                               </span>
 
@@ -2084,19 +2320,61 @@
 
                       {/* SOLUTION DRAWER (Shown when answered or on test submit) */}
                       {(submitted || selectedAnswers[currentIndex] !== undefined) && (
-                        <div className="bg-white border border-emerald-200/90 rounded-2xl p-4 sm:p-5 shadow-xs space-y-2 animate-fade-in mt-3">
-                          <div className="flex items-center justify-between">
-                            <div className="flex items-center space-x-1.5 text-emerald-800 font-bold text-xs sm:text-sm">
-                              <span>💡</span>
-                              <span>Solution & Explanation: Option ({currentQ?.correct_option?.toUpperCase()})</span>
+                        <div className="bg-white border border-emerald-300 rounded-2xl p-4 sm:p-5 shadow-xs space-y-3.5 animate-fade-in mt-3">
+                          {/* Solution Header with Language Switcher & Answer Badge */}
+                          <div className="flex items-center justify-between border-b border-emerald-100 pb-2.5 flex-wrap gap-2">
+                            <div className="flex items-center space-x-2 text-emerald-900 font-black text-xs sm:text-sm">
+                              <span className="text-base">💡</span>
+                              <span>Solution & Answer: Option ({currentQ?.correct_option?.toUpperCase()})</span>
                             </div>
-                            <span className="font-mono text-[10px] bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded-full font-bold">
-                              Official Key
-                            </span>
+                            <div className="flex items-center space-x-2">
+                              {/* Inline Solution Language Toggle */}
+                              <div className="inline-flex items-center bg-emerald-50 border border-emerald-200 p-0.5 rounded-full text-[10px] font-bold">
+                                <button
+                                  type="button"
+                                  onClick={() => setLanguage('EN')}
+                                  className={`px-2 py-0.5 rounded-full transition ${language === 'EN' ? 'bg-emerald-700 text-white' : 'text-emerald-800 hover:bg-emerald-100'}`}
+                                >
+                                  English
+                                </button>
+                                <button
+                                  type="button"
+                                  onClick={() => setLanguage('HI')}
+                                  className={`px-2 py-0.5 rounded-full transition ${language === 'HI' ? 'bg-emerald-700 text-white' : 'text-emerald-800 hover:bg-emerald-100'}`}
+                                >
+                                  हिन्दी
+                                </button>
+                              </div>
+                              <span className="font-mono text-[10px] bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded-full font-bold">
+                                Official Key
+                              </span>
+                            </div>
                           </div>
-                          <p className="text-slate-800 text-xs sm:text-sm leading-relaxed whitespace-pre-line bg-[#FAF8F5] p-3.5 rounded-xl border border-[#E5DFD5]">
-                            {currentSolution}
-                          </p>
+
+                          {/* Detailed Step-by-Step Solution */}
+                          <div className="space-y-1.5">
+                            <span className="font-mono text-[10px] font-bold text-slate-500 uppercase tracking-wider block">
+                              {language === 'HI' ? 'विस्तृत समाधान (Detailed Solution):' : 'Detailed Step-by-Step Solution:'}
+                            </span>
+                            <p className="text-slate-800 text-xs sm:text-sm leading-relaxed whitespace-pre-line bg-[#FAF8F5] p-3.5 rounded-xl border border-[#E5DFD5] font-['Plus_Jakarta_Sans','Noto_Sans_Devanagari',sans-serif]">
+                              {currentSolution}
+                            </p>
+                          </div>
+
+                          {/* Shortcut / Exam Trick (if available) */}
+                          {currentShortcut && (
+                            <div className="space-y-1.5">
+                              <div className="flex items-center space-x-1.5">
+                                <span className="text-amber-600 font-bold text-xs">⚡</span>
+                                <span className="font-mono text-[10px] font-extrabold text-amber-900 uppercase tracking-wider">
+                                  {language === 'HI' ? 'शॉर्टकट / परीक्षा ट्रिक (Shortcut Trick):' : 'Super-Fast Exam Trick / Shortcut:'}
+                                </span>
+                              </div>
+                              <div className="bg-amber-50/90 border border-amber-300 text-amber-950 p-3.5 rounded-xl text-xs sm:text-sm leading-relaxed whitespace-pre-line font-medium shadow-2xs font-['Plus_Jakarta_Sans','Noto_Sans_Devanagari',sans-serif]">
+                                {currentShortcut}
+                              </div>
+                            </div>
+                          )}
                         </div>
                       )}
 
@@ -2216,6 +2494,136 @@
                     )}
                   </div>
                 </div>
+
+                {/* LEVEL CLEARANCE CONGRATULATIONS & ANALYST SYNC MODAL */}
+                {activeLevelMilestone && (
+                  <div className="fixed inset-0 z-[70] flex items-center justify-center p-3 sm:p-6 bg-slate-950/75 backdrop-blur-md animate-fade-in">
+                    <div className="bg-[#FAF8F5] border border-[#DDD7CC] rounded-3xl w-full max-w-xl max-h-[90vh] flex flex-col shadow-2xl overflow-hidden text-slate-800 animate-fade-in">
+                      
+                      {/* Modal Header */}
+                      <div className="p-5 sm:p-6 bg-white border-b border-[#E2DDD3] text-center space-y-1.5 relative">
+                        <span className="inline-block text-3xl sm:text-4xl animate-bounce">🎉</span>
+                        <h2 className="font-serif text-xl sm:text-2xl font-black text-[#182030]">
+                          Congratulations! Level {activeLevelMilestone.level} Cleared!
+                        </h2>
+                        <p className="font-mono text-xs font-bold text-indigo-700">
+                          {activeLevelMilestone.levelTitle}
+                        </p>
+                      </div>
+
+                      {/* Modal Scrollable Body */}
+                      <div className="p-4 sm:p-6 overflow-y-auto space-y-4 flex-1">
+                        
+                        {/* Score & Accuracy KPI Grid */}
+                        <div className="grid grid-cols-4 gap-2 text-center font-mono">
+                          <div className="bg-white p-2.5 rounded-2xl border border-[#DDD7CC]">
+                            <span className="text-[10px] text-slate-500 font-bold block uppercase">Attempted</span>
+                            <span className="text-sm sm:text-base font-black text-slate-900">8 / 8</span>
+                          </div>
+                          <div className="bg-white p-2.5 rounded-2xl border border-[#DDD7CC]">
+                            <span className="text-[10px] text-slate-500 font-bold block uppercase">Correct</span>
+                            <span className="text-sm sm:text-base font-black text-emerald-600">{activeLevelMilestone.correct} / 8</span>
+                          </div>
+                          <div className="bg-white p-2.5 rounded-2xl border border-[#DDD7CC]">
+                            <span className="text-[10px] text-slate-500 font-bold block uppercase">Score</span>
+                            <span className="text-sm sm:text-base font-black text-indigo-700">+{activeLevelMilestone.score}</span>
+                          </div>
+                          <div className="bg-white p-2.5 rounded-2xl border border-[#DDD7CC]">
+                            <span className="text-[10px] text-slate-500 font-bold block uppercase">Accuracy</span>
+                            <span className={`text-sm sm:text-base font-black ${activeLevelMilestone.accuracy >= 75 ? 'text-emerald-600' : 'text-amber-600'}`}>
+                              {activeLevelMilestone.accuracy}%
+                            </span>
+                          </div>
+                        </div>
+
+                        {/* Incorrect Questions & Analyst Tool Diagnostics Section */}
+                        {activeLevelMilestone.wrongQuestions.length > 0 ? (
+                          <div className="bg-white border border-rose-200 rounded-2xl p-4 space-y-3 shadow-xs">
+                            <div className="flex items-center space-x-2 text-rose-800 font-bold text-xs sm:text-sm border-b border-rose-100 pb-2">
+                              <span>⚠️</span>
+                              <span>Incorrect Questions in Level {activeLevelMilestone.level} ({activeLevelMilestone.wrongQuestions.length} Mistakes):</span>
+                            </div>
+
+                            {/* List of Wrong Questions */}
+                            <div className="space-y-2 max-h-48 overflow-y-auto pr-1 scrollbar-thin">
+                              {activeLevelMilestone.wrongQuestions.map((wq, idx) => (
+                                <div key={idx} className="bg-rose-50/60 border border-rose-100 p-2.5 rounded-xl text-xs space-y-1">
+                                  <div className="flex items-center justify-between font-mono text-[11px] font-bold">
+                                    <span className="text-slate-900">Question {wq.qNum}</span>
+                                    <span className="text-indigo-800 bg-indigo-50 border border-indigo-200 px-2 py-0.2 rounded-md">
+                                      Type: {wq.type_category}
+                                    </span>
+                                  </div>
+                                  <p className="text-slate-700 text-[11px] line-clamp-2">
+                                    {language === 'HI' && wq.text_hi ? wq.text_hi : wq.text}
+                                  </p>
+                                  <div className="flex items-center space-x-3 text-[10px] font-mono font-bold pt-0.5">
+                                    <span className="text-rose-700">Your Answer: Option ({wq.chosen?.toUpperCase()}) ❌</span>
+                                    <span className="text-emerald-700">Correct: Option ({wq.correct_option?.toUpperCase()}) ✓</span>
+                                  </div>
+                                </div>
+                              ))}
+                            </div>
+
+                            {/* Analyst Tool Weakness Notice Message */}
+                            <div className="bg-amber-50 border border-amber-300 p-3.5 rounded-xl text-xs text-amber-950 space-y-1.5 shadow-2xs">
+                              <div className="flex items-center space-x-1.5 font-extrabold text-amber-900">
+                                <span>📊</span>
+                                <span>ANALYST Tool Diagnosis:</span>
+                              </div>
+                              <p className="leading-relaxed">
+                                You are facing issues with these question types: <span className="font-bold underline text-amber-950">{activeLevelMilestone.weakTypes.join(', ')}</span>.
+                              </p>
+                              <p className="text-[11px] text-amber-800 font-semibold leading-normal">
+                                📌 These types have been automatically recorded and saved to your <strong>ANALYST tool</strong> for targeted drill practice and focused revision!
+                              </p>
+                            </div>
+                          </div>
+                        ) : (
+                          /* 100% Correct / Flawless Level Completion */
+                          <div className="bg-emerald-50 border border-emerald-300 rounded-2xl p-4 text-center space-y-1.5">
+                            <span className="text-2xl">🌟</span>
+                            <h4 className="font-bold text-emerald-900 text-sm">Flawless Mastery!</h4>
+                            <p className="text-xs text-emerald-800 leading-relaxed">
+                              You answered all 8 questions in Level {activeLevelMilestone.level} with 100% accuracy! No weak areas detected in this level.
+                            </p>
+                          </div>
+                        )}
+
+                      </div>
+
+                      {/* Modal Actions Footer */}
+                      <div className="p-4 sm:p-5 bg-white border-t border-[#E2DDD3] flex items-center justify-between gap-3">
+                        <button
+                          onClick={() => setActiveLevelMilestone(null)}
+                          className="px-4 py-2.5 rounded-xl border border-[#DDD7CC] hover:bg-slate-100 text-slate-700 font-bold text-xs transition"
+                        >
+                          Review Level {activeLevelMilestone.level}
+                        </button>
+
+                        {activeLevelMilestone.nextLevel ? (
+                          <button
+                            onClick={() => handleReachNextLevel(activeLevelMilestone.nextLevel)}
+                            className="flex-1 px-4 py-2.5 rounded-xl bg-[#182030] hover:bg-slate-900 text-white font-bold text-xs sm:text-sm shadow-md transition flex items-center justify-center space-x-2"
+                          >
+                            <span>🚀 Reach Level {activeLevelMilestone.nextLevel}</span>
+                            <span className="font-mono text-[10px] bg-white/20 px-2 py-0.5 rounded-full">
+                              (Q{(activeLevelMilestone.nextLevel - 1) * 8 + 1} - Q{activeLevelMilestone.nextLevel * 8})
+                            </span>
+                          </button>
+                        ) : (
+                          <button
+                            onClick={() => { setActiveLevelMilestone(null); handleTestSubmit(); }}
+                            className="flex-1 px-4 py-2.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs sm:text-sm shadow-md transition flex items-center justify-center space-x-2"
+                          >
+                            <span>🏆 Complete Test & View Full Report</span>
+                          </button>
+                        )}
+                      </div>
+
+                    </div>
+                  </div>
+                )}
 
               </div>
             </div>
