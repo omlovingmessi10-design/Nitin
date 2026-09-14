@@ -15,6 +15,8 @@
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <!-- Average Questions Dataset (Levels 1-5, English & Hindi) -->
   <script src="average_questions.js"></script>
+  <!-- Percentage Questions Dataset (Sets 1 & 2, Levels 1-5, English & Hindi) -->
+  <script src="percentage_questions.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400..800;1,6..72,400..800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -108,8 +110,8 @@
             weightage: "High Weightage (2-3 Qs)",
             isHighWeightage: true,
             sets: ["Practice 1", "Practice 2"],
-            totalQuestions: 70,
-            desc: "Fraction-to-percentage conversion, population changes, election problems, and successive percentage change."
+            totalQuestions: 50,
+            desc: "Complete 50 Questions (2 Sets × 5 Levels): Population, Exams, Income & Expenditure, Percentage of Numbers, Percentage Change, Investment, Quantity, Change in Area & Voting."
           },
           {
             id: "profit-loss",
@@ -577,6 +579,25 @@
         }
         if (typeof AVERAGE_PRACTICE_1_QUESTIONS !== "undefined" && AVERAGE_PRACTICE_1_QUESTIONS.length > 0) {
           return AVERAGE_PRACTICE_1_QUESTIONS;
+        }
+      }
+
+      if ((subjectId === "quant" || !subjectId) && (topicObj.id === "percentage" || (topicObj.title && topicObj.title.toLowerCase().includes("percentage")))) {
+        const isSet2 = practiceSet === "Practice 2" || practiceSet === "Set 2";
+        if (isSet2) {
+          if (typeof window !== "undefined" && window.PERCENTAGE_PRACTICE_2_QUESTIONS && window.PERCENTAGE_PRACTICE_2_QUESTIONS.length > 0) {
+            return window.PERCENTAGE_PRACTICE_2_QUESTIONS;
+          }
+          if (typeof PERCENTAGE_PRACTICE_2_QUESTIONS !== "undefined" && PERCENTAGE_PRACTICE_2_QUESTIONS.length > 0) {
+            return PERCENTAGE_PRACTICE_2_QUESTIONS;
+          }
+        } else {
+          if (typeof window !== "undefined" && window.PERCENTAGE_PRACTICE_1_QUESTIONS && window.PERCENTAGE_PRACTICE_1_QUESTIONS.length > 0) {
+            return window.PERCENTAGE_PRACTICE_1_QUESTIONS;
+          }
+          if (typeof PERCENTAGE_PRACTICE_1_QUESTIONS !== "undefined" && PERCENTAGE_PRACTICE_1_QUESTIONS.length > 0) {
+            return PERCENTAGE_PRACTICE_1_QUESTIONS;
+          }
         }
       }
 
@@ -1155,8 +1176,8 @@
         const newAnswers = { ...selectedAnswers, [currentIndex]: optionKey };
         setSelectedAnswers(newAnswers);
 
-        // Level-wise Milestone Calculation (Each 8 questions denote a Level)
-        const QUESTIONS_PER_LEVEL = 8;
+        // Level-wise Milestone Calculation (Each 5 or 8 questions denote a Level)
+        const QUESTIONS_PER_LEVEL = (questions.length === 25) ? 5 : 8;
         const currentLevel = Math.floor(currentIndex / QUESTIONS_PER_LEVEL) + 1;
         const levelStart = (currentLevel - 1) * QUESTIONS_PER_LEVEL;
         const levelEnd = Math.min(currentLevel * QUESTIONS_PER_LEVEL, questions.length);
@@ -1261,7 +1282,8 @@
       const handleReachNextLevel = (nextLvl) => {
         setActiveLevelMilestone(null);
         if (nextLvl) {
-          const nextIdx = (nextLvl - 1) * 8;
+          const qPerLevel = (questions.length === 25) ? 5 : 8;
+          const nextIdx = (nextLvl - 1) * qPerLevel;
           if (nextIdx < questions.length) {
             setCurrentIndex(nextIdx);
           }
@@ -2175,7 +2197,7 @@
                               </span>
                             )}
                             <span className="hidden sm:inline-block font-mono text-[10px] bg-indigo-50 border border-indigo-200 text-indigo-800 font-bold px-2 py-0.5 rounded-full">
-                              Level {Math.floor(currentIndex / 8) + 1}
+                              {currentQ?.level || `Level ${Math.floor(currentIndex / (questions.length === 25 ? 5 : 8)) + 1}`}
                             </span>
                           </div>
 
@@ -2250,6 +2272,25 @@
                             </span>
                           </div>
                         </div>
+
+                        {/* GREEN TYPE BAR */}
+                        {(currentQ?.type_label || currentQ?.type_category || currentQ?.type_code) && (
+                          <div className="bg-gradient-to-r from-emerald-600 via-emerald-500 to-teal-600 text-white px-3.5 py-2 rounded-xl flex items-center justify-between shadow-xs border border-emerald-700/20">
+                            <div className="flex items-center space-x-2 min-w-0">
+                              <span className="bg-emerald-800/90 text-white text-[11px] font-mono font-extrabold px-2 py-0.5 rounded-md tracking-wider uppercase shrink-0 shadow-2xs">
+                                {currentQ.type_code || `Type ${((currentQ.question_number - 1) % (questions.length === 25 ? 5 : 8)) + 1}`}
+                              </span>
+                              <span className="font-bold text-xs sm:text-sm text-white tracking-tight truncate">
+                                {language === 'HI' && currentQ.type_category_hi ? currentQ.type_category_hi : (currentQ.type_category || currentQ.type_label)}
+                              </span>
+                            </div>
+                            {currentQ.level && (
+                              <span className="hidden sm:inline-block bg-white/20 backdrop-blur-xs text-white text-[11px] font-semibold px-2.5 py-0.5 rounded-full shrink-0 ml-2">
+                                {currentQ.level}
+                              </span>
+                            )}
+                          </div>
+                        )}
 
                         {/* Question Text */}
                         <div className="py-1">
@@ -2518,11 +2559,11 @@
                         <div className="grid grid-cols-4 gap-2 text-center font-mono">
                           <div className="bg-white p-2.5 rounded-2xl border border-[#DDD7CC]">
                             <span className="text-[10px] text-slate-500 font-bold block uppercase">Attempted</span>
-                            <span className="text-sm sm:text-base font-black text-slate-900">8 / 8</span>
+                            <span className="text-sm sm:text-base font-black text-slate-900">{activeLevelMilestone.total} / {activeLevelMilestone.total}</span>
                           </div>
                           <div className="bg-white p-2.5 rounded-2xl border border-[#DDD7CC]">
                             <span className="text-[10px] text-slate-500 font-bold block uppercase">Correct</span>
-                            <span className="text-sm sm:text-base font-black text-emerald-600">{activeLevelMilestone.correct} / 8</span>
+                            <span className="text-sm sm:text-base font-black text-emerald-600">{activeLevelMilestone.correct} / {activeLevelMilestone.total}</span>
                           </div>
                           <div className="bg-white p-2.5 rounded-2xl border border-[#DDD7CC]">
                             <span className="text-[10px] text-slate-500 font-bold block uppercase">Score</span>
@@ -2585,7 +2626,7 @@
                             <span className="text-2xl">🌟</span>
                             <h4 className="font-bold text-emerald-900 text-sm">Flawless Mastery!</h4>
                             <p className="text-xs text-emerald-800 leading-relaxed">
-                              You answered all 8 questions in Level {activeLevelMilestone.level} with 100% accuracy! No weak areas detected in this level.
+                              You answered all {activeLevelMilestone.total} questions in Level {activeLevelMilestone.level} with 100% accuracy! No weak areas detected in this level.
                             </p>
                           </div>
                         )}
@@ -2608,7 +2649,7 @@
                           >
                             <span>🚀 Reach Level {activeLevelMilestone.nextLevel}</span>
                             <span className="font-mono text-[10px] bg-white/20 px-2 py-0.5 rounded-full">
-                              (Q{(activeLevelMilestone.nextLevel - 1) * 8 + 1} - Q{activeLevelMilestone.nextLevel * 8})
+                              (Q{(activeLevelMilestone.nextLevel - 1) * (questions.length === 25 ? 5 : 8) + 1} - Q{Math.min(activeLevelMilestone.nextLevel * (questions.length === 25 ? 5 : 8), questions.length)})
                             </span>
                           </button>
                         ) : (
