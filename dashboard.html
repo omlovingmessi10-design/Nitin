@@ -15,7 +15,7 @@
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <!-- Average Questions Dataset (Levels 1-5, English & Hindi) -->
   <script src="average_questions.js"></script>
-  <!-- Percentage Questions Dataset (Sets 1 & 2, Levels 1-5, English & Hindi) -->
+  <!-- Percentage Questions Dataset (Sets 1, 2 & 3, Levels 1-5, English & Hindi) -->
   <script src="percentage_questions.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -109,9 +109,9 @@
             category: "Arithmetic",
             weightage: "High Weightage (2-3 Qs)",
             isHighWeightage: true,
-            sets: ["Practice 1", "Practice 2"],
-            totalQuestions: 50,
-            desc: "Complete 50 Questions (2 Sets × 5 Levels): Population, Exams, Income & Expenditure, Percentage of Numbers, Percentage Change, Investment, Quantity, Change in Area & Voting."
+            sets: ["Practice 1", "Practice 2", "Practice 3"],
+            totalQuestions: 92,
+            desc: "Complete 92 Questions (3 Practice Sets × 5 Levels): Population, Exams, Income & Expenditure, Percentage Change, Mensuration, and Deep Analytical PYQs."
           },
           {
             id: "profit-loss",
@@ -583,8 +583,16 @@
       }
 
       if ((subjectId === "quant" || !subjectId) && (topicObj.id === "percentage" || (topicObj.title && topicObj.title.toLowerCase().includes("percentage")))) {
+        const isSet3 = practiceSet === "Practice 3" || practiceSet === "Set 3";
         const isSet2 = practiceSet === "Practice 2" || practiceSet === "Set 2";
-        if (isSet2) {
+        if (isSet3) {
+          if (typeof window !== "undefined" && window.PERCENTAGE_PRACTICE_3_QUESTIONS && window.PERCENTAGE_PRACTICE_3_QUESTIONS.length > 0) {
+            return window.PERCENTAGE_PRACTICE_3_QUESTIONS;
+          }
+          if (typeof PERCENTAGE_PRACTICE_3_QUESTIONS !== "undefined" && PERCENTAGE_PRACTICE_3_QUESTIONS.length > 0) {
+            return PERCENTAGE_PRACTICE_3_QUESTIONS;
+          }
+        } else if (isSet2) {
           if (typeof window !== "undefined" && window.PERCENTAGE_PRACTICE_2_QUESTIONS && window.PERCENTAGE_PRACTICE_2_QUESTIONS.length > 0) {
             return window.PERCENTAGE_PRACTICE_2_QUESTIONS;
           }
@@ -974,6 +982,38 @@
       const [loading, setLoading] = useState(false);
       const [submitted, setSubmitted] = useState(false);
 
+      // Dynamically compute Level boundaries for any questions set (25, 40, or 42 Qs)
+      const levelRanges = React.useMemo(() => {
+        if (!questions || questions.length === 0) return [];
+        const levels = [1, 2, 3, 4, 5];
+        return levels.map(lvlNum => {
+          const indices = [];
+          questions.forEach((q, idx) => {
+            const qLvl = (q.level_group || q.level || '');
+            if (qLvl.toLowerCase().includes(`level ${lvlNum}`)) {
+              indices.push(idx);
+            }
+          });
+          if (indices.length > 0) {
+            return {
+              level: lvlNum,
+              startIdx: indices[0],
+              endIdx: indices[indices.length - 1] + 1,
+              count: indices.length
+            };
+          }
+          const qPerLvl = questions.length === 25 ? 5 : Math.ceil(questions.length / 5);
+          const start = (lvlNum - 1) * qPerLvl;
+          const end = Math.min(lvlNum * qPerLvl, questions.length);
+          return {
+            level: lvlNum,
+            startIdx: start,
+            endIdx: end,
+            count: Math.max(0, end - start)
+          };
+        });
+      }, [questions]);
+
       // Feedback States
       const [feedbacks, setFeedbacks] = useState({});
       const [feedbackStatus, setFeedbackStatus] = useState(null);
@@ -1176,11 +1216,16 @@
         const newAnswers = { ...selectedAnswers, [currentIndex]: optionKey };
         setSelectedAnswers(newAnswers);
 
-        // Level-wise Milestone Calculation (Each 5 or 8 questions denote a Level)
-        const QUESTIONS_PER_LEVEL = (questions.length === 25) ? 5 : 8;
-        const currentLevel = Math.floor(currentIndex / QUESTIONS_PER_LEVEL) + 1;
-        const levelStart = (currentLevel - 1) * QUESTIONS_PER_LEVEL;
-        const levelEnd = Math.min(currentLevel * QUESTIONS_PER_LEVEL, questions.length);
+        // Level-wise Milestone Calculation dynamically matching level boundaries
+        const curRange = levelRanges.find(r => currentIndex >= r.startIdx && currentIndex < r.endIdx) || {
+          level: 1,
+          startIdx: 0,
+          endIdx: questions.length,
+          count: questions.length
+        };
+        const currentLevel = curRange.level;
+        const levelStart = curRange.startIdx;
+        const levelEnd = curRange.endIdx;
 
         // Check if all 8 questions in this level have been answered
         let levelAllAnswered = true;
@@ -1281,9 +1326,8 @@
 
       const handleReachNextLevel = (nextLvl) => {
         setActiveLevelMilestone(null);
-        if (nextLvl) {
-          const qPerLevel = (questions.length === 25) ? 5 : 8;
-          const nextIdx = (nextLvl - 1) * qPerLevel;
+        if (nextLvl && levelRanges[nextLvl - 1]) {
+          const nextIdx = levelRanges[nextLvl - 1].startIdx;
           if (nextIdx < questions.length) {
             setCurrentIndex(nextIdx);
           }
@@ -1918,24 +1962,24 @@
                     <div className="pt-4 mt-4 border-t border-[#F0EBE1] space-y-2 w-full min-w-0">
                       <div className="flex items-center justify-between font-mono text-[10px] text-[#8C827A] mb-1">
                         <span>AVAILABLE SETS</span>
-                        <span className="font-bold text-[#182030]">35 Qs / Set</span>
+                        <span className="font-bold text-[#182030]">{topic.id === "percentage" ? "25-42 Qs / Set" : "35-40 Qs / Set"}</span>
                       </div>
                       
-                      <div className="grid grid-cols-2 gap-2 w-full">
-                        <button
-                          onClick={() => handleStartTopicQuiz(topic, "Practice 1")}
-                          className="py-2.5 px-3 rounded-xl text-xs font-bold bg-[#182030] hover:bg-slate-800 text-white shadow-sm transition flex items-center justify-center space-x-1 w-full min-w-0"
-                        >
-                          <span className="truncate">Start Set 1</span>
-                          <span className="text-[11px] font-mono">→</span>
-                        </button>
-                        <button
-                          onClick={() => handleStartTopicQuiz(topic, "Practice 2")}
-                          className="py-2.5 px-3 rounded-xl text-xs font-bold bg-[#F4F0E8] hover:bg-[#EAE5DA] text-[#182030] border border-[#DDD7CC] transition flex items-center justify-center space-x-1 w-full min-w-0"
-                        >
-                          <span className="truncate">Start Set 2</span>
-                          <span className="text-[11px] font-mono">→</span>
-                        </button>
+                      <div className={`grid gap-2 w-full ${(topic.sets?.length || 2) > 2 ? 'grid-cols-3' : 'grid-cols-2'}`}>
+                        {(topic.sets || ["Practice 1", "Practice 2"]).map((s, sIdx) => (
+                          <button
+                            key={s}
+                            onClick={() => handleStartTopicQuiz(topic, s)}
+                            className={`py-2.5 px-2 rounded-xl text-xs font-bold transition flex items-center justify-center space-x-1 w-full min-w-0 ${
+                              sIdx === 0
+                                ? "bg-[#182030] hover:bg-slate-800 text-white shadow-sm"
+                                : "bg-[#F4F0E8] hover:bg-[#EAE5DA] text-[#182030] border border-[#DDD7CC]"
+                            }`}
+                          >
+                            <span className="truncate">{s.replace("Practice", "Set")}</span>
+                            <span className="text-[11px] font-mono">→</span>
+                          </button>
+                        ))}
                       </div>
                     </div>
                   </div>
@@ -2049,19 +2093,17 @@
                   </div>
                 </div>
 
-                {/* 5-LEVEL PROGRESSION TABS BAR (8 Questions per Level) */}
+                {/* 5-LEVEL PROGRESSION TABS BAR */}
                 <div className="px-3 sm:px-5 py-2 bg-[#F3EFE6] border-b border-[#E2DDD3] flex items-center gap-1.5 overflow-x-auto scrollbar-none shrink-0">
-                  {[1, 2, 3, 4, 5].map((lvlNum) => {
-                    const startIdx = (lvlNum - 1) * 8;
-                    const endIdx = Math.min(lvlNum * 8, questions.length);
-                    const isCurrentLevel = Math.floor(currentIndex / 8) + 1 === lvlNum;
+                  {levelRanges.map((lr) => {
+                    const isCurrentLevel = currentIndex >= lr.startIdx && currentIndex < lr.endIdx;
                     
                     // Count how many answered in this level
                     let answeredInLevel = 0;
-                    for (let k = startIdx; k < endIdx; k++) {
+                    for (let k = lr.startIdx; k < lr.endIdx; k++) {
                       if (selectedAnswers[k] !== undefined) answeredInLevel++;
                     }
-                    const isLevelDone = (endIdx > startIdx) && (answeredInLevel === (endIdx - startIdx));
+                    const isLevelDone = (lr.count > 0) && (answeredInLevel === lr.count);
 
                     let tabStyle = "bg-white border-[#DDD7CC] text-slate-700 hover:bg-[#EAE5DA]";
                     if (isCurrentLevel) {
@@ -2072,17 +2114,17 @@
 
                     return (
                       <button
-                        key={lvlNum}
-                        onClick={() => setCurrentIndex(startIdx)}
+                        key={lr.level}
+                        onClick={() => setCurrentIndex(lr.startIdx)}
                         className={`px-3 py-1 rounded-xl border text-xs font-semibold whitespace-nowrap transition-all flex items-center space-x-1.5 ${tabStyle}`}
-                        title={`Jump to Level ${lvlNum} (Q${startIdx + 1} - Q${endIdx})`}
+                        title={`Jump to Level ${lr.level} (Q${lr.startIdx + 1} - Q${lr.endIdx})`}
                       >
-                        <span className="text-[11px]">{isLevelDone ? "✓" : `L${lvlNum}`}</span>
-                        <span className="font-bold">Level {lvlNum}</span>
+                        <span className="text-[11px]">{isLevelDone ? "✓" : `L${lr.level}`}</span>
+                        <span className="font-bold">Level {lr.level}</span>
                         <span className={`text-[10px] px-1.5 py-0.2 rounded-full font-mono font-bold ${
                           isCurrentLevel ? "bg-white/20 text-white" : isLevelDone ? "bg-emerald-200/80 text-emerald-900" : "bg-slate-100 text-slate-600"
                         }`}>
-                          {answeredInLevel}/8
+                          {answeredInLevel}/{lr.count}
                         </span>
                       </button>
                     );
@@ -2642,14 +2684,14 @@
                           Review Level {activeLevelMilestone.level}
                         </button>
 
-                        {activeLevelMilestone.nextLevel ? (
+                        {activeLevelMilestone.nextLevel && levelRanges[activeLevelMilestone.nextLevel - 1] ? (
                           <button
                             onClick={() => handleReachNextLevel(activeLevelMilestone.nextLevel)}
                             className="flex-1 px-4 py-2.5 rounded-xl bg-[#182030] hover:bg-slate-900 text-white font-bold text-xs sm:text-sm shadow-md transition flex items-center justify-center space-x-2"
                           >
                             <span>🚀 Reach Level {activeLevelMilestone.nextLevel}</span>
                             <span className="font-mono text-[10px] bg-white/20 px-2 py-0.5 rounded-full">
-                              (Q{(activeLevelMilestone.nextLevel - 1) * (questions.length === 25 ? 5 : 8) + 1} - Q{Math.min(activeLevelMilestone.nextLevel * (questions.length === 25 ? 5 : 8), questions.length)})
+                              (Q{levelRanges[activeLevelMilestone.nextLevel - 1].startIdx + 1} - Q{levelRanges[activeLevelMilestone.nextLevel - 1].endIdx})
                             </span>
                           </button>
                         ) : (

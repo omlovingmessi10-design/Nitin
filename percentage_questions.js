@@ -1,5 +1,5 @@
 /**
- * Percentage Practice Sets 1 & 2 - Complete 50 Questions Dataset (25 Qs per set)
+ * Percentage Practice Sets 1, 2 & 3 - Complete 92 Questions Dataset (Set 1: 25 Qs, Set 2: 25 Qs, Set 3: 42 Qs)
  * Level 1 to Level 5 with English & Hindi Translations, Options, Solutions, Shortcuts, and Type Labels
  *
  * Types:
@@ -1559,10 +1559,1293 @@ const PERCENTAGE_PRACTICE_2_QUESTIONS = [
   }
 ];
 
+const PERCENTAGE_PRACTICE_3_QUESTIONS = [
+  // ==========================================
+  // LEVEL 1: MORE THAN MODERATE (Q1 - Q9)
+  // ==========================================
+  {
+    question_number: 1,
+    practice_set: "Practice 3",
+    level: "Level 1: More than Moderate",
+    level_group: "Level 1: More than Moderate",
+    type_code: "Type 8",
+    type_category: "Problems based on finding percentage",
+    type_category_hi: "प्रतिशत ज्ञात करने पर आधारित प्रश्न",
+    type_label: "Type 8: Problems based on finding percentage",
+    type_label_hi: "Type 8: प्रतिशत ज्ञात करने पर आधारित प्रश्न",
+    question_text: "The production of bottles rose from 16000 to 26000 in 2 years. Find the rate of growth per annum.",
+    question_text_hi: "2 वर्षों में बोतलों का उत्पादन 16000 से बढ़कर 26000 हो गया। प्रति वर्ष वृद्धि दर ज्ञात कीजिए।",
+    options: {
+      a: "26.47%",
+      b: "37.47%",
+      c: "28.47%",
+      d: "27.47%"
+    },
+    options_hi: {
+      a: "26.47%",
+      b: "37.47%",
+      c: "28.47%",
+      d: "27.47%"
+    },
+    correct_option: "d",
+    solution_text: "Using compound growth formula: 16000(1 + r/100)² = 26000.\n(1 + r/100)² = 1.625.\n1 + r/100 = √1.625 ≈ 1.2747.\nGrowth rate r = 27.47%.",
+    solution_text_hi: "चक्रवृद्धि वृद्धि सूत्र का उपयोग करने पर: 16000(1 + r/100)² = 26000।\n(1 + r/100)² = 1.625।\n1 + r/100 = √1.625 ≈ 1.2747।\nवृद्धि दर r = 27.47%।",
+    shortcut_text: "Ratio = 26/16 = 1.625. Multiplier = √1.625 ≈ 1.2747 ⇒ Rate = 27.47%.",
+    shortcut_text_hi: "अनुपात = 26/16 = 1.625। गुणक = √1.625 ≈ 1.2747 ⇒ दर = 27.47%।"
+  },
+  {
+    question_number: 2,
+    practice_set: "Practice 3",
+    level: "Level 1: More than Moderate",
+    level_group: "Level 1: More than Moderate",
+    type_code: "Type 3",
+    type_category: "Problems based on Income, Expenditure and Savings",
+    type_category_hi: "आय, व्यय और बचत पर आधारित प्रश्न",
+    type_label: "Type 3: Problems based on Income, Expenditure and Savings",
+    type_label_hi: "Type 3: आय, व्यय और बचत पर आधारित प्रश्न",
+    question_text: "Petrol price rose by 5% from Rs. 82/litre. A man travels 3045 km/month at 15 km/litre mileage. Find the increase in monthly expenditure (nearest ₹).",
+    question_text_hi: "पेट्रोल की कीमत ₹82 प्रति लीटर से 5% बढ़ी। एक आदमी हर महीने 3045 किमी यात्रा करता है, माइलेज 15 किमी/लीटर है। मासिक खर्च में वृद्धि (निकटतम ₹ में) ज्ञात कीजिए।",
+    options: {
+      a: "₹820",
+      b: "₹832",
+      c: "₹845",
+      d: "₹850"
+    },
+    options_hi: {
+      a: "₹820",
+      b: "₹832",
+      c: "₹845",
+      d: "₹850"
+    },
+    correct_option: "b",
+    solution_text: "Monthly requirement = 3045 / 15 = 203 litres.\nInitial cost = 203 × 82 = ₹16,646.\nIncrease in cost = 5% of 16,646 = ₹832.30 ≈ ₹832.",
+    solution_text_hi: "मासिक आवश्यकता = 3045 / 15 = 203 लीटर।\nप्रारंभिक लागत = 203 × 82 = ₹16,646।\nलागत में वृद्धि = 16,646 का 5% = ₹832.30 ≈ ₹832।",
+    shortcut_text: "Increase = 203 L × (5% of ₹82) = 203 × 4.10 = ₹832.30 ≈ ₹832.",
+    shortcut_text_hi: "वृद्धि = 203 × (82 का 5%) = 203 × 4.10 = ₹832.30 ≈ ₹832।"
+  },
+  {
+    question_number: 3,
+    practice_set: "Practice 3",
+    level: "Level 1: More than Moderate",
+    level_group: "Level 1: More than Moderate",
+    type_code: "Type 6",
+    type_category: "Problems based on investment and business",
+    type_category_hi: "निवेश और व्यवसाय पर आधारित प्रश्न",
+    type_label: "Type 6: Problems based on investment and business",
+    type_label_hi: "Type 6: निवेश और व्यवसाय पर आधारित प्रश्न",
+    question_text: "A landlord bought a flat for ₹8,00,000, wants a 9% annual return after paying ₹2,000/month maintenance. Find the monthly rent.",
+    question_text_hi: "एक मकान मालिक ने ₹8,00,000 में फ्लैट खरीदा, ₹2,000/माह रखरखाव के बाद 9% वार्षिक रिटर्न चाहता है। मासिक किराया ज्ञात कीजिए।",
+    options: {
+      a: "₹7,000",
+      b: "₹7,500",
+      c: "₹8,000",
+      d: "₹8,500"
+    },
+    options_hi: {
+      a: "₹7,000",
+      b: "₹7,500",
+      c: "₹8,000",
+      d: "₹8,500"
+    },
+    correct_option: "c",
+    solution_text: "Required annual return = 9% of 8,00,000 = ₹72,000/year, which equals ₹6,000/month net return.\nSince maintenance is ₹2,000/month, gross Rent = 6,000 + 2,000 = ₹8,000.",
+    solution_text_hi: "आवश्यक वार्षिक रिटर्न = 8,00,000 का 9% = ₹72,000/वर्ष, जो ₹6,000/माह के शुद्ध रिटर्न के बराबर है।\nचूंकि रखरखाव ₹2,000/माह है, इसलिए सकल किराया = 6,000 + 2,000 = ₹8,000।",
+    shortcut_text: "Net Rent/mo = (8,00,000 × 0.09) / 12 = ₹6,000. Gross Rent = 6,000 + 2,000 = ₹8,000.",
+    shortcut_text_hi: "शुद्ध किराया = (8,00,000 × 0.09) / 12 = ₹6,000। कुल किराया = 6,000 + 2,000 = ₹8,000।"
+  },
+  {
+    question_number: 4,
+    practice_set: "Practice 3",
+    level: "Level 1: More than Moderate",
+    level_group: "Level 1: More than Moderate",
+    type_code: "Type 5",
+    type_category: "Problems based on Percentage change",
+    type_category_hi: "प्रतिशत परिवर्तन पर आधारित प्रश्न",
+    type_label: "Type 5: Problems based on Percentage change",
+    type_label_hi: "Type 5: प्रतिशत परिवर्तन पर आधारित प्रश्न",
+    question_text: "Project cost ₹5,00,000: 60% materials, 25% labor, 15% contingency. Material cost +12.5%, labor +10%, contingency unchanged. Find new total cost.",
+    question_text_hi: "परियोजना लागत ₹5,00,000: 60% सामग्री, 25% श्रम, 15% आकस्मिक। सामग्री +12.5%, श्रम +10%, आकस्मिक अपरिवर्तित। नई कुल लागत ज्ञात कीजिए।",
+    options: {
+      a: "₹5,45,000",
+      b: "₹5,60,000",
+      c: "₹5,52,000",
+      d: "₹5,50,000"
+    },
+    options_hi: {
+      a: "₹5,45,000",
+      b: "₹5,60,000",
+      c: "₹5,52,000",
+      d: "₹5,50,000"
+    },
+    correct_option: "d",
+    solution_text: "Original costs: Material = ₹3,00,000; Labor = ₹1,25,000; Contingency = ₹75,000.\nNew Material = 3,00,000 × 1.125 = ₹3,37,500.\nNew Labor = 1,25,000 × 1.10 = ₹1,37,500.\nTotal = 3,37,500 + 1,37,500 + 75,000 = ₹5,50,000.",
+    solution_text_hi: "मूल लागत: सामग्री = ₹3,00,000; श्रम = ₹1,25,000; आकस्मिक = ₹75,000।\nनई सामग्री = 3,00,000 × 1.125 = ₹3,37,500।\nनया श्रम = 1,25,000 × 1.10 = ₹1,37,500।\nकुल = 3,37,500 + 1,37,500 + 75,000 = ₹5,50,000।",
+    shortcut_text: "Increase = (60% × 12.5%) + (25% × 10%) = 7.5% + 2.5% = 10%. New Cost = 5,00,000 × 1.10 = ₹5,50,000.",
+    shortcut_text_hi: "कुल वृद्धि = (60% × 12.5%) + (25% × 10%) = 10%। नई लागत = 5,00,000 × 1.10 = ₹5,50,000।"
+  },
+  {
+    question_number: 5,
+    practice_set: "Practice 3",
+    level: "Level 1: More than Moderate",
+    level_group: "Level 1: More than Moderate",
+    type_code: "Type 1",
+    type_category: "Problems based on Population",
+    type_category_hi: "जनसंख्या पर आधारित प्रश्न",
+    type_label: "Type 1: Problems based on Population",
+    type_label_hi: "Type 1: जनसंख्या पर आधारित प्रश्न",
+    question_text: "Population 2,40,000 grows 12% (birth) and falls 7% (death) yearly. Find population after 3 years.",
+    question_text_hi: "जनसंख्या 2,40,000, प्रतिवर्ष जन्म दर 12% वृद्धि व मृत्यु दर 7% कमी। 3 वर्ष बाद जनसंख्या ज्ञात कीजिए।",
+    options: {
+      a: "2,92,500",
+      b: "2,98,000",
+      c: "2,77,830",
+      d: "3,27,830"
+    },
+    options_hi: {
+      a: "2,92,500",
+      b: "2,98,000",
+      c: "2,77,830",
+      d: "3,27,830"
+    },
+    correct_option: "c",
+    solution_text: "Net annual growth = 12% - 7% = +5%.\nAfter 3 years: 2,40,000 × (1.05)³ = 2,40,000 × 1.157625 = 2,77,830.",
+    solution_text_hi: "शुद्ध वार्षिक वृद्धि = 12% - 7% = +5%।\n3 वर्ष बाद: 2,40,000 × (1.05)³ = 2,40,000 × 1.157625 = 2,77,830।",
+    shortcut_text: "2,40,000 × (21/20)³ = 30 × 9261 = 2,77,830.",
+    shortcut_text_hi: "2,40,000 × (21/20)³ = 30 × 9261 = 2,77,830।"
+  },
+  {
+    question_number: 6,
+    practice_set: "Practice 3",
+    level: "Level 1: More than Moderate",
+    level_group: "Level 1: More than Moderate",
+    type_code: "Type 7",
+    type_category: "Problems related to finding percentage quantity",
+    type_category_hi: "प्रतिशत मात्रा ज्ञात करने पर आधारित प्रश्न",
+    type_label: "Type 7: Problems related to finding percentage quantity",
+    type_label_hi: "Type 7: प्रतिशत मात्रा ज्ञात करने पर आधारित प्रश्न",
+    question_text: "Fresh grapes contain 80% water while dry grapes contain 10% water. If the weight of dry grapes is 50 kg, what was its total weight when it was fresh?",
+    question_text_hi: "ताजे अंगूरों में 80% पानी होता है जबकि सूखे अंगूरों में 10% पानी होता है। यदि सूखे अंगूरों का वजन 50 किग्रा है, तो ताजा होने पर इसका कुल वजन कितना था?",
+    options: {
+      a: "200 kg",
+      b: "225 kg",
+      c: "250 kg",
+      d: "275 kg"
+    },
+    options_hi: {
+      a: "200 किग्रा",
+      b: "225 किग्रा",
+      c: "250 किग्रा",
+      d: "275 किग्रा"
+    },
+    correct_option: "b",
+    solution_text: "Dry grapes have 10% water, meaning 90% is solid pulp. 90% of 50 kg = 45 kg of pulp.\nFresh grapes have 80% water, meaning 20% is solid pulp.\nTherefore, 20% of Fresh Weight = 45 kg.\nFresh Weight = 45 × 5 = 225 kg.",
+    solution_text_hi: "सूखे अंगूरों में 10% पानी होता है, अर्थात 90% ठोस गूदा है। 50 किग्रा का 90% = 45 किग्रा गूदा।\nताजे अंगूरों में 80% पानी होता है, अर्थात 20% ठोस गूदा है।\nइसलिए, ताजे वजन का 20% = 45 किग्रा।\nताजा वजन = 45 × 5 = 225 किग्रा।",
+    shortcut_text: "Pulp is constant: Fresh × 20% = 50 × 90% ⇒ Fresh = (50 × 90) / 20 = 225 kg.",
+    shortcut_text_hi: "गूदा स्थिर रहता है: Fresh × 20 = 50 × 90 ⇒ Fresh = 225 किग्रा।"
+  },
+  {
+    question_number: 7,
+    practice_set: "Practice 3",
+    level: "Level 1: More than Moderate",
+    level_group: "Level 1: More than Moderate",
+    type_code: "Type 10",
+    type_category: "Problems based on voting",
+    type_category_hi: "मतदान और चुनाव पर आधारित प्रश्न",
+    type_label: "Type 10: Problems based on voting",
+    type_label_hi: "Type 10: मतदान और चुनाव पर आधारित प्रश्न",
+    question_text: "In an election between 2 candidates, 10% votes were invalid. The winner got 60% of valid votes and won by 1800 votes. Find the total votes.",
+    question_text_hi: "2 उम्मीदवारों के बीच एक चुनाव में 10% वोट अमान्य थे। विजेता को वैध वोटों का 60% मिला और वह 1800 वोटों से जीत गया। कुल वोट ज्ञात कीजिए।",
+    options: {
+      a: "9000",
+      b: "10000",
+      c: "12000",
+      d: "15000"
+    },
+    options_hi: {
+      a: "9000",
+      b: "10000",
+      c: "12000",
+      d: "15000"
+    },
+    correct_option: "b",
+    solution_text: "Winner gets 60% of valid votes; loser gets 40%.\nThe difference is 20% of valid votes.\n20% of Valid = 1800, so Valid Votes = 9000.\nSince 10% were invalid, Valid Votes represent 90% of the total.\nTotal Votes = 9000 / 0.9 = 10000.",
+    solution_text_hi: "विजेता को वैध वोटों का 60% मिलता है; हारने वाले को 40%।\nअंतर वैध वोटों का 20% है।\nवैध का 20% = 1800, इसलिए वैध वोट = 9000।\nचूंकि 10% अमान्य थे, इसलिए वैध वोट कुल का 90% दर्शाते हैं।\nकुल वोट = 9000 / 0.9 = 10000।",
+    shortcut_text: "Total × 0.90 × 0.20 = 1800 ⇒ Total × 0.18 = 1800 ⇒ Total = 10,000.",
+    shortcut_text_hi: "कुल × 0.90 × 0.20 = 1800 ⇒ कुल = 10,000।"
+  },
+  {
+    question_number: 8,
+    practice_set: "Practice 3",
+    level: "Level 1: More than Moderate",
+    level_group: "Level 1: More than Moderate",
+    type_code: "Type 3",
+    type_category: "Problems based on Income, Expenditure and Savings",
+    type_category_hi: "आय, व्यय और बचत पर आधारित प्रश्न",
+    type_label: "Type 3: Problems based on Income, Expenditure and Savings",
+    type_label_hi: "Type 3: आय, व्यय और बचत पर आधारित प्रश्न",
+    question_text: "Ram spends 20% of his income on food, 15% on rent, and saves the remaining ₹13,000. What is his total income?",
+    question_text_hi: "राम अपनी आय का 20% भोजन पर, 15% किराए पर खर्च करता है और शेष ₹13,000 बचाता है। उसकी कुल आय क्या है?",
+    options: {
+      a: "₹20000",
+      b: "₹22000",
+      c: "₹24000",
+      d: "₹25000"
+    },
+    options_hi: {
+      a: "₹20000",
+      b: "₹22000",
+      c: "₹24000",
+      d: "₹25000"
+    },
+    correct_option: "a",
+    solution_text: "Total expenditure = 20% + 15% = 35%.\nSavings = 100% - 35% = 65%.\n65% of Total Income = 13,000.\nTotal Income = (13000 / 65) × 100 = ₹20,000.",
+    solution_text_hi: "कुल खर्च = 20% + 15% = 35%।\nबचत = 100% - 35% = 65%।\nकुल आय का 65% = 13,000।\nकुल आय = (13000 / 65) × 100 = ₹20,000।",
+    shortcut_text: "Savings = 100 - 35 = 65%. 65% = 13,000 ⇒ 1% = 200 ⇒ 100% = ₹20,000.",
+    shortcut_text_hi: "बचत = 65% = 13,000 ⇒ 1% = 200 ⇒ 100% = ₹20,000।"
+  },
+  {
+    question_number: 9,
+    practice_set: "Practice 3",
+    level: "Level 1: More than Moderate",
+    level_group: "Level 1: More than Moderate",
+    type_code: "Type 5",
+    type_category: "Problems based on Percentage change",
+    type_category_hi: "प्रतिशत परिवर्तन पर आधारित प्रश्न",
+    type_label: "Type 5: Problems based on Percentage change",
+    type_label_hi: "Type 5: प्रतिशत परिवर्तन पर आधारित प्रश्न",
+    question_text: "Water tax is increased by 20% but water consumption is decreased by 20%. The percentage change in expenditure is?",
+    question_text_hi: "जल कर में 20% की वृद्धि हुई लेकिन पानी की खपत में 20% की कमी आई। व्यय में प्रतिशत परिवर्तन क्या है?",
+    options: {
+      a: "No change",
+      b: "4% decrease",
+      c: "4% increase",
+      d: "2% decrease"
+    },
+    options_hi: {
+      a: "कोई परिवर्तन नहीं",
+      b: "4% कमी",
+      c: "4% वृद्धि",
+      d: "2% कमी"
+    },
+    correct_option: "b",
+    solution_text: "Let Tax = 100, Consumption = 100. Expenditure = 10,000.\nNew Tax = 120, New Consumption = 80.\nNew Expenditure = 120 × 80 = 9600.\nDecrease = 400.\nPercentage decrease = (400 / 10000) × 100 = 4%.",
+    solution_text_hi: "माना कर = 100, खपत = 100। खर्च = 10,000।\nनया कर = 120, नई खपत = 80।\nनया खर्च = 120 × 80 = 9600।\nकमी = 400।\nप्रतिशत कमी = (400 / 10000) × 100 = 4%।",
+    shortcut_text: "Successive change = +20 - 20 - (20 × 20)/100 = -4% (4% decrease).",
+    shortcut_text_hi: "+20 - 20 - (400/100) = -4% (4% कमी)।"
+  },
+
+  // ==========================================
+  // LEVEL 2: ADVANCED MODERATION (Q10 - Q18)
+  // ==========================================
+  {
+    question_number: 10,
+    practice_set: "Practice 3",
+    level: "Level 2: Advanced Moderation",
+    level_group: "Level 2: Advanced Moderation",
+    type_code: "Type 5",
+    type_category: "Problems based on Percentage change",
+    type_category_hi: "प्रतिशत परिवर्तन पर आधारित प्रश्न",
+    type_label: "Type 5: Problems based on Percentage change",
+    type_label_hi: "Type 5: प्रतिशत परिवर्तन पर आधारित प्रश्न",
+    question_text: "The price of a product is decreased by x% and then increased by x%. The final price becomes 10% less than the original. What is the value of x (approximately)?",
+    question_text_hi: "किसी वस्तु की कीमत में x% की कमी की जाती है और फिर x% की वृद्धि की जाती है। अंतिम कीमत मूल कीमत से 10% कम हो जाती है। x का मान (लगभग) क्या है?",
+    options: {
+      a: "31.6",
+      b: "33.6",
+      c: "30.6",
+      d: "39.6"
+    },
+    options_hi: {
+      a: "31.6",
+      b: "33.6",
+      c: "30.6",
+      d: "39.6"
+    },
+    correct_option: "a",
+    solution_text: "Successive change formula: +x% and -x% results in a net decrease of (x²/100)%.\nGiven this is 10%, x²/100 = 10 ⇒ x² = 1000 ⇒ x = √1000 ≈ 31.62.",
+    solution_text_hi: "क्रमिक परिवर्तन सूत्र: +x% और -x% के परिणामस्वरूप (x²/100)% की शुद्ध कमी होती है।\nचूंकि यह 10% दिया गया है, x²/100 = 10 ⇒ x² = 1000 ⇒ x = √1000 ≈ 31.62।",
+    shortcut_text: "Net loss % = x² / 100 = 10 ⇒ x = √1000 ≈ 31.62.",
+    shortcut_text_hi: "x = √1000 ≈ 31.62।"
+  },
+  {
+    question_number: 11,
+    practice_set: "Practice 3",
+    level: "Level 2: Advanced Moderation",
+    level_group: "Level 2: Advanced Moderation",
+    type_code: "Type 3",
+    type_category: "Problems based on Income, Expenditure and Savings",
+    type_category_hi: "आय, व्यय और बचत पर आधारित प्रश्न",
+    type_label: "Type 3: Problems based on Income, Expenditure and Savings",
+    type_label_hi: "Type 3: आय, व्यय और बचत पर आधारित प्रश्न",
+    question_text: "A's salary is 40% more than B's. B's salary increases by 20%, A's by x%, making A's new salary 25% more than B's new salary. Find x.",
+    question_text_hi: "A का वेतन B से 40% अधिक है। B का वेतन 20% और A का वेतन x% बढ़ता है, जिससे A का नया वेतन B के नए वेतन से 25% अधिक हो जाता है। x ज्ञात कीजिए।",
+    options: {
+      a: "2.5%",
+      b: "7.14%",
+      c: "10.63%",
+      d: "15.6%"
+    },
+    options_hi: {
+      a: "2.5%",
+      b: "7.14%",
+      c: "10.63%",
+      d: "15.6%"
+    },
+    correct_option: "b",
+    solution_text: "Let B = 100. Then A = 140.\nB increases by 20% to 120.\nA's new salary is 25% more than B's new salary = 120 × 1.25 = 150.\nA went from 140 to 150, an increase of 10.\nPercentage increase = (10 / 140) × 100 = 7.14%.",
+    solution_text_hi: "माना B = 100। तब A = 140।\nB में 20% की वृद्धि होकर 120 हो जाता है।\nA का नया वेतन B के नए वेतन से 25% अधिक है = 120 × 1.25 = 150।\nA 140 से बढ़कर 150 हो गया, जो कि 10 की वृद्धि है।\nप्रतिशत वृद्धि = (10 / 140) × 100 = 7.14%।",
+    shortcut_text: "A_new = 120 × 1.25 = 150. Increase on 140 = 10/140 = 1/14 ≈ 7.14%.",
+    shortcut_text_hi: "10 / 140 = 1/14 ≈ 7.14%।"
+  },
+  {
+    question_number: 12,
+    practice_set: "Practice 3",
+    level: "Level 2: Advanced Moderation",
+    level_group: "Level 2: Advanced Moderation",
+    type_code: "Type 5",
+    type_category: "Problems based on Percentage change",
+    type_category_hi: "प्रतिशत परिवर्तन पर आधारित प्रश्न",
+    type_label: "Type 5: Problems based on Percentage change",
+    type_label_hi: "Type 5: प्रतिशत परिवर्तन पर आधारित प्रश्न",
+    question_text: "After two equal successive increments, a salary became 156.25% of original. Find each increment %.",
+    question_text_hi: "दो समान क्रमिक वेतन वृद्धियों के बाद वेतन मूल का 156.25% हो गया। प्रत्येक वृद्धि ज्ञात कीजिए।",
+    options: {
+      a: "20%",
+      b: "22%",
+      c: "25%",
+      d: "30%"
+    },
+    options_hi: {
+      a: "20%",
+      b: "22%",
+      c: "25%",
+      d: "30%"
+    },
+    correct_option: "c",
+    solution_text: "Let original salary be 100. After two equal increments of x%, it becomes 156.25.\n100(1 + x/100)² = 156.25 ⇒ (1 + x/100)² = 1.5625 ⇒ 1 + x/100 = 1.25.\nTherefore, x = 25%.",
+    solution_text_hi: "माना मूल वेतन 100 है। x% की दो समान वृद्धियों के बाद, यह 156.25 हो जाता है।\n100(1 + x/100)² = 156.25 ⇒ (1 + x/100)² = 1.5625 ⇒ 1 + x/100 = 1.25।\nइसलिए, x = 25%।",
+    shortcut_text: "Multiplier² = 1.5625 ⇒ Multiplier = √1.5625 = 1.25 ⇒ Increment = 25%.",
+    shortcut_text_hi: "गुणक = √1.5625 = 1.25 ⇒ वृद्धि = 25%।"
+  },
+  {
+    question_number: 13,
+    practice_set: "Practice 3",
+    level: "Level 2: Advanced Moderation",
+    level_group: "Level 2: Advanced Moderation",
+    type_code: "Type 6",
+    type_category: "Problems based on investment and business",
+    type_category_hi: "निवेश और व्यवसाय पर आधारित प्रश्न",
+    type_label: "Type 6: Problems based on investment and business",
+    type_label_hi: "Type 6: निवेश और व्यवसाय पर आधारित प्रश्न",
+    question_text: "Income ₹1,60,000 split 35% mutual funds, 25% fixed deposits, 40% recurring deposits, growing 20%, 10%, 15% respectively over 2 years. Find total % return on the portfolio.",
+    question_text_hi: "आय ₹1,60,000 को 35% म्यूचुअल फंड, 25% FD, 40% RD में बांटा गया, जो 2 वर्षों में क्रमशः 20%, 10%, 15% बढ़ते हैं। पोर्टफोलियो पर कुल % रिटर्न ज्ञात कीजिए।",
+    options: {
+      a: "15.5%",
+      b: "15.25%",
+      c: "14.75%",
+      d: "16%"
+    },
+    options_hi: {
+      a: "15.5%",
+      b: "15.25%",
+      c: "14.75%",
+      d: "16%"
+    },
+    correct_option: "a",
+    solution_text: "Total = 100 parts. MF = 35, FD = 25, RD = 40.\nMF grows 20% to 42. FD grows 10% to 27.5. RD grows 15% to 46.\nTotal final value = 42 + 27.5 + 46 = 115.5.\nTotal growth = 15.5%.",
+    solution_text_hi: "कुल = 100 भाग। MF = 35, FD = 25, RD = 40।\nMF 20% बढ़कर 42 हो जाता है। FD 10% बढ़कर 27.5 हो जाता है। RD 15% बढ़कर 46 हो जाता है।\nकुल अंतिम मूल्य = 42 + 27.5 + 46 = 115.5।\nकुल वृद्धि = 15.5%।",
+    shortcut_text: "Weighted average: (35 × 20 + 25 × 10 + 40 × 15) / 100 = 1550 / 100 = 15.5%.",
+    shortcut_text_hi: "भारित औसत = (700 + 250 + 600) / 100 = 15.5%।"
+  },
+  {
+    question_number: 14,
+    practice_set: "Practice 3",
+    level: "Level 2: Advanced Moderation",
+    level_group: "Level 2: Advanced Moderation",
+    type_code: "Type 9",
+    type_category: "Problems based on percentage change in area",
+    type_category_hi: "क्षेत्रफल में प्रतिशत परिवर्तन पर आधारित प्रश्न",
+    type_label: "Type 9: Problems based on percentage change in area",
+    type_label_hi: "Type 9: क्षेत्रफल में प्रतिशत परिवर्तन पर आधारित प्रश्न",
+    question_text: "Prism volume 960 cm³, base area 80 cm². By what % should height increase to make volume 1200 cm³?",
+    question_text_hi: "प्रिज्म का आयतन 960 सेमी³, आधार क्षेत्रफल 80 सेमी²। आयतन 1200 सेमी³ करने हेतु ऊँचाई में कितने % वृद्धि होनी चाहिए?",
+    options: {
+      a: "20%",
+      b: "25%",
+      c: "30%",
+      d: "33.33%"
+    },
+    options_hi: {
+      a: "20%",
+      b: "25%",
+      c: "30%",
+      d: "33.33%"
+    },
+    correct_option: "b",
+    solution_text: "Volume of a prism = Base Area × Height.\n960 = 80 × Height ⇒ Height = 12 cm.\nNew volume = 1200, so new Height = 1200 / 80 = 15 cm.\nPercentage increase in height = (3 / 12) × 100 = 25%.",
+    solution_text_hi: "प्रिज्म का आयतन = आधार का क्षेत्रफल × ऊंचाई।\n960 = 80 × ऊंचाई ⇒ ऊंचाई = 12 सेमी।\nनया आयतन = 1200, इसलिए नई ऊंचाई = 1200 / 80 = 15 सेमी।\nऊंचाई में प्रतिशत वृद्धि = (3 / 12) × 100 = 25%।",
+    shortcut_text: "Base area is constant, so % change in Volume = % change in Height = (1200 - 960)/960 = 240/960 = 25%.",
+    shortcut_text_hi: "आधार क्षेत्रफल स्थिर है, अतः आयतन में % परिवर्तन = ऊंचाई में % परिवर्तन = 240/960 = 25%।"
+  },
+  {
+    question_number: 15,
+    practice_set: "Practice 3",
+    level: "Level 2: Advanced Moderation",
+    level_group: "Level 2: Advanced Moderation",
+    type_code: "Type 2",
+    type_category: "Problems based on Exam and Students",
+    type_category_hi: "परीक्षा और छात्रों पर आधारित प्रश्न",
+    type_label: "Type 2: Problems based on Exam and Students",
+    type_label_hi: "Type 2: परीक्षा और छात्रों पर आधारित प्रश्न",
+    question_text: "In an exam, 60% passed in Math, 70% in Science, and 15% failed in both. If 450 passed in both, what is the total number of students?",
+    question_text_hi: "एक परीक्षा में, 60% गणित में, 70% विज्ञान में पास हुए, और 15% दोनों में फेल हुए। यदि 450 दोनों में पास हुए, तो छात्रों की कुल संख्या क्या है?",
+    options: {
+      a: "900",
+      b: "1000",
+      c: "1200",
+      d: "1500"
+    },
+    options_hi: {
+      a: "900",
+      b: "1000",
+      c: "1200",
+      d: "1500"
+    },
+    correct_option: "b",
+    solution_text: "Passed in at least one subject = 100% - 15% (failed both) = 85%.\nPassed in both = (Passed Math + Passed Science) - Passed at least one = (60 + 70) - 85 = 45%.\n45% of Total = 450.\nTotal = 1000.",
+    solution_text_hi: "कम से कम एक विषय में पास = 100% - 15% (दोनों में फेल) = 85%।\nदोनों में पास = (गणित में पास + विज्ञान में पास) - कम से कम एक में पास = (60 + 70) - 85 = 45%।\nकुल का 45% = 450।\nकुल छात्र = 1000।",
+    shortcut_text: "Passed both = 60 + 70 - (100 - 15) = 130 - 85 = 45%. 45% = 450 ⇒ Total = 1,000.",
+    shortcut_text_hi: "दोनों में पास = 130 - 85 = 45%। 45% = 450 ⇒ कुल = 1000।"
+  },
+  {
+    question_number: 16,
+    practice_set: "Practice 3",
+    level: "Level 2: Advanced Moderation",
+    level_group: "Level 2: Advanced Moderation",
+    type_code: "Type 1",
+    type_category: "Problems based on Population",
+    type_category_hi: "जनसंख्या पर आधारित प्रश्न",
+    type_label: "Type 1: Problems based on Population",
+    type_label_hi: "Type 1: जनसंख्या पर आधारित प्रश्न",
+    question_text: "The population of a city is 8000. If males increase by 10% and females by 8%, the total becomes 8720. Find the number of males.",
+    question_text_hi: "एक शहर की जनसंख्या 8000 है। यदि पुरुषों में 10% और महिलाओं में 8% की वृद्धि होती है, तो कुल जनसंख्या 8720 हो जाती है। पुरुषों की संख्या ज्ञात कीजिए।",
+    options: {
+      a: "3000",
+      b: "4000",
+      c: "5000",
+      d: "6000"
+    },
+    options_hi: {
+      a: "3000",
+      b: "4000",
+      c: "5000",
+      d: "6000"
+    },
+    correct_option: "b",
+    solution_text: "Let Males = M, Females = F. M + F = 8000.\nNew population = 1.10M + 1.08F = 8720.\nMultiply first equation by 1.08: 1.08M + 1.08F = 8640.\nSubtracting from second equation gives 0.02M = 80 ⇒ M = 4000.",
+    solution_text_hi: "माना पुरुष = M, महिलाएँ = F। M + F = 8000।\nनई जनसंख्या = 1.10M + 1.08F = 8720।\nपहले समीकरण को 1.08 से गुणा करें: 1.08M + 1.08F = 8640।\nइसे दूसरे समीकरण से घटाने पर 0.02M = 80 प्राप्त होता है ⇒ M = 4000।",
+    shortcut_text: "If all 8000 increased by 8%, increase = 640. Actual increase = 720. Extra 80 = 2% of males: 2% of M = 80 ⇒ M = 4,000.",
+    shortcut_text_hi: "8000 का 8% = 640। वास्तविक वृद्धि = 720। पुरुषों का 2% = 80 ⇒ M = 4000।"
+  },
+  {
+    question_number: 17,
+    practice_set: "Practice 3",
+    level: "Level 2: Advanced Moderation",
+    level_group: "Level 2: Advanced Moderation",
+    type_code: "Type 4",
+    type_category: "Problems based on Percentage of Numbers",
+    type_category_hi: "संख्याओं के प्रतिशत पर आधारित प्रश्न",
+    type_label: "Type 4: Problems based on Percentage of Numbers",
+    type_label_hi: "Type 4: संख्याओं के प्रतिशत पर आधारित प्रश्न",
+    question_text: "A fraction's numerator is increased by 150% and denominator by 300%. The fraction becomes 5/16. What was the original fraction?",
+    question_text_hi: "एक भिन्न का अंश 150% और हर 300% बढ़ा दिया जाता है। भिन्न 5/16 हो जाती है। मूल भिन्न क्या थी?",
+    options: {
+      a: "1/2",
+      b: "1/4",
+      c: "3/8",
+      d: "5/8"
+    },
+    options_hi: {
+      a: "1/2",
+      b: "1/4",
+      c: "3/8",
+      d: "5/8"
+    },
+    correct_option: "a",
+    solution_text: "Let fraction be x/y.\nNumerator increases by 150% (becomes 250% or 2.5).\nDenominator increases by 300% (becomes 400% or 4.0).\n(x × 2.5) / (y × 4.0) = 5/16.\n(x/y) × (5/8) = 5/16 ⇒ x/y = 1/2.",
+    solution_text_hi: "माना भिन्न x/y है।\nअंश 150% बढ़ता है (250% या 2.5 हो जाता है)।\nहर 300% बढ़ता है (400% या 4.0 हो जाता है)।\n(x × 2.5) / (y × 4.0) = 5/16।\n(x/y) × (5/8) = 5/16 ⇒ x/y = 1/2।",
+    shortcut_text: "(x × 250) / (y × 400) = 5/16 ⇒ (x/y) × (5/8) = 5/16 ⇒ x/y = (5/16) × (8/5) = 1/2.",
+    shortcut_text_hi: "(x/y) = (5/16) × (8/5) = 1/2।"
+  },
+  {
+    question_number: 18,
+    practice_set: "Practice 3",
+    level: "Level 2: Advanced Moderation",
+    level_group: "Level 2: Advanced Moderation",
+    type_code: "Type 9",
+    type_category: "Problems based on percentage change in area",
+    type_category_hi: "क्षेत्रफल में प्रतिशत परिवर्तन पर आधारित प्रश्न",
+    type_label: "Type 9: Problems based on percentage change in area",
+    type_label_hi: "Type 9: क्षेत्रफल में प्रतिशत परिवर्तन पर आधारित प्रश्न",
+    question_text: "The area of a rectangle increases by 80% when its length increases by 20%. What is the percentage increase in its breadth?",
+    question_text_hi: "जब लंबाई 20% बढ़ जाती है तो आयत का क्षेत्रफल 80% बढ़ जाता है। चौड़ाई में प्रतिशत वृद्धि क्या है?",
+    options: {
+      a: "40%",
+      b: "50%",
+      c: "60%",
+      d: "75%"
+    },
+    options_hi: {
+      a: "40%",
+      b: "50%",
+      c: "60%",
+      d: "75%"
+    },
+    correct_option: "b",
+    solution_text: "Area = Length × Breadth.\n1.8A = 1.2L × New Breadth.\nNew Breadth = 1.8A / 1.2L = 1.5 (A/L) = 1.5B.\nThis is a 50% increase.",
+    solution_text_hi: "क्षेत्रफल = लंबाई × चौड़ाई।\n1.8A = 1.2L × नई चौड़ाई।\nनई चौड़ाई = 1.8A / 1.2L = 1.5 (A/L) = 1.5B।\nयह 50% की वृद्धि है।",
+    shortcut_text: "Multiplier_B = Multiplier_Area / Multiplier_L = 1.8 / 1.2 = 1.5 ⇒ 50% increase.",
+    shortcut_text_hi: "चौड़ाई गुणक = 1.8 / 1.2 = 1.5 ⇒ 50% वृद्धि।"
+  },
+
+  // ==========================================
+  // LEVEL 3: SLIGHTLY DIFFICULT (UPGRADED PYQS) (Q19 - Q26)
+  // ==========================================
+  {
+    question_number: 19,
+    practice_set: "Practice 3",
+    level: "Level 3: Slightly Difficult",
+    level_group: "Level 3: Slightly Difficult (Upgraded PYQs)",
+    type_code: "Type 8",
+    type_category: "Problems based on finding percentage",
+    type_category_hi: "प्रतिशत ज्ञात करने पर आधारित प्रश्न",
+    type_label: "Type 8: Problems based on finding percentage",
+    type_label_hi: "Type 8: प्रतिशत ज्ञात करने पर आधारित प्रश्न",
+    question_text: "Four machines produce equal quantities. Defect rates: Machine 1 = 1.8%, Machine 2 = 2.4%, Machine 3 = 1.6%. Machine 4's defective output is 0.92 units. If the total defective units from all four machines is 4.12, find the defect percentage of Machine 4.",
+    question_text_hi: "चार मशीनें समान मात्रा में उत्पादन करती हैं। दोष दर: मशीन 1 = 1.8%, मशीन 2 = 2.4%, मशीन 3 = 1.6%। मशीन 4 का दोषपूर्ण उत्पादन 0.92 यूनिट है। यदि चारों मशीनों की कुल दोषपूर्ण यूनिट 4.12 है, तो मशीन 4 का दोष प्रतिशत ज्ञात कीजिए।",
+    options: {
+      a: "1.52%",
+      b: "1.58%",
+      c: "1.667%",
+      d: "1.73%"
+    },
+    options_hi: {
+      a: "1.52%",
+      b: "1.58%",
+      c: "1.667%",
+      d: "1.73%"
+    },
+    correct_option: "c",
+    solution_text: "Let quantity per machine = x.\nTotal defects = 1.8% of x + 2.4% of x + 1.6% of x + 0.92 units = 4.12.\nSo, 5.8% of x = 3.2 ⇒ x = 3.2 / 0.058 ≈ 55.17 units per machine.\nDefect % of Machine 4 = (0.92 / 55.17) × 100 = 1.667%.",
+    solution_text_hi: "माना प्रति मशीन मात्रा = x है।\nकुल दोष = x का 1.8% + x का 2.4% + x का 1.6% + 0.92 यूनिट = 4.12।\nअतः, x का 5.8% = 3.2 ⇒ x = 3.2 / 0.058 ≈ 55.17 यूनिट प्रति मशीन।\nमशीन 4 का दोष % = (0.92 / 55.17) × 100 = 1.667%।",
+    shortcut_text: "Defects from M1, M2, M3 = 4.12 - 0.92 = 3.2 units = 5.8% of x ⇒ x = 55.17. Defect % M4 = (0.92 / 55.17) × 100 = 1.667%.",
+    shortcut_text_hi: "5.8% = 3.2 ⇒ x = 55.17। M4 दोष % = (0.92 / 55.17) × 100 = 1.667%।"
+  },
+  {
+    question_number: 20,
+    practice_set: "Practice 3",
+    level: "Level 3: Slightly Difficult",
+    level_group: "Level 3: Slightly Difficult (Upgraded PYQs)",
+    type_code: "Type 4",
+    type_category: "Problems based on Percentage of Numbers",
+    type_category_hi: "संख्याओं के प्रतिशत पर आधारित प्रश्न",
+    type_label: "Type 4: Problems based on Percentage of Numbers",
+    type_label_hi: "Type 4: संख्याओं के प्रतिशत पर आधारित प्रश्न",
+    question_text: "A is 20% more than B; B is 30% more than C; C is 10% less than D; D is 30% less than E. By what percentage is A more/less than E?",
+    question_text_hi: "A, B से 20% अधिक है; B, C से 30% अधिक है; C, D से 10% कम है; D, E से 30% कम है। A, E से कितने प्रतिशत अधिक/कम है?",
+    options: {
+      a: "1.72% less",
+      b: "1.72% more",
+      c: "1.86% less",
+      d: "1.86% more"
+    },
+    options_hi: {
+      a: "1.72% कम",
+      b: "1.72% अधिक",
+      c: "1.86% कम",
+      d: "1.86% अधिक"
+    },
+    correct_option: "a",
+    solution_text: "Let E = 100. D = 70. C = 0.9 × 70 = 63. B = 1.3 × 63 = 81.9. A = 1.2 × 81.9 = 98.28.\nA is less than E by (100 - 98.28) = 1.72%.",
+    solution_text_hi: "माना E = 100। D = 70। C = 0.9 × 70 = 63। B = 1.3 × 63 = 81.9। A = 1.2 × 81.9 = 98.28।\nA, E से (100 - 98.28) = 1.72% कम है।",
+    shortcut_text: "A/E = 1.2 × 1.3 × 0.9 × 0.7 = 0.9828 ⇒ 1 - 0.9828 = 0.0172 = 1.72% less.",
+    shortcut_text_hi: "A/E = 1.2 × 1.3 × 0.9 × 0.7 = 0.9828 ⇒ 1.72% कम।"
+  },
+  {
+    question_number: 21,
+    practice_set: "Practice 3",
+    level: "Level 3: Slightly Difficult",
+    level_group: "Level 3: Slightly Difficult (Upgraded PYQs)",
+    type_code: "Type 7",
+    type_category: "Problems related to finding percentage quantity",
+    type_category_hi: "प्रतिशत मात्रा ज्ञात करने पर आधारित प्रश्न",
+    type_label: "Type 7: Problems related to finding percentage quantity",
+    type_label_hi: "Type 7: प्रतिशत मात्रा ज्ञात करने पर आधारित प्रश्न",
+    question_text: "60 L mixture, acid:water = 7:3. 20% of mixture removed and replaced with water — twice. Find final acid %.",
+    question_text_hi: "60 लीटर मिश्रण में अम्ल:पानी = 7:3। मिश्रण का 20% निकालकर पानी से बदला जाता है — दो बार। अंतिम अम्ल % ज्ञात कीजिए।",
+    options: {
+      a: "44.8%",
+      b: "51.2%",
+      c: "53.7%",
+      d: "56.8%"
+    },
+    options_hi: {
+      a: "44.8%",
+      b: "51.2%",
+      c: "53.7%",
+      d: "56.8%"
+    },
+    correct_option: "a",
+    solution_text: "Initial acid fraction = 7/10.\nWith replacement processes, Final Acid = Initial Acid × (1 - replaced volume / total volume)ⁿ.\nFinal = 0.7 × (1 - 0.2)² = 0.7 × 0.64 = 0.448 = 44.8%.",
+    solution_text_hi: "प्रारंभिक अम्ल भिन्न = 7/10। प्रतिस्थापन प्रक्रिया के साथ, अंतिम अम्ल = प्रारंभिक अम्ल × (1 - प्रतिस्थापित आयतन / कुल आयतन)ⁿ।\nअंतिम = 0.7 × (1 - 0.2)² = 0.7 × 0.64 = 0.448 = 44.8%।",
+    shortcut_text: "Acid % = 70% × 0.8 × 0.8 = 70% × 0.64 = 44.8%.",
+    shortcut_text_hi: "अम्ल % = 70% × 0.8² = 44.8%।"
+  },
+  {
+    question_number: 22,
+    practice_set: "Practice 3",
+    level: "Level 3: Slightly Difficult",
+    level_group: "Level 3: Slightly Difficult (Upgraded PYQs)",
+    type_code: "Type 7",
+    type_category: "Problems related to finding percentage quantity",
+    type_category_hi: "प्रतिशत मात्रा ज्ञात करने पर आधारित प्रश्न",
+    type_label: "Type 7: Problems related to finding percentage quantity",
+    type_label_hi: "Type 7: प्रतिशत मात्रा ज्ञात करने पर आधारित प्रश्न",
+    question_text: "Mixture 1 has 18% methanol, Mixture 2 has b% methanol, mixed 4:5, final mixture is 16% methanol. Find b.",
+    question_text_hi: "मिश्रण 1 में 18% मेथनॉल, मिश्रण 2 में b% मेथनॉल, 4:5 में मिलाया गया, अंतिम मिश्रण 16% मेथनॉल। b ज्ञात कीजिए।",
+    options: {
+      a: "12.26%",
+      b: "14.4%",
+      c: "17.2%",
+      d: "16.32%"
+    },
+    options_hi: {
+      a: "12.26%",
+      b: "14.4%",
+      c: "17.2%",
+      d: "16.32%"
+    },
+    correct_option: "b",
+    solution_text: "Weighted average formula: (18 × 4 + b × 5) / (4 + 5) = 16.\n(72 + 5b) / 9 = 16 ⇒ 72 + 5b = 144 ⇒ 5b = 72 ⇒ b = 14.4%.",
+    solution_text_hi: "भारित औसत सूत्र: (18 × 4 + b × 5) / (4 + 5) = 16।\n(72 + 5b) / 9 = 16 ⇒ 72 + 5b = 144 ⇒ 5b = 72 ⇒ b = 14.4%।",
+    shortcut_text: "Alligation: (18 - 16) / (16 - b) = 5 / 4 ⇒ 2 / (16 - b) = 5/4 ⇒ 5b = 72 ⇒ b = 14.4%.",
+    shortcut_text_hi: "एलिगेशन: 2 / (16 - b) = 5/4 ⇒ 5b = 72 ⇒ b = 14.4%।"
+  },
+  {
+    question_number: 23,
+    practice_set: "Practice 3",
+    level: "Level 3: Slightly Difficult",
+    level_group: "Level 3: Slightly Difficult (Upgraded PYQs)",
+    type_code: "Type 9",
+    type_category: "Problems based on percentage change in area",
+    type_category_hi: "क्षेत्रफल में प्रतिशत परिवर्तन पर आधारित प्रश्न",
+    type_label: "Type 9: Problems based on percentage change in area",
+    type_label_hi: "Type 9: क्षेत्रफल में प्रतिशत परिवर्तन पर आधारित प्रश्न",
+    question_text: "A cylinder is inscribed inside a cube of side 10 cm. Find % of cube's volume occupied by the cylinder.",
+    question_text_hi: "10 सेमी भुजा वाले घन के अंदर एक बेलन अंकित है। घन के आयतन का कितना % बेलन द्वारा घेरा गया है?",
+    options: {
+      a: "78.5%",
+      b: "60.5%",
+      c: "50%",
+      d: "90.5%"
+    },
+    options_hi: {
+      a: "78.5%",
+      b: "60.5%",
+      c: "50%",
+      d: "90.5%"
+    },
+    correct_option: "a",
+    solution_text: "The inscribed cylinder has height = 10 cm and radius = 5 cm.\nCylinder volume = π × 5² × 10 = 250π ≈ 785.4 cm³.\nCube volume = 10³ = 1000 cm³.\nPercentage = 78.54%.",
+    solution_text_hi: "अंकित बेलन की ऊंचाई = 10 सेमी और त्रिज्या = 5 सेमी है।\nबेलन का आयतन = π × 5² × 10 = 250π ≈ 785.4 सेमी³।\nघन का आयतन = 10³ = 1000 सेमी³।\nप्रतिशत = 78.54%।",
+    shortcut_text: "Ratio = (π r² h) / (2r)³ = (π r² (2r)) / 8r³ = π / 4 = 3.1416 / 4 ≈ 78.54%.",
+    shortcut_text_hi: "अनुपात = π / 4 ≈ 78.5%।"
+  },
+  {
+    question_number: 24,
+    practice_set: "Practice 3",
+    level: "Level 3: Slightly Difficult",
+    level_group: "Level 3: Slightly Difficult (Upgraded PYQs)",
+    type_code: "Type 3",
+    type_category: "Problems based on Income, Expenditure and Savings",
+    type_category_hi: "आय, व्यय और बचत पर आधारित प्रश्न",
+    type_label: "Type 3: Problems based on Income, Expenditure and Savings",
+    type_label_hi: "Type 3: आय, व्यय और बचत पर आधारित प्रश्न",
+    question_text: "The price of sugar increases by 25%. A family reduces consumption so expenditure increases by only 10%. Original consumption was 40 kg. Find the new consumption.",
+    question_text_hi: "चीनी की कीमत 25% बढ़ जाती है। एक परिवार खपत कम कर देता है ताकि खर्च केवल 10% बढ़े। मूल खपत 40 किग्रा थी। नई खपत ज्ञात कीजिए।",
+    options: {
+      a: "32 kg",
+      b: "34 kg",
+      c: "35.2 kg",
+      d: "36 kg"
+    },
+    options_hi: {
+      a: "32 किग्रा",
+      b: "34 किग्रा",
+      c: "35.2 किग्रा",
+      d: "36 किग्रा"
+    },
+    correct_option: "c",
+    solution_text: "Expenditure = Price × Consumption.\n1.10 = 1.25 × (New Consumption / 40).\nNew Consumption = (1.10 × 40) / 1.25 = 44 / 1.25 = 35.2 kg.",
+    solution_text_hi: "खर्च = कीमत × खपत।\n1.10 = 1.25 × (नई खपत / 40)।\nनई खपत = (1.10 × 40) / 1.25 = 44 / 1.25 = 35.2 किग्रा।",
+    shortcut_text: "New C = 40 × (110 / 125) = 40 × (22 / 25) = 35.2 kg.",
+    shortcut_text_hi: "नई खपत = 40 × (110/125) = 35.2 किग्रा।"
+  },
+  {
+    question_number: 25,
+    practice_set: "Practice 3",
+    level: "Level 3: Slightly Difficult",
+    level_group: "Level 3: Slightly Difficult (Upgraded PYQs)",
+    type_code: "Type 6",
+    type_category: "Problems based on investment and business",
+    type_category_hi: "निवेश और व्यवसाय पर आधारित प्रश्न",
+    type_label: "Type 6: Problems based on investment and business",
+    type_label_hi: "Type 6: निवेश और व्यवसाय पर आधारित प्रश्न",
+    question_text: "A shopkeeper marks goods 40% above CP and gives 15% discount. If he uses a 900g weight instead of 1kg, his profit percentage is?",
+    question_text_hi: "एक दुकानदार वस्तुओं पर क्रय मूल्य से 40% अधिक अंकित करता है और 15% की छूट देता है। यदि वह 1 किग्रा के स्थान पर 900 ग्राम वजन का उपयोग करता है, तो उसका लाभ प्रतिशत क्या है?",
+    options: {
+      a: "32.22%",
+      b: "35%",
+      c: "38.88%",
+      d: "42%"
+    },
+    options_hi: {
+      a: "32.22%",
+      b: "35%",
+      c: "38.88%",
+      d: "42%"
+    },
+    correct_option: "a",
+    solution_text: "Let CP of 1 kg = 100. Marked Price = 140.\nSelling Price after 15% discount = 140 × 0.85 = 119.\nHe gives 900g instead of 1000g, so his actual CP is 90.\nProfit = 119 - 90 = 29.\nProfit % = (29 / 90) × 100 = 32.22%.",
+    solution_text_hi: "माना 1 किग्रा का CP = 100 है। अंकित मूल्य = 140।\n15% छूट के बाद विक्रय मूल्य = 140 × 0.85 = 119।\nवह 1000 ग्राम के बजाय 900 ग्राम देता है, इसलिए उसका वास्तविक CP 90 है।\nलाभ = 119 - 90 = 29।\nलाभ % = (29 / 90) × 100 = 32.22%।",
+    shortcut_text: "Net multiplier = (1.40 × 0.85) × (1000 / 900) = 1.19 × (10/9) = 11.9 / 9 = 1.3222 ⇒ 32.22%.",
+    shortcut_text_hi: "शुद्ध गुणक = 1.19 × (10/9) = 1.3222 ⇒ 32.22%।"
+  },
+  {
+    question_number: 26,
+    practice_set: "Practice 3",
+    level: "Level 3: Slightly Difficult",
+    level_group: "Level 3: Slightly Difficult (Upgraded PYQs)",
+    type_code: "Type 7",
+    type_category: "Problems related to finding percentage quantity",
+    type_category_hi: "प्रतिशत मात्रा ज्ञात करने पर आधारित प्रश्न",
+    type_label: "Type 7: Problems related to finding percentage quantity",
+    type_label_hi: "Type 7: प्रतिशत मात्रा ज्ञात करने पर आधारित प्रश्न",
+    question_text: "A 60L mixture of milk and water has 10% water. How much water must be added to make it 20% water?",
+    question_text_hi: "60 लीटर दूध और पानी के मिश्रण में 10% पानी है। इसे 20% पानी बनाने के लिए कितना पानी मिलाना चाहिए?",
+    options: {
+      a: "6 L",
+      b: "7.5 L",
+      c: "8 L",
+      d: "10 L"
+    },
+    options_hi: {
+      a: "6 लीटर",
+      b: "7.5 लीटर",
+      c: "8 लीटर",
+      d: "10 लीटर"
+    },
+    correct_option: "b",
+    solution_text: "Total 60L has 90% milk = 54L. Milk quantity remains constant.\nIn new mixture, milk is 80%. Let total volume be V.\n0.8V = 54 ⇒ V = 67.5L.\nAdded water = 67.5 - 60 = 7.5L.",
+    solution_text_hi: "कुल 60L में 90% दूध = 54L है। दूध की मात्रा स्थिर रहती है।\nनए मिश्रण में, दूध 80% है। माना कुल आयतन V है।\n0.8V = 54 ⇒ V = 67.5L।\nमिलाया गया पानी = 67.5 - 60 = 7.5L।",
+    shortcut_text: "Milk constant: 60 × 90% = New_Total × 80% ⇒ New_Total = 54 / 0.8 = 67.5 L ⇒ Added = 7.5 L.",
+    shortcut_text_hi: "60 × 90% = कुल × 80% ⇒ कुल = 67.5L ⇒ मिलाया गया पानी = 7.5L।"
+  },
+
+  // ==========================================
+  // LEVEL 4: DIFFICULT (FUTURE-TESTING PYQS) (Q27 - Q34)
+  // ==========================================
+  {
+    question_number: 27,
+    practice_set: "Practice 3",
+    level: "Level 4: Difficult",
+    level_group: "Level 4: Difficult (Future-Testing PYQs)",
+    type_code: "Type 9",
+    type_category: "Problems based on percentage change in area",
+    type_category_hi: "क्षेत्रफल में प्रतिशत परिवर्तन पर आधारित प्रश्न",
+    type_label: "Type 9: Problems based on percentage change in area",
+    type_label_hi: "Type 9: क्षेत्रफल में प्रतिशत परिवर्तन पर आधारित प्रश्न",
+    question_text: "Circular clock, radius 20 cm. A chord with two radii forms an equilateral triangle at the center. Find the smaller segment as % of total area.",
+    question_text_hi: "वृत्ताकार घड़ी, त्रिज्या 20 सेमी। एक जीवा दो त्रिज्याओं के साथ केंद्र पर समबाहु त्रिभुज बनाती है। छोटे खंड को कुल क्षेत्रफल के % में ज्ञात कीजिए।",
+    options: {
+      a: "2.88%",
+      b: "5.6%",
+      c: "9.08%",
+      d: "12.5%"
+    },
+    options_hi: {
+      a: "2.88%",
+      b: "5.6%",
+      c: "9.08%",
+      d: "12.5%"
+    },
+    correct_option: "a",
+    solution_text: "Area of circle = π × 20² ≈ 1256.6.\nThe equilateral triangle uses a 60° sector.\nSector Area = 1256.6 / 6 ≈ 209.44.\nTriangle Area = (√3/4) × 20² = 100√3 ≈ 173.2.\nSegment Area = 209.44 - 173.2 = 36.24.\nPercentage = (36.24 / 1256.6) × 100 = 2.88%.",
+    solution_text_hi: "वृत्त का क्षेत्रफल = π × 20² ≈ 1256.6।\nसमबाहु त्रिभुज 60° के त्रिज्यखंड का उपयोग करता है।\nत्रिज्यखंड का क्षेत्रफल = 1256.6 / 6 ≈ 209.44।\nत्रिभुज का क्षेत्रफल = (√3/4) × 20² = 100√3 ≈ 173.2।\nवृत्तखंड का क्षेत्रफल = 209.44 - 173.2 = 36.24।\nप्रतिशत = (36.24 / 1256.6) × 100 = 2.88%।",
+    shortcut_text: "% Area = (Sector% - Triangle%) = (100/6)% - [ (100√3) / (400π) ] × 100% = 16.67% - 13.78% = 2.88%.",
+    shortcut_text_hi: "% = 16.67% - 13.78% = 2.88%।"
+  },
+  {
+    question_number: 28,
+    practice_set: "Practice 3",
+    level: "Level 4: Difficult",
+    level_group: "Level 4: Difficult (Future-Testing PYQs)",
+    type_code: "Type 9",
+    type_category: "Problems based on percentage change in area",
+    type_category_hi: "क्षेत्रफल में प्रतिशत परिवर्तन पर आधारित प्रश्न",
+    type_label: "Type 9: Problems based on percentage change in area",
+    type_label_hi: "Type 9: क्षेत्रफल में प्रतिशत परिवर्तन पर आधारित प्रश्न",
+    question_text: "A solid sphere is placed inside a cube touching all six faces. What % of the cube's volume is NOT occupied by the sphere?",
+    question_text_hi: "एक ठोस गोला घन के भीतर छहों सतहों को स्पर्श करते हुए रखा है। घन के आयतन का कितना % गोले द्वारा नहीं घेरा गया है?",
+    options: {
+      a: "47.64%",
+      b: "48.56%",
+      c: "49.28%",
+      d: "42.54%"
+    },
+    options_hi: {
+      a: "47.64%",
+      b: "48.56%",
+      c: "49.28%",
+      d: "42.54%"
+    },
+    correct_option: "a",
+    solution_text: "Let sphere radius = R. Cube side = 2R.\nCube Volume = 8R³.\nSphere Volume = 4/3 π R³.\nUnoccupied Volume = 8R³ - 4/3 π R³ ≈ 8R³ - 4.1888R³ = 3.811R³.\nPercentage = (3.811 / 8) × 100 = 47.64%.",
+    solution_text_hi: "माना गोले की त्रिज्या = R है। घन की भुजा = 2R।\nघन का आयतन = 8R³।\nगोले का आयतन = 4/3 π R³।\nन घेरा गया आयतन = 8R³ - 4/3 π R³ ≈ 8R³ - 4.1888R³ = 3.811R³।\nप्रतिशत = (3.811 / 8) × 100 = 47.64%।",
+    shortcut_text: "Unoccupied % = 1 - (π / 6) = 1 - 0.5236 = 0.4764 = 47.64%.",
+    shortcut_text_hi: "रिक्त % = 1 - (π/6) = 1 - 0.5236 = 47.64%।"
+  },
+  {
+    question_number: 29,
+    practice_set: "Practice 3",
+    level: "Level 4: Difficult",
+    level_group: "Level 4: Difficult (Future-Testing PYQs)",
+    type_code: "Type 7",
+    type_category: "Problems related to finding percentage quantity",
+    type_category_hi: "प्रतिशत मात्रा ज्ञात करने पर आधारित प्रश्न",
+    type_label: "Type 7: Problems related to finding percentage quantity",
+    type_label_hi: "Type 7: प्रतिशत मात्रा ज्ञात करने पर आधारित प्रश्न",
+    question_text: "Alloy A has x:y = 3:2, Alloy B has x:y = 5:6. Mixed A:B = 4:3. Find % of x in the resulting Alloy C.",
+    question_text_hi: "मिश्र धातु A में x:y = 3:2, मिश्र धातु B में x:y = 5:6। A:B = 4:3 में मिलाया गया। परिणामी मिश्र धातु C में x का % ज्ञात कीजिए।",
+    options: {
+      a: "51%",
+      b: "55%",
+      c: "52%",
+      d: "53.77%"
+    },
+    options_hi: {
+      a: "51%",
+      b: "55%",
+      c: "52%",
+      d: "53.77%"
+    },
+    correct_option: "d",
+    solution_text: "In Alloy A, x is 3/5 = 60%. In Alloy B, x is 5/11 = 45.45%.\nMixing 4 parts A and 3 parts B: [(4 × 0.60) + (3 × 5/11)] / 7 = [2.4 + 1.3636] / 7 = 3.7636 / 7 = 0.53766 = 53.77%.",
+    solution_text_hi: "मिश्र धातु A में, x है 3/5 = 60%। मिश्र धातु B में, x है 5/11 = 45.45%।\nA के 4 भाग और B के 3 भाग मिलाने पर: [(4 × 0.60) + (3 × 5/11)] / 7 = [2.4 + 1.3636] / 7 = 3.7636 / 7 = 0.53766 = 53.77%।",
+    shortcut_text: "x % = (4 × 60% + 3 × 45.45%) / 7 = (240 + 136.36) / 7 = 376.36 / 7 = 53.77%.",
+    shortcut_text_hi: "(240 + 136.36) / 7 = 53.77%।"
+  },
+  {
+    question_number: 30,
+    practice_set: "Practice 3",
+    level: "Level 4: Difficult",
+    level_group: "Level 4: Difficult (Future-Testing PYQs)",
+    type_code: "Type 9",
+    type_category: "Problems based on percentage change in area",
+    type_category_hi: "क्षेत्रफल में प्रतिशत परिवर्तन पर आधारित प्रश्न",
+    type_label: "Type 9: Problems based on percentage change in area",
+    type_label_hi: "Type 9: क्षेत्रफल में प्रतिशत परिवर्तन पर आधारित प्रश्न",
+    question_text: "Height of a square-base pyramid +20%, base side −10%. Find % change in volume.",
+    question_text_hi: "वर्गाकार आधार वाले पिरामिड की ऊंचाई +20%, आधार भुजा −10%। आयतन में % परिवर्तन ज्ञात कीजिए।",
+    options: {
+      a: "2.8% decrease",
+      b: "1.2% increase",
+      c: "2.8% increase",
+      d: "No change"
+    },
+    options_hi: {
+      a: "2.8% कमी",
+      b: "1.2% वृद्धि",
+      c: "2.8% वृद्धि",
+      d: "कोई परिवर्तन नहीं"
+    },
+    correct_option: "a",
+    solution_text: "Volume of pyramid = (1/3) × base² × height.\nNew Volume = (1/3) × (0.9base)² × (1.2height) = 0.81 × 1.2 × Original Volume = 0.972 × Original Volume.\nDecrease = 1 - 0.972 = 0.028 = 2.8%.",
+    solution_text_hi: "पिरामिड का आयतन = (1/3) × आधार² × ऊंचाई।\nनया आयतन = (1/3) × (0.9आधार)² × (1.2ऊंचाई) = 0.81 × 1.2 × मूल आयतन = 0.972 × मूल आयतन।\nकमी = 1 - 0.972 = 0.028 = 2.8%।",
+    shortcut_text: "Net multiplier = 0.9 × 0.9 × 1.2 = 0.81 × 1.2 = 0.972 ⇒ 1 - 0.972 = 2.8% decrease.",
+    shortcut_text_hi: "कुल गुणक = 0.9² × 1.2 = 0.972 ⇒ 2.8% कमी।"
+  },
+  {
+    question_number: 31,
+    practice_set: "Practice 3",
+    level: "Level 4: Difficult",
+    level_group: "Level 4: Difficult (Future-Testing PYQs)",
+    type_code: "Type 3",
+    type_category: "Problems based on Income, Expenditure and Savings",
+    type_category_hi: "आय, व्यय और बचत पर आधारित प्रश्न",
+    type_label: "Type 3: Problems based on Income, Expenditure and Savings",
+    type_label_hi: "Type 3: आय, व्यय और बचत पर आधारित प्रश्न",
+    question_text: "A man distributes 10% of his wealth to charity, 30% of the remaining to his son, and 25% of the rest to his daughter. The remaining ₹47,250 goes to his wife. Total wealth?",
+    question_text_hi: "एक आदमी अपनी संपत्ति का 10% दान में देता है, शेष का 30% अपने बेटे को और बाकी का 25% अपनी बेटी को देता है। शेष ₹47,250 उसकी पत्नी को जाते हैं। कुल संपत्ति क्या है?",
+    options: {
+      a: "₹80,000",
+      b: "₹90,000",
+      c: "₹1,00,000",
+      d: "₹1,20,000"
+    },
+    options_hi: {
+      a: "₹80,000",
+      b: "₹90,000",
+      c: "₹1,00,000",
+      d: "₹1,20,000"
+    },
+    correct_option: "c",
+    solution_text: "Let total wealth = 100x. Charity = 10x. Remaining = 90x.\nSon = 30% of 90x = 27x. Remaining = 63x.\nDaughter = 25% of 63x = 15.75x. Remaining for wife = 47.25x.\n47.25x = 47250 ⇒ x = 1000.\nTotal wealth = 1,00,000.",
+    solution_text_hi: "माना कुल संपत्ति = 100x है। दान = 10x। शेष = 90x।\nबेटा = 90x का 30% = 27x। शेष = 63x।\nबेटी = 63x का 25% = 15.75x। पत्नी के लिए शेष = 47.25x।\n47.25x = 47250 ⇒ x = 1000।\nकुल संपत्ति = 1,00,000।",
+    shortcut_text: "Wife = Total × 0.90 × 0.70 × 0.75 = Total × 0.4725 = 47,250 ⇒ Total = ₹1,00,000.",
+    shortcut_text_hi: "कुल × 0.9 × 0.7 × 0.75 = 47,250 ⇒ कुल = ₹1,00,000।"
+  },
+  {
+    question_number: 32,
+    practice_set: "Practice 3",
+    level: "Level 4: Difficult",
+    level_group: "Level 4: Difficult (Future-Testing PYQs)",
+    type_code: "Type 8",
+    type_category: "Problems based on finding percentage",
+    type_category_hi: "प्रतिशत ज्ञात करने पर आधारित प्रश्न",
+    type_label: "Type 8: Problems based on finding percentage",
+    type_label_hi: "Type 8: प्रतिशत ज्ञात करने पर आधारित प्रश्न",
+    question_text: "In a company, 40% of the employees are female. 70% of females and 50% of males are married. What percentage of the unmarried employees are female?",
+    question_text_hi: "एक कंपनी में 40% कर्मचारी महिलाएँ हैं। 70% महिलाएँ और 50% पुरुष विवाहित हैं। अविवाहित कर्मचारियों का कितना प्रतिशत महिलाएँ हैं?",
+    options: {
+      a: "25%",
+      b: "28.57%",
+      c: "30%",
+      d: "33.33%"
+    },
+    options_hi: {
+      a: "25%",
+      b: "28.57%",
+      c: "30%",
+      d: "33.33%"
+    },
+    correct_option: "b",
+    solution_text: "Let total employees = 100. Female = 40, Male = 60.\nMarried females = 70% of 40 = 28. Unmarried females = 12.\nMarried males = 50% of 60 = 30. Unmarried males = 30.\nTotal unmarried = 42.\nPercentage of unmarried who are female = (12 / 42) × 100 = 28.57%.",
+    solution_text_hi: "माना कुल कर्मचारी = 100। महिलाएँ = 40, पुरुष = 60।\nविवाहित महिलाएँ = 40 का 70% = 28। अविवाहित महिलाएँ = 12।\nविवाहित पुरुष = 60 का 50% = 30। अविवाहित पुरुष = 30।\nकुल अविवाहित = 42।\nअविवाहितों में महिलाओं का प्रतिशत = (12 / 42) × 100 = 28.57%।",
+    shortcut_text: "Unmarried F = 40 × 30% = 12. Unmarried M = 60 × 50% = 30. Total unmarried = 42. F% = 12/42 = 2/7 ≈ 28.57%.",
+    shortcut_text_hi: "अविवाहित F = 12, M = 30, कुल = 42 ⇒ 12/42 = 2/7 ≈ 28.57%।"
+  },
+  {
+    question_number: 33,
+    practice_set: "Practice 3",
+    level: "Level 4: Difficult",
+    level_group: "Level 4: Difficult (Future-Testing PYQs)",
+    type_code: "Type 7",
+    type_category: "Problems related to finding percentage quantity",
+    type_category_hi: "प्रतिशत मात्रा ज्ञात करने पर आधारित प्रश्न",
+    type_label: "Type 7: Problems related to finding percentage quantity",
+    type_label_hi: "Type 7: प्रतिशत मात्रा ज्ञात करने पर आधारित प्रश्न",
+    question_text: "An alloy of Cu, Zn, and Ni has the ratio 5:3:2. The quantity of Ni that must be added to 100 kg of the alloy to make the ratio 5:3:3 is?",
+    question_text_hi: "Cu, Zn और Ni के एक मिश्र धातु का अनुपात 5:3:2 है। अनुपात 5:3:3 बनाने के लिए 100 किग्रा मिश्र धातु में Ni की कितनी मात्रा मिलानी होगी?",
+    options: {
+      a: "8 kg",
+      b: "10 kg",
+      c: "12 kg",
+      d: "15 kg"
+    },
+    options_hi: {
+      a: "8 किग्रा",
+      b: "10 किग्रा",
+      c: "12 किग्रा",
+      d: "15 किग्रा"
+    },
+    correct_option: "b",
+    solution_text: "Initial mix 5:3:2 sums to 10 parts. 10 parts = 100kg ⇒ 1 part = 10kg.\nCu = 50kg, Zn = 30kg, Ni = 20kg.\nWe want the ratio 5:3:3, meaning Ni needs to jump from 2 parts to 3 parts (which matches Cu and Zn scaling).\n1 part = 10 kg, so add 10 kg of Ni.",
+    solution_text_hi: "प्रारंभिक मिश्रण 5:3:2 का योग 10 भाग है। 10 भाग = 100 किग्रा ⇒ 1 भाग = 10 किग्रा।\nCu = 50 किग्रा, Zn = 30 किग्रा, Ni = 20 किग्रा।\nहमें 5:3:3 का अनुपात चाहिए, जिसका अर्थ है कि Ni को 2 भाग से बढ़कर 3 भाग होना चाहिए।\n1 भाग = 10 किग्रा, इसलिए 10 किग्रा Ni मिलाना होगा।",
+    shortcut_text: "Cu & Zn parts are constant (5:3). Ni increases by 1 unit (3 - 2 = 1). Since 10 units = 100 kg, 1 unit = 10 kg.",
+    shortcut_text_hi: "Ni में वृद्धि = 3 - 2 = 1 इकाई। 10 इकाई = 100 किग्रा ⇒ 1 इकाई = 10 किग्रा।"
+  },
+  {
+    question_number: 34,
+    practice_set: "Practice 3",
+    level: "Level 4: Difficult",
+    level_group: "Level 4: Difficult (Future-Testing PYQs)",
+    type_code: "Type 2",
+    type_category: "Problems based on Exam and Students",
+    type_category_hi: "परीक्षा और छात्रों पर आधारित प्रश्न",
+    type_label: "Type 2: Problems based on Exam and Students",
+    type_label_hi: "Type 2: परीक्षा और छात्रों पर आधारित प्रश्न",
+    question_text: "A candidate answers 50% of the questions correctly from the first 40 questions of a test. What percentage of the remaining 80 questions must he answer correctly to get 60% overall?",
+    question_text_hi: "एक उम्मीदवार एक परीक्षा के पहले 40 प्रश्नों में से 50% का सही उत्तर देता है। कुल 60% प्राप्त करने के लिए उसे शेष 80 प्रश्नों में से कितने प्रतिशत का सही उत्तर देना होगा?",
+    options: {
+      a: "60%",
+      b: "65%",
+      c: "70%",
+      d: "75%"
+    },
+    options_hi: {
+      a: "60%",
+      b: "65%",
+      c: "70%",
+      d: "75%"
+    },
+    correct_option: "b",
+    solution_text: "Total questions = 120. Required overall correct = 60% of 120 = 72.\nCorrect from first 40 = 50% of 40 = 20.\nRemaining needed = 72 - 20 = 52.\nHe has 80 questions left.\nRequired percentage = (52 / 80) × 100 = 65%.",
+    solution_text_hi: "कुल प्रश्न = 120। कुल सही चाहिए = 120 का 60% = 72।\nपहले 40 में से सही = 40 का 50% = 20।\nऔर सही चाहिए = 72 - 20 = 52।\nउसके पास 80 प्रश्न बचे हैं।\nआवश्यक प्रतिशत = (52 / 80) × 100 = 65%।",
+    shortcut_text: "Needed = 72 total - 20 achieved = 52 out of 80 = 52/80 = 13/20 = 65%.",
+    shortcut_text_hi: "आवश्यक = 72 - 20 = 52। 52/80 = 65%।"
+  },
+
+  // ==========================================
+  // LEVEL 5: HIGHLY DIFFICULT (DEEP ANALYTICAL PYQS) (Q35 - Q42)
+  // ==========================================
+  {
+    question_number: 35,
+    practice_set: "Practice 3",
+    level: "Level 5: Highly Difficult",
+    level_group: "Level 5: Highly Difficult (Deep Analytical PYQs)",
+    type_code: "Type 9",
+    type_category: "Problems based on percentage change in area",
+    type_category_hi: "क्षेत्रफल में प्रतिशत परिवर्तन पर आधारित प्रश्न",
+    type_label: "Type 9: Problems based on percentage change in area",
+    type_label_hi: "Type 9: क्षेत्रफल में प्रतिशत परिवर्तन पर आधारित प्रश्न",
+    question_text: "A sphere full of water has a cube fully submerged such that the cube's space diagonal equals the sphere's radius. Find the % of sphere's volume occupied by the cube.",
+    question_text_hi: "पानी से भरे गोले में एक घन इस प्रकार डूबा है कि घन का विकर्ण गोले की त्रिज्या के बराबर है। घन द्वारा घेरे गए गोले के आयतन का % ज्ञात कीजिए।",
+    options: {
+      a: "1.8%",
+      b: "2.7%",
+      c: "4.6%",
+      d: "3.8%"
+    },
+    options_hi: {
+      a: "1.8%",
+      b: "2.7%",
+      c: "4.6%",
+      d: "3.8%"
+    },
+    correct_option: "c",
+    solution_text: "Let cube side be a. Space diagonal = a√3 = Sphere radius (R).\na = R/√3.\nCube volume = a³ = R³ / (3√3).\nSphere Volume = 4/3 π R³.\nPercentage = [(R³ / 3√3) / (4/3 π R³)] × 100 = 1 / (4π√3) × 100 = 1 / 21.765 × 100 = 4.59% ≈ 4.6%.",
+    solution_text_hi: "माना घन की भुजा a है। घन का विकर्ण = a√3 = गोले की त्रिज्या (R)।\na = R/√3।\nघन का आयतन = a³ = R³ / (3√3)।\nगोले का आयतन = 4/3 π R³।\nप्रतिशत = [(R³ / 3√3) / (4/3 π R³)] × 100 = 1 / (4π√3) × 100 = 1 / 21.765 × 100 = 4.59% ≈ 4.6%।",
+    shortcut_text: "Ratio = 1 / (4√3 π) = 1 / (4 × 1.732 × 3.1416) = 1 / 21.765 ≈ 4.59% ≈ 4.6%.",
+    shortcut_text_hi: "अनुपात = 1 / (4√3 π) ≈ 4.6%।"
+  },
+  {
+    question_number: 36,
+    practice_set: "Practice 3",
+    level: "Level 5: Highly Difficult",
+    level_group: "Level 5: Highly Difficult (Deep Analytical PYQs)",
+    type_code: "Type 6",
+    type_category: "Problems based on investment and business",
+    type_category_hi: "निवेश और व्यवसाय पर आधारित प्रश्न",
+    type_label: "Type 6: Problems based on investment and business",
+    type_label_hi: "Type 6: निवेश और व्यवसाय पर आधारित प्रश्न",
+    question_text: "SP of an item increased 25%, and profit % rose from 20% to 30%. Find % increase in cost price.",
+    question_text_hi: "किसी वस्तु का विक्रय मूल्य 25% बढ़ा और लाभ % 20% से 30% हो गया। क्रय मूल्य में % वृद्धि ज्ञात कीजिए।",
+    options: {
+      a: "4.5%",
+      b: "5.6%",
+      c: "10.28%",
+      d: "15.38%"
+    },
+    options_hi: {
+      a: "4.5%",
+      b: "5.6%",
+      c: "10.28%",
+      d: "15.38%"
+    },
+    correct_option: "d",
+    solution_text: "Let SP1 = 120, CP1 = 100.\nSP2 = 1.25 × 120 = 150.\nProfit % is 30%, so SP2 = 1.3 × CP2.\n1.3 × CP2 = 150 ⇒ CP2 = 150 / 1.3 = 115.38.\nIncrease from 100 is 15.38%.",
+    solution_text_hi: "माना SP1 = 120, CP1 = 100।\nSP2 = 1.25 × 120 = 150।\nलाभ % 30% है, इसलिए SP2 = 1.3 × CP2।\n1.3 × CP2 = 150 ⇒ CP2 = 150 / 1.3 = 115.38।\n100 से वृद्धि 15.38% है।",
+    shortcut_text: "CP2 / CP1 = (SP2 / 1.3) / (SP1 / 1.2) = (1.25 / 1.3) × 1.2 = 1.5 / 1.3 = 1.1538 ⇒ +15.38%.",
+    shortcut_text_hi: "CP2/CP1 = 1.5 / 1.3 = 1.1538 ⇒ 15.38%।"
+  },
+  {
+    question_number: 37,
+    practice_set: "Practice 3",
+    level: "Level 5: Highly Difficult",
+    level_group: "Level 5: Highly Difficult (Deep Analytical PYQs)",
+    type_code: "Type 9",
+    type_category: "Problems based on percentage change in area",
+    type_category_hi: "क्षेत्रफल में प्रतिशत परिवर्तन पर आधारित प्रश्न",
+    type_label: "Type 9: Problems based on percentage change in area",
+    type_label_hi: "Type 9: क्षेत्रफल में प्रतिशत परिवर्तन पर आधारित प्रश्न",
+    question_text: "The volume of a sphere increases by 119.7%. Find the percentage increase in its surface area.",
+    question_text_hi: "एक गोले का आयतन 119.7% बढ़ जाता है। इसके पृष्ठीय क्षेत्रफल में प्रतिशत वृद्धि ज्ञात कीजिए।",
+    options: {
+      a: "59%",
+      b: "69%",
+      c: "79%",
+      d: "89%"
+    },
+    options_hi: {
+      a: "59%",
+      b: "69%",
+      c: "79%",
+      d: "89%"
+    },
+    correct_option: "b",
+    solution_text: "New Volume = 219.7% of original (100% + 119.7% = 219.7% = 2.197 times).\nScale factor for radius = ∛2.197 = 1.3.\nScale factor for surface area = 1.3² = 1.69.\nSurface area becomes 169% of original, which is an increase of 69%.",
+    solution_text_hi: "नया आयतन = मूल का 219.7% (100% + 119.7% = 219.7% = 2.197 गुना)।\nत्रिज्या के लिए स्केल फैक्टर = ∛2.197 = 1.3।\nपृष्ठीय क्षेत्रफल के लिए स्केल फैक्टर = 1.3² = 1.69।\nपृष्ठीय क्षेत्रफल मूल का 169% हो जाता है, जो कि 69% की वृद्धि है।",
+    shortcut_text: "Radius scale = (2.197)^(1/3) = 1.3. Area scale = 1.3² = 1.69 ⇒ 69% increase.",
+    shortcut_text_hi: "त्रिज्या = 1.3 ⇒ क्षेत्रफल = 1.3² = 1.69 ⇒ 69% वृद्धि।"
+  },
+  {
+    question_number: 38,
+    practice_set: "Practice 3",
+    level: "Level 5: Highly Difficult",
+    level_group: "Level 5: Highly Difficult (Deep Analytical PYQs)",
+    type_code: "Type 3",
+    type_category: "Problems based on Income, Expenditure and Savings",
+    type_category_hi: "आय, व्यय और बचत पर आधारित प्रश्न",
+    type_label: "Type 3: Problems based on Income, Expenditure and Savings",
+    type_label_hi: "Type 3: आय, व्यय और बचत पर आधारित प्रश्न",
+    question_text: "Income of A, B, and C is in the ratio 3:7:4 and expenses are 4:3:5. If A saves 14.28% of his income, find the ratio of their savings.",
+    question_text_hi: "A, B, C की आय का अनुपात 3:7:4 है और व्यय का 4:3:5 है। यदि A अपनी आय का 14.28% बचाता है, तो उनकी बचत का अनुपात ज्ञात कीजिए।",
+    options: {
+      a: "6:71:11",
+      b: "7:70:12",
+      c: "6:69:13",
+      d: "8:71:11"
+    },
+    options_hi: {
+      a: "6:71:11",
+      b: "7:70:12",
+      c: "6:69:13",
+      d: "8:71:11"
+    },
+    correct_option: "a",
+    solution_text: "Income ratio = 3x:7x:4x. Expense ratio = 4y:3y:5y.\nA saves 14.28% (which is 1/7) of his income. Therefore, A's expense is 6/7 of his income.\n4y = (6/7) × 3x ⇒ 28y = 18x ⇒ x/y = 14/9.\nPut x = 14, y = 9.\nIncomes = 42, 98, 56.\nExpenses = 36, 27, 45.\nSavings = (42-36):(98-27):(56-45) = 6:71:11.",
+    solution_text_hi: "आय का अनुपात = 3x:7x:4x। व्यय का अनुपात = 4y:3y:5y।\nA अपनी आय का 14.28% (जो 1/7 है) बचाता है। इसलिए, A का व्यय उसकी आय का 6/7 है।\n4y = (6/7) × 3x ⇒ 28y = 18x ⇒ x/y = 14/9।\nx = 14, y = 9 रखने पर।\nआय = 42, 98, 56।\nव्यय = 36, 27, 45।\nबचत = (42-36):(98-27):(56-45) = 6:71:11।",
+    shortcut_text: "Savings = Income - Expense. x/y = 14/9 ⇒ Inc = (42, 98, 56), Exp = (36, 27, 45) ⇒ Savings = 6 : 71 : 11.",
+    shortcut_text_hi: "बचत = 42-36 : 98-27 : 56-45 = 6 : 71 : 11।"
+  },
+  {
+    question_number: 39,
+    practice_set: "Practice 3",
+    level: "Level 5: Highly Difficult",
+    level_group: "Level 5: Highly Difficult (Deep Analytical PYQs)",
+    type_code: "Type 2",
+    type_category: "Problems based on Exam and Students",
+    type_category_hi: "परीक्षा और छात्रों पर आधारित प्रश्न",
+    type_label: "Type 2: Problems based on Exam and Students",
+    type_label_hi: "Type 2: परीक्षा और छात्रों पर आधारित प्रश्न",
+    question_text: "In an exam, A got 25% more than B, B got 10% less than C, C got 25% more than D. If D got 320 out of 500, find A's marks.",
+    question_text_hi: "एक परीक्षा में, A को B से 25% अधिक, B को C से 10% कम, C को D से 25% अधिक अंक मिले। यदि D को 500 में से 320 अंक मिले, तो A के अंक ज्ञात कीजिए।",
+    options: {
+      a: "400",
+      b: "420",
+      c: "450",
+      d: "480"
+    },
+    options_hi: {
+      a: "400",
+      b: "420",
+      c: "450",
+      d: "480"
+    },
+    correct_option: "c",
+    solution_text: "D = 320.\nC = 320 × 1.25 = 400.\nB = 400 × 0.90 = 360.\nA = 360 × 1.25 = 450.",
+    solution_text_hi: "D = 320।\nC = 320 × 1.25 = 400।\nB = 400 × 0.90 = 360।\nA = 360 × 1.25 = 450।",
+    shortcut_text: "A = 320 × (5/4) × (9/10) × (5/4) = 320 × (225 / 160) = 2 × 225 = 450.",
+    shortcut_text_hi: "A = 320 × 1.25 × 0.9 × 1.25 = 450।"
+  },
+  {
+    question_number: 40,
+    practice_set: "Practice 3",
+    level: "Level 5: Highly Difficult",
+    level_group: "Level 5: Highly Difficult (Deep Analytical PYQs)",
+    type_code: "Type 6",
+    type_category: "Problems based on investment and business",
+    type_category_hi: "निवेश और व्यवसाय पर आधारित प्रश्न",
+    type_label: "Type 6: Problems based on investment and business",
+    type_label_hi: "Type 6: निवेश और व्यवसाय पर आधारित प्रश्न",
+    question_text: "A man invests ₹10,000 at simple interest. A part of it is invested at 8% and the rest at 10%. If his total annual interest is ₹880, what amount was invested at 8%?",
+    question_text_hi: "एक व्यक्ति साधारण ब्याज पर ₹10,000 का निवेश करता है। इसका एक हिस्सा 8% पर और बाकी 10% पर निवेश किया जाता है। यदि उसका कुल वार्षिक ब्याज ₹880 है, तो 8% पर कितनी राशि निवेश की गई थी?",
+    options: {
+      a: "₹4000",
+      b: "₹5000",
+      c: "₹6000",
+      d: "₹7000"
+    },
+    options_hi: {
+      a: "₹4000",
+      b: "₹5000",
+      c: "₹6000",
+      d: "₹7000"
+    },
+    correct_option: "c",
+    solution_text: "Let the amount at 8% be x. Amount at 10% = 10000 - x.\n0.08x + 0.10(10000 - x) = 880 ⇒ 1000 - 0.02x = 880 ⇒ 0.02x = 120 ⇒ x = 6000.",
+    solution_text_hi: "माना 8% पर राशि x है। 10% पर राशि = 10000 - x।\n0.08x + 0.10(10000 - x) = 880 ⇒ 1000 - 0.02x = 880 ⇒ 0.02x = 120 ⇒ x = 6000।",
+    shortcut_text: "Alligation: Overall rate = 880 / 10000 = 8.8%. Ratio of 8% to 10% = (10 - 8.8) : (8.8 - 8) = 1.2 : 0.8 = 3 : 2. Amount at 8% = (3/5) × 10000 = ₹6,000.",
+    shortcut_text_hi: "एलिगेशन: कुल दर = 8.8%। अनुपात = (10 - 8.8) : (8.8 - 8) = 3 : 2 ⇒ 8% पर राशि = 3/5 × 10,000 = ₹6000।"
+  },
+  {
+    question_number: 41,
+    practice_set: "Practice 3",
+    level: "Level 5: Highly Difficult",
+    level_group: "Level 5: Highly Difficult (Deep Analytical PYQs)",
+    type_code: "Type 2",
+    type_category: "Problems based on Exam and Students",
+    type_category_hi: "परीक्षा और छात्रों पर आधारित प्रश्न",
+    type_label: "Type 2: Problems based on Exam and Students",
+    type_label_hi: "Type 2: परीक्षा और छात्रों पर आधारित प्रश्न",
+    question_text: "In a class, 40% of the students failed in Math, 30% failed in English, and 10% failed in both. If 144 passed in both subjects, what is the total number of students?",
+    question_text_hi: "एक कक्षा में, 40% छात्र गणित में फेल हुए, 30% अंग्रेजी में फेल हुए, और 10% दोनों में फेल हुए। यदि 144 दोनों में पास हुए, तो कुल छात्रों की संख्या क्या है?",
+    options: {
+      a: "240",
+      b: "300",
+      c: "360",
+      d: "400"
+    },
+    options_hi: {
+      a: "240",
+      b: "300",
+      c: "360",
+      d: "400"
+    },
+    correct_option: "c",
+    solution_text: "Total failed in at least one subject = Failed Math + Failed English - Failed Both = 40% + 30% - 10% = 60%.\nPassed both = 100% - 60% = 40%.\n40% of Total = 144.\nTotal students = 360.",
+    solution_text_hi: "कम से कम एक विषय में कुल फेल = गणित में फेल + अंग्रेजी में फेल - दोनों में फेल = 40% + 30% - 10% = 60%।\nदोनों में पास = 100% - 60% = 40%।\nकुल का 40% = 144।\nकुल छात्र = 360।",
+    shortcut_text: "Passed both = 100 - (40 + 30 - 10) = 40%. 40% = 144 ⇒ Total = 144 / 0.4 = 360.",
+    shortcut_text_hi: "दोनों में पास = 40% = 144 ⇒ कुल = 360।"
+  },
+  {
+    question_number: 42,
+    practice_set: "Practice 3",
+    level: "Level 5: Highly Difficult",
+    level_group: "Level 5: Highly Difficult (Deep Analytical PYQs)",
+    type_code: "Type 3",
+    type_category: "Problems based on Income, Expenditure and Savings",
+    type_category_hi: "आय, व्यय और बचत पर आधारित प्रश्न",
+    type_label: "Type 3: Problems based on Income, Expenditure and Savings",
+    type_label_hi: "Type 3: आय, व्यय और बचत पर आधारित प्रश्न",
+    question_text: "A man spends 75% of his income. His income increases by 20% and his expenditure increases by 10%. His savings increase by what percentage?",
+    question_text_hi: "एक आदमी अपनी आय का 75% खर्च करता है। उसकी आय में 20% की वृद्धि होती है और उसके व्यय में 10% की वृद्धि होती है। उसकी बचत में कितने प्रतिशत की वृद्धि होगी?",
+    options: {
+      a: "40%",
+      b: "45%",
+      c: "50%",
+      d: "55%"
+    },
+    options_hi: {
+      a: "40%",
+      b: "45%",
+      c: "50%",
+      d: "55%"
+    },
+    correct_option: "c",
+    solution_text: "Let Income = 100. Expenditure = 75. Savings = 25.\nNew Income = 120.\nNew Expenditure = 75 × 1.10 = 82.5.\nNew Savings = 120 - 82.5 = 37.5.\nIncrease in savings = 37.5 - 25 = 12.5.\nPercentage increase = (12.5 / 25) × 100 = 50%.",
+    solution_text_hi: "माना आय = 100। खर्च = 75। बचत = 25।\nनई आय = 120।\nनया खर्च = 75 × 1.10 = 82.5।\nनई बचत = 120 - 82.5 = 37.5।\nबचत में वृद्धि = 37.5 - 25 = 12.5।\nप्रतिशत वृद्धि = (12.5 / 25) × 100 = 50%।",
+    shortcut_text: "Income Inc (20) = Exp Inc (75 × 10% = 7.5) + Sav Inc. Sav Inc = 20 - 7.5 = 12.5. % Sav Inc = (12.5 / 25) × 100 = 50%.",
+    shortcut_text_hi: "बचत में वृद्धि = 20 - 7.5 = 12.5 ⇒ 12.5 / 25 = 50%।"
+  }
+];
+
 if (typeof window !== "undefined") {
   window.PERCENTAGE_PRACTICE_1_QUESTIONS = PERCENTAGE_PRACTICE_1_QUESTIONS;
   window.PERCENTAGE_PRACTICE_2_QUESTIONS = PERCENTAGE_PRACTICE_2_QUESTIONS;
+  window.PERCENTAGE_PRACTICE_3_QUESTIONS = PERCENTAGE_PRACTICE_3_QUESTIONS;
 }
 if (typeof module !== "undefined" && module.exports) {
-  module.exports = { PERCENTAGE_PRACTICE_1_QUESTIONS, PERCENTAGE_PRACTICE_2_QUESTIONS };
+  module.exports = { PERCENTAGE_PRACTICE_1_QUESTIONS, PERCENTAGE_PRACTICE_2_QUESTIONS, PERCENTAGE_PRACTICE_3_QUESTIONS };
 }
