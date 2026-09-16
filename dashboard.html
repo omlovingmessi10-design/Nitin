@@ -1021,8 +1021,10 @@
       const [currentIndex, setCurrentIndex] = useState(0);
       const [selectedAnswers, setSelectedAnswers] = useState({});
       const [markedForReview, setMarkedForReview] = useState(new Set());
-      const [loading, setLoading] = useState(false);
       const [submitted, setSubmitted] = useState(false);
+      const [showReportCard, setShowReportCard] = useState(false);
+      const [showSubmitConfirmModal, setShowSubmitConfirmModal] = useState(false);
+      const [latestTestReport, setLatestTestReport] = useState(null);
 
       // Dynamically compute Level boundaries for any questions set (25, 40, or 42 Qs)
       const levelRanges = React.useMemo(() => {
@@ -1215,6 +1217,9 @@
             setFeedbacks({});
             setCurrentIndex(0);
             setSubmitted(false);
+            setShowReportCard(false);
+            setShowSubmitConfirmModal(false);
+            setLatestTestReport(null);
             setTimeLeft(35 * 60);
             setQuestionTimes({});
             setCurrentQuestionTime(0);
@@ -1237,14 +1242,14 @@
           setTimeLeft(prev => {
             if (prev <= 1) {
               clearInterval(timer);
-              setSubmitted(true);
+              handleTestSubmit();
               return 0;
             }
             return prev - 1;
           });
         }, 1000);
         return () => clearInterval(timer);
-      }, [viewMode, submitted]);
+      }, [viewMode, submitted, selectedAnswers, questions]);
 
       const formatTime = (seconds) => {
         const mins = Math.floor(seconds / 60);
@@ -1423,8 +1428,43 @@
         return { correct, incorrect, unattempted, totalScore };
       }, [submitted, selectedAnswers, questions]);
 
+      const promptTestSubmit = () => {
+        if (submitted) {
+          setShowReportCard(true);
+          return;
+        }
+        const attemptedCount = Object.keys(selectedAnswers).length;
+        if (attemptedCount < questions.length) {
+          setShowSubmitConfirmModal(true);
+        } else {
+          handleTestSubmit();
+        }
+      };
+
+      const handleReattemptTest = () => {
+        setSelectedAnswers({});
+        setMarkedForReview(new Set());
+        setSubmitted(false);
+        setShowReportCard(false);
+        setShowSubmitConfirmModal(false);
+        setLatestTestReport(null);
+        setCurrentIndex(0);
+        setTimeLeft(35 * 60);
+        setQuestionTimes({});
+        setCurrentQuestionTime(0);
+      };
+
+      const handleReviewSolutions = (targetIdx = 0) => {
+        setShowReportCard(false);
+        setShowSubmitConfirmModal(false);
+        setCurrentIndex(targetIdx);
+      };
+
       const handleTestSubmit = () => {
-        if (submitted) return;
+        if (submitted) {
+          setShowReportCard(true);
+          return;
+        }
         setSubmitted(true);
 
         // Record test metrics for analytics & weak areas diagnosis
@@ -1432,7 +1472,7 @@
         const questionDetails = questions.map((q, idx) => {
           const userAns = selectedAnswers[idx];
           const isAttempted = userAns !== undefined && userAns !== null;
-          const isCorrect = isAttempted && userAns.toLowerCase() === (q.correct_option || '').toLowerCase();
+          const isCorrect = isAttempted && String(userAns).toLowerCase() === String(q.correct_option || '').toLowerCase();
           if (!isAttempted) unattempted++;
           else if (isCorrect) correct++;
           else incorrect++;
@@ -1451,7 +1491,145 @@
 
         const attempted = correct + incorrect;
         const score = (correct * 2) - (incorrect * 0.5);
+        const totalMaxScore = questions.length * 2;
         const accuracy = attempted > 0 ? Math.round((correct / attempted) * 100) : 0;
+
+        const timeTakenSeconds = Math.max(0, (35 * 60) - timeLeft);
+        const timeTakenMins = Math.floor(timeTakenSeconds / 60);
+        const timeTakenSecs = timeTakenSeconds % 60;
+        const timeTakenFormatted = `${timeTakenMins}m ${String(timeTakenSecs).padStart(2, '0')}s`;
+        const avgTimePerQuestion = attempted > 0 ? Math.round(timeTakenSeconds / attempted) : 0;
+
+        // Realistic Percentile & Rank Estimation
+        const scoreRatio = Math.max(0, score) / (totalMaxScore || 1);
+        const accuracyRatio = accuracy / 100;
+        const performanceFactor = (accuracyRatio * 0.6) + (scoreRatio * 0.4);
+        const percentile = Math.min(99.8, Math.max(15.0, Math.round((performanceFactor * 84 + 15.5) * 10) / 10));
+        const totalSimulatedAspirants = 4850;
+        const rank = Math.max(1, Math.round(totalSimulatedAspirants * (1 - (percentile / 100))));
+
+        // Level-wise breakdown (Levels 1 to 5)
+        const levels = [1, 2, 3, 4, 5];
+        const levelNames = {
+          1: "Level 1: Moderate",
+          2: "Level 2: More Than Moderate",
+          3: "Level 3: Inspired from PYQs",
+          4: "Level 4: PYQ+",
+          5: "Level 5: PYQ++"
+        };
+        const levelBreakdown = levels.map(lvl => {
+          const lvlQuestions = [];
+          questions.forEach((q, idx) => {
+            const qLvl = (q.level_group || q.level || '').toLowerCase();
+            if (qLvl.includes(`level ${lvl}`)) {
+              lvlQuestions.push({ q, idx });
+            }
+          });
+          const totalInLvl = lvlQuestions.length;
+          let lvlCorrect = 0, lvlIncorrect = 0, lvlUnattempted = 0;
+          lvlQuestions.forEach(({ q, idx }) => {
+            const ans = selectedAnswers[idx];
+            if (ans === undefined || ans === null) lvlUnattempted++;
+            else if (String(ans).toLowerCase() === String(q.correct_option || '').toLowerCase()) lvlCorrect++;
+            else lvlIncorrect++;
+          });
+          const lvlAttempted = lvlCorrect + lvlIncorrect;
+          const lvlAccuracy = lvlAttempted > 0 ? Math.round((lvlCorrect / lvlAttempted) * 100) : 0;
+          const lvlScore = (lvlCorrect * 2) - (lvlIncorrect * 0.5);
+
+          return {
+            level: lvl,
+            name: levelNames[lvl] || `Level ${lvl}`,
+            total: totalInLvl,
+            attempted: lvlAttempted,
+            correct: lvlCorrect,
+            incorrect: lvlIncorrect,
+            unattempted: lvlUnattempted,
+            accuracy: lvlAccuracy,
+            score: lvlScore
+          };
+        }).filter(l => l.total > 0);
+
+        // Pattern / Type Breakdown from PDF [Type - X]
+        const typeMap = {};
+        questions.forEach((q, idx) => {
+          const typeCode = q.type_code || `Type ${((idx % 5) + 1)}`;
+          const typeCat = q.type_category || typeCode;
+          if (!typeMap[typeCode]) {
+            typeMap[typeCode] = {
+              typeCode,
+              typeCategory: typeCat,
+              typeCategoryHi: q.type_category_hi || "",
+              total: 0,
+              correct: 0,
+              incorrect: 0,
+              unattempted: 0
+            };
+          }
+          typeMap[typeCode].total++;
+          const ans = selectedAnswers[idx];
+          if (ans === undefined || ans === null) {
+            typeMap[typeCode].unattempted++;
+          } else if (String(ans).toLowerCase() === String(q.correct_option || '').toLowerCase()) {
+            typeMap[typeCode].correct++;
+          } else {
+            typeMap[typeCode].incorrect++;
+          }
+        });
+        const typeBreakdown = Object.values(typeMap).map(t => {
+          const att = t.correct + t.incorrect;
+          return {
+            ...t,
+            attempted: att,
+            accuracy: att > 0 ? Math.round((t.correct / att) * 100) : 0
+          };
+        });
+
+        // Question Matrix for Interactive Palette
+        const questionMatrix = questions.map((q, idx) => {
+          const ans = selectedAnswers[idx];
+          const isAttempted = ans !== undefined && ans !== null;
+          const isCorrect = isAttempted && String(ans).toLowerCase() === String(q.correct_option || '').toLowerCase();
+          const isWrong = isAttempted && !isCorrect;
+          return {
+            idx,
+            qNum: q.question_number || (idx + 1),
+            typeCode: q.type_code || '',
+            level: q.level_group || q.level || '',
+            userAns: ans ? String(ans).toUpperCase() : null,
+            correctAns: String(q.correct_option || '').toUpperCase(),
+            isAttempted,
+            isCorrect,
+            isWrong,
+            isReview: markedForReview.has(idx)
+          };
+        });
+
+        const report = {
+          topicTitle: selectedTopicObj.title,
+          topicTitleHi: selectedTopicObj.titleHi,
+          subjectName: currentSubject.name,
+          practiceSet: practiceSet,
+          totalQuestions: questions.length,
+          totalMaxScore: totalMaxScore,
+          attemptedCount: attempted,
+          correctCount: correct,
+          incorrectCount: incorrect,
+          unattemptedCount: unattempted,
+          score: score,
+          accuracy: accuracy,
+          timeTakenFormatted,
+          avgTimePerQuestion,
+          percentile,
+          rank,
+          totalSimulatedAspirants,
+          levelBreakdown,
+          typeBreakdown,
+          questionMatrix
+        };
+
+        setLatestTestReport(report);
+        setShowReportCard(true);
 
         const newRecord = {
           id: 'test_' + Date.now(),
@@ -2121,6 +2299,26 @@
                       <span>{markedForReview.has(currentIndex) ? "★" : "☆"}</span>
                       <span className="hidden sm:inline">Save</span>
                     </button>
+
+                    {/* Top Submit Test / Report Card CTA Button */}
+                    {submitted ? (
+                      <button
+                        onClick={() => setShowReportCard(true)}
+                        className="px-3 py-1 rounded-full border border-emerald-300 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold transition flex items-center space-x-1.5 shadow-xs"
+                        title="View Complete Test Report Card"
+                      >
+                        <span>📋</span>
+                        <span className="hidden sm:inline">Report Card</span>
+                      </button>
+                    ) : (
+                      <button
+                        onClick={promptTestSubmit}
+                        className="px-3 py-1 rounded-full border border-emerald-500 bg-[#10B981] hover:bg-emerald-700 text-white text-xs font-bold transition flex items-center space-x-1 shadow-xs"
+                        title="Submit Test"
+                      >
+                        <span>Submit ✓</span>
+                      </button>
+                    )}
                   </div>
 
                 </div>
@@ -2531,11 +2729,27 @@
                         </div>
                       </div>
 
-                      {/* SCORECARD ON SUBMISSION */}
+                      {/* SCORECARD & REPORT CARD CTA ON SUBMISSION */}
                       {submitted && (
-                        <div className="bg-white p-5 rounded-2xl shadow-sm border border-emerald-200 animate-fade-in space-y-3 mt-4">
-                          <h3 className="font-bold text-slate-900 text-sm">Performance Scorecard</h3>
-                          <div className="grid grid-cols-2 gap-2 text-center text-xs">
+                        <div className="bg-white p-5 rounded-2xl shadow-sm border border-emerald-300 animate-fade-in space-y-4 mt-4">
+                          <div className="flex items-center justify-between">
+                            <div>
+                              <span className="font-mono text-[10px] uppercase font-extrabold text-emerald-800 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded-full">
+                                Test Evaluated
+                              </span>
+                              <h3 className="font-serif font-black text-slate-900 text-base mt-1">
+                                Test Performance Summary
+                              </h3>
+                            </div>
+                            <button
+                              onClick={() => setShowReportCard(true)}
+                              className="px-3.5 py-1.5 rounded-xl bg-[#182030] hover:bg-slate-800 text-white text-xs font-bold transition shadow flex items-center space-x-1.5"
+                            >
+                              <span>📋 Open Report Card</span>
+                            </button>
+                          </div>
+
+                          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-center text-xs font-mono">
                             <div className="p-2.5 bg-emerald-50 text-emerald-900 rounded-xl border border-emerald-200">
                               <span className="block font-black text-base">{scoreData.correct}</span>
                               Correct (+{scoreData.correct * 2})
@@ -2544,21 +2758,33 @@
                               <span className="block font-black text-base">{scoreData.incorrect}</span>
                               Wrong (-{scoreData.incorrect * 0.5})
                             </div>
-                          </div>
-                          <div className="pt-2 border-t text-center">
-                            <span className="font-mono text-[10px] text-slate-500 font-bold uppercase tracking-wider">Total Score</span>
-                            <p className="text-xl font-black text-slate-900">{scoreData.totalScore} / {questions.length * 2}</p>
+                            <div className="p-2.5 bg-slate-50 text-slate-700 rounded-xl border border-slate-200">
+                              <span className="block font-black text-base">{scoreData.unattempted}</span>
+                              Skipped (0 pts)
+                            </div>
+                            <div className="p-2.5 bg-indigo-50 text-indigo-900 rounded-xl border border-indigo-200">
+                              <span className="block font-black text-base">
+                                {scoreData.totalScore > 0 ? `+${scoreData.totalScore}` : scoreData.totalScore}
+                              </span>
+                              Total Score
+                            </div>
                           </div>
 
-                          <button
-                            onClick={() => {
-                              setAnalyticsSubjectFilter(activeSubjectId);
-                              setShowAnalyticsModal(true);
-                            }}
-                            className="w-full py-2.5 bg-[#182030] hover:bg-slate-800 text-white rounded-xl text-xs font-bold transition shadow flex items-center justify-center space-x-1.5"
-                          >
-                            <span>📊 View Weak Areas & Diagnostics</span>
-                          </button>
+                          <div className="flex items-center space-x-2 pt-1">
+                            <button
+                              onClick={() => setShowReportCard(true)}
+                              className="flex-1 py-2.5 bg-[#10B981] hover:bg-emerald-700 text-white rounded-xl text-xs font-bold transition shadow flex items-center justify-center space-x-1.5"
+                            >
+                              <span>📋 View Full Report Card & All India Rank</span>
+                            </button>
+                            <button
+                              onClick={handleReattemptTest}
+                              className="py-2.5 px-3 bg-[#FAF8F5] hover:bg-[#EAE5DA] border border-[#DDD7CC] text-slate-700 rounded-xl text-xs font-bold transition"
+                              title="Restart test from beginning"
+                            >
+                              🔄 Re-attempt
+                            </button>
+                          </div>
                         </div>
                       )}
                     </>
@@ -2582,27 +2808,64 @@
                   </div>
 
                   <div className="flex items-center space-x-2">
-                    <button
-                      disabled={currentIndex === 0}
-                      onClick={() => setCurrentIndex(prev => Math.max(0, prev - 1))}
-                      className="py-2 px-4 rounded-xl text-xs sm:text-sm font-bold bg-white border border-[#DDD7CC] text-slate-700 hover:bg-[#FAF8F5] disabled:opacity-40"
-                    >
-                      Previous
-                    </button>
-                    {currentIndex < questions.length - 1 ? (
-                      <button
-                        onClick={() => setCurrentIndex(prev => prev + 1)}
-                        className="py-2 px-5 rounded-xl text-xs sm:text-sm font-bold bg-[#182030] text-white hover:bg-slate-800 shadow-sm"
-                      >
-                        Next Question →
-                      </button>
+                    {submitted ? (
+                      <>
+                        <button
+                          onClick={() => setShowReportCard(true)}
+                          className="py-2 px-3.5 rounded-xl text-xs sm:text-sm font-bold bg-emerald-50 border border-emerald-300 text-emerald-800 hover:bg-emerald-100 transition shadow-2xs flex items-center space-x-1.5"
+                        >
+                          <span>📋</span>
+                          <span>Report Card</span>
+                        </button>
+                        <button
+                          disabled={currentIndex === 0}
+                          onClick={() => setCurrentIndex(prev => Math.max(0, prev - 1))}
+                          className="py-2 px-4 rounded-xl text-xs sm:text-sm font-bold bg-white border border-[#DDD7CC] text-slate-700 hover:bg-[#FAF8F5] disabled:opacity-40"
+                        >
+                          Previous
+                        </button>
+                        <button
+                          disabled={currentIndex === questions.length - 1}
+                          onClick={() => setCurrentIndex(prev => Math.min(questions.length - 1, prev + 1))}
+                          className="py-2 px-5 rounded-xl text-xs sm:text-sm font-bold bg-[#182030] text-white hover:bg-slate-800 shadow-sm disabled:opacity-40"
+                        >
+                          Next Question →
+                        </button>
+                      </>
                     ) : (
-                      <button
-                        onClick={handleTestSubmit}
-                        className="py-2 px-5 rounded-xl text-xs sm:text-sm font-bold bg-[#10B981] hover:bg-emerald-700 text-white shadow-sm"
-                      >
-                        Submit Test ✓
-                      </button>
+                      <>
+                        <button
+                          disabled={currentIndex === 0}
+                          onClick={() => setCurrentIndex(prev => Math.max(0, prev - 1))}
+                          className="py-2 px-4 rounded-xl text-xs sm:text-sm font-bold bg-white border border-[#DDD7CC] text-slate-700 hover:bg-[#FAF8F5] disabled:opacity-40"
+                        >
+                          Previous
+                        </button>
+                        {currentIndex < questions.length - 1 ? (
+                          <>
+                            <button
+                              onClick={promptTestSubmit}
+                              className="py-2 px-3.5 rounded-xl text-xs font-bold bg-emerald-50 border border-emerald-200 text-emerald-800 hover:bg-emerald-100 transition"
+                              title="Submit test at any time"
+                            >
+                              Submit Test
+                            </button>
+                            <button
+                              onClick={() => setCurrentIndex(prev => prev + 1)}
+                              className="py-2 px-5 rounded-xl text-xs sm:text-sm font-bold bg-[#182030] text-white hover:bg-slate-800 shadow-sm"
+                            >
+                              Next Question →
+                            </button>
+                          </>
+                        ) : (
+                          <button
+                            onClick={promptTestSubmit}
+                            className="py-2 px-5 rounded-xl text-xs sm:text-sm font-bold bg-[#10B981] hover:bg-emerald-700 text-white shadow-sm flex items-center space-x-1.5"
+                          >
+                            <span>Submit Test ✓</span>
+                          </button>
+                        )}
+                      </>
                     )}
                   </div>
                 </div>
@@ -2731,6 +2994,465 @@
                             <span>🏆 Complete Test & View Full Report</span>
                           </button>
                         )}
+                      </div>
+
+                    </div>
+                  </div>
+                )}
+
+                {/* CONFIRM TEST SUBMISSION MODAL */}
+                {showSubmitConfirmModal && (
+                  <div className="fixed inset-0 z-[85] flex items-center justify-center p-3 sm:p-4 bg-slate-950/75 backdrop-blur-sm animate-fade-in">
+                    <div className="bg-white border border-[#DDD7CC] rounded-3xl p-5 sm:p-7 max-w-md w-full shadow-2xl text-center space-y-4 animate-fade-in">
+                      <div className="w-14 h-14 mx-auto rounded-2xl bg-amber-50 border border-amber-200 text-amber-600 flex items-center justify-center text-2xl font-black shadow-xs">
+                        ⏱️
+                      </div>
+                      <div>
+                        <h3 className="font-serif text-lg sm:text-xl font-black text-slate-900">
+                          Ready to Submit Test?
+                        </h3>
+                        <p className="text-xs text-slate-500 mt-1">
+                          Review your attempt summary before final submission. Your complete Report Card with All India Rank & Diagnostics will be generated immediately.
+                        </p>
+                      </div>
+
+                      {/* Attempt Summary Badges */}
+                      <div className="grid grid-cols-3 gap-2.5 py-3 px-3 bg-[#FAF8F5] rounded-2xl border border-[#DDD7CC] text-xs font-mono">
+                        <div className="bg-white p-2 rounded-xl border border-[#E2DDD3]">
+                          <span className="block font-black text-emerald-600 text-base sm:text-lg">
+                            {Object.keys(selectedAnswers).length}
+                          </span>
+                          <span className="text-[10px] text-slate-500 font-bold uppercase tracking-wider">Answered</span>
+                        </div>
+                        <div className="bg-white p-2 rounded-xl border border-[#E2DDD3]">
+                          <span className="block font-black text-rose-600 text-base sm:text-lg">
+                            {questions.length - Object.keys(selectedAnswers).length}
+                          </span>
+                          <span className="text-[10px] text-slate-500 font-bold uppercase tracking-wider">Unanswered</span>
+                        </div>
+                        <div className="bg-white p-2 rounded-xl border border-[#E2DDD3]">
+                          <span className="block font-black text-amber-600 text-base sm:text-lg">
+                            {markedForReview.size}
+                          </span>
+                          <span className="text-[10px] text-slate-500 font-bold uppercase tracking-wider">Bookmarked</span>
+                        </div>
+                      </div>
+
+                      {questions.length - Object.keys(selectedAnswers).length > 0 && (
+                        <p className="text-[11px] font-semibold text-amber-700 bg-amber-50 border border-amber-200 rounded-xl p-2.5">
+                          ⚠️ You still have {questions.length - Object.keys(selectedAnswers).length} unanswered question(s). Unattempted questions will score 0.
+                        </p>
+                      )}
+
+                      {/* Action Buttons */}
+                      <div className="flex items-center space-x-3 pt-2">
+                        <button
+                          onClick={() => setShowSubmitConfirmModal(false)}
+                          className="flex-1 py-2.5 px-4 rounded-xl font-bold text-xs bg-[#FAF8F5] hover:bg-[#EAE5DA] border border-[#DDD7CC] text-slate-700 transition"
+                        >
+                          Keep Practicing
+                        </button>
+                        <button
+                          onClick={() => {
+                            setShowSubmitConfirmModal(false);
+                            handleTestSubmit();
+                          }}
+                          className="flex-1 py-2.5 px-4 rounded-xl font-bold text-xs bg-[#10B981] hover:bg-emerald-700 text-white shadow-md transition flex items-center justify-center space-x-1.5"
+                        >
+                          <span>Submit Test ✓</span>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {/* COMPREHENSIVE MOCK TEST REPORT CARD MODAL */}
+                {showReportCard && latestTestReport && (
+                  <div className="fixed inset-0 z-[80] flex items-center justify-center p-2 sm:p-4 md:p-6 bg-slate-950/80 backdrop-blur-md animate-fade-in">
+                    <div className="bg-[#FAF8F5] border border-[#DDD7CC] rounded-3xl w-full max-w-5xl max-h-[94vh] flex flex-col shadow-2xl overflow-hidden text-slate-800 animate-fade-in">
+
+                      {/* 1. REPORT CARD HEADER */}
+                      <div className="p-4 sm:p-6 bg-white border-b border-[#E2DDD3] flex items-center justify-between gap-3 shrink-0">
+                        <div className="min-w-0">
+                          <div className="flex items-center space-x-2 mb-1 flex-wrap gap-y-1">
+                            <span className="inline-flex items-center space-x-1 bg-emerald-50 text-emerald-800 border border-emerald-200 px-2.5 py-0.5 rounded-full text-[10px] font-mono font-black uppercase tracking-wider">
+                              <span>✓</span>
+                              <span>TEST COMPLETED & EVALUATED</span>
+                            </span>
+                            <span className="text-[10px] font-mono font-bold text-slate-400">•</span>
+                            <span className="text-[10px] font-mono font-bold text-slate-500 uppercase tracking-wider">
+                              {latestTestReport.subjectName} • {latestTestReport.practiceSet}
+                            </span>
+                          </div>
+                          <h2 className="font-serif text-xl sm:text-2xl font-black text-[#182030] truncate">
+                            {latestTestReport.topicTitle} — Performance Report Card
+                          </h2>
+                          <p className="text-xs text-slate-500 font-medium">
+                            Time Taken: <span className="font-mono font-bold text-slate-800">{latestTestReport.timeTakenFormatted}</span> • Avg Speed: <span className="font-mono font-bold text-slate-800">{latestTestReport.avgTimePerQuestion}s / Q</span> • Standard SSC Tier-1 Marking (+2 / -0.5)
+                          </p>
+                        </div>
+
+                        {/* Top Right: Review Solutions Button & Close (✕) */}
+                        <div className="flex items-center space-x-2 shrink-0">
+                          <button
+                            onClick={() => handleReviewSolutions(0)}
+                            className="hidden sm:inline-flex items-center space-x-1.5 px-3.5 py-1.5 rounded-full text-xs font-bold bg-[#182030] text-white hover:bg-slate-800 transition shadow-xs"
+                          >
+                            <span>📝 Review Solutions</span>
+                          </button>
+                          <button
+                            onClick={() => setShowReportCard(false)}
+                            className="w-9 h-9 rounded-full bg-[#FAF8F5] hover:bg-[#EAE5DA] border border-[#DDD7CC] flex items-center justify-center text-slate-700 hover:text-slate-950 font-bold transition text-sm shadow-2xs"
+                            title="Close Report Card and Review Questions"
+                          >
+                            ✕
+                          </button>
+                        </div>
+                      </div>
+
+                      {/* 2. SCROLLABLE REPORT CARD BODY */}
+                      <div className="p-4 sm:p-6 overflow-y-auto space-y-6 flex-1">
+
+                        {/* HERO METRICS BENTO (4 KPI CARDS) */}
+                        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 font-mono">
+
+                          {/* CARD 1: TOTAL SCORE */}
+                          <div className="bg-white p-4 rounded-2xl border border-emerald-200 shadow-xs relative overflow-hidden">
+                            <div className="absolute top-0 right-0 w-16 h-16 bg-emerald-50 rounded-bl-full -z-0"></div>
+                            <span className="text-[10px] text-slate-400 font-bold uppercase tracking-wider block mb-1">
+                              Final Score
+                            </span>
+                            <div className="flex items-baseline space-x-1">
+                              <span className={`text-2xl sm:text-3xl font-black ${latestTestReport.score >= (latestTestReport.totalMaxScore * 0.6) ? 'text-emerald-600' : latestTestReport.score > 0 ? 'text-slate-900' : 'text-rose-600'}`}>
+                                {latestTestReport.score > 0 ? `+${latestTestReport.score}` : latestTestReport.score}
+                              </span>
+                              <span className="text-xs text-slate-400 font-bold">
+                                / {latestTestReport.totalMaxScore}
+                              </span>
+                            </div>
+                            <div className="mt-2 text-[10px] font-sans font-semibold text-slate-500 flex items-center justify-between">
+                              <span>Score %:</span>
+                              <span className="font-mono font-bold text-slate-800">
+                                {Math.round((Math.max(0, latestTestReport.score) / (latestTestReport.totalMaxScore || 1)) * 100)}%
+                              </span>
+                            </div>
+                          </div>
+
+                          {/* CARD 2: ALL INDIA RANK */}
+                          <div className="bg-white p-4 rounded-2xl border border-indigo-100 shadow-xs relative overflow-hidden">
+                            <div className="absolute top-0 right-0 w-16 h-16 bg-indigo-50 rounded-bl-full -z-0"></div>
+                            <span className="text-[10px] text-slate-400 font-bold uppercase tracking-wider block mb-1">
+                              Rank & Percentile
+                            </span>
+                            <div className="flex items-baseline space-x-1">
+                              <span className="text-2xl sm:text-3xl font-black text-indigo-700">
+                                #{latestTestReport.rank}
+                              </span>
+                              <span className="text-[10px] text-slate-400 font-bold">
+                                / {latestTestReport.totalSimulatedAspirants}
+                              </span>
+                            </div>
+                            <div className="mt-2 text-[10px] font-sans font-semibold text-slate-500 flex items-center justify-between">
+                              <span>Percentile:</span>
+                              <span className="font-mono font-bold text-indigo-800">
+                                {latestTestReport.percentile}%ile
+                              </span>
+                            </div>
+                          </div>
+
+                          {/* CARD 3: ACCURACY */}
+                          <div className="bg-white p-4 rounded-2xl border border-amber-100 shadow-xs relative overflow-hidden">
+                            <div className="absolute top-0 right-0 w-16 h-16 bg-amber-50 rounded-bl-full -z-0"></div>
+                            <span className="text-[10px] text-slate-400 font-bold uppercase tracking-wider block mb-1">
+                              Accuracy
+                            </span>
+                            <div className="flex items-baseline space-x-1">
+                              <span className={`text-2xl sm:text-3xl font-black ${latestTestReport.accuracy >= 80 ? 'text-emerald-600' : latestTestReport.accuracy >= 60 ? 'text-amber-600' : 'text-rose-600'}`}>
+                                {latestTestReport.accuracy}%
+                              </span>
+                            </div>
+                            <div className="mt-2 text-[10px] font-sans font-semibold text-slate-500 flex items-center justify-between">
+                              <span>Attempted:</span>
+                              <span className="font-mono font-bold text-slate-800">
+                                {latestTestReport.attemptedCount} / {latestTestReport.totalQuestions}
+                              </span>
+                            </div>
+                          </div>
+
+                          {/* CARD 4: SPEED & PACE */}
+                          <div className="bg-white p-4 rounded-2xl border border-slate-200 shadow-xs relative overflow-hidden">
+                            <div className="absolute top-0 right-0 w-16 h-16 bg-slate-50 rounded-bl-full -z-0"></div>
+                            <span className="text-[10px] text-slate-400 font-bold uppercase tracking-wider block mb-1">
+                              Avg Pace
+                            </span>
+                            <div className="flex items-baseline space-x-1">
+                              <span className="text-2xl sm:text-3xl font-black text-slate-900">
+                                {latestTestReport.avgTimePerQuestion}s
+                              </span>
+                              <span className="text-[10px] text-slate-400 font-bold">
+                                / question
+                              </span>
+                            </div>
+                            <div className="mt-2 text-[10px] font-sans font-semibold text-slate-500 flex items-center justify-between">
+                              <span>Time Spent:</span>
+                              <span className="font-mono font-bold text-slate-800">
+                                {latestTestReport.timeTakenFormatted}
+                              </span>
+                            </div>
+                          </div>
+
+                        </div>
+
+                        {/* ATTEMPT RATIO STACKED PROGRESS BAR & DETAILS */}
+                        <div className="bg-white border border-[#DDD7CC] rounded-2xl p-4 sm:p-5 space-y-3 shadow-xs">
+                          <div className="flex items-center justify-between text-xs font-bold text-slate-700">
+                            <span className="font-mono uppercase tracking-wider text-[11px]">Attempt Breakdown</span>
+                            <span className="font-mono text-slate-500 text-[11px]">{latestTestReport.totalQuestions} Total Questions</span>
+                          </div>
+
+                          {/* Stacked Progress Bar */}
+                          <div className="w-full h-3.5 bg-slate-100 rounded-full overflow-hidden flex border border-slate-200">
+                            <div
+                              style={{ width: `${(latestTestReport.correctCount / latestTestReport.totalQuestions) * 100}%` }}
+                              className="bg-emerald-500 transition-all"
+                              title={`${latestTestReport.correctCount} Correct`}
+                            ></div>
+                            <div
+                              style={{ width: `${(latestTestReport.incorrectCount / latestTestReport.totalQuestions) * 100}%` }}
+                              className="bg-rose-500 transition-all"
+                              title={`${latestTestReport.incorrectCount} Incorrect`}
+                            ></div>
+                            <div
+                              style={{ width: `${(latestTestReport.unattemptedCount / latestTestReport.totalQuestions) * 100}%` }}
+                              className="bg-slate-300 transition-all"
+                              title={`${latestTestReport.unattemptedCount} Unattempted`}
+                            ></div>
+                          </div>
+
+                          {/* 3 Metrics Pills */}
+                          <div className="grid grid-cols-3 gap-2 text-center text-xs font-mono pt-1">
+                            <div className="bg-emerald-50 border border-emerald-200 rounded-xl p-2.5">
+                              <span className="block text-emerald-800 font-black text-sm sm:text-base">
+                                {latestTestReport.correctCount}
+                              </span>
+                              <span className="text-[10px] text-emerald-700 font-semibold block">Correct (+{latestTestReport.correctCount * 2})</span>
+                            </div>
+                            <div className="bg-rose-50 border border-rose-200 rounded-xl p-2.5">
+                              <span className="block text-rose-800 font-black text-sm sm:text-base">
+                                {latestTestReport.incorrectCount}
+                              </span>
+                              <span className="text-[10px] text-rose-700 font-semibold block">Wrong (-{latestTestReport.incorrectCount * 0.5})</span>
+                            </div>
+                            <div className="bg-slate-50 border border-slate-200 rounded-xl p-2.5">
+                              <span className="block text-slate-700 font-black text-sm sm:text-base">
+                                {latestTestReport.unattemptedCount}
+                              </span>
+                              <span className="text-[10px] text-slate-500 font-semibold block">Skipped (0 pts)</span>
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* LEVEL-WISE PERFORMANCE (LEVELS 1 TO 5) */}
+                        {latestTestReport.levelBreakdown && latestTestReport.levelBreakdown.length > 0 && (
+                          <div className="bg-white border border-[#DDD7CC] rounded-2xl p-4 sm:p-5 space-y-3 shadow-xs">
+                            <div className="flex items-center justify-between border-b border-slate-100 pb-2">
+                              <h3 className="font-serif font-black text-slate-900 text-sm sm:text-base">
+                                🎯 Difficulty Level Performance (Levels 1 to 5)
+                              </h3>
+                              <span className="text-[10px] font-mono text-slate-500 font-bold uppercase tracking-wider">
+                                Progressive Difficulty
+                              </span>
+                            </div>
+
+                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-2.5">
+                              {latestTestReport.levelBreakdown.map(lvl => {
+                                const isHighAcc = lvl.accuracy >= 80;
+                                const isMidAcc = lvl.accuracy >= 50 && lvl.accuracy < 80;
+                                return (
+                                  <div
+                                    key={lvl.level}
+                                    className={`p-3 rounded-xl border flex flex-col justify-between space-y-2 ${isHighAcc ? 'bg-emerald-50/60 border-emerald-200' : isMidAcc ? 'bg-amber-50/60 border-amber-200' : 'bg-slate-50 border-slate-200'}`}
+                                  >
+                                    <div>
+                                      <div className="flex items-center justify-between">
+                                        <span className="font-mono text-[10px] font-black uppercase tracking-wider text-slate-600">
+                                          Level {lvl.level}
+                                        </span>
+                                        <span className={`text-[10px] font-mono font-extrabold px-1.5 py-0.2 rounded ${isHighAcc ? 'bg-emerald-200 text-emerald-900' : isMidAcc ? 'bg-amber-200 text-amber-900' : 'bg-rose-100 text-rose-800'}`}>
+                                          {lvl.accuracy}%
+                                        </span>
+                                      </div>
+                                      <p className="font-sans text-xs font-bold text-slate-900 truncate mt-0.5" title={lvl.name}>
+                                        {lvl.name.replace(/Level \d+:\s*/, '')}
+                                      </p>
+                                    </div>
+
+                                    <div className="space-y-1">
+                                      <div className="w-full bg-slate-200 rounded-full h-1.5 overflow-hidden">
+                                        <div
+                                          className={`h-full ${isHighAcc ? 'bg-emerald-500' : isMidAcc ? 'bg-amber-500' : 'bg-rose-500'}`}
+                                          style={{ width: `${lvl.accuracy}%` }}
+                                        ></div>
+                                      </div>
+                                      <div className="flex items-center justify-between text-[10px] font-mono text-slate-500 font-semibold">
+                                        <span>{lvl.correct}/{lvl.total} Correct</span>
+                                        <span>{lvl.score > 0 ? `+${lvl.score}` : lvl.score} pts</span>
+                                      </div>
+                                    </div>
+                                  </div>
+                                );
+                              })}
+                            </div>
+                          </div>
+                        )}
+
+                        {/* PATTERN / TYPE CODE DIAGNOSTICS */}
+                        {latestTestReport.typeBreakdown && latestTestReport.typeBreakdown.length > 0 && (
+                          <div className="bg-white border border-[#DDD7CC] rounded-2xl p-4 sm:p-5 space-y-3 shadow-xs">
+                            <div className="flex items-center justify-between border-b border-slate-100 pb-2">
+                              <h3 className="font-serif font-black text-slate-900 text-sm sm:text-base">
+                                🏷️ Syllabus Type Diagnostics (PDF Types)
+                              </h3>
+                              <span className="text-[10px] font-mono text-slate-500 font-bold uppercase tracking-wider">
+                                Type Accuracy
+                              </span>
+                            </div>
+
+                            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2">
+                              {latestTestReport.typeBreakdown.map(typeItem => (
+                                <div
+                                  key={typeItem.typeCode}
+                                  className="p-2.5 rounded-xl bg-[#FAF8F5] border border-[#DDD7CC] flex items-center justify-between text-xs"
+                                >
+                                  <div className="min-w-0 pr-2">
+                                    <span className="font-mono text-[10px] font-black text-indigo-700 bg-indigo-50 border border-indigo-200 px-1.5 py-0.2 rounded inline-block mb-0.5">
+                                      {typeItem.typeCode}
+                                    </span>
+                                    <p className="font-bold text-slate-800 truncate text-[11px]">
+                                      {typeItem.typeCategory}
+                                    </p>
+                                  </div>
+                                  <div className="text-right shrink-0 font-mono">
+                                    <span className={`block font-black text-xs ${typeItem.accuracy >= 75 ? 'text-emerald-600' : typeItem.accuracy >= 50 ? 'text-amber-600' : 'text-rose-600'}`}>
+                                      {typeItem.correct}/{typeItem.total}
+                                    </span>
+                                    <span className="text-[9px] text-slate-400 font-bold">
+                                      {typeItem.accuracy}%
+                                    </span>
+                                  </div>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+
+                        {/* INTERACTIVE QUESTION-BY-QUESTION MATRIX / PALETTE */}
+                        <div className="bg-white border border-[#DDD7CC] rounded-2xl p-4 sm:p-5 space-y-3 shadow-xs">
+                          <div className="flex items-center justify-between flex-wrap gap-2 border-b border-slate-100 pb-2">
+                            <div>
+                              <h3 className="font-serif font-black text-slate-900 text-sm sm:text-base">
+                                📋 Question Palette & Response Matrix
+                              </h3>
+                              <p className="text-[11px] text-slate-500 font-medium">
+                                Click any question number to instantly open its full step-by-step solution, Hindi translation, and exam shortcut.
+                              </p>
+                            </div>
+                            <div className="flex items-center space-x-3 text-[10px] font-mono font-bold">
+                              <div className="flex items-center space-x-1">
+                                <span className="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+                                <span>Correct</span>
+                              </div>
+                              <div className="flex items-center space-x-1">
+                                <span className="w-2.5 h-2.5 rounded-full bg-rose-500"></span>
+                                <span>Incorrect</span>
+                              </div>
+                              <div className="flex items-center space-x-1">
+                                <span className="w-2.5 h-2.5 rounded-full bg-slate-300"></span>
+                                <span>Skipped</span>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div className="grid grid-cols-5 sm:grid-cols-6 md:grid-cols-10 gap-2 pt-1">
+                            {latestTestReport.questionMatrix.map(qm => {
+                              let chipBg = "bg-slate-100 border-slate-300 text-slate-600 hover:bg-slate-200";
+                              let statusSymbol = "—";
+                              if (qm.isCorrect) {
+                                chipBg = "bg-emerald-50 border-emerald-300 text-emerald-900 hover:bg-emerald-100";
+                                statusSymbol = "✓";
+                              } else if (qm.isWrong) {
+                                chipBg = "bg-rose-50 border-rose-300 text-rose-900 hover:bg-rose-100";
+                                statusSymbol = "✕";
+                              }
+
+                              return (
+                                <button
+                                  key={qm.idx}
+                                  onClick={() => handleReviewSolutions(qm.idx)}
+                                  className={`p-2 rounded-xl border flex flex-col items-center justify-center font-mono transition-all text-center group cursor-pointer ${chipBg}`}
+                                  title={`Question ${qm.qNum}: ${qm.isCorrect ? 'Correct ✓' : qm.isWrong ? 'Incorrect ❌' : 'Unattempted'} (Your Ans: ${qm.userAns || 'None'}, Correct: ${qm.correctAns}) - Click to review`}
+                                >
+                                  <span className="text-xs font-black">
+                                    Q{qm.qNum}
+                                  </span>
+                                  <div className="flex items-center space-x-1 text-[10px] mt-0.5">
+                                    <span className={`font-black ${qm.isCorrect ? 'text-emerald-600' : qm.isWrong ? 'text-rose-600' : 'text-slate-400'}`}>
+                                      {statusSymbol}
+                                    </span>
+                                    {qm.typeCode && (
+                                      <span className="text-[8px] text-slate-400 uppercase font-sans font-bold">
+                                        {qm.typeCode.replace('Type ', 'T')}
+                                      </span>
+                                    )}
+                                  </div>
+                                </button>
+                              );
+                            })}
+                          </div>
+                        </div>
+
+                      </div>
+
+                      {/* 3. REPORT CARD FOOTER ACTION BAR */}
+                      <div className="p-3 sm:p-4 bg-white border-t border-[#E2DDD3] flex items-center justify-between gap-2 shrink-0 flex-wrap">
+                        <div className="flex items-center space-x-2">
+                          <button
+                            onClick={handleReattemptTest}
+                            className="py-2 px-3.5 rounded-xl text-xs font-bold bg-[#FAF8F5] border border-[#DDD7CC] text-slate-700 hover:bg-[#EAE5DA] transition flex items-center space-x-1.5"
+                          >
+                            <span>🔄</span>
+                            <span>Re-attempt Test</span>
+                          </button>
+                          <button
+                            onClick={() => {
+                              setShowReportCard(false);
+                              setAnalyticsSubjectFilter(activeSubjectId);
+                              setShowAnalyticsModal(true);
+                            }}
+                            className="py-2 px-3.5 rounded-xl text-xs font-bold bg-[#FAF8F5] border border-[#DDD7CC] text-slate-700 hover:bg-[#EAE5DA] transition flex items-center space-x-1.5"
+                          >
+                            <span>📊</span>
+                            <span>Analytics & History</span>
+                          </button>
+                        </div>
+
+                        <div className="flex items-center space-x-2">
+                          <button
+                            onClick={() => {
+                              setShowReportCard(false);
+                              setViewMode("topics");
+                            }}
+                            className="py-2 px-3.5 rounded-xl text-xs font-bold bg-white border border-[#DDD7CC] text-slate-700 hover:bg-[#FAF8F5] transition"
+                          >
+                            Back to Topics
+                          </button>
+                          <button
+                            onClick={() => handleReviewSolutions(0)}
+                            className="py-2 px-5 rounded-xl text-xs sm:text-sm font-bold bg-[#10B981] hover:bg-emerald-700 text-white shadow-sm transition flex items-center space-x-1.5"
+                          >
+                            <span>📝 Review Solutions & Explanations →</span>
+                          </button>
+                        </div>
                       </div>
 
                     </div>
