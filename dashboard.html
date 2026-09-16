@@ -1021,6 +1021,7 @@
       const [currentIndex, setCurrentIndex] = useState(0);
       const [selectedAnswers, setSelectedAnswers] = useState({});
       const [markedForReview, setMarkedForReview] = useState(new Set());
+      const [loading, setLoading] = useState(false);
       const [submitted, setSubmitted] = useState(false);
       const [showReportCard, setShowReportCard] = useState(false);
       const [showSubmitConfirmModal, setShowSubmitConfirmModal] = useState(false);
