@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -19,13 +20,19 @@
   <script src="percentage_questions.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400..800;1,6..72,400..800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet">
-  
+  <link
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400..800;1,6..72,400..800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+
   <style>
-    *, *::before, *::after {
+    *,
+    *::before,
+    *::after {
       box-sizing: border-box;
     }
-    html, body {
+
+    html,
+    body {
       margin: 0;
       padding: 0;
       width: 100%;
@@ -36,31 +43,45 @@
       color: #2D3748;
       -webkit-text-size-adjust: 100%;
     }
+
     #root {
       width: 100%;
       max-width: 100vw;
       overflow-x: hidden;
       background-color: #F3EFE6;
     }
+
     .font-serif {
       font-family: 'Newsreader', Georgia, serif;
     }
+
     .font-mono {
       font-family: 'JetBrains Mono', monospace;
     }
+
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(6px); }
-      to { opacity: 1; transform: translateY(0); }
+      from {
+        opacity: 0;
+        transform: translateY(6px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
+
     .animate-fade-in {
       animation: fadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
+
     .glass-card {
       background: rgba(255, 255, 255, 0.96);
       backdrop-filter: blur(12px);
     }
   </style>
 </head>
+
 <body class="bg-[#F3EFE6] text-slate-800 min-h-screen w-full max-w-full overflow-x-hidden">
   <div id="root" class="w-full max-w-full overflow-x-hidden bg-[#F3EFE6]"></div>
 
@@ -68,7 +89,7 @@
     const { useState, useEffect, useMemo, useRef } = React;
 
     // --- 1. SUPABASE CLIENT CREDENTIALS ---
-    const SUPABASE_URL = "https://zgxskpqsjylbwrhhrzim.supabase.co"; 
+    const SUPABASE_URL = "https://zgxskpqsjylbwrhhrzim.supabase.co";
     const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpneHNrcHFzanlsYndyaGhyemltIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODczODY0MDIsImV4cCI6MjEwMjk2MjQwMn0.1RSVtWx8gxJhQcmDfJMvRfRLMvl4ju9GuwxgiKn5f8w";
     const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
@@ -736,17 +757,17 @@
             type_category: topicName,
             question_text: `[${topicName}] Convert the following into PASSIVE VOICE:\n\n'The jury will announce the verdict tomorrow morning.'`,
             question_text_hi: `[${topicNameHi}] निम्नलिखित वाक्य को कर्मवाच्य (Passive Voice) में बदलें:\n\n'The jury will announce the verdict tomorrow morning.'`,
-            options: { 
-              a: "The verdict will be announced by the jury tomorrow morning.", 
-              b: "The verdict is announced by the jury tomorrow morning.", 
-              c: "The verdict shall have been announced by the jury tomorrow morning.", 
-              d: "The verdict was announced by the jury tomorrow morning." 
+            options: {
+              a: "The verdict will be announced by the jury tomorrow morning.",
+              b: "The verdict is announced by the jury tomorrow morning.",
+              c: "The verdict shall have been announced by the jury tomorrow morning.",
+              d: "The verdict was announced by the jury tomorrow morning."
             },
-            options_hi: { 
-              a: "The verdict will be announced by the jury tomorrow morning.", 
-              b: "The verdict is announced by the jury tomorrow morning.", 
-              c: "The verdict shall have been announced by the jury tomorrow morning.", 
-              d: "The verdict was announced by the jury tomorrow morning." 
+            options_hi: {
+              a: "The verdict will be announced by the jury tomorrow morning.",
+              b: "The verdict is announced by the jury tomorrow morning.",
+              c: "The verdict shall have been announced by the jury tomorrow morning.",
+              d: "The verdict was announced by the jury tomorrow morning."
             },
             correct_option: "a",
             solution_text: "Passive Structure for Simple Future (will + V1):\nSubject (The verdict) + will be + Past Participle (announced) + by + Agent (the jury) + time adverbial.\nCorrect Answer: Option (A).",
@@ -1317,7 +1338,7 @@
               const updated = [levelRecord, ...prev];
               try {
                 localStorage.setItem('ssc_user_performance_records_v1', JSON.stringify(updated));
-              } catch (e) {}
+              } catch (e) { }
               return updated;
             });
           }
@@ -1446,7 +1467,7 @@
           setPerformanceRecords([]);
           try {
             localStorage.removeItem('ssc_user_performance_records_v1');
-          } catch (e) {}
+          } catch (e) { }
         }
       };
 
@@ -1454,7 +1475,7 @@
         setPerformanceRecords(DEFAULT_PERFORMANCE_RECORDS);
         try {
           localStorage.setItem('ssc_user_performance_records_v1', JSON.stringify(DEFAULT_PERFORMANCE_RECORDS));
-        } catch (e) {}
+        } catch (e) { }
       };
 
       const handleLaunchWeakTopicPractice = (subjectId, topicId) => {
@@ -1636,7 +1657,7 @@
       const filteredTopics = useMemo(() => {
         return currentSubject.topics.filter(t => {
           const matchesCategory = activeCategory === "All" || t.category === activeCategory;
-          const matchesSearch = searchQuery.trim() === "" || 
+          const matchesSearch = searchQuery.trim() === "" ||
             t.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
             t.titleHi.toLowerCase().includes(searchQuery.toLowerCase()) ||
             t.desc.toLowerCase().includes(searchQuery.toLowerCase());
@@ -1646,7 +1667,7 @@
 
       return (
         <div className="min-h-screen flex flex-col bg-slate-100 text-slate-800">
-          
+
           {/* ============================================================ */}
           {/* ============================================================ */}
           {/* TOP GLOBAL NAVBAR WITH EDITORIAL AVATAR & 3-SUBJECT SWITCHER */}
@@ -1654,7 +1675,7 @@
           <header className="bg-[#F3EFE6] text-slate-800 border-b border-[#E2DDD3] sticky top-0 z-30 shadow-sm w-full max-w-full overflow-hidden">
             {/* Top Tier: Brand, Avatar & Circular Tool Buttons */}
             <div className="w-full max-w-7xl mx-auto px-3 sm:px-6 py-2.5 flex items-center justify-between gap-2 border-b border-[#E8E3D8] min-w-0">
-              
+
               {/* Left Side: Menu Icon & User Avatar Card (Matching screenshot) */}
               <div className="flex items-center space-x-2.5 min-w-0">
                 <button
@@ -1667,7 +1688,7 @@
                   </svg>
                 </button>
 
-                <div 
+                <div
                   onClick={() => setViewMode("topics")}
                   className="flex items-center space-x-2.5 cursor-pointer group"
                 >
@@ -1688,14 +1709,14 @@
 
               {/* Right Side: Circular Tools & Diagnostics Pill */}
               <div className="flex items-center space-x-1.5 sm:space-x-2 min-w-0 shrink-0">
-                
+
                 {/* Fullscreen / Focus Icon */}
                 <button
                   onClick={() => {
                     if (!document.fullscreenElement) {
-                      document.documentElement.requestFullscreen().catch(() => {});
+                      document.documentElement.requestFullscreen().catch(() => { });
                     } else {
-                      document.exitFullscreen().catch(() => {});
+                      document.exitFullscreen().catch(() => { });
                     }
                   }}
                   className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white border border-[#E2DDD3] flex items-center justify-center text-slate-700 shadow-sm hover:bg-[#FAF8F5] transition text-sm"
@@ -1776,11 +1797,10 @@
                     <button
                       key={subj.id}
                       onClick={() => handleSelectSubject(subj.id)}
-                      className={`w-full py-1.5 rounded-full text-xs sm:text-sm font-bold transition-all duration-200 text-center truncate ${
-                        isActive
-                          ? "bg-[#182030] text-white shadow-sm"
-                          : "text-[#5A544C] hover:text-slate-900 hover:bg-white/60"
-                      }`}
+                      className={`w-full py-1.5 rounded-full text-xs sm:text-sm font-bold transition-all duration-200 text-center truncate ${isActive
+                        ? "bg-[#182030] text-white shadow-sm"
+                        : "text-[#5A544C] hover:text-slate-900 hover:bg-white/60"
+                        }`}
                     >
                       <span>{subj.shortName}</span>
                     </button>
@@ -1794,10 +1814,10 @@
           {/* MAIN DASHBOARD: SYLLABUS & ASPIRANT HUB (ALWAYS PERSISTENT) */}
           {/* ============================================================ */}
           <main className="max-w-6xl mx-auto w-full p-3.5 sm:p-6 lg:p-8 space-y-6 flex-1 animate-fade-in overflow-hidden">
-            
+
             {/* TOP CARD: "TODAY'S REGISTER" / ASPIRANT STATUS (1:1 MATCH WITH SCREENSHOT) */}
             <div className="bg-white rounded-3xl p-5 sm:p-7 border border-[#E2DDD3] shadow-[0_2px_12px_rgba(0,0,0,0.03)] space-y-4 w-full">
-              
+
               {/* Header: Date & Tag */}
               <div className="space-y-1">
                 <span className="font-mono text-[10px] font-bold text-[#8C827A] tracking-widest uppercase block">
@@ -1850,7 +1870,7 @@
                       </p>
                     </div>
                   </div>
-                  
+
                   <button
                     onClick={() => handleLaunchWeakTopicPractice(analyticsData.weakTopics[0].subjectId || activeSubjectId, analyticsData.weakTopics[0].id)}
                     className="w-full sm:w-auto px-4 py-2 bg-[#182030] hover:bg-slate-800 text-white text-xs font-bold rounded-xl transition shadow-xs whitespace-nowrap shrink-0 flex items-center justify-center space-x-1"
@@ -1880,7 +1900,7 @@
 
             {/* SYLLABUS SECTION HEADER (EDITORIAL "MODULES") */}
             <div className="space-y-4">
-              
+
               <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 border-b border-[#E2DDD3] pb-4">
                 <div>
                   <h2 className="font-serif text-2xl sm:text-3xl font-black text-[#182030] tracking-tight">
@@ -1912,11 +1932,10 @@
                   <button
                     key={cat}
                     onClick={() => setActiveCategory(cat)}
-                    className={`py-1.5 px-4 rounded-full transition-all whitespace-nowrap ${
-                      activeCategory === cat
-                        ? "bg-[#182030] text-white shadow-xs"
-                        : "bg-[#EAE5DA] text-[#4A453E] border border-[#DDD7CC] hover:bg-white"
-                    }`}
+                    className={`py-1.5 px-4 rounded-full transition-all whitespace-nowrap ${activeCategory === cat
+                      ? "bg-[#182030] text-white shadow-xs"
+                      : "bg-[#EAE5DA] text-[#4A453E] border border-[#DDD7CC] hover:bg-white"
+                      }`}
                   >
                     {cat}
                   </button>
@@ -1931,7 +1950,7 @@
                     className="bg-white rounded-3xl p-5 sm:p-6 border border-[#E2DDD3] shadow-[0_2px_12px_rgba(0,0,0,0.03)] hover:shadow-md transition-all flex flex-col justify-between group hover:border-[#182030]/30 min-w-0"
                   >
                     <div className="space-y-3 min-w-0">
-                      
+
                       {/* Top Micro-Header */}
                       <div className="flex items-center justify-between font-mono text-[10px] text-[#8C827A] font-bold">
                         <span className="w-8 h-8 rounded-xl bg-[#FAF8F5] border border-[#E5DFD5] text-[#182030] flex items-center justify-center text-sm shadow-2xs">
@@ -1964,17 +1983,16 @@
                         <span>AVAILABLE SETS</span>
                         <span className="font-bold text-[#182030]">{topic.id === "percentage" ? "25-42 Qs / Set" : "35-40 Qs / Set"}</span>
                       </div>
-                      
+
                       <div className={`grid gap-2 w-full ${(topic.sets?.length || 2) > 2 ? 'grid-cols-3' : 'grid-cols-2'}`}>
                         {(topic.sets || ["Practice 1", "Practice 2"]).map((s, sIdx) => (
                           <button
                             key={s}
                             onClick={() => handleStartTopicQuiz(topic, s)}
-                            className={`py-2.5 px-2 rounded-xl text-xs font-bold transition flex items-center justify-center space-x-1 w-full min-w-0 ${
-                              sIdx === 0
-                                ? "bg-[#182030] hover:bg-slate-800 text-white shadow-sm"
-                                : "bg-[#F4F0E8] hover:bg-[#EAE5DA] text-[#182030] border border-[#DDD7CC]"
-                            }`}
+                            className={`py-2.5 px-2 rounded-xl text-xs font-bold transition flex items-center justify-center space-x-1 w-full min-w-0 ${sIdx === 0
+                              ? "bg-[#182030] hover:bg-slate-800 text-white shadow-sm"
+                              : "bg-[#F4F0E8] hover:bg-[#EAE5DA] text-[#182030] border border-[#DDD7CC]"
+                              }`}
                           >
                             <span className="truncate">{s.replace("Practice", "Set")}</span>
                             <span className="text-[11px] font-mono">→</span>
@@ -2010,136 +2028,156 @@
           {/* VIEW 2: INDEPENDENT QUIZ PRACTICE MODAL OVERLAY */}
           {/* ============================================================ */}
           {viewMode === "quiz" && (
-            <div className="fixed inset-0 z-50 flex items-center justify-center p-2.5 sm:p-6 bg-slate-950/60 backdrop-blur-sm animate-fade-in">
-              <div className="bg-[#F8F6F0] border border-[#DDD7CC] rounded-3xl w-full max-w-3xl max-h-[95vh] flex flex-col shadow-2xl overflow-hidden text-slate-800">
-                
-                {/* MODAL HEADER: TOP-LEFT CROSS ✕ BUTTON, TOPIC TITLE & LANGUAGE DROPDOWN */}
-                <div className="p-3.5 sm:p-5 bg-white border-b border-[#E2DDD3] flex items-center justify-between gap-3 shrink-0">
-                  
-                  {/* Left: Round Cross ✕ Button + Topic Name */}
+            <div className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 md:p-6 bg-slate-950/65 backdrop-blur-sm animate-fade-in">
+              <div className="bg-[#F8F6F0] border border-[#DDD7CC] rounded-3xl w-full max-w-6xl max-h-[95vh] flex flex-col shadow-2xl overflow-hidden text-slate-800">
+
+                {/* 1. TOP HEADER: ROUND CROSS ✕ BUTTON (TOP-LEFT), TITLE & LANGUAGE SWITCH */}
+                <div className="p-3 sm:p-4 bg-white border-b border-[#E2DDD3] flex items-center justify-between gap-3 shrink-0">
+
+                  {/* Left: Round Cross ✕ Button + Subject & Topic Title */}
                   <div className="flex items-center space-x-3 min-w-0">
                     <button
                       onClick={() => setViewMode("topics")}
-                      className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-[#FAF8F5] hover:bg-[#EAE5DA] border border-[#DDD7CC] flex items-center justify-center text-slate-700 hover:text-slate-900 font-bold transition text-sm shrink-0 shadow-2xs"
+                      className="w-9 h-9 rounded-full bg-[#FAF8F5] hover:bg-[#EAE5DA] border border-[#DDD7CC] flex items-center justify-center text-slate-700 hover:text-slate-950 font-bold transition text-sm shrink-0 shadow-2xs group"
                       title="Close Practice & Return to Dashboard"
                     >
-                      ✕
+                      <span className="group-hover:scale-110 transition-transform">✕</span>
                     </button>
                     <div className="min-w-0">
-                      <span className="font-mono text-[9px] sm:text-[10px] font-bold text-[#8C827A] tracking-wider uppercase block truncate">
-                        PRACTICE WORKSPACE • {currentSubject.name}
-                      </span>
-                      <h2 className="font-serif text-base sm:text-xl font-bold text-[#182030] truncate">
+                      <div className="flex items-center space-x-2">
+                        <span className="font-mono text-[9px] sm:text-[10px] font-bold text-[#8C827A] tracking-wider uppercase truncate">
+                          {currentSubject.name} • {practiceSet}
+                        </span>
+                        <span className="hidden sm:inline-block text-[10px] bg-slate-100 text-slate-700 px-1.5 py-0.2 rounded font-mono font-bold">
+                          {questions.length} Questions
+                        </span>
+                      </div>
+                      <h2 className="font-serif text-base sm:text-lg font-black text-[#182030] truncate">
                         {selectedTopicObj.title}
                       </h2>
                     </div>
                   </div>
 
-                  {/* Right: Language Conversion Tool Switch Buttons [ 🇬🇧 English | 🇮🇳 हिन्दी ] */}
-                  <div className="relative shrink-0 flex items-center bg-[#FAF8F5] border border-[#DDD7CC] p-0.5 rounded-full shadow-2xs">
-                    <button
-                      type="button"
-                      onClick={() => setLanguage('EN')}
-                      className={`px-3 py-1 rounded-full text-xs font-bold transition flex items-center space-x-1.5 ${
-                        language === 'EN'
-                          ? "bg-[#182030] text-white shadow-xs"
-                          : "text-slate-600 hover:text-slate-900 hover:bg-[#EAE5DA]"
-                      }`}
-                      title="Switch language to English"
-                    >
-                      <span>🇬🇧</span>
-                      <span>English</span>
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => setLanguage('HI')}
-                      className={`px-3 py-1 rounded-full text-xs font-bold transition flex items-center space-x-1.5 ${
-                        language === 'HI'
-                          ? "bg-[#182030] text-white shadow-xs"
-                          : "text-slate-600 hover:text-slate-900 hover:bg-[#EAE5DA]"
-                      }`}
-                      title="Switch language to Hindi (हिन्दी)"
-                    >
-                      <span>🇮🇳</span>
-                      <span>हिन्दी</span>
-                    </button>
-                  </div>
-
-                </div>
-
-                {/* DYNAMIC LEVEL & TYPE SUB-BAR & TIMER */}
-                <div className="px-4 sm:px-6 py-2 bg-[#EFEAE1] border-b border-[#DDD7CC] flex items-center justify-between shrink-0 flex-wrap gap-2">
-                  <div className="flex items-center space-x-2 text-xs flex-wrap">
-                    <span className="font-black text-slate-900 bg-white border border-[#DDD7CC] px-2.5 py-0.5 rounded-md shadow-2xs">
-                      {currentQ?.level_group || currentQ?.level || "Level 1"}
-                    </span>
-                    {currentQ?.type_category && (
-                      <span className="font-semibold text-indigo-700 bg-indigo-50 border border-indigo-200 px-2 py-0.5 rounded-md text-[11px]">
-                        Type: {currentQ.type_category}
-                      </span>
-                    )}
-                    <span className="text-slate-400">•</span>
-                    <span className="font-mono font-semibold text-slate-600">{practiceSet}</span>
-                    <span className="hidden sm:inline-block text-slate-400">•</span>
-                    <span className="hidden sm:inline-block font-mono text-[10px] bg-white border border-[#DDD7CC] px-2 py-0.5 rounded-md text-slate-600">
-                      Marks: +2.0 / -0.5
-                    </span>
-                  </div>
-
-                  {/* Countdown Timer */}
-                  <div className="flex items-center space-x-1.5 bg-[#182030] text-white px-2.5 py-0.5 rounded-full text-xs font-mono font-bold shadow-xs">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                    <span>{formatTime(timeLeft)}</span>
-                  </div>
-                </div>
-
-                {/* 5-LEVEL PROGRESSION TABS BAR */}
-                <div className="px-3 sm:px-5 py-2 bg-[#F3EFE6] border-b border-[#E2DDD3] flex items-center gap-1.5 overflow-x-auto scrollbar-none shrink-0">
-                  {levelRanges.map((lr) => {
-                    const isCurrentLevel = currentIndex >= lr.startIdx && currentIndex < lr.endIdx;
-                    
-                    // Count how many answered in this level
-                    let answeredInLevel = 0;
-                    for (let k = lr.startIdx; k < lr.endIdx; k++) {
-                      if (selectedAnswers[k] !== undefined) answeredInLevel++;
-                    }
-                    const isLevelDone = (lr.count > 0) && (answeredInLevel === lr.count);
-
-                    let tabStyle = "bg-white border-[#DDD7CC] text-slate-700 hover:bg-[#EAE5DA]";
-                    if (isCurrentLevel) {
-                      tabStyle = "bg-[#182030] text-white border-[#182030] shadow-sm font-black ring-1 ring-slate-800";
-                    } else if (isLevelDone) {
-                      tabStyle = "bg-emerald-50 border-emerald-300 text-emerald-800 font-bold";
-                    }
-
-                    return (
+                  {/* Right: Language Switch [ 🇬🇧 English | 🇮🇳 हिन्दी ] & Bookmark/Save */}
+                  <div className="flex items-center space-x-2 shrink-0">
+                    {/* Language Switch */}
+                    <div className="inline-flex items-center bg-[#FAF8F5] border border-[#DDD7CC] p-0.5 rounded-full shadow-2xs">
                       <button
-                        key={lr.level}
-                        onClick={() => setCurrentIndex(lr.startIdx)}
-                        className={`px-3 py-1 rounded-xl border text-xs font-semibold whitespace-nowrap transition-all flex items-center space-x-1.5 ${tabStyle}`}
-                        title={`Jump to Level ${lr.level} (Q${lr.startIdx + 1} - Q${lr.endIdx})`}
+                        type="button"
+                        onClick={() => setLanguage('EN')}
+                        className={`px-2.5 sm:px-3 py-1 rounded-full text-xs font-bold transition flex items-center space-x-1.5 ${language === 'EN'
+                          ? "bg-[#182030] text-white shadow-xs"
+                          : "text-slate-600 hover:text-slate-900 hover:bg-[#EAE5DA]"
+                          }`}
+                        title="Switch to English"
                       >
-                        <span className="text-[11px]">{isLevelDone ? "✓" : `L${lr.level}`}</span>
-                        <span className="font-bold">Level {lr.level}</span>
-                        <span className={`text-[10px] px-1.5 py-0.2 rounded-full font-mono font-bold ${
-                          isCurrentLevel ? "bg-white/20 text-white" : isLevelDone ? "bg-emerald-200/80 text-emerald-900" : "bg-slate-100 text-slate-600"
-                        }`}>
-                          {answeredInLevel}/{lr.count}
-                        </span>
+                        <span>🇬🇧</span>
+                        <span>English</span>
                       </button>
-                    );
-                  })}
+                      <button
+                        type="button"
+                        onClick={() => setLanguage('HI')}
+                        className={`px-2.5 sm:px-3 py-1 rounded-full text-xs font-bold transition flex items-center space-x-1.5 ${language === 'HI'
+                          ? "bg-[#182030] text-white shadow-xs"
+                          : "text-slate-600 hover:text-slate-900 hover:bg-[#EAE5DA]"
+                          }`}
+                        title="हिन्दी में देखें"
+                      >
+                        <span>🇮🇳</span>
+                        <span>हिन्दी</span>
+                      </button>
+                    </div>
+
+                    {/* Bookmark / Save Button */}
+                    <button
+                      onClick={toggleReview}
+                      className={`px-2.5 sm:px-3 py-1 rounded-full border text-xs font-bold transition flex items-center space-x-1.5 ${markedForReview.has(currentIndex)
+                        ? "bg-amber-100 border-amber-400 text-amber-900 shadow-2xs font-extrabold"
+                        : "bg-white border-[#DDD7CC] text-slate-600 hover:text-slate-900 hover:bg-[#FAF8F5]"
+                        }`}
+                      title="Save / Bookmark this question"
+                    >
+                      <span>{markedForReview.has(currentIndex) ? "★" : "☆"}</span>
+                      <span className="hidden sm:inline">Save</span>
+                    </button>
+                  </div>
+
                 </div>
 
-                {/* HORIZONTAL QUESTION NUMBER CAROUSEL STRIP (1, 2, 3, 4...) */}
-                <div className="px-3 sm:px-5 py-2 bg-[#F8F6F0] border-b border-[#E2DDD3] shrink-0">
-                  <div className="flex items-center justify-between gap-1 bg-white p-1.5 rounded-2xl border border-[#DDD7CC] shadow-xs">
-                    
-                    {/* Left Arrow Button */}
+                {/* 2. ABOVE QUESTION: CURRENT LEVEL & ON ITS SIDE TYPE */}
+                <div className="px-3.5 sm:px-6 py-2.5 bg-[#FAF8F5] border-b border-[#E2DDD3] flex items-center justify-between shrink-0 flex-wrap gap-2">
+                  <div className="flex items-center space-x-2.5 flex-wrap">
+                    {/* Current Level Badge */}
+                    <div className="flex items-center space-x-1.5">
+                      <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-slate-500">
+                        Level:
+                      </span>
+                      <span className="font-black text-xs sm:text-sm text-slate-900 bg-white border border-[#DDD7CC] px-2.5 py-0.5 rounded-lg shadow-2xs flex items-center space-x-1.5">
+                        <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
+                        <span>{currentQ?.level_group || currentQ?.level || `Level ${Math.floor(currentIndex / (questions.length === 25 ? 5 : 8)) + 1}`}</span>
+                      </span>
+                    </div>
+
+                    {/* Quick Level Jump Pills */}
+                    <div className="hidden md:flex items-center space-x-1 bg-white border border-[#DDD7CC] p-0.5 rounded-lg shadow-2xs">
+                      {levelRanges.map((lr) => {
+                        const isCurrentLevel = currentIndex >= lr.startIdx && currentIndex < lr.endIdx;
+                        let answeredInLevel = 0;
+                        for (let k = lr.startIdx; k < lr.endIdx; k++) {
+                          if (selectedAnswers[k] !== undefined) answeredInLevel++;
+                        }
+                        const isLevelDone = lr.count > 0 && answeredInLevel === lr.count;
+
+                        return (
+                          <button
+                            key={lr.level}
+                            onClick={() => setCurrentIndex(lr.startIdx)}
+                            className={`px-2 py-0.5 text-[11px] font-mono font-bold rounded transition-all ${isCurrentLevel
+                              ? "bg-[#182030] text-white shadow-2xs"
+                              : isLevelDone
+                                ? "bg-emerald-50 text-emerald-800 hover:bg-emerald-100"
+                                : "text-slate-600 hover:text-slate-900 hover:bg-slate-100"
+                              }`}
+                            title={`Level ${lr.level} (${answeredInLevel}/${lr.count} answered)`}
+                          >
+                            {isLevelDone ? "✓" : `L${lr.level}`}
+                          </button>
+                        );
+                      })}
+                    </div>
+
+                    <span className="text-slate-300 hidden sm:inline">•</span>
+
+                    {/* On its side: Type Badge */}
+                    {(currentQ?.type_category || currentQ?.type_label || currentQ?.type_code) && (
+                      <div className="flex items-center space-x-1.5">
+                        <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-slate-500">
+                          Type:
+                        </span>
+                        <span className="font-bold text-xs sm:text-sm text-indigo-900 bg-indigo-50 border border-indigo-200/80 px-2.5 py-0.5 rounded-lg">
+                          {language === 'HI' && currentQ?.type_category_hi ? currentQ.type_category_hi : (currentQ?.type_category || currentQ?.type_label)}
+                        </span>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Right: SSC Tier 1 Marks Scheme */}
+                  <div className="flex items-center space-x-2">
+                    <span className="font-mono text-[10px] sm:text-[11px] bg-white border border-[#DDD7CC] px-2.5 py-0.5 rounded-md text-slate-700 font-bold shadow-2xs">
+                      Marks: <span className="text-emerald-700 font-black">+2.0</span> / <span className="text-rose-700 font-black">-0.5</span>
+                    </span>
+                  </div>
+                </div>
+
+                {/* 3. BELOW IT: HORIZONTAL QUESTION DRAWER */}
+                <div className="px-3 sm:px-6 py-2 bg-white border-b border-[#E2DDD3] shrink-0">
+                  <div className="flex items-center justify-between gap-2">
+
+                    {/* Left Scroll Arrow */}
                     <button
                       disabled={currentIndex === 0}
                       onClick={() => setCurrentIndex(prev => Math.max(0, prev - 1))}
-                      className="w-8 h-8 rounded-full flex items-center justify-center text-slate-500 hover:text-slate-900 hover:bg-slate-100 disabled:opacity-30 transition shrink-0"
+                      className="w-8 h-8 rounded-full border border-[#DDD7CC] bg-[#FAF8F5] hover:bg-slate-100 flex items-center justify-center text-slate-600 hover:text-slate-900 disabled:opacity-30 transition shrink-0 shadow-2xs"
                       title="Previous Question"
                     >
                       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -2147,47 +2185,43 @@
                       </svg>
                     </button>
 
-                    {/* Scrollable Number Bubbles Strip */}
-                    <div 
+                    {/* Horizontally Scrollable Question Bubbles Strip */}
+                    <div
                       ref={carouselRef}
-                      className="flex items-center gap-2 overflow-x-auto py-1 px-1 scroll-smooth scrollbar-none flex-1 justify-start min-w-0"
+                      className="flex items-center gap-1.5 sm:gap-2 overflow-x-auto py-1 px-1 scroll-smooth scrollbar-none flex-1 justify-start min-w-0"
                     >
                       {questions.map((_, idx) => {
                         const isCurrent = idx === currentIndex;
                         const isAnswered = selectedAnswers[idx] !== undefined;
                         const isReview = markedForReview.has(idx);
 
-                        let bubbleStyle = "bg-white border border-[#CBD5E1] text-slate-600 font-semibold hover:border-slate-400";
+                        let bubbleStyle = "bg-[#FAF8F5] border border-[#CBD5E1] text-slate-700 hover:border-slate-400";
                         if (isCurrent) {
-                          bubbleStyle = "bg-[#E11D48] text-white font-bold shadow-md ring-2 ring-rose-200";
+                          bubbleStyle = "bg-[#182030] text-white font-black shadow-md ring-2 ring-slate-800 scale-105";
                         } else if (isReview) {
-                          bubbleStyle = "bg-amber-400 text-slate-900 font-bold border-amber-500";
+                          bubbleStyle = "bg-amber-400 text-slate-950 font-black border-amber-500 shadow-2xs";
                         } else if (isAnswered) {
-                          bubbleStyle = "bg-[#7E8B9B] text-white font-bold border-[#7E8B9B]";
+                          bubbleStyle = "bg-emerald-600 text-white font-bold border-emerald-600 shadow-2xs";
                         }
 
                         return (
-                          <div key={idx} className="relative shrink-0 flex flex-col items-center">
-                            <button
-                              onClick={() => setCurrentIndex(idx)}
-                              className={`w-8 h-8 sm:w-9 sm:h-9 rounded-full flex items-center justify-center text-xs sm:text-sm transition-all duration-150 ${bubbleStyle}`}
-                            >
-                              {idx + 1}
-                            </button>
-                            {/* Active Pointer Arrow pointing to question card */}
-                            {isCurrent && (
-                              <span className="w-0 h-0 border-l-[4px] border-l-transparent border-r-[4px] border-r-transparent border-t-[5px] border-t-[#E11D48] mt-0.5"></span>
-                            )}
-                          </div>
+                          <button
+                            key={idx}
+                            onClick={() => setCurrentIndex(idx)}
+                            className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center text-xs font-mono transition-all duration-150 shrink-0 ${bubbleStyle}`}
+                            title={`Jump to Question ${idx + 1}${isAnswered ? ' (Answered)' : ''}${isReview ? ' (Saved)' : ''}`}
+                          >
+                            {idx + 1}
+                          </button>
                         );
                       })}
                     </div>
 
-                    {/* Right Arrow Button */}
+                    {/* Right Scroll Arrow */}
                     <button
                       disabled={currentIndex === questions.length - 1}
                       onClick={() => setCurrentIndex(prev => Math.min(questions.length - 1, prev + 1))}
-                      className="w-8 h-8 rounded-full flex items-center justify-center text-slate-500 hover:text-slate-900 hover:bg-slate-100 disabled:opacity-30 transition shrink-0"
+                      className="w-8 h-8 rounded-full border border-[#DDD7CC] bg-[#FAF8F5] hover:bg-slate-100 flex items-center justify-center text-slate-600 hover:text-slate-900 disabled:opacity-30 transition shrink-0 shadow-2xs"
                       title="Next Question"
                     >
                       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -2195,16 +2229,63 @@
                       </svg>
                     </button>
 
+                    {/* Attempted Tally Pill */}
+                    <div className="hidden lg:flex items-center space-x-1 text-xs font-mono bg-[#FAF8F5] border border-[#DDD7CC] px-2.5 py-1 rounded-full shrink-0 text-slate-600">
+                      <span className="font-black text-slate-900">{Object.keys(selectedAnswers).length}</span>
+                      <span>/</span>
+                      <span>{questions.length}</span>
+                      <span className="text-[10px] text-slate-500 uppercase">Attempted</span>
+                    </div>
+
                   </div>
                 </div>
 
-                {/* SCROLLABLE MODAL QUIZ BODY */}
-                <div className="p-3.5 sm:p-6 overflow-y-auto flex-1 space-y-3.5">
-                  
+                {/* 4. BELOW IT: SLEEK MINIMALISTIC TIMER */}
+                <div className="px-3.5 sm:px-6 py-2 bg-[#F3EFE6] border-b border-[#E2DDD3] flex items-center justify-between shrink-0 flex-wrap gap-2 text-xs">
+                  {/* Left: Main Test Countdown Timer */}
+                  <div className="flex items-center space-x-2">
+                    <span className="text-slate-500 font-mono text-[11px] font-bold uppercase tracking-wider hidden sm:inline">
+                      Time Remaining:
+                    </span>
+                    <div className="flex items-center space-x-1.5 bg-white border border-[#DDD7CC] px-3 py-1 rounded-full font-mono font-bold text-slate-900 shadow-2xs">
+                      <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                      <span className="text-xs sm:text-sm font-black tracking-wider">{formatTime(timeLeft)}</span>
+                    </div>
+                  </div>
+
+                  {/* Center: Per-Question Pace Stopwatch */}
+                  <div className="flex items-center space-x-1.5">
+                    <div
+                      className={`px-3 py-1 rounded-full text-xs font-mono font-bold flex items-center space-x-1.5 border transition-all ${currentQuestionTime > 40
+                        ? "bg-rose-100 border-rose-400 text-rose-800 font-black shadow-xs ring-1 ring-rose-300"
+                        : "bg-white border-[#DDD7CC] text-slate-700 shadow-2xs"
+                        }`}
+                      title={currentQuestionTime > 40 ? "Speed Alert: You have exceeded 40s on this question!" : "Time spent on current question"}
+                    >
+                      <span>⏱️</span>
+                      <span className="hidden sm:inline">Question Time:</span>
+                      <span className="font-black">{currentQuestionTime}s</span>
+                      {currentQuestionTime > 40 && (
+                        <span className="text-[9px] bg-rose-600 text-white px-1.5 py-0.2 rounded uppercase font-sans font-bold">
+                          &gt;40s Pace Alert
+                        </span>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Right: Question Index */}
+                  <div className="font-mono text-xs font-bold text-slate-600">
+                    Question <span className="text-slate-950 font-black">{currentIndex + 1}</span> of <span className="text-slate-500">{questions.length}</span>
+                  </div>
+                </div>
+
+                {/* 5. SCROLLABLE QUIZ BODY: QUESTION & OPTIONS -> SOLUTION (ONLY ON ANSWER CLICK) */}
+                <div className="p-3.5 sm:p-6 overflow-y-auto flex-1 space-y-4">
+
                   {loading ? (
                     <div className="flex items-center justify-center p-8 sm:p-12">
                       <div className="text-center">
-                        <div className="w-10 h-10 border-4 border-[#E11D48] border-t-transparent rounded-full animate-spin mx-auto mb-3"></div>
+                        <div className="w-10 h-10 border-4 border-[#182030] border-t-transparent rounded-full animate-spin mx-auto mb-3"></div>
                         <p className="font-semibold text-slate-700 text-xs sm:text-sm font-serif">Loading {selectedTopicObj.title} ({practiceSet})...</p>
                       </div>
                     </div>
@@ -2227,145 +2308,53 @@
                   ) : (
                     <>
                       {/* QUESTION CARD */}
-                      <div className="bg-white rounded-2xl p-5 sm:p-6 shadow-[0_2px_12px_rgba(0,0,0,0.03)] border border-[#E2DDD3] space-y-3.5">
-                        
-                        {/* Top Meta Bar with Language Switcher & Mini Stopwatch */}
-                        <div className="flex items-center justify-between text-xs sm:text-sm text-slate-600 border-b border-slate-100 pb-3 flex-wrap gap-2">
-                          <div className="flex items-center space-x-2 flex-wrap gap-1">
-                            <span className="font-bold text-slate-950">{currentIndex + 1}</span> of <span className="text-slate-500 font-semibold">{questions.length}</span>
-                            {currentQ?.type_category && (
-                              <span className="hidden sm:inline-block bg-slate-100 border border-slate-200 text-slate-700 text-[10px] font-bold px-2 py-0.5 rounded-full">
-                                {currentQ.type_category}
-                              </span>
-                            )}
-                            <span className="hidden sm:inline-block font-mono text-[10px] bg-indigo-50 border border-indigo-200 text-indigo-800 font-bold px-2 py-0.5 rounded-full">
-                              {currentQ?.level || `Level ${Math.floor(currentIndex / (questions.length === 25 ? 5 : 8)) + 1}`}
+                      <div className="bg-white rounded-2xl p-5 sm:p-7 shadow-[0_2px_12px_rgba(0,0,0,0.03)] border border-[#E2DDD3] space-y-3">
+                        <div className="flex items-center justify-between text-xs text-slate-500 border-b border-slate-100 pb-2.5 font-mono">
+                          <div className="flex items-center space-x-2">
+                            <span className="bg-slate-100 text-slate-800 px-2 py-0.5 rounded font-bold">
+                              Q.{currentIndex + 1}
                             </span>
+                            <span className="text-slate-400">|</span>
+                            <span>{currentQ?.level_group || currentQ?.level || "SSC Standard"}</span>
                           </div>
-
-                          <div className="flex items-center space-x-2 flex-wrap gap-1">
-                            {/* Per-Question Mini Stopwatch (Turns RED beyond 40 seconds) */}
-                            <div
-                              className={`px-2.5 py-0.5 rounded-full text-xs font-mono font-bold flex items-center space-x-1 border transition-all ${
-                                currentQuestionTime > 40
-                                  ? "bg-rose-100 border-rose-400 text-rose-700 font-black animate-pulse shadow-xs ring-1 ring-rose-300"
-                                  : "bg-[#F3EFE6] border-[#DDD7CC] text-slate-700"
-                              }`}
-                              title={currentQuestionTime > 40 ? "Speed Alert: You have exceeded 40 seconds on this question!" : "Time spent on this question"}
-                            >
-                              <span className={currentQuestionTime > 40 ? "text-rose-600 font-black" : "text-slate-500"}>⏱️</span>
-                              <span>{currentQuestionTime}s</span>
-                              {currentQuestionTime > 40 && (
-                                <span className="text-[9px] bg-rose-600 text-white px-1.5 py-0.2 rounded font-sans font-bold uppercase tracking-wider">
-                                  &gt;40s Alert!
-                                </span>
-                              )}
-                            </div>
-
-                            {/* Inline Quick Language Switch Button */}
-                            <div className="inline-flex items-center bg-[#F3EFE6] border border-[#DDD7CC] p-0.5 rounded-full shadow-2xs">
-                              <button
-                                type="button"
-                                onClick={() => setLanguage('EN')}
-                                className={`px-2.5 py-0.5 rounded-full text-[11px] font-bold transition-all flex items-center space-x-1 ${
-                                  language === 'EN'
-                                    ? "bg-[#182030] text-white shadow-xs"
-                                    : "text-slate-600 hover:text-slate-900"
-                                }`}
-                                title="View in English"
-                              >
-                                <span>🇬🇧</span>
-                                <span>EN</span>
-                              </button>
-                              <button
-                                type="button"
-                                onClick={() => setLanguage('HI')}
-                                className={`px-2.5 py-0.5 rounded-full text-[11px] font-bold transition-all flex items-center space-x-1 ${
-                                  language === 'HI'
-                                    ? "bg-[#182030] text-white shadow-xs"
-                                    : "text-slate-600 hover:text-slate-900"
-                                }`}
-                                title="View in Hindi (हिन्दी)"
-                              >
-                                <span>🇮🇳</span>
-                                <span>HI</span>
-                              </button>
-                            </div>
-
-                            {/* Bookmark / Save Button */}
-                            <button
-                              onClick={toggleReview}
-                              className={`flex items-center space-x-1.5 text-xs font-bold transition px-2 py-0.5 rounded-lg ${
-                                markedForReview.has(currentIndex)
-                                  ? "bg-amber-100 text-amber-900 font-extrabold"
-                                  : "text-slate-500 hover:text-slate-900"
-                              }`}
-                              title="Save / Bookmark for Review"
-                            >
-                              <svg className="w-3.5 h-3.5" fill={markedForReview.has(currentIndex) ? "currentColor" : "none"} stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" />
-                              </svg>
-                              <span>Save</span>
-                            </button>
-
-                            {/* Marks Badge */}
-                            <span className="font-mono text-[10px] text-slate-400 font-bold px-2 py-0.5 bg-slate-100 rounded-md">
-                              +2 / -0.5
-                            </span>
-                          </div>
+                          <span className="text-emerald-700 font-bold">+2.0 / -0.5</span>
                         </div>
-
-                        {/* GREEN TYPE BAR */}
-                        {(currentQ?.type_label || currentQ?.type_category || currentQ?.type_code) && (
-                          <div className="bg-gradient-to-r from-emerald-600 via-emerald-500 to-teal-600 text-white px-3.5 py-2 rounded-xl flex items-center justify-between shadow-xs border border-emerald-700/20">
-                            <div className="flex items-center space-x-2 min-w-0">
-                              <span className="bg-emerald-800/90 text-white text-[11px] font-mono font-extrabold px-2 py-0.5 rounded-md tracking-wider uppercase shrink-0 shadow-2xs">
-                                {currentQ.type_code || `Type ${((currentQ.question_number - 1) % (questions.length === 25 ? 5 : 8)) + 1}`}
-                              </span>
-                              <span className="font-bold text-xs sm:text-sm text-white tracking-tight truncate">
-                                {language === 'HI' && currentQ.type_category_hi ? currentQ.type_category_hi : (currentQ.type_category || currentQ.type_label)}
-                              </span>
-                            </div>
-                            {currentQ.level && (
-                              <span className="hidden sm:inline-block bg-white/20 backdrop-blur-xs text-white text-[11px] font-semibold px-2.5 py-0.5 rounded-full shrink-0 ml-2">
-                                {currentQ.level}
-                              </span>
-                            )}
-                          </div>
-                        )}
 
                         {/* Question Text */}
                         <div className="py-1">
-                          <p className="text-slate-900 text-sm sm:text-base font-semibold leading-relaxed whitespace-pre-line font-['Plus_Jakarta_Sans','Noto_Sans_Devanagari',sans-serif]">
+                          <p className="text-slate-900 text-base sm:text-lg font-semibold leading-relaxed whitespace-pre-line font-['Plus_Jakarta_Sans','Noto_Sans_Devanagari',sans-serif]">
                             {currentQuestionText}
                           </p>
                         </div>
-
                       </div>
 
-                      {/* OPTION CARDS (Separate rectangular cards with numbered badge & bottom-right tag) */}
+                      {/* OPTION CARDS */}
                       <div className="space-y-2.5">
-                        {Object.entries(currentOptions).map(([key, val], optIdx) => {
+                        {Object.entries(currentOptions).map(([key, val]) => {
                           const isSelected = selectedAnswers[currentIndex] === key;
                           const isAnswered = selectedAnswers[currentIndex] !== undefined;
-                          const isCorrectOption = key === currentQ?.correct_option;
-                          
-                          // Show immediate validation if option is selected or if test is submitted
-                          const showValidation = submitted || (isAnswered && isSelected);
-                          const isWrongSelection = showValidation && isSelected && !isCorrectOption;
-                          const isRightSelection = (showValidation && isSelected && isCorrectOption) || (submitted && isCorrectOption);
+                          const isCorrectOption = key.toLowerCase() === (currentQ?.correct_option || '').toLowerCase();
+
+                          // Show immediate validation ONLY when an answer is chosen or if test is submitted
+                          const showValidation = submitted || isAnswered;
+                          const isChosenRight = showValidation && isSelected && isCorrectOption;
+                          const isChosenWrong = showValidation && isSelected && !isCorrectOption;
+                          const isRightKey = showValidation && isCorrectOption;
 
                           let cardStyle = "bg-white border-[#DDD7CC] hover:border-slate-400 hover:bg-slate-50/70 text-slate-800 shadow-xs";
-                          let badgeStyle = "border-slate-300 bg-white text-slate-500 font-bold";
+                          let badgeStyle = "border-slate-300 bg-slate-50 text-slate-700 font-bold";
 
-                          if (isRightSelection) {
-                            cardStyle = "bg-[#F0FDF4] border-[#22C55E] shadow-sm";
-                            badgeStyle = "bg-[#10B981] border-[#10B981] text-white font-bold";
-                          } else if (isWrongSelection) {
-                            cardStyle = "bg-[#FFF0F3] border-[#F43F5E] shadow-sm";
-                            badgeStyle = "bg-[#E11D48] border-[#E11D48] text-white font-bold";
+                          if (isChosenRight) {
+                            cardStyle = "bg-[#F0FDF4] border-[#22C55E] text-emerald-950 shadow-sm ring-1 ring-[#22C55E]";
+                            badgeStyle = "bg-[#10B981] border-[#10B981] text-white font-black";
+                          } else if (isChosenWrong) {
+                            cardStyle = "bg-[#FFF0F3] border-[#F43F5E] text-rose-950 shadow-sm ring-1 ring-[#F43F5E]";
+                            badgeStyle = "bg-[#E11D48] border-[#E11D48] text-white font-black";
+                          } else if (isRightKey) {
+                            cardStyle = "bg-[#F0FDF4] border-[#22C55E] text-emerald-950 shadow-sm";
+                            badgeStyle = "bg-[#10B981] border-[#10B981] text-white font-black";
                           } else if (isSelected) {
-                            cardStyle = "bg-slate-50 border-slate-800 ring-1 ring-slate-800 text-slate-900";
+                            cardStyle = "bg-slate-50 border-slate-900 ring-1 ring-slate-900 text-slate-950 font-semibold";
                             badgeStyle = "bg-slate-900 border-slate-900 text-white font-bold";
                           }
 
@@ -2375,23 +2364,23 @@
                               onClick={() => handleOptionSelect(key)}
                               className={`relative flex items-center p-3.5 sm:p-4 rounded-xl sm:rounded-2xl border transition-all cursor-pointer select-none overflow-hidden ${cardStyle}`}
                             >
-                              {/* Number Badge Circle (1, 2, 3, 4) */}
-                              <span className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full border flex items-center justify-center font-bold text-xs sm:text-sm mr-3.5 shrink-0 transition-all ${badgeStyle}`}>
-                                {optIdx + 1}
+                              {/* Option Badge (A, B, C, D) */}
+                              <span className={`w-8 h-8 sm:w-9 sm:h-9 rounded-xl border flex items-center justify-center font-mono font-black text-xs sm:text-sm mr-3.5 shrink-0 transition-all ${badgeStyle}`}>
+                                {key.toUpperCase()}
                               </span>
 
-                              {/* Option Content */}
-                              <span className="text-slate-900 font-medium text-xs sm:text-sm pr-20 leading-relaxed font-['Plus_Jakarta_Sans','Noto_Sans_Devanagari',sans-serif]">
+                              {/* Option Content Text */}
+                              <span className="text-slate-900 font-medium text-sm sm:text-base pr-24 leading-relaxed font-['Plus_Jakarta_Sans','Noto_Sans_Devanagari',sans-serif]">
                                 {val}
                               </span>
 
-                              {/* Status Tag on Bottom-Right Corner */}
-                              {isWrongSelection && (
+                              {/* Status Feedback Tag on Bottom-Right */}
+                              {isChosenWrong && (
                                 <span className="absolute bottom-0 right-0 bg-[#E11D48] text-white text-[10px] sm:text-[11px] font-bold px-3 py-0.5 rounded-tl-lg shadow-xs animate-fade-in">
-                                  ✕ Incorrect
+                                  ✕ Incorrect Choice
                                 </span>
                               )}
-                              {isRightSelection && (
+                              {(isChosenRight || isRightKey) && (
                                 <span className="absolute bottom-0 right-0 bg-[#10B981] text-white text-[10px] sm:text-[11px] font-bold px-3 py-0.5 rounded-tl-lg shadow-xs animate-fade-in">
                                   ✓ Correct Answer
                                 </span>
@@ -2401,59 +2390,59 @@
                         })}
                       </div>
 
-                      {/* SOLUTION DRAWER (Shown when answered or on test submit) */}
+                      {/* SOLUTION & CORRECT ANSWER DRAWER: STRICTLY SHOWN ONLY WHEN CLICKED ON ANSWER */}
                       {(submitted || selectedAnswers[currentIndex] !== undefined) && (
-                        <div className="bg-white border border-emerald-300 rounded-2xl p-4 sm:p-5 shadow-xs space-y-3.5 animate-fade-in mt-3">
-                          {/* Solution Header with Language Switcher & Answer Badge */}
-                          <div className="flex items-center justify-between border-b border-emerald-100 pb-2.5 flex-wrap gap-2">
-                            <div className="flex items-center space-x-2 text-emerald-900 font-black text-xs sm:text-sm">
-                              <span className="text-base">💡</span>
-                              <span>Solution & Answer: Option ({currentQ?.correct_option?.toUpperCase()})</span>
+                        <div className="bg-white border border-emerald-300 rounded-2xl p-4 sm:p-6 shadow-sm space-y-4 animate-fade-in mt-4">
+                          {/* Solution Header */}
+                          <div className="flex items-center justify-between border-b border-emerald-100 pb-3 flex-wrap gap-2">
+                            <div className="flex items-center space-x-2 text-emerald-950 font-black text-sm sm:text-base">
+                              <span className="w-7 h-7 rounded-full bg-emerald-100 text-emerald-800 flex items-center justify-center text-sm font-black">✓</span>
+                              <span>Correct Answer: Option ({currentQ?.correct_option?.toUpperCase()})</span>
                             </div>
                             <div className="flex items-center space-x-2">
                               {/* Inline Solution Language Toggle */}
-                              <div className="inline-flex items-center bg-emerald-50 border border-emerald-200 p-0.5 rounded-full text-[10px] font-bold">
+                              <div className="inline-flex items-center bg-emerald-50 border border-emerald-200 p-0.5 rounded-full text-[11px] font-bold">
                                 <button
                                   type="button"
                                   onClick={() => setLanguage('EN')}
-                                  className={`px-2 py-0.5 rounded-full transition ${language === 'EN' ? 'bg-emerald-700 text-white' : 'text-emerald-800 hover:bg-emerald-100'}`}
+                                  className={`px-2.5 py-0.5 rounded-full transition ${language === 'EN' ? 'bg-emerald-700 text-white' : 'text-emerald-800 hover:bg-emerald-100'}`}
                                 >
-                                  English
+                                  EN
                                 </button>
                                 <button
                                   type="button"
                                   onClick={() => setLanguage('HI')}
-                                  className={`px-2 py-0.5 rounded-full transition ${language === 'HI' ? 'bg-emerald-700 text-white' : 'text-emerald-800 hover:bg-emerald-100'}`}
+                                  className={`px-2.5 py-0.5 rounded-full transition ${language === 'HI' ? 'bg-emerald-700 text-white' : 'text-emerald-800 hover:bg-emerald-100'}`}
                                 >
-                                  हिन्दी
+                                  HI
                                 </button>
                               </div>
-                              <span className="font-mono text-[10px] bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded-full font-bold">
+                              <span className="font-mono text-[10px] bg-emerald-100 text-emerald-900 px-2 py-0.5 rounded-full font-bold">
                                 Official Key
                               </span>
                             </div>
                           </div>
 
-                          {/* Detailed Step-by-Step Solution */}
+                          {/* Step-by-Step Detailed Solution */}
                           <div className="space-y-1.5">
-                            <span className="font-mono text-[10px] font-bold text-slate-500 uppercase tracking-wider block">
+                            <span className="font-mono text-[11px] font-bold text-slate-500 uppercase tracking-wider block">
                               {language === 'HI' ? 'विस्तृत समाधान (Detailed Solution):' : 'Detailed Step-by-Step Solution:'}
                             </span>
-                            <p className="text-slate-800 text-xs sm:text-sm leading-relaxed whitespace-pre-line bg-[#FAF8F5] p-3.5 rounded-xl border border-[#E5DFD5] font-['Plus_Jakarta_Sans','Noto_Sans_Devanagari',sans-serif]">
+                            <div className="text-slate-800 text-xs sm:text-sm leading-relaxed whitespace-pre-line bg-[#FAF8F5] p-4 rounded-xl border border-[#E5DFD5] font-['Plus_Jakarta_Sans','Noto_Sans_Devanagari',sans-serif]">
                               {currentSolution}
-                            </p>
+                            </div>
                           </div>
 
-                          {/* Shortcut / Exam Trick (if available) */}
+                          {/* Fast Shortcut / Exam Trick (if available) */}
                           {currentShortcut && (
                             <div className="space-y-1.5">
                               <div className="flex items-center space-x-1.5">
-                                <span className="text-amber-600 font-bold text-xs">⚡</span>
-                                <span className="font-mono text-[10px] font-extrabold text-amber-900 uppercase tracking-wider">
+                                <span className="text-amber-600 font-bold text-sm">⚡</span>
+                                <span className="font-mono text-[11px] font-extrabold text-amber-900 uppercase tracking-wider">
                                   {language === 'HI' ? 'शॉर्टकट / परीक्षा ट्रिक (Shortcut Trick):' : 'Super-Fast Exam Trick / Shortcut:'}
                                 </span>
                               </div>
-                              <div className="bg-amber-50/90 border border-amber-300 text-amber-950 p-3.5 rounded-xl text-xs sm:text-sm leading-relaxed whitespace-pre-line font-medium shadow-2xs font-['Plus_Jakarta_Sans','Noto_Sans_Devanagari',sans-serif]">
+                              <div className="bg-amber-50/90 border border-amber-300 text-amber-950 p-4 rounded-xl text-xs sm:text-sm leading-relaxed whitespace-pre-line font-medium shadow-2xs font-['Plus_Jakarta_Sans','Noto_Sans_Devanagari',sans-serif]">
                                 {currentShortcut}
                               </div>
                             </div>
@@ -2465,37 +2454,34 @@
                       <div className="pt-2 flex items-center justify-between gap-2 bg-white p-3 rounded-xl border border-[#DDD7CC] text-xs">
                         <div className="flex items-center space-x-1.5 text-slate-700 font-semibold">
                           <span>⭐</span>
-                          <span>Quality Rating:</span>
+                          <span>Question Quality:</span>
                         </div>
 
                         <div className="flex items-center space-x-1.5">
                           <button
                             onClick={() => handleFeedbackSubmit('Good')}
-                            className={`py-1 px-2.5 rounded-lg text-xs font-bold border transition ${
-                              currentFeedback === 'Good'
-                                ? "bg-emerald-600 text-white border-emerald-600"
-                                : "bg-slate-50 text-slate-700 border-slate-200 hover:bg-slate-100"
-                            }`}
+                            className={`py-1 px-2.5 rounded-lg text-xs font-bold border transition ${currentFeedback === 'Good'
+                              ? "bg-emerald-600 text-white border-emerald-600"
+                              : "bg-slate-50 text-slate-700 border-slate-200 hover:bg-slate-100"
+                              }`}
                           >
                             Good
                           </button>
                           <button
                             onClick={() => handleFeedbackSubmit('Neutral')}
-                            className={`py-1 px-2.5 rounded-lg text-xs font-bold border transition ${
-                              currentFeedback === 'Neutral'
-                                ? "bg-slate-800 text-white border-slate-800"
-                                : "bg-slate-50 text-slate-700 border-slate-200 hover:bg-slate-100"
-                            }`}
+                            className={`py-1 px-2.5 rounded-lg text-xs font-bold border transition ${currentFeedback === 'Neutral'
+                              ? "bg-slate-800 text-white border-slate-800"
+                              : "bg-slate-50 text-slate-700 border-slate-200 hover:bg-slate-100"
+                              }`}
                           >
                             Neutral
                           </button>
                           <button
                             onClick={() => handleFeedbackSubmit('Bad')}
-                            className={`py-1 px-2.5 rounded-lg text-xs font-bold border transition ${
-                              currentFeedback === 'Bad'
-                                ? "bg-rose-600 text-white border-rose-600"
-                                : "bg-slate-50 text-slate-700 border-slate-200 hover:bg-slate-100"
-                            }`}
+                            className={`py-1 px-2.5 rounded-lg text-xs font-bold border transition ${currentFeedback === 'Bad'
+                              ? "bg-rose-600 text-white border-rose-600"
+                              : "bg-slate-50 text-slate-700 border-slate-200 hover:bg-slate-100"
+                              }`}
                           >
                             Bad
                           </button>
@@ -2537,7 +2523,7 @@
 
                 </div>
 
-                {/* FIXED MODAL FOOTER ACTION BAR */}
+                {/* 6. FIXED MODAL FOOTER ACTION BAR */}
                 <div className="p-3 sm:p-4 bg-white border-t border-[#E2DDD3] flex items-center justify-between gap-2 shrink-0">
                   <div className="flex items-center space-x-2">
                     <button
@@ -2548,7 +2534,7 @@
                       }}
                       className="py-2 px-3 rounded-xl text-xs font-bold bg-[#FAF8F5] border border-[#DDD7CC] text-slate-600 hover:bg-[#EAE5DA]"
                     >
-                      Clear
+                      Clear Choice
                     </button>
                   </div>
 
@@ -2582,7 +2568,7 @@
                 {activeLevelMilestone && (
                   <div className="fixed inset-0 z-[70] flex items-center justify-center p-3 sm:p-6 bg-slate-950/75 backdrop-blur-md animate-fade-in">
                     <div className="bg-[#FAF8F5] border border-[#DDD7CC] rounded-3xl w-full max-w-xl max-h-[90vh] flex flex-col shadow-2xl overflow-hidden text-slate-800 animate-fade-in">
-                      
+
                       {/* Modal Header */}
                       <div className="p-5 sm:p-6 bg-white border-b border-[#E2DDD3] text-center space-y-1.5 relative">
                         <span className="inline-block text-3xl sm:text-4xl animate-bounce">🎉</span>
@@ -2596,7 +2582,7 @@
 
                       {/* Modal Scrollable Body */}
                       <div className="p-4 sm:p-6 overflow-y-auto space-y-4 flex-1">
-                        
+
                         {/* Score & Accuracy KPI Grid */}
                         <div className="grid grid-cols-4 gap-2 text-center font-mono">
                           <div className="bg-white p-2.5 rounded-2xl border border-[#DDD7CC]">
@@ -2718,7 +2704,7 @@
           {showAnalyticsModal && (
             <div className="fixed inset-0 z-50 flex items-center justify-center p-2.5 sm:p-6 bg-slate-950/60 backdrop-blur-sm animate-fade-in">
               <div className="bg-[#F8F6F0] border border-[#DDD7CC] rounded-3xl w-full max-w-4xl max-h-[95vh] flex flex-col shadow-2xl overflow-hidden text-slate-800">
-                
+
                 {/* Modal Header */}
                 <div className="p-4 sm:p-6 bg-white border-b border-[#E2DDD3] flex items-center justify-between gap-3 shrink-0">
                   <div className="space-y-0.5">
@@ -2742,16 +2728,15 @@
 
                 {/* Subject Filter Bar & Analytics Navigation Tabs */}
                 <div className="px-3 sm:px-6 py-2.5 bg-[#EFEAE1] border-b border-[#DDD7CC] flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2 shrink-0">
-                  
+
                   {/* Subject Pills */}
                   <div className="grid grid-cols-4 sm:flex items-center bg-white/70 p-1 rounded-full border border-[#DDD7CC] text-[11px] sm:text-xs font-bold gap-0.5">
                     <button
                       onClick={() => setAnalyticsSubjectFilter("all")}
-                      className={`py-1 px-2.5 rounded-full transition text-center truncate ${
-                        analyticsSubjectFilter === "all"
-                          ? "bg-[#182030] text-white shadow-sm"
-                          : "text-slate-600 hover:text-slate-900"
-                      }`}
+                      className={`py-1 px-2.5 rounded-full transition text-center truncate ${analyticsSubjectFilter === "all"
+                        ? "bg-[#182030] text-white shadow-sm"
+                        : "text-slate-600 hover:text-slate-900"
+                        }`}
                     >
                       All
                     </button>
@@ -2759,11 +2744,10 @@
                       <button
                         key={subj.id}
                         onClick={() => setAnalyticsSubjectFilter(subj.id)}
-                        className={`py-1 px-2.5 rounded-full transition text-center truncate ${
-                          analyticsSubjectFilter === subj.id
-                            ? "bg-[#182030] text-white shadow-sm"
-                            : "text-slate-600 hover:text-slate-900"
-                        }`}
+                        className={`py-1 px-2.5 rounded-full transition text-center truncate ${analyticsSubjectFilter === subj.id
+                          ? "bg-[#182030] text-white shadow-sm"
+                          : "text-slate-600 hover:text-slate-900"
+                          }`}
                       >
                         {subj.shortName}
                       </button>
@@ -2774,31 +2758,28 @@
                   <div className="grid grid-cols-3 sm:flex items-center bg-white/70 p-1 rounded-full border border-[#DDD7CC] text-[11px] sm:text-xs font-bold gap-0.5">
                     <button
                       onClick={() => setAnalyticsActiveTab("weak_types")}
-                      className={`py-1 px-3 rounded-full transition text-center truncate ${
-                        analyticsActiveTab === "weak_types"
-                          ? "bg-[#182030] text-white shadow-sm"
-                          : "text-slate-600 hover:text-slate-900"
-                      }`}
+                      className={`py-1 px-3 rounded-full transition text-center truncate ${analyticsActiveTab === "weak_types"
+                        ? "bg-[#182030] text-white shadow-sm"
+                        : "text-slate-600 hover:text-slate-900"
+                        }`}
                     >
                       <span>🎯 Weak ({analyticsData.weakTopics.length})</span>
                     </button>
                     <button
                       onClick={() => setAnalyticsActiveTab("subjects")}
-                      className={`py-1 px-3 rounded-full transition text-center truncate ${
-                        analyticsActiveTab === "subjects"
-                          ? "bg-[#182030] text-white shadow-sm"
-                          : "text-slate-600 hover:text-slate-900"
-                      }`}
+                      className={`py-1 px-3 rounded-full transition text-center truncate ${analyticsActiveTab === "subjects"
+                        ? "bg-[#182030] text-white shadow-sm"
+                        : "text-slate-600 hover:text-slate-900"
+                        }`}
                     >
                       <span>📊 Matrix</span>
                     </button>
                     <button
                       onClick={() => setAnalyticsActiveTab("history")}
-                      className={`py-1 px-3 rounded-full transition text-center truncate ${
-                        analyticsActiveTab === "history"
-                          ? "bg-[#182030] text-white shadow-sm"
-                          : "text-slate-600 hover:text-slate-900"
-                      }`}
+                      className={`py-1 px-3 rounded-full transition text-center truncate ${analyticsActiveTab === "history"
+                        ? "bg-[#182030] text-white shadow-sm"
+                        : "text-slate-600 hover:text-slate-900"
+                        }`}
                     >
                       <span>📜 Log ({analyticsData.records.length})</span>
                     </button>
@@ -2808,10 +2789,10 @@
 
                 {/* Scrollable Modal Content */}
                 <div className="p-4 sm:p-6 overflow-y-auto flex-1 space-y-4 sm:space-y-6">
-                  
+
                   {/* TOP 4-METRIC CARDS GRID */}
                   <div className="grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-4">
-                    
+
                     {/* 1. Questions Attempted */}
                     <div className="bg-white border border-[#E2DDD3] p-4 rounded-2xl shadow-xs">
                       <span className="font-mono text-[10px] font-bold text-[#8C827A] uppercase tracking-wider block truncate">Attempted</span>
@@ -2867,7 +2848,7 @@
                   {/* TAB 1: WEAK QUESTION TYPES & FOCUS AREAS */}
                   {analyticsActiveTab === "weak_types" && (
                     <div className="space-y-4 sm:space-y-6">
-                      
+
                       <div>
                         <div className="flex items-center justify-between mb-3">
                           <h3 className="font-serif text-base sm:text-lg font-bold text-[#182030] flex items-center gap-1.5">
@@ -3002,7 +2983,7 @@
                       <h3 className="font-serif text-base sm:text-lg font-bold text-[#182030]">
                         Subject-wise Performance Matrix
                       </h3>
-                      
+
                       <div className="grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-4">
                         {analyticsData.subjectsBreakdown.map(subj => (
                           <div key={subj.id} className="bg-white border border-[#E2DDD3] rounded-2xl p-5 space-y-3 flex flex-col justify-between shadow-xs">
@@ -3092,9 +3073,8 @@
                                     <span className="text-emerald-700">{rec.correctCount}</span> / <span className="text-slate-500">{rec.attemptedCount}</span>
                                   </td>
                                   <td className="px-3.5 py-2.5 text-center font-mono font-bold">
-                                    <span className={`px-1.5 py-0.5 rounded ${
-                                      rec.accuracy >= 75 ? "bg-emerald-50 text-emerald-800" : rec.accuracy >= 60 ? "bg-amber-50 text-amber-800" : "bg-rose-50 text-rose-800"
-                                    }`}>
+                                    <span className={`px-1.5 py-0.5 rounded ${rec.accuracy >= 75 ? "bg-emerald-50 text-emerald-800" : rec.accuracy >= 60 ? "bg-amber-50 text-amber-800" : "bg-rose-50 text-rose-800"
+                                      }`}>
                                       {rec.accuracy}%
                                     </span>
                                   </td>
@@ -3150,4 +3130,5 @@
     ReactDOM.createRoot(document.getElementById("root")).render(<App />);
   </script>
 </body>
+
 </html>
