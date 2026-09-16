@@ -1504,7 +1504,876 @@ const RATIO_SET_B_QUESTIONS = [
   }
 ];
 
+
+// ==========================================
+// PRACTICE SET C (30 QUESTIONS: Q1 to Q30)
+// Levels 1 to 5 with English & Hindi, Options, Step-by-Step Solutions & Exam Tricks
+// ==========================================
+const RATIO_SET_C_QUESTIONS = [
+  // ==========================================
+  // LEVEL 1: MODERATE (Q1 to Q6)
+  // ==========================================
+  {
+    question_number: 1,
+    practice_set: "SET C",
+    level: "Level 1: Moderate",
+    level_group: "Level 1: Moderate",
+    type_code: "Type 3",
+    type_category: "Age Ratios & Shifts",
+    type_category_hi: "आयु अनुपात और परिवर्तन",
+    question_text: "The ages of A and B are in the ratio 5:8. After 6 years, the ratio becomes 3:4. What is A's present age?",
+    question_text_hi: "A और B की आयु का अनुपात 5:8 है। 6 वर्ष बाद, यह अनुपात 3:4 हो जाता है। A की वर्तमान आयु क्या है?",
+    options: {
+      a: "9",
+      b: "9.7",
+      c: "7.5",
+      d: "11"
+    },
+    options_hi: {
+      a: "9",
+      b: "9.7",
+      c: "7.5",
+      d: "11"
+    },
+    correct_option: "c",
+    solution_text: "Let the present ages of A and B be 5x and 8x.\nAfter 6 years:\n(5x + 6) / (8x + 6) = 3/4\nCross-multiplying:\n4(5x + 6) = 3(8x + 6)\n20x + 24 = 24x + 18\n24x - 20x = 24 - 18\n4x = 6 => x = 1.5\nA's present age = 5x = 5 × 1.5 = 7.5 years.",
+    solution_text_hi: "माना A और B की वर्तमान आयु 5x और 8x है।\n6 वर्ष बाद:\n(5x + 6) / (8x + 6) = 3/4\nतिर्यक गुणा करने पर:\n20x + 24 = 24x + 18\n4x = 6 => x = 1.5\nA की वर्तमान आयु = 5x = 5 × 1.5 = 7.5 वर्ष।",
+    shortcut_text: "Cross-Product Method:\nInitial: 5 : 8, Future: 3 : 4\n|5×4 - 8×3| = |20 - 24| = 4 units\nAge difference term = (4 - 3) × 6 = 6\n4 units = 6 => 1 unit = 1.5\nA's age = 5 × 1.5 = 7.5 years.",
+    shortcut_text_hi: "क्रॉस-गुणा विधि:\n|5×4 - 8×3| = 4 इकाई\nआयु अंतर = (4 - 3) × 6 = 6\n4 इकाई = 6 => 1 इकाई = 1.5\nA की आयु = 5 × 1.5 = 7.5 वर्ष।"
+  },
+  {
+    question_number: 2,
+    practice_set: "SET C",
+    level: "Level 1: Moderate",
+    level_group: "Level 1: Moderate",
+    type_code: "Type 1",
+    type_category: "Direct Proportion & Recipes",
+    type_category_hi: "सीधा समानुपात और व्यंजन विधि",
+    question_text: "A recipe calls for 3 parts of sugar for every 4 parts of flour. If a baker uses 12 cups of sugar, how many cups of flour does he need to use to maintain the same ratio?",
+    question_text_hi: "एक रेसिपी में हर 4 भाग आटे के लिए 3 भाग चीनी की आवश्यकता होती है। यदि एक बेकर 12 कप चीनी का उपयोग करता है, तो उसे अनुपात बनाए रखने के लिए कितने कप आटे की आवश्यकता होगी?",
+    options: {
+      a: "16",
+      b: "15",
+      c: "18",
+      d: "14"
+    },
+    options_hi: {
+      a: "16",
+      b: "15",
+      c: "18",
+      d: "14"
+    },
+    correct_option: "a",
+    solution_text: "Ratio of Sugar to Flour = 3 : 4.\nGiven sugar used = 12 cups.\n3 units = 12 cups => 1 unit = 4 cups.\nFlour needed = 4 units = 4 × 4 = 16 cups.",
+    solution_text_hi: "चीनी और आटे का अनुपात = 3 : 4।\nदी गई चीनी = 12 कप।\n3 इकाई = 12 कप => 1 इकाई = 4 कप।\nआवश्यक आटा = 4 इकाई = 4 × 4 = 16 कप।",
+    shortcut_text: "Direct scaling factor:\n12 / 3 = 4 multiplier.\nFlour = 4 × 4 = 16 cups.",
+    shortcut_text_hi: "स्केलिंग कारक = 12 / 3 = 4 गुना।\nआटा = 4 × 4 = 16 कप।"
+  },
+  {
+    question_number: 3,
+    practice_set: "SET C",
+    level: "Level 1: Moderate",
+    level_group: "Level 1: Moderate",
+    type_code: "Type 1",
+    type_category: "Continued Compound Ratio",
+    type_category_hi: "सतत संयुक्त अनुपात",
+    question_text: "If a:b = 1:3, b:c = 5:7 and c:d = 9:5 then the value of a:b:c:d is:",
+    question_text_hi: "यदि a:b = 1:3, b:c = 5:7 और c:d = 9:5 है, तो a:b:c:d का मान है:",
+    options: {
+      a: "15:75:105:35",
+      b: "5:75:105:35",
+      c: "15:45:63:35",
+      d: "25:75:105:45"
+    },
+    options_hi: {
+      a: "15:75:105:35",
+      b: "5:75:105:35",
+      c: "15:45:63:35",
+      d: "25:75:105:45"
+    },
+    correct_option: "c",
+    solution_text: "To find continuous ratio a:b:c:d:\n1) a:b = 1:3 = 5:15\n2) b:c = 5:7 = 15:21 => a:b:c = 5:15:21\n3) Multiply by 3 to align c with c:d (9:5):\na:b:c = 15:45:63\nSince c:d = 9:5 = 63:35 (multiplied by 7),\na:b:c:d = 15:45:63:35.",
+    solution_text_hi: "सतत अनुपात a:b:c:d ज्ञात करने के लिए:\na:b = 1:3 = 5:15\nb:c = 5:7 = 15:21 => a:b:c = 5:15:21\nc:d = 9:5 के साथ c को 63 पर संरेखित करने के लिए:\na:b:c = 15:45:63 तथा c:d = 63:35\nअतः a:b:c:d = 15:45:63:35।",
+    shortcut_text: "Check options:\na:b must be 1:3 => 15:45 = 1:3.\nc:d must be 9:5 => 63:35 = 9:5.\nOnly option (c) satisfies both.",
+    shortcut_text_hi: "विकल्प जांचें:\na:b = 15:45 = 1:3 और c:d = 63:35 = 9:5।\nकेवल विकल्प (c) दोनों को संतुष्ट करता है।"
+  },
+  {
+    question_number: 4,
+    practice_set: "SET C",
+    level: "Level 1: Moderate",
+    level_group: "Level 1: Moderate",
+    type_code: "Type 2",
+    type_category: "Percentage & Ratio Equations",
+    type_category_hi: "प्रतिशत और अनुपात समीकरण",
+    question_text: "Two numbers A and B are such that the sum of 10% of A and 20% of B is equal to three-fourths the sum of 20% of A and 10% of B. Find the ratio of A to B.",
+    question_text_hi: "दो संख्याएँ A और B इस प्रकार हैं कि A के 10% और B के 20% का योग, A के 20% और B के 10% के योग के तीन-चौथाई के बराबर है। A और B का अनुपात ज्ञात कीजिए।",
+    options: {
+      a: "2:5",
+      b: "5:3",
+      c: "5:2",
+      d: "3:5"
+    },
+    options_hi: {
+      a: "2:5",
+      b: "5:3",
+      c: "5:2",
+      d: "3:5"
+    },
+    correct_option: "c",
+    solution_text: "According to the question:\n10% of A + 20% of B = (3/4) × (20% of A + 10% of B)\n0.10 A + 0.20 B = (3/4) × (0.20 A + 0.10 B)\nMultiply both sides by 4:\n0.40 A + 0.80 B = 0.60 A + 0.30 B\n0.80 B - 0.30 B = 0.60 A - 0.40 A\n0.50 B = 0.20 A\nA / B = 0.50 / 0.20 = 5 / 2\nA : B = 5 : 2.",
+    solution_text_hi: "प्रश्नानुसार:\n0.10 A + 0.20 B = (3/4)(0.20 A + 0.10 B)\n4 से दोनों पक्षों को गुणा करने पर:\n0.40 A + 0.80 B = 0.60 A + 0.30 B\n0.50 B = 0.20 A => A / B = 5 / 2\nA : B = 5 : 2।",
+    shortcut_text: "4(10A + 20B) = 3(20A + 10B)\n40A + 80B = 60A + 30B\n50B = 20A => A : B = 5 : 2.",
+    shortcut_text_hi: "50B = 20A => A : B = 5 : 2।"
+  },
+  {
+    question_number: 5,
+    practice_set: "SET C",
+    level: "Level 1: Moderate",
+    level_group: "Level 1: Moderate",
+    type_code: "Type 6",
+    type_category: "Proportional Division & Fractions",
+    type_category_hi: "आनुपातिक विभाजन और भिन्न",
+    question_text: "If 2820 is divided into two parts such that one-fifth of the first part and one-eighth of the second part are in the ratio 3:4, what is the ratio of the first part to the second part?",
+    question_text_hi: "यदि 2820 को दो भागों में इस प्रकार विभाजित किया जाता है कि पहले भाग का 1/5 और दूसरे भाग का 1/8, 3:4 के अनुपात में हो, तो पहले और दूसरे भाग का अनुपात क्या है?",
+    options: {
+      a: "18:19",
+      b: "15:32",
+      c: "15:37",
+      d: "17:36"
+    },
+    options_hi: {
+      a: "18:19",
+      b: "15:32",
+      c: "15:37",
+      d: "17:36"
+    },
+    correct_option: "b",
+    solution_text: "Let the two parts be x and y.\n(x / 5) / (y / 8) = 3 / 4\n(8x) / (5y) = 3 / 4\nx / y = (3 × 5) / (4 × 8) = 15 / 32\nRatio of first part to second part = 15 : 32.",
+    solution_text_hi: "माना दोनों भाग x और y हैं।\n(x / 5) / (y / 8) = 3 / 4\n8x / 5y = 3 / 4\nx / y = (3 × 5) / (4 × 8) = 15 / 32\nपहले भाग और दूसरे भाग का अनुपात = 15 : 32।",
+    shortcut_text: "x / y = (3/4) × (5/8) = 15/32.\n(Note: The total sum 2820 is not needed to determine the ratio).",
+    shortcut_text_hi: "x / y = (3/4) × (5/8) = 15/32।"
+  },
+  {
+    question_number: 6,
+    practice_set: "SET C",
+    level: "Level 1: Moderate",
+    level_group: "Level 1: Moderate",
+    type_code: "Type 2",
+    type_category: "Salary Percentage Variations",
+    type_category_hi: "वेतन प्रतिशत परिवर्तन",
+    question_text: "The ratio of the salaries of A and B is 4:5. If A's salary is increased by 20% and B's salary is decreased by 10%, what is the new ratio of their salaries?",
+    question_text_hi: "A और B के वेतन का अनुपात 4:5 है। यदि A के वेतन में 20% की वृद्धि और B के वेतन में 10% की कमी की जाती है, तो उनके वेतन का नया अनुपात क्या होगा?",
+    options: {
+      a: "16:15",
+      b: "14:13",
+      c: "15:14",
+      d: "13:12"
+    },
+    options_hi: {
+      a: "16:15",
+      b: "14:13",
+      c: "15:14",
+      d: "13:12"
+    },
+    correct_option: "a",
+    solution_text: "Let initial salaries be 400 and 500.\nA's new salary = 400 × 1.20 = 480\nB's new salary = 500 × 0.90 = 450\nNew ratio = 480 : 450 = 48 : 45 = 16 : 15.",
+    solution_text_hi: "माना प्रारंभिक वेतन 400 और 500 हैं।\nA का नया वेतन = 400 × 1.20 = 480\nB का नया वेतन = 500 × 0.90 = 450\nनया अनुपात = 480 : 450 = 16 : 15।",
+    shortcut_text: "4 × 120 : 5 × 90 = 480 : 450 = 16 : 15.",
+    shortcut_text_hi: "4 × 1.20 : 5 × 0.90 = 4.8 : 4.5 = 16 : 15।"
+  },
+
+  // ==========================================
+  // LEVEL 2: MORE THAN MODERATE (Q7 to Q12)
+  // ==========================================
+  {
+    question_number: 7,
+    practice_set: "SET C",
+    level: "Level 2: More Than Moderate",
+    level_group: "Level 2: More Than Moderate",
+    type_code: "Type 1",
+    type_category: "Income, Expenditure & Equal Savings",
+    type_category_hi: "आय, व्यय और समान बचत",
+    question_text: "The monthly incomes of two friends Tushar and Salil, are in the ratio 6:7 respectively and each of them saves 66,000 every month. If the ratio of their monthly expenditure is 2:4, find the monthly income of Tushar.",
+    question_text_hi: "तुषार और सलिल की मासिक आय 6:7 के अनुपात में है और उनमें से प्रत्येक हर महीने 66,000 बचाता है। यदि उनके मासिक खर्च का अनुपात 2:4 है, तो तुषार की मासिक आय ज्ञात करें।",
+    options: {
+      a: "1,10,880",
+      b: "79,200",
+      c: "78,200",
+      d: "80,200"
+    },
+    options_hi: {
+      a: "1,10,880",
+      b: "79,200",
+      c: "78,200",
+      d: "80,200"
+    },
+    correct_option: "b",
+    solution_text: "Let incomes be 6x and 7x.\nExpenditures: (6x - 66000) / (7x - 66000) = 2/4 = 1/2\nCross-multiplying:\n2(6x - 66000) = 1(7x - 66000)\n12x - 132000 = 7x - 66000\n5x = 66000 => x = 13,200\nTushar's monthly income = 6x = 6 × 13,200 = ₹79,200.",
+    solution_text_hi: "माना आय 6x और 7x है।\n(6x - 66000) / (7x - 66000) = 1/2\n12x - 132000 = 7x - 66000\n5x = 66000 => x = 13,200\nतुषार की मासिक आय = 6 × 13,200 = ₹79,200।",
+    shortcut_text: "Cross-multiplication:\n|6×2 - 7×1| = 5 units.\nDiff of savings = (2 - 1) × 66000 = 66000.\n5 units = 66000 => 1 unit = 13,200.\nTushar = 6 × 13,200 = 79,200.",
+    shortcut_text_hi: "5 इकाई = 66000 => 1 इकाई = 13,200।\nतुषार = 6 × 13,200 = 79,200।"
+  },
+  {
+    question_number: 8,
+    practice_set: "SET C",
+    level: "Level 2: More Than Moderate",
+    level_group: "Level 2: More Than Moderate",
+    type_code: "Type 6",
+    type_category: "Unit Price & Purchase Ratios",
+    type_category_hi: "इकाई मूल्य और खरीद अनुपात",
+    question_text: "The price of each article of type P, Q, and R is 280, 180 and 120, respectively. Subrata buys articles of each type in the ratio 3:2:3 for 6,240. How many articles of type Q did he purchase?",
+    question_text_hi: "प्रकार P, Q, और R की प्रत्येक वस्तु की कीमत क्रमशः 280, 180 और 120 है। सुब्रत 6,240 में 3:2:3 के अनुपात में वस्तुएं खरीदता है। उसने Q प्रकार की कितनी वस्तुएं खरीदीं?",
+    options: {
+      a: "16",
+      b: "8",
+      c: "14",
+      d: "5"
+    },
+    options_hi: {
+      a: "16",
+      b: "8",
+      c: "14",
+      d: "5"
+    },
+    correct_option: "b",
+    solution_text: "Let the quantities of P, Q, R be 3x, 2x, 3x.\nTotal cost = 3x(280) + 2x(180) + 3x(120) = 6240\n840x + 360x + 360x = 6240\n1560x = 6240 => x = 4\nArticles of type Q = 2x = 2 × 4 = 8.",
+    solution_text_hi: "माना P, Q, R की मात्रा 3x, 2x, 3x है।\nकुल लागत = 3x(280) + 2x(180) + 3x(120) = 6240\n1560x = 6240 => x = 4\nQ प्रकार की वस्तुएं = 2x = 2 × 4 = 8।",
+    shortcut_text: "Cost per 1 ratio set = 3(280) + 2(180) + 3(120) = 1560.\nNumber of sets = 6240 / 1560 = 4.\nQ articles = 2 × 4 = 8.",
+    shortcut_text_hi: "1 सेट की लागत = 1560।\nसेटों की संख्या = 6240 / 1560 = 4।\nQ की वस्तुएं = 2 × 4 = 8।"
+  },
+  {
+    question_number: 9,
+    practice_set: "SET C",
+    level: "Level 2: More Than Moderate",
+    level_group: "Level 2: More Than Moderate",
+    type_code: "Type 5",
+    type_category: "Coin Denominations & Quantities",
+    type_category_hi: "सिक्कों के मूल्यवर्ग और संख्या",
+    question_text: "A bag contains coins of 1, 2, and 5 in the ratio 8:4:3. If the total value of the coins is 930, what is the total number of coins in the bag?",
+    question_text_hi: "एक बैग में 1, 2, और 5 के सिक्के 8:4:3 के अनुपात में हैं। यदि सिक्कों का कुल मूल्य 930 है, तो बैग में कुल सिक्कों की संख्या क्या है?",
+    options: {
+      a: "400",
+      b: "450",
+      c: "420",
+      d: "480"
+    },
+    options_hi: {
+      a: "400",
+      b: "450",
+      c: "420",
+      d: "480"
+    },
+    correct_option: "b",
+    solution_text: "Let the number of coins of ₹1, ₹2, ₹5 be 8x, 4x, 3x.\nTotal value = 8x(1) + 4x(2) + 3x(5) = 930\n8x + 8x + 15x = 930\n31x = 930 => x = 30\nTotal coins = 8x + 4x + 3x = 15x = 15 × 30 = 450 coins.",
+    solution_text_hi: "माना ₹1, ₹2, ₹5 के सिक्के 8x, 4x, 3x हैं।\nकुल मूल्य = 8x(1) + 4x(2) + 3x(5) = 930\n31x = 930 => x = 30\nकुल सिक्के = 15x = 15 × 30 = 450।",
+    shortcut_text: "Value per set = 8(1) + 4(2) + 3(5) = 31.\nMultiplier = 930 / 31 = 30.\nTotal coins = (8 + 4 + 3) × 30 = 15 × 30 = 450.",
+    shortcut_text_hi: "प्रति सेट मूल्य = 31।\nगुणक = 930 / 31 = 30।\nकुल सिक्के = 15 × 30 = 450।"
+  },
+  {
+    question_number: 10,
+    practice_set: "SET C",
+    level: "Level 2: More Than Moderate",
+    level_group: "Level 2: More Than Moderate",
+    type_code: "Type 6",
+    type_category: "Splitting Students into Groups",
+    type_category_hi: "समूहों में छात्रों का विभाजन",
+    question_text: "A teacher needs to split 300 students into three groups so that the second and third groups have a ratio of 3:7, and the first and third groups have a ratio of 2:7. Which of the following is the correct number of students in the second group?",
+    question_text_hi: "एक शिक्षक 300 छात्रों को तीन समूहों में इस प्रकार विभाजित करता है कि दूसरे और तीसरे समूह का अनुपात 3:7 हो, और पहले और तीसरे समूह का अनुपात 2:7 हो। दूसरे समूह में छात्रों की संख्या कितनी है?",
+    options: {
+      a: "88",
+      b: "72",
+      c: "75",
+      d: "64"
+    },
+    options_hi: {
+      a: "88",
+      b: "72",
+      c: "75",
+      d: "64"
+    },
+    correct_option: "c",
+    solution_text: "Given ratios:\nSecond : Third = 3 : 7\nFirst : Third = 2 : 7\nSince the Third group has 7 units in both ratios:\nFirst : Second : Third = 2 : 3 : 7\nTotal units = 2 + 3 + 7 = 12 units = 300 students\n1 unit = 300 / 12 = 25 students\nNumber of students in second group = 3 units = 3 × 25 = 75.",
+    solution_text_hi: "अनुपात: दूसरा : तीसरा = 3 : 7 तथा पहला : तीसरा = 2 : 7।\nअतः पहला : दूसरा : तीसरा = 2 : 3 : 7।\nकुल इकाई = 2 + 3 + 7 = 12 = 300 => 1 इकाई = 25।\nदूसरे समूह में छात्र = 3 × 25 = 75।",
+    shortcut_text: "G2 fraction = 3 / (2 + 3 + 7) = 3 / 12 = 1/4.\n1/4 of 300 = 75.",
+    shortcut_text_hi: "3 / 12 = 1/4; 300 का 1/4 = 75।"
+  },
+  {
+    question_number: 11,
+    practice_set: "SET C",
+    level: "Level 2: More Than Moderate",
+    level_group: "Level 2: More Than Moderate",
+    type_code: "Type 4",
+    type_category: "Linear Combination of Ratios",
+    type_category_hi: "अनुपातों का रैखिक संयोजन",
+    question_text: "If a:b:c = 3:4:5 and 2a - 3b + 4c = 56, then the value of c is:",
+    question_text_hi: "यदि a:b:c = 3:4:5 और 2a - 3b + 4c = 56 है, तो c का मान है:",
+    options: {
+      a: "20",
+      b: "22",
+      c: "21",
+      d: "24"
+    },
+    options_hi: {
+      a: "20",
+      b: "22",
+      c: "21",
+      d: "24"
+    },
+    correct_option: "a",
+    solution_text: "Let a = 3k, b = 4k, c = 5k.\nGiven equation:\n2(3k) - 3(4k) + 4(5k) = 56\n6k - 12k + 20k = 56\n14k = 56 => k = 4\nValue of c = 5k = 5 × 4 = 20.",
+    solution_text_hi: "माना a = 3k, b = 4k, c = 5k।\n2(3k) - 3(4k) + 4(5k) = 56\n14k = 56 => k = 4\nc का मान = 5k = 5 × 4 = 20।",
+    shortcut_text: "Units = 2(3) - 3(4) + 4(5) = 6 - 12 + 20 = 14 units.\n14 units = 56 => 1 unit = 4.\nc = 5 × 4 = 20.",
+    shortcut_text_hi: "14 इकाई = 56 => 1 इकाई = 4। c = 5 × 4 = 20।"
+  },
+  {
+    question_number: 12,
+    practice_set: "SET C",
+    level: "Level 2: More Than Moderate",
+    level_group: "Level 2: More Than Moderate",
+    type_code: "Type 1",
+    type_category: "Unequal Savings & Income Ratios",
+    type_category_hi: "असमान बचत और आय अनुपात",
+    question_text: "The monthly incomes of A and B are in the ratio 4:5, and their monthly expenditures are in the ratio 3:4. A saves 10,000 while B saves 12,000, find the monthly income of A.",
+    question_text_hi: "A और B की मासिक आय 4:5 के अनुपात में है, और उनका खर्च 3:4 के अनुपात में है। A 10,000 बचाता है जबकि B 12,000 बचाता है, A की मासिक आय ज्ञात कीजिए।",
+    options: {
+      a: "14,000",
+      b: "16,000",
+      c: "15,000",
+      d: "13,000"
+    },
+    options_hi: {
+      a: "14,000",
+      b: "16,000",
+      c: "15,000",
+      d: "13,000"
+    },
+    correct_option: "b",
+    solution_text: "Let incomes be 4x and 5x.\n(4x - 10000) / (5x - 12000) = 3 / 4\n4(4x - 10000) = 3(5x - 12000)\n16x - 40000 = 15x - 36000\n16x - 15x = 40000 - 36000\nx = 4000\nA's monthly income = 4x = 4 × 4000 = ₹16,000.",
+    solution_text_hi: "माना आय 4x और 5x है।\n(4x - 10000) / (5x - 12000) = 3 / 4\n16x - 40000 = 15x - 36000\nx = 4000\nA की मासिक आय = 4x = 4 × 4000 = ₹16,000।",
+    shortcut_text: "Cross-Product Method:\n|4×4 - 5×3| = 1 unit.\n|4×10000 - 3×12000| = |40000 - 36000| = 4000.\n1 unit = 4000 => A = 4 × 4000 = 16,000.",
+    shortcut_text_hi: "क्रॉस-गुणा: 1 इकाई = 4000 => A = 4 × 4000 = 16,000।"
+  },
+
+  // ==========================================
+  // LEVEL 3: INSPIRED FROM PYQS (Q13 to Q18)
+  // ==========================================
+  {
+    question_number: 13,
+    practice_set: "SET C",
+    level: "Level 3: Inspired from PYQs",
+    level_group: "Level 3: Inspired from PYQs",
+    type_code: "Type 6",
+    type_category: "Compound Salary Expenditure",
+    type_category_hi: "संयुक्त वेतन व्यय",
+    question_text: "A school employs trained and untrained teachers in the ratio 5:3. The salaries of a trained and an untrained teachers are in the ratio 4:1. If the total salary paid to all teachers in a month is 4,60,000, how much total salary is paid to the untrained teachers?",
+    question_text_hi: "एक स्कूल में प्रशिक्षित और अप्रशिक्षित शिक्षक 5:3 के अनुपात में हैं। उनके वेतन का अनुपात 4:1 है। यदि एक महीने में सभी शिक्षकों को कुल 4,60,000 का वेतन दिया जाता है, तो अप्रशिक्षित शिक्षकों को कुल कितना वेतन दिया जाता है?",
+    options: {
+      a: "45,000",
+      b: "1,20,000",
+      c: "60,000",
+      d: "75,000"
+    },
+    options_hi: {
+      a: "45,000",
+      b: "1,20,000",
+      c: "60,000",
+      d: "75,000"
+    },
+    correct_option: "c",
+    solution_text: "Let the number of trained and untrained teachers be 5x and 3x.\nLet their salaries be 4y and 1y.\nTotal salary paid = (5x × 4y) + (3x × 1y) = 20xy + 3xy = 23xy.\n23xy = 4,60,000 => xy = 4,60,000 / 23 = 20,000.\nTotal salary paid to untrained teachers = 3xy = 3 × 20,000 = ₹60,000.",
+    solution_text_hi: "माना शिक्षकों की संख्या 5x और 3x है तथा वेतन 4y और 1y है।\nकुल वेतन = 20xy + 3xy = 23xy = 4,60,000 => xy = 20,000।\nअप्रशिक्षित शिक्षकों का कुल वेतन = 3xy = 3 × 20,000 = ₹60,000।",
+    shortcut_text: "Total salary ratio = (5 × 4) : (3 × 1) = 20 : 3.\nTotal parts = 23.\nUntrained share = (3 / 23) × 4,60,000 = 3 × 20,000 = ₹60,000.",
+    shortcut_text_hi: "वेतन अनुपात = 20 : 3। कुल भाग = 23।\nअप्रशिक्षित हिस्सा = (3/23) × 4,60,000 = ₹60,000।"
+  },
+  {
+    question_number: 14,
+    practice_set: "SET C",
+    level: "Level 3: Inspired from PYQs",
+    level_group: "Level 3: Inspired from PYQs",
+    type_code: "Type 2",
+    type_category: "Percentage Linked Numbers",
+    type_category_hi: "प्रतिशत से जुड़ी संख्याएँ",
+    question_text: "A number when increased by 25% becomes equal to another number, which is 20% less than a third number. What is the ratio of the first number to the third number?",
+    question_text_hi: "एक संख्या में 25% की वृद्धि करने पर वह दूसरी संख्या के बराबर हो जाती है, जो तीसरी संख्या से 20% कम है। पहली और तीसरी संख्या का अनुपात क्या है?",
+    options: {
+      a: "9:16",
+      b: "25:36",
+      c: "16:25",
+      d: "27:38"
+    },
+    options_hi: {
+      a: "9:16",
+      b: "25:36",
+      c: "16:25",
+      d: "27:38"
+    },
+    correct_option: "c",
+    solution_text: "Let the three numbers be N1, N2, N3.\nGiven:\nN1 × 1.25 = N2\nN2 = N3 × 0.80\nEquating N2:\n1.25 N1 = 0.80 N3\n(5/4) N1 = (4/5) N3\nN1 / N3 = (4/5) / (5/4) = 16 / 25\nRatio of first to third = 16 : 25.",
+    solution_text_hi: "माना तीन संख्याएँ N1, N2, N3 हैं।\n1.25 N1 = 0.80 N3\n(5/4) N1 = (4/5) N3\nN1 / N3 = 16 / 25\nपहली और तीसरी संख्या का अनुपात = 16 : 25।",
+    shortcut_text: "N1 / N3 = 0.80 / 1.25 = 80 / 125 = 16 / 25.",
+    shortcut_text_hi: "N1 / N3 = 80 / 125 = 16 : 25।"
+  },
+  {
+    question_number: 15,
+    practice_set: "SET C",
+    level: "Level 3: Inspired from PYQs",
+    level_group: "Level 3: Inspired from PYQs",
+    type_code: "Type 3",
+    type_category: "Twin Sisters Age System",
+    type_category_hi: "जुड़वां बहनों की आयु प्रणाली",
+    question_text: "Tejasvi, Trishana and Meena are three sisters. Tejasvi and Trishana are twins. The sum of the ages of Tejasvi and Trishana is the same as that of Meena. Four years earlier, the ratio of the ages of Tejasvi and Meena was 1:3. What will be the age of Trishana 4 years from now?",
+    question_text_hi: "तेजस्वी, त्रिशना और मीना तीन बहनें हैं। तेजस्वी और त्रिशना जुड़वा हैं। जुड़वा बहनों की आयु का योग मीना की आयु के समान है। 4 वर्ष पूर्व, तेजस्वी और मीना की आयु का अनुपात 1:3 था। 4 वर्ष बाद त्रिशना की आयु क्या होगी?",
+    options: {
+      a: "18",
+      b: "16",
+      c: "12",
+      d: "14"
+    },
+    options_hi: {
+      a: "18",
+      b: "16",
+      c: "12",
+      d: "14"
+    },
+    correct_option: "c",
+    solution_text: "Let the present age of twins Tejasvi and Trishana be T.\nAge of Meena M = T + T = 2T.\nFour years ago:\n(T - 4) / (2T - 4) = 1 / 3\n3(T - 4) = 2T - 4\n3T - 12 = 2T - 4\nT = 8.\nPresent age of Trishana = 8 years.\nTrishana's age 4 years from now = 8 + 4 = 12 years.",
+    solution_text_hi: "माना जुड़वा तेजस्वी और त्रिशना की आयु T है।\nमीना की आयु = 2T।\n4 वर्ष पूर्व: (T - 4) / (2T - 4) = 1 / 3\n3T - 12 = 2T - 4 => T = 8।\nवर्तमान आयु = 8 वर्ष। 4 वर्ष बाद त्रिशना की आयु = 8 + 4 = 12 वर्ष।",
+    shortcut_text: "3(T - 4) = 2T - 4 => T = 8.\nFuture age = 8 + 4 = 12 years.",
+    shortcut_text_hi: "T = 8 => 4 वर्ष बाद आयु = 8 + 4 = 12 वर्ष।"
+  },
+  {
+    question_number: 16,
+    practice_set: "SET C",
+    level: "Level 3: Inspired from PYQs",
+    level_group: "Level 3: Inspired from PYQs",
+    type_code: "Type 3",
+    type_category: "Family Age Sum Equations",
+    type_category_hi: "पारिवारिक आयु योग समीकरण",
+    question_text: "At present, Vanraj is three times as old as his son, and his daughter is 3 years younger than the son. If the sum of the ages of these three people 3 years ago was 93 years, then Vanraj's present age (in years) is:",
+    question_text_hi: "वर्तमान में, वनराज अपने बेटे से तीन गुना बड़ा है, और उसकी बेटी बेटे से 3 साल छोटी है। यदि 3 साल पहले इन तीनों की आयु का योग 93 वर्ष था, तो वनराज की वर्तमान आयु है:",
+    options: {
+      a: "49",
+      b: "39",
+      c: "63",
+      d: "44"
+    },
+    options_hi: {
+      a: "49",
+      b: "39",
+      c: "63",
+      d: "44"
+    },
+    correct_option: "c",
+    solution_text: "Let son's present age = S.\nVanraj's present age V = 3S.\nDaughter's present age D = S - 3.\n3 years ago, their ages were:\nVanraj = 3S - 3\nSon = S - 3\nDaughter = (S - 3) - 3 = S - 6\nSum 3 years ago = (3S - 3) + (S - 3) + (S - 6) = 93\n5S - 12 = 93\n5S = 105 => S = 21\nVanraj's present age = 3S = 3 × 21 = 63 years.",
+    solution_text_hi: "माना बेटे की वर्तमान आयु = S।\nवनराज = 3S, बेटी = S - 3।\n3 वर्ष पूर्व आयु का योग = (3S - 3) + (S - 3) + (S - 6) = 93\n5S - 12 = 93 => 5S = 105 => S = 21\nवनराज की वर्तमान आयु = 3 × 21 = 63 वर्ष।",
+    shortcut_text: "Present sum = 93 + (3 × 3) = 102.\n3S + S + (S - 3) = 102 => 5S = 105 => S = 21.\nVanraj = 3 × 21 = 63 years.",
+    shortcut_text_hi: "वर्तमान योग = 93 + 9 = 102। 5S - 3 = 102 => S = 21। वनराज = 63 वर्ष।"
+  },
+  {
+    question_number: 17,
+    practice_set: "SET C",
+    level: "Level 3: Inspired from PYQs",
+    level_group: "Level 3: Inspired from PYQs",
+    type_code: "Type 1",
+    type_category: "Comparing Fractions & Proportions",
+    type_category_hi: "भिन्नों और अनुपातों की तुलना",
+    question_text: "Four classes have a ratio of boys to girls as 4:5, 3:2, 6:5 and 5:6, respectively. Which class has a higher proportion of boys?",
+    question_text_hi: "चार कक्षाओं में लड़कों और लड़कियों का अनुपात क्रमशः 4:5, 3:2, 6:5 और 5:6 है। किस कक्षा में लड़कों का अनुपात सबसे अधिक है?",
+    options: {
+      a: "Second class (3:2)",
+      b: "Third class (6:5)",
+      c: "First class (4:5)",
+      d: "Fourth class (5:6)"
+    },
+    options_hi: {
+      a: "दूसरी कक्षा (3:2)",
+      b: "तीसरी कक्षा (6:5)",
+      c: "पहली कक्षा (4:5)",
+      d: "चौथी कक्षा (5:6)"
+    },
+    correct_option: "a",
+    solution_text: "Proportion of boys = Boys / (Boys + Girls):\n1) First class (4:5) = 4 / (4 + 5) = 4/9 ≈ 44.44%\n2) Second class (3:2) = 3 / (3 + 2) = 3/5 = 60.00%\n3) Third class (6:5) = 6 / (6 + 5) = 6/11 ≈ 54.55%\n4) Fourth class (5:6) = 5 / (5 + 6) = 5/11 ≈ 45.45%\nComparing values, 60% is highest. Thus, the Second class (3:2) has the highest proportion of boys.",
+    solution_text_hi: "लड़कों का अनुपात = लड़के / कुल:\nपहली = 4/9 ≈ 44.44%\nदूसरी = 3/5 = 60%\nतीसरी = 6/11 ≈ 54.55%\nचौथी = 5/11 ≈ 45.45%\nदूसरी कक्षा (3:2) में लड़कों का अनुपात सबसे अधिक (60%) है।",
+    shortcut_text: "3/5 = 0.60 vs 6/11 ≈ 0.545. Second class (3:2) is highest.",
+    shortcut_text_hi: "3/5 = 60% > 6/11 ≈ 54.5%। दूसरी कक्षा सबसे अधिक है।"
+  },
+  {
+    question_number: 18,
+    practice_set: "SET C",
+    level: "Level 3: Inspired from PYQs",
+    level_group: "Level 3: Inspired from PYQs",
+    type_code: "Type 1",
+    type_category: "Compound Product of Ratios",
+    type_category_hi: "अनुपातों का मिश्रित गुणन",
+    question_text: "If the ratio of the ages of A and B is 3:5, the ratio of the ages of B and C is 2:3, and the ratio of the ages of C and D is 3:4, what is the ratio of the ages of A and D?",
+    question_text_hi: "यदि A और B की आयु का अनुपात 3:5 है, B और C की आयु का अनुपात 2:3 है, और C और D की आयु का अनुपात 3:4 है, तो A और D की आयु का अनुपात क्या है?",
+    options: {
+      a: "5:11",
+      b: "3:13",
+      c: "7:10",
+      d: "3:10"
+    },
+    options_hi: {
+      a: "5:11",
+      b: "3:13",
+      c: "7:10",
+      d: "3:10"
+    },
+    correct_option: "d",
+    solution_text: "A / D = (A / B) × (B / C) × (C / D)\n= (3 / 5) × (2 / 3) × (3 / 4)\n= (3 × 2 × 3) / (5 × 3 × 4)\n= 18 / 60 = 3 / 10\nRatio of A to D = 3 : 10.",
+    solution_text_hi: "A / D = (A / B) × (B / C) × (C / D)\n= (3/5) × (2/3) × (3/4) = 18/60 = 3/10।\nA और D का अनुपात = 3 : 10।",
+    shortcut_text: "Direct cancellation:\n(3/5) × (2/3) × (3/4) = (2 × 3) / (5 × 4) = 6 / 20 = 3 / 10.",
+    shortcut_text_hi: "सरल निरसन: (3/5) × (2/3) × (3/4) = 3 / 10।"
+  },
+
+  // ==========================================
+  // LEVEL 4: PYQ+ (Q19 to Q24)
+  // ==========================================
+  {
+    question_number: 19,
+    practice_set: "SET C",
+    level: "Level 4: PYQ+",
+    level_group: "Level 4: PYQ+",
+    type_code: "Type 2",
+    type_category: "Mixture Cost Expansion",
+    type_category_hi: "मिश्रण लागत विस्तार",
+    question_text: "A chemical research laboratory uses three compounds A, B, and C in the cost ratio 3:5:7. When a fourth compound D is added to the mixture, the total cost increases by 40%. If the new ratio becomes A:B:C:D = 3:5:7:x, what is the value of x?",
+    question_text_hi: "एक रासायनिक अनुसंधान प्रयोगशाला 3:5:7 के लागत अनुपात में तीन यौगिकों A, B और C का उपयोग करती है। जब मिश्रण में चौथा यौगिक D मिलाया जाता है, तो कुल लागत 40% बढ़ जाती है। यदि नया अनुपात A:B:C:D = 3:5:7:x हो जाता है, तो x का मान क्या है?",
+    options: {
+      a: "9",
+      b: "8",
+      c: "4",
+      d: "6"
+    },
+    options_hi: {
+      a: "9",
+      b: "8",
+      c: "4",
+      d: "6"
+    },
+    correct_option: "d",
+    solution_text: "Let the cost parts of A, B, C be 3, 5, 7.\nTotal initial cost = 3 + 5 + 7 = 15 units.\nWhen compound D is added, total cost increases by 40%:\nCost of D = 40% of 15 = 0.40 × 15 = 6 units.\nNew total cost = 15 + 6 = 21 units (which is 15 × 1.4 = 21).\nSince the parts of A, B, C remain 3, 5, 7, the part of D is x = 6.",
+    solution_text_hi: "A, B, C की प्रारंभिक लागत = 3 + 5 + 7 = 15 इकाई।\nD मिलाने पर 40% की वृद्धि होती है:\nD की लागत = 15 का 40% = 6 इकाई।\nअतः x = 6।",
+    shortcut_text: "x = 40% of (3 + 5 + 7) = 0.40 × 15 = 6.",
+    shortcut_text_hi: "x = 15 का 40% = 6।"
+  },
+  {
+    question_number: 20,
+    practice_set: "SET C",
+    level: "Level 4: PYQ+",
+    level_group: "Level 4: PYQ+",
+    type_code: "Type 4",
+    type_category: "Mean Proportional Scaling",
+    type_category_hi: "मध्यानुपाती स्केलिंग",
+    question_text: "A data scientist finds that the mean proportional between two experimental values 18 and 32 needs to be increased by 25% for optimal model performance. If this new increased value becomes the mean proportional between 18 and another value y, what is y?",
+    question_text_hi: "एक डेटा वैज्ञानिक पाता है कि 18 और 32 के बीच के मध्यानुपाती में इष्टतम प्रदर्शन के लिए 25% की वृद्धि करने की आवश्यकता है। यदि यह नया मान 18 और अन्य मान y के बीच का मध्यानुपाती बन जाता है, तो y क्या है?",
+    options: {
+      a: "45",
+      b: "50",
+      c: "54",
+      d: "48"
+    },
+    options_hi: {
+      a: "45",
+      b: "50",
+      c: "54",
+      d: "48"
+    },
+    correct_option: "b",
+    solution_text: "Mean proportional of 18 and 32 = √(18 × 32) = √(576) = 24.\nIncreased by 25%:\nNew value = 24 × (1 + 0.25) = 24 × 1.25 = 30.\nGiven that 30 is the mean proportional between 18 and y:\n√(18 × y) = 30\nSquaring both sides:\n18y = 30² = 900\ny = 900 / 18 = 50.",
+    solution_text_hi: "18 और 32 का मध्यानुपाती = √(18 × 32) = 24।\n25% वृद्धि: 24 × 1.25 = 30।\n√(18 × y) = 30 => 18y = 900 => y = 50।",
+    shortcut_text: "Mean = 24. New = 24 × 5/4 = 30.\ny = 30² / 18 = 900 / 18 = 50.",
+    shortcut_text_hi: "30² / 18 = 900 / 18 = 50।"
+  },
+  {
+    question_number: 21,
+    practice_set: "SET C",
+    level: "Level 4: PYQ+",
+    level_group: "Level 4: PYQ+",
+    type_code: "Type 4",
+    type_category: "Fourth Proportional Ratio",
+    type_category_hi: "चतुर्थानुपाती अनुपात",
+    question_text: "What is the ratio between fourth proportional of 10, 80, 30 and fourth proportional of 7, 28, 19?",
+    question_text_hi: "10, 80, 30 के चतुर्थानुपाती और 7, 28, 19 के चतुर्थानुपाती के बीच का अनुपात क्या है?",
+    options: {
+      a: "29:26",
+      b: "60:19",
+      c: "10:7",
+      d: "30:19"
+    },
+    options_hi: {
+      a: "29:26",
+      b: "60:19",
+      c: "10:7",
+      d: "30:19"
+    },
+    correct_option: "b",
+    solution_text: "Fourth proportional P1 of (10, 80, 30):\n10 / 80 = 30 / P1 => P1 = (80 × 30) / 10 = 240.\nFourth proportional P2 of (7, 28, 19):\n7 / 28 = 19 / P2 => P2 = (28 × 19) / 7 = 4 × 19 = 76.\nRatio P1 : P2 = 240 : 76 = 60 : 19.",
+    solution_text_hi: "(10, 80, 30) का चतुर्थानुपाती P1 = (80 × 30) / 10 = 240।\n(7, 28, 19) का चतुर्थानुपाती P2 = (28 × 19) / 7 = 76।\nअनुपात = 240 : 76 = 60 : 19।",
+    shortcut_text: "P1 = 30 × 8 = 240. P2 = 19 × 4 = 76.\n240 / 76 = 60 / 19.",
+    shortcut_text_hi: "240 : 76 = 60 : 19।"
+  },
+  {
+    question_number: 22,
+    practice_set: "SET C",
+    level: "Level 4: PYQ+",
+    level_group: "Level 4: PYQ+",
+    type_code: "Type 4",
+    type_category: "Dual Proportion Variable Ratio",
+    type_category_hi: "दोहरा समानुपात चर अनुपात",
+    question_text: "9:81::2.5:x and 3:6::5:y What is the ratio of x to y?",
+    question_text_hi: "9:81::2.5:x और 3:6::5:y तो x और y का अनुपात क्या है?",
+    options: {
+      a: "10:2",
+      b: "13:14",
+      c: "9:4",
+      d: "5:3"
+    },
+    options_hi: {
+      a: "10:2",
+      b: "13:14",
+      c: "9:4",
+      d: "5:3"
+    },
+    correct_option: "c",
+    solution_text: "First proportion:\n9 / 81 = 2.5 / x => 1 / 9 = 2.5 / x => x = 9 × 2.5 = 22.5.\nSecond proportion:\n3 / 6 = 5 / y => 1 / 2 = 5 / y => y = 2 × 5 = 10.\nRatio x : y = 22.5 : 10 = 45 : 20 = 9 : 4.",
+    solution_text_hi: "पहले समानुपात से: 9/81 = 2.5/x => x = 22.5।\nदूसरे समानुपात से: 3/6 = 5/y => y = 10।\nx : y = 22.5 : 10 = 9 : 4।",
+    shortcut_text: "x = 2.5 × 9 = 22.5. y = 5 × 2 = 10.\n22.5 / 10 = 9 / 4.",
+    shortcut_text_hi: "22.5 : 10 = 9 : 4।"
+  },
+  {
+    question_number: 23,
+    practice_set: "SET C",
+    level: "Level 4: PYQ+",
+    level_group: "Level 4: PYQ+",
+    type_code: "Type 4",
+    type_category: "Algebraic Cubic Ratio Substitution",
+    type_category_hi: "बीजगणितीय घन अनुपात प्रतिस्थापन",
+    question_text: "If a:b = 2:3, then (7a³ - 2b³) : (b³ - a³) =",
+    question_text_hi: "यदि a:b = 2:3 है, तो (7a³ - 2b³) : (b³ - a³) =",
+    options: {
+      a: "2:19",
+      b: "3:11",
+      c: "13:6",
+      d: "3:14"
+    },
+    options_hi: {
+      a: "2:19",
+      b: "3:11",
+      c: "13:6",
+      d: "3:14"
+    },
+    correct_option: "a",
+    solution_text: "Let a = 2, b = 3.\na³ = 2³ = 8\nb³ = 3³ = 27\nSubstitute in expression:\nNumerator = 7a³ - 2b³ = 7(8) - 2(27) = 56 - 54 = 2\nDenominator = b³ - a³ = 27 - 8 = 19\nResult = 2 : 19.",
+    solution_text_hi: "a = 2, b = 3 रखने पर:\na³ = 8, b³ = 27।\nअंश = 7(8) - 2(27) = 56 - 54 = 2।\nहर = 27 - 8 = 19।\nअनुपात = 2 : 19।",
+    shortcut_text: "Direct substitution:\n(7×8 - 2×27) / (27 - 8) = (56 - 54) / 19 = 2 / 19.",
+    shortcut_text_hi: "(56 - 54) / 19 = 2 : 19।"
+  },
+  {
+    question_number: 24,
+    practice_set: "SET C",
+    level: "Level 4: PYQ+",
+    level_group: "Level 4: PYQ+",
+    type_code: "Type 4",
+    type_category: "Number Series Sum Ratios",
+    type_category_hi: "संख्या श्रेणी योग अनुपात",
+    question_text: "The ratio of the sum of odd positive integers from 1 to 100 to the sum of even positive integers from 150 to 200 is:",
+    question_text_hi: "1 से 100 तक के विषम धनात्मक पूर्णांकों के योग और 150 से 200 तक के सम धनात्मक पूर्णांकों के योग का अनुपात है:",
+    options: {
+      a: "50:71",
+      b: "50:81",
+      c: "50:91",
+      d: "50:101"
+    },
+    options_hi: {
+      a: "50:71",
+      b: "50:81",
+      c: "50:91",
+      d: "50:101"
+    },
+    correct_option: "c",
+    solution_text: "1) Sum of odd integers from 1 to 100:\nNumber of terms n = 50 (from 1 to 99).\nSum of first n odd integers = n² = 50² = 2500.\n\n2) Sum of even integers from 150 to 200:\nThis is an arithmetic progression: 150, 152, ..., 200.\nFirst term a = 150, last term l = 200, d = 2.\nNumber of terms m = ((200 - 150) / 2) + 1 = 25 + 1 = 26 terms.\nSum = (m / 2) × (a + l) = (26 / 2) × (150 + 200) = 13 × 350 = 4550.\n\nRatio = 2500 : 4550 = 250 : 455 = 50 : 91.",
+    solution_text_hi: "1 से 100 तक विषम पूर्णांकों का योग (50 पद) = 50² = 2500।\n150 से 200 तक सम पूर्णांकों का योग (26 पद) = (26/2) × (150 + 200) = 13 × 350 = 4550।\nअनुपात = 2500 : 4550 = 50 : 91।",
+    shortcut_text: "Odd Sum = 50² = 2500.\nEven Sum = 26 × 175 = 4550.\n2500 / 4550 = 50 / 91.",
+    shortcut_text_hi: "2500 / 4550 = 50 : 91।"
+  },
+
+  // ==========================================
+  // LEVEL 5: PYQ++ (Q25 to Q30)
+  // ==========================================
+  {
+    question_number: 25,
+    practice_set: "SET C",
+    level: "Level 5: PYQ++",
+    level_group: "Level 5: PYQ++",
+    type_code: "Type 4",
+    type_category: "Decimal Proportion Equations",
+    type_category_hi: "दशमलव समानुपात समीकरण",
+    question_text: "If 4:28 :: 4.1:x and 4:32 :: 3:y, then what is the ratio of x to y?",
+    question_text_hi: "यदि 4:28 :: 4.1:x और 4:32 :: 3:y है, तो x और y का अनुपात क्या है?",
+    options: {
+      a: "287:240",
+      b: "285:241",
+      c: "288:238",
+      d: "291:250"
+    },
+    options_hi: {
+      a: "287:240",
+      b: "285:241",
+      c: "288:238",
+      d: "291:250"
+    },
+    correct_option: "a",
+    solution_text: "For 4:28 :: 4.1:x:\n4 / 28 = 4.1 / x => 1 / 7 = 4.1 / x => x = 7 × 4.1 = 28.7.\nFor 4:32 :: 3:y:\n4 / 32 = 3 / y => 1 / 8 = 3 / y => y = 8 × 3 = 24.\nRatio x : y = 28.7 : 24 = 287 : 240.",
+    solution_text_hi: "4/28 = 4.1/x => x = 7 × 4.1 = 28.7।\n4/32 = 3/y => y = 8 × 3 = 24।\nx : y = 28.7 : 24 = 287 : 240।",
+    shortcut_text: "x = 4.1 × 7 = 28.7. y = 3 × 8 = 24.\nx : y = 287 : 240.",
+    shortcut_text_hi: "28.7 : 24 = 287 : 240।"
+  },
+  {
+    question_number: 26,
+    practice_set: "SET C",
+    level: "Level 5: PYQ++",
+    level_group: "Level 5: PYQ++",
+    type_code: "Type 6",
+    type_category: "Income Expenditure Cross Shift",
+    type_category_hi: "आय व्यय क्रॉस अंतर",
+    question_text: "The monthly incomes of two friends Vipul and Vijay, are in the ratio 6:7 respectively and each of them saves 66,000 every month. If the ratio of their monthly expenditure is 1:3, find the monthly income of Vipul.",
+    question_text_hi: "दो दोस्तों विपुल और विजय की मासिक आय का अनुपात क्रमशः 6:7 है और उनमें से प्रत्येक हर महीने 66,000 बचाता है। यदि उनके मासिक खर्च का अनुपात 1:3 है, तो विपुल की मासिक आय ज्ञात करें।",
+    options: {
+      a: "71,000",
+      b: "72,000",
+      c: "1,00,800",
+      d: "73,000"
+    },
+    options_hi: {
+      a: "71,000",
+      b: "72,000",
+      c: "1,00,800",
+      d: "73,000"
+    },
+    correct_option: "b",
+    solution_text: "Let incomes be 6x and 7x.\nExpenditures: (6x - 66000) / (7x - 66000) = 1 / 3\nCross-multiplying:\n3(6x - 66000) = 1(7x - 66000)\n18x - 198000 = 7x - 66000\n18x - 7x = 198000 - 66000\n11x = 132000 => x = 12,000\nVipul's monthly income = 6x = 6 × 12,000 = ₹72,000.",
+    solution_text_hi: "माना आय 6x और 7x है।\n(6x - 66000) / (7x - 66000) = 1 / 3\n18x - 198000 = 7x - 66000\n11x = 132000 => x = 12,000\nविपुल की मासिक आय = 6 × 12,000 = ₹72,000।",
+    shortcut_text: "Cross-Product Method:\n|6×3 - 7×1| = 11 units.\nSavings difference = (3 - 1) × 66000 = 132000.\n11 units = 132000 => 1 unit = 12000.\nVipul = 6 × 12000 = 72,000.",
+    shortcut_text_hi: "11 इकाई = 132000 => 1 इकाई = 12000।\nविपुल = 6 × 12000 = 72,000।"
+  },
+  {
+    question_number: 27,
+    practice_set: "SET C",
+    level: "Level 5: PYQ++",
+    level_group: "Level 5: PYQ++",
+    type_code: "Type 4",
+    type_category: "Proportion Multiplier Ratios",
+    type_category_hi: "समानुपात गुणक अनुपात",
+    question_text: "If 7:63::6.5:x and 7:42::4:y, then what is the ratio of x to y?",
+    question_text_hi: "यदि 7:63::6.5:x और 7:42::4:y है, तो x और y का अनुपात क्या है?",
+    options: {
+      a: "43:26",
+      b: "37:17",
+      c: "39:16",
+      d: "40:14"
+    },
+    options_hi: {
+      a: "43:26",
+      b: "37:17",
+      c: "39:16",
+      d: "40:14"
+    },
+    correct_option: "c",
+    solution_text: "From first proportion:\n7 / 63 = 6.5 / x => 1 / 9 = 6.5 / x => x = 9 × 6.5 = 58.5.\nFrom second proportion:\n7 / 42 = 4 / y => 1 / 6 = 4 / y => y = 6 × 4 = 24.\nRatio x : y = 58.5 : 24 = 585 : 240.\nDivide both by 15:\n585 / 15 = 39\n240 / 15 = 16\nRatio = 39 : 16.",
+    solution_text_hi: "पहले समानुपात से: 7/63 = 6.5/x => x = 9 × 6.5 = 58.5।\nदूसरे समानुपात से: 7/42 = 4/y => y = 6 × 4 = 24।\nx : y = 58.5 : 24 = 585 : 240 = 39 : 16।",
+    shortcut_text: "x = 6.5 × 9 = 58.5. y = 4 × 6 = 24.\n58.5 / 24 = 585 / 240 = 39 / 16.",
+    shortcut_text_hi: "58.5 / 24 = 39 / 16।"
+  },
+  {
+    question_number: 28,
+    practice_set: "SET C",
+    level: "Level 5: PYQ++",
+    level_group: "Level 5: PYQ++",
+    type_code: "Type 4",
+    type_category: "Continued Proportion & Extremes",
+    type_category_hi: "सतत समानुपात और चरम पद",
+    question_text: "If a:b::b:c; c = 4a; and b = 6, find the positive value of c.",
+    question_text_hi: "यदि a:b::b:c; c = 4a; और b = 6 है, तो c का धनात्मक मान ज्ञात करें।",
+    options: {
+      a: "8",
+      b: "16",
+      c: "20",
+      d: "12"
+    },
+    options_hi: {
+      a: "8",
+      b: "16",
+      c: "20",
+      d: "12"
+    },
+    correct_option: "d",
+    solution_text: "Given continued proportion:\na:b :: b:c => b² = ac.\nSubstitute b = 6 and c = 4a:\n6² = a(4a)\n36 = 4a²\na² = 9 => a = 3 (since positive value is required).\nThen c = 4a = 4 × 3 = 12.",
+    solution_text_hi: "सतत समानुपात से: b² = ac।\n6² = a(4a) => 4a² = 36 => a² = 9 => a = 3।\nc = 4a = 4 × 3 = 12।",
+    shortcut_text: "b² = ac => 36 = 4a² => a = 3.\nc = 4 × 3 = 12.",
+    shortcut_text_hi: "36 = 4a² => a = 3 => c = 12।"
+  },
+  {
+    question_number: 29,
+    practice_set: "SET C",
+    level: "Level 5: PYQ++",
+    level_group: "Level 5: PYQ++",
+    type_code: "Type 4",
+    type_category: "Mean Proportional of Speeds",
+    type_category_hi: "गतियों का मध्यानुपाती",
+    question_text: "The speeds of two vehicles are 20 km/h and 45 km/h. Find the mean proportional between the two speeds.",
+    question_text_hi: "दो वाहनों की गति 20 किमी/घंटा और 45 किमी/घंटा है। दोनों गतियों के बीच का मध्यानुपाती ज्ञात कीजिए।",
+    options: {
+      a: "30 km/h",
+      b: "25 km/h",
+      c: "32 km/h",
+      d: "35 km/h"
+    },
+    options_hi: {
+      a: "30 किमी/घंटा",
+      b: "25 किमी/घंटा",
+      c: "32 किमी/घंटा",
+      d: "35 किमी/घंटा"
+    },
+    correct_option: "a",
+    solution_text: "Mean proportional between two values x and y is given by √(x × y).\nMean proportional = √(20 × 45) = √(900) = 30 km/h.",
+    solution_text_hi: "x और y का मध्यानुपाती = √(x × y)।\nमध्यानुपाती = √(20 × 45) = √900 = 30 किमी/घंटा।",
+    shortcut_text: "√(20 × 45) = √(900) = 30 km/h.",
+    shortcut_text_hi: "√(20 × 45) = 30 किमी/घंटा।"
+  },
+  {
+    question_number: 30,
+    practice_set: "SET C",
+    level: "Level 5: PYQ++",
+    level_group: "Level 5: PYQ++",
+    type_code: "Type 6",
+    type_category: "Extreme Numbers Sum Ratio",
+    type_category_hi: "चरम संख्याओं का योग अनुपात",
+    question_text: "The ratio of three numbers is 3:5:7. If the sum of the largest and smallest numbers is 60, what is the sum of all the three numbers?",
+    question_text_hi: "तीन संख्याओं का अनुपात 3:5:7 है। यदि सबसे बड़ी और सबसे छोटी संख्या का योग 60 है, तो तीनों संख्याओं का योग क्या है?",
+    options: {
+      a: "90",
+      b: "70",
+      c: "100",
+      d: "120"
+    },
+    options_hi: {
+      a: "90",
+      b: "70",
+      c: "100",
+      d: "120"
+    },
+    correct_option: "a",
+    solution_text: "Let the three numbers be 3x, 5x, 7x.\nSmallest number = 3x\nLargest number = 7x\nGiven sum of largest and smallest = 60:\n3x + 7x = 60\n10x = 60 => x = 6.\nSum of all three numbers = 3x + 5x + 7x = 15x = 15 × 6 = 90.",
+    solution_text_hi: "माना तीन संख्याएँ 3x, 5x, 7x हैं।\nसबसे छोटी = 3x, सबसे बड़ी = 7x।\n3x + 7x = 60 => 10x = 60 => x = 6।\nतीनों संख्याओं का योग = 15x = 15 × 6 = 90।",
+    shortcut_text: "Sum of extremes = 3 + 7 = 10 units = 60 => 1 unit = 6.\nTotal sum = 3 + 5 + 7 = 15 units = 15 × 6 = 90.",
+    shortcut_text_hi: "10 इकाई = 60 => 1 इकाई = 6।\nकुल योग = 15 × 6 = 90।"
+  }
+];
+
 if (typeof window !== "undefined") {
   window.RATIO_SET_A_QUESTIONS = RATIO_SET_A_QUESTIONS;
   window.RATIO_SET_B_QUESTIONS = RATIO_SET_B_QUESTIONS;
+  window.RATIO_SET_C_QUESTIONS = RATIO_SET_C_QUESTIONS;
 }
+

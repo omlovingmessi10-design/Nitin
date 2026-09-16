@@ -154,9 +154,9 @@
             category: "Arithmetic",
             weightage: "Moderate (1-2 Qs)",
             isHighWeightage: false,
-            sets: ["SET A", "SET B"],
-            totalQuestions: 52,
-            desc: "Complete 52 Questions (SET A: 30 Qs & SET B: 22 Qs across Levels 1-5): Direct & Inverse Ratio, Mixtures, Coins, Incomes, Continued & Compound Proportion."
+            sets: ["SET A", "SET B", "SET C"],
+            totalQuestions: 82,
+            desc: "Complete 82 Questions (SET A: 30 Qs, SET B: 22 Qs & SET C: 30 Qs across Levels 1-5): Direct & Inverse Ratio, Mixtures, Coins, Incomes, Continued & Compound Proportion, Age Ratios."
           },
           {
             id: "speed-distance",
@@ -633,8 +633,16 @@
       }
 
       if ((subjectId === "quant" || !subjectId) && (topicObj.id === "ratio-proportion" || (topicObj.title && topicObj.title.toLowerCase().includes("ratio")))) {
+        const isSetC = practiceSet === "SET C" || practiceSet === "Set C" || practiceSet === "Practice 3" || practiceSet === "Set 3";
         const isSetB = practiceSet === "SET B" || practiceSet === "Set B" || practiceSet === "Practice 2" || practiceSet === "Set 2";
-        if (isSetB) {
+        if (isSetC) {
+          if (typeof window !== "undefined" && window.RATIO_SET_C_QUESTIONS && window.RATIO_SET_C_QUESTIONS.length > 0) {
+            return window.RATIO_SET_C_QUESTIONS;
+          }
+          if (typeof RATIO_SET_C_QUESTIONS !== "undefined" && RATIO_SET_C_QUESTIONS.length > 0) {
+            return RATIO_SET_C_QUESTIONS;
+          }
+        } else if (isSetB) {
           if (typeof window !== "undefined" && window.RATIO_SET_B_QUESTIONS && window.RATIO_SET_B_QUESTIONS.length > 0) {
             return window.RATIO_SET_B_QUESTIONS;
           }
