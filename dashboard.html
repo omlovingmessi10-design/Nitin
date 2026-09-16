@@ -18,6 +18,8 @@
   <script src="average_questions.js"></script>
   <!-- Percentage Questions Dataset (Sets 1, 2 & 3, Levels 1-5, English & Hindi) -->
   <script src="percentage_questions.js"></script>
+  <!-- Ratio & Proportion Questions Dataset (Sets A & B, Levels 1-5, English & Hindi) -->
+  <script src="ratio_questions.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
@@ -152,9 +154,9 @@
             category: "Arithmetic",
             weightage: "Moderate (1-2 Qs)",
             isHighWeightage: false,
-            sets: ["Practice 1", "Practice 2"],
-            totalQuestions: 60,
-            desc: "Mean and third proportion, coin-based problems, income-expenditure ratios, and business partnerships."
+            sets: ["SET A", "SET B"],
+            totalQuestions: 52,
+            desc: "Complete 52 Questions (SET A: 30 Qs & SET B: 22 Qs across Levels 1-5): Direct & Inverse Ratio, Mixtures, Coins, Incomes, Continued & Compound Proportion."
           },
           {
             id: "speed-distance",
@@ -626,6 +628,25 @@
           }
           if (typeof PERCENTAGE_PRACTICE_1_QUESTIONS !== "undefined" && PERCENTAGE_PRACTICE_1_QUESTIONS.length > 0) {
             return PERCENTAGE_PRACTICE_1_QUESTIONS;
+          }
+        }
+      }
+
+      if ((subjectId === "quant" || !subjectId) && (topicObj.id === "ratio-proportion" || (topicObj.title && topicObj.title.toLowerCase().includes("ratio")))) {
+        const isSetB = practiceSet === "SET B" || practiceSet === "Set B" || practiceSet === "Practice 2" || practiceSet === "Set 2";
+        if (isSetB) {
+          if (typeof window !== "undefined" && window.RATIO_SET_B_QUESTIONS && window.RATIO_SET_B_QUESTIONS.length > 0) {
+            return window.RATIO_SET_B_QUESTIONS;
+          }
+          if (typeof RATIO_SET_B_QUESTIONS !== "undefined" && RATIO_SET_B_QUESTIONS.length > 0) {
+            return RATIO_SET_B_QUESTIONS;
+          }
+        } else {
+          if (typeof window !== "undefined" && window.RATIO_SET_A_QUESTIONS && window.RATIO_SET_A_QUESTIONS.length > 0) {
+            return window.RATIO_SET_A_QUESTIONS;
+          }
+          if (typeof RATIO_SET_A_QUESTIONS !== "undefined" && RATIO_SET_A_QUESTIONS.length > 0) {
+            return RATIO_SET_A_QUESTIONS;
           }
         }
       }
