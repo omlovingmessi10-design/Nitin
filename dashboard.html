@@ -2190,18 +2190,31 @@
                       ref={carouselRef}
                       className="flex items-center gap-1.5 sm:gap-2 overflow-x-auto py-1 px-1 scroll-smooth scrollbar-none flex-1 justify-start min-w-0"
                     >
-                      {questions.map((_, idx) => {
+                      {questions.map((q, idx) => {
                         const isCurrent = idx === currentIndex;
-                        const isAnswered = selectedAnswers[idx] !== undefined;
+                        const userAns = selectedAnswers[idx];
+                        const isAnswered = userAns !== undefined && userAns !== null;
+                        const isCorrect = isAnswered && (String(userAns).toLowerCase() === String(q?.correct_option || '').toLowerCase());
+                        const isWrong = isAnswered && !isCorrect;
                         const isReview = markedForReview.has(idx);
 
                         let bubbleStyle = "bg-[#FAF8F5] border border-[#CBD5E1] text-slate-700 hover:border-slate-400";
                         if (isCurrent) {
-                          bubbleStyle = "bg-[#182030] text-white font-black shadow-md ring-2 ring-slate-800 scale-105";
+                          if (isWrong) {
+                            bubbleStyle = "bg-rose-600 text-white font-black shadow-md ring-2 ring-slate-900 ring-offset-1 scale-105";
+                          } else if (isCorrect) {
+                            bubbleStyle = "bg-emerald-600 text-white font-black shadow-md ring-2 ring-slate-900 ring-offset-1 scale-105";
+                          } else if (isReview) {
+                            bubbleStyle = "bg-amber-400 text-slate-950 font-black shadow-md ring-2 ring-slate-900 ring-offset-1 scale-105";
+                          } else {
+                            bubbleStyle = "bg-[#182030] text-white font-black shadow-md ring-2 ring-slate-800 scale-105";
+                          }
+                        } else if (isWrong) {
+                          bubbleStyle = "bg-rose-600 text-white font-bold border-rose-600 shadow-2xs";
+                        } else if (isCorrect) {
+                          bubbleStyle = "bg-emerald-600 text-white font-bold border-emerald-600 shadow-2xs";
                         } else if (isReview) {
                           bubbleStyle = "bg-amber-400 text-slate-950 font-black border-amber-500 shadow-2xs";
-                        } else if (isAnswered) {
-                          bubbleStyle = "bg-emerald-600 text-white font-bold border-emerald-600 shadow-2xs";
                         }
 
                         return (
@@ -2209,7 +2222,7 @@
                             key={idx}
                             onClick={() => setCurrentIndex(idx)}
                             className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center text-xs font-mono transition-all duration-150 shrink-0 ${bubbleStyle}`}
-                            title={`Jump to Question ${idx + 1}${isAnswered ? ' (Answered)' : ''}${isReview ? ' (Saved)' : ''}`}
+                            title={`Jump to Question ${idx + 1}${isWrong ? ' (Wrong ❌)' : isCorrect ? ' (Correct ✓)' : isAnswered ? ' (Answered)' : ''}${isReview ? ' (Saved)' : ''}`}
                           >
                             {idx + 1}
                           </button>
@@ -2229,12 +2242,21 @@
                       </svg>
                     </button>
 
-                    {/* Attempted Tally Pill */}
-                    <div className="hidden lg:flex items-center space-x-1 text-xs font-mono bg-[#FAF8F5] border border-[#DDD7CC] px-2.5 py-1 rounded-full shrink-0 text-slate-600">
-                      <span className="font-black text-slate-900">{Object.keys(selectedAnswers).length}</span>
-                      <span>/</span>
-                      <span>{questions.length}</span>
-                      <span className="text-[10px] text-slate-500 uppercase">Attempted</span>
+                    {/* Attempted Tally Pill with Correct / Wrong Legend */}
+                    <div className="hidden lg:flex items-center space-x-2 text-xs font-mono bg-[#FAF8F5] border border-[#DDD7CC] px-2.5 py-1 rounded-full shrink-0 text-slate-700">
+                      <div className="flex items-center space-x-1" title="Correct Questions">
+                        <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
+                        <span className="font-bold text-emerald-700">{scoreData.correct}</span>
+                      </div>
+                      <div className="flex items-center space-x-1" title="Wrong Questions">
+                        <span className="w-2 h-2 rounded-full bg-rose-500"></span>
+                        <span className="font-bold text-rose-700">{scoreData.incorrect}</span>
+                      </div>
+                      <span className="text-slate-300">|</span>
+                      <span>
+                        <span className="font-black text-slate-900">{Object.keys(selectedAnswers).length}</span>
+                        <span>/{questions.length}</span>
+                      </span>
                     </div>
 
                   </div>
