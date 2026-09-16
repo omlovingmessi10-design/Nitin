@@ -2371,9 +2371,881 @@ const RATIO_SET_C_QUESTIONS = [
   }
 ];
 
+
+// ==========================================
+// PRACTICE SET D (30 QUESTIONS: Q1 to Q30)
+// Levels 1 to 6 (Moderate to Advanced / Mains Level) with English & Hindi, Options, Step-by-Step Solutions & Exam Tricks
+// ==========================================
+const RATIO_SET_D_QUESTIONS = [
+  // ==========================================
+  // LEVEL 1: MODERATE (Q1 to Q5)
+  // ==========================================
+  {
+    question_number: 1,
+    practice_set: "SET D",
+    level: "Level 1: Moderate",
+    level_group: "Level 1: Moderate",
+    type_code: "Type 1",
+    type_category: "Income, Expenditure & Equal Savings",
+    type_category_hi: "आय, व्यय और समान बचत",
+    question_text: "The ratio of the incomes of A and B is 3:2, and the ratio of their expenditures is 4:3. If they each save Rs. 2,000, what is A's income?",
+    question_text_hi: "A और B की आय का अनुपात 3:2 है, और उनके व्यय का अनुपात 4:3 है। यदि वे प्रत्येक Rs. 2,000 की बचत करते हैं, तो A की आय क्या है?",
+    options: {
+      a: "Rs. 4,000",
+      b: "Rs. 6,000",
+      c: "Rs. 8,000",
+      d: "Rs. 12,000"
+    },
+    options_hi: {
+      a: "₹4,000",
+      b: "₹6,000",
+      c: "₹8,000",
+      d: "₹12,000"
+    },
+    correct_option: "b",
+    solution_text: "Income ratio = 3 : 2\nExpenditure ratio = 4 : 3\nSavings = Rs. 2,000 each.\nUsing cross-multiplication:\n|3 × 3 - 4 × 2| = |9 - 8| = 1 unit.\nValue difference = |4 × 2000 - 3 × 2000| = Rs. 2,000.\n1 unit = Rs. 2,000.\nA's income = 3 × 2,000 = Rs. 6,000.",
+    solution_text_hi: "आय अनुपात = 3 : 2\nव्यय अनुपात = 4 : 3\nप्रत्येक की बचत = Rs. 2,000।\nक्रॉस-गुणा विधि से:\n|3 × 3 - 4 × 2| = 1 इकाई।\nमूल्य अंतर = (4 - 3) × 2000 = Rs. 2,000।\n1 इकाई = Rs. 2,000।\nA की आय = 3 × 2,000 = Rs. 6,000।",
+    shortcut_text: "Cross multiply difference: (3 × 3) - (4 × 2) = 1 unit = Rs. 2,000.\nA's income = 3 × 2,000 = Rs. 6,000.",
+    shortcut_text_hi: "1 इकाई = 2,000 => A की आय = 3 × 2,000 = Rs. 6,000।"
+  },
+  {
+    question_number: 2,
+    practice_set: "SET D",
+    level: "Level 1: Moderate",
+    level_group: "Level 1: Moderate",
+    type_code: "Type 5",
+    type_category: "Coin Ratio & Monetary Value",
+    type_category_hi: "सिक्कों का अनुपात और मौद्रिक मूल्य",
+    question_text: "A bag contains Rs. 1, 50-paisa, and 25-paisa coins in the ratio of 5:6:8. If the total monetary value in the bag is Rs. 200, find the number of 50-paisa coins.",
+    question_text_hi: "एक बैग में Rs. 1, 50-पैसे और 25-पैसे के सिक्के 5:6:8 के अनुपात में हैं। यदि बैग में कुल राशि Rs. 200 है, तो 50-पैसे के सिक्कों की संख्या ज्ञात कीजिए।",
+    options: {
+      a: "100",
+      b: "120",
+      c: "150",
+      d: "160"
+    },
+    options_hi: {
+      a: "100",
+      b: "120",
+      c: "150",
+      d: "160"
+    },
+    correct_option: "b",
+    solution_text: "Let the number of coins be 5x, 6x, and 8x.\nTotal monetary value:\n5x(Rs. 1) + 6x(Rs. 0.50) + 8x(Rs. 0.25) = Rs. 200\n5x + 3x + 2x = 200\n10x = 200 => x = 20.\nNumber of 50-paisa coins = 6x = 6 × 20 = 120.",
+    solution_text_hi: "माना सिक्कों की संख्या 5x, 6x और 8x है।\nकुल मूल्य:\n5x(1) + 6x(0.50) + 8x(0.25) = 200\n10x = 200 => x = 20।\n50-पैसे के सिक्कों की संख्या = 6 × 20 = 120।",
+    shortcut_text: "Value per set = 5(1) + 6(0.5) + 8(0.25) = Rs. 10.\nSets = 200 / 10 = 20.\n50-paisa coins = 6 × 20 = 120.",
+    shortcut_text_hi: "प्रति सेट मूल्य = Rs. 10।\nगुणक = 200 / 10 = 20।\n50-पैसे के सिक्के = 6 × 20 = 120।"
+  },
+  {
+    question_number: 3,
+    practice_set: "SET D",
+    level: "Level 1: Moderate",
+    level_group: "Level 1: Moderate",
+    type_code: "Type 3",
+    type_category: "Alligation of Alloys",
+    type_category_hi: "मिश्र धातुओं का मिश्रण नियम",
+    question_text: "Alloy A contains copper and zinc in the ratio 3:4. Alloy B contains copper and zinc in the ratio 5:9. In what ratio should Alloy A and Alloy B be mixed to get a new alloy with copper and zinc in the ratio 27:43?",
+    question_text_hi: "मिश्र धातु A में तांबा और जस्ता 3:4 के अनुपात में है। मिश्र धातु B में तांबा और जस्ता 5:9 के अनुपात में है। मिश्र धातु A और मिश्र धातु B को किस अनुपात में मिलाया जाना चाहिए ताकि एक नई मिश्र धातु प्राप्त हो जिसमें तांबा और जस्ता 27:43 के अनुपात में हों?",
+    options: {
+      a: "1:2",
+      b: "2:1",
+      c: "2:3",
+      d: "3:2"
+    },
+    options_hi: {
+      a: "1:2",
+      b: "2:1",
+      c: "2:3",
+      d: "3:2"
+    },
+    correct_option: "c",
+    solution_text: "Take copper fractions:\nIn Alloy A: 3 / (3 + 4) = 3/7 = 30/70.\nIn Alloy B: 5 / (5 + 9) = 5/14 = 25/70.\nIn Resultant Alloy: 27 / (27 + 43) = 27/70.\nApplying Rule of Alligation:\n(27/70 - 25/70) : (30/70 - 27/70) = 2/70 : 3/70 = 2 : 3.",
+    solution_text_hi: "तांबे का अनुपात लें:\nA में: 3/7 = 30/70।\nB में: 5/14 = 25/70।\nमिश्रण में: 27/70।\nमिश्रण नियम (Alligation) से:\n(27/70 - 25/70) : (30/70 - 27/70) = 2 : 3।",
+    shortcut_text: "Equalize denominators to 70: A = 30, B = 25, Mean = 27.\nRatio = |27 - 25| : |30 - 27| = 2 : 3.",
+    shortcut_text_hi: "हर 70 करने पर: 30, 25 और मध्य 27। अंतर = 2 : 3।"
+  },
+  {
+    question_number: 4,
+    practice_set: "SET D",
+    level: "Level 1: Moderate",
+    level_group: "Level 1: Moderate",
+    type_code: "Type 4",
+    type_category: "Mean Proportional Formula",
+    type_category_hi: "मध्यानुपाती सूत्र",
+    question_text: "What is the mean proportional between 18 and 32?",
+    question_text_hi: "18 और 32 के बीच मध्यानुपाती क्या है?",
+    options: {
+      a: "20",
+      b: "24",
+      c: "26",
+      d: "28"
+    },
+    options_hi: {
+      a: "20",
+      b: "24",
+      c: "26",
+      d: "28"
+    },
+    correct_option: "b",
+    solution_text: "Mean proportional between a and b = √(a × b).\nMean proportional = √(18 × 32) = √(576) = 24.",
+    solution_text_hi: "a और b का मध्यानुपाती = √(a × b)।\nमध्यानुपाती = √(18 × 32) = √576 = 24।",
+    shortcut_text: "√(18 × 32) = √(9 × 64) = 3 × 8 = 24.",
+    shortcut_text_hi: "√(18 × 32) = 3 × 8 = 24।"
+  },
+  {
+    question_number: 5,
+    practice_set: "SET D",
+    level: "Level 1: Moderate",
+    level_group: "Level 1: Moderate",
+    type_code: "Type 2",
+    type_category: "Equal Volume Mixture Fusion",
+    type_category_hi: "समान आयतन मिश्रण संयोजन",
+    question_text: "Two vessels contain milk and water in the ratios 3:2 and 7:3 respectively. If the mixtures from both vessels are mixed in equal quantities, find the new ratio of milk to water.",
+    question_text_hi: "दो बर्तनों में दूध और पानी का अनुपात क्रमशः 3:2 और 7:3 है। यदि दोनों बर्तनों के मिश्रण को समान मात्रा में मिलाया जाता है, तो दूध और पानी का नया अनुपात ज्ञात कीजिए।",
+    options: {
+      a: "13:7",
+      b: "17:13",
+      c: "11:9",
+      d: "9:11"
+    },
+    options_hi: {
+      a: "13:7",
+      b: "17:13",
+      c: "11:9",
+      d: "9:11"
+    },
+    correct_option: "a",
+    solution_text: "Sum of ratio units:\nVessel 1: 3 + 2 = 5 units.\nVessel 2: 7 + 3 = 10 units.\nEqualize total volumes to 10 by multiplying Vessel 1 by 2:\nVessel 1: Milk = 6, Water = 4.\nVessel 2: Milk = 7, Water = 3.\nCombined Milk = 6 + 7 = 13.\nCombined Water = 4 + 3 = 7.\nNew ratio = 13 : 7.",
+    solution_text_hi: "आयतन बराबर करें:\nबर्तन 1 (3:2, योग 5) को 2 से गुणा करें => 6 : 4।\nबर्तन 2 (7:3, योग 10) => 7 : 3।\nनया दूध = 6 + 7 = 13।\nनया पानी = 4 + 3 = 7।\nअनुपात = 13 : 7।",
+    shortcut_text: "Scale V1 by 2: (6 + 7) : (4 + 3) = 13 : 7.",
+    shortcut_text_hi: "(6 + 7) : (4 + 3) = 13 : 7।"
+  },
+
+  // ==========================================
+  // LEVEL 2: MORE THAN MODERATE (Q6 to Q10)
+  // ==========================================
+  {
+    question_number: 6,
+    practice_set: "SET D",
+    level: "Level 2: More Than Moderate",
+    level_group: "Level 2: More Than Moderate",
+    type_code: "Type 2",
+    type_category: "Ratio Reversal by Water Addition",
+    type_category_hi: "जल मिलाकर अनुपात उलटना",
+    question_text: "In a 60-liter mixture, the ratio of milk to water is 2:1. How much water must be added to this mixture to reverse the ratio to 1:2?",
+    question_text_hi: "एक 60 लीटर मिश्रण में, दूध और पानी का अनुपात 2:1 है। इस अनुपात को 1:2 में उलटने के लिए इस मिश्रण में कितना पानी मिलाया जाना चाहिए?",
+    options: {
+      a: "20 Liters / लीटर",
+      b: "30 Liters / लीटर",
+      c: "40 Liters / लीटर",
+      d: "60 Liters / लीटर"
+    },
+    options_hi: {
+      a: "20 लीटर",
+      b: "30 लीटर",
+      c: "40 लीटर",
+      d: "60 लीटर"
+    },
+    correct_option: "d",
+    solution_text: "In 60 liters:\nMilk = (2/3) × 60 = 40 Liters.\nWater = (1/3) × 60 = 20 Liters.\nSince only water is added, milk remains 40 Liters.\nIn new ratio (1:2), 1 unit = 40 Liters.\nRequired Water = 2 units = 2 × 40 = 80 Liters.\nWater to be added = 80 - 20 = 60 Liters.",
+    solution_text_hi: "60 लीटर में: दूध = 40 लीटर, पानी = 20 लीटर।\nकेवल पानी मिलाया जाता है, अतः दूध 40 लीटर ही रहेगा।\nनए अनुपात (1:2) में: 1 इकाई = 40 लीटर => पानी = 80 लीटर।\nमिलाया गया पानी = 80 - 20 = 60 लीटर।",
+    shortcut_text: "Milk remains 40L. Target water = 40 × 2 = 80L.\nAdded = 80 - 20 = 60 Liters.",
+    shortcut_text_hi: "दूध = 40 लीटर। नया पानी = 80 लीटर। जोड़ा गया पानी = 80 - 20 = 60 लीटर।"
+  },
+  {
+    question_number: 7,
+    practice_set: "SET D",
+    level: "Level 2: More Than Moderate",
+    level_group: "Level 2: More Than Moderate",
+    type_code: "Type 1",
+    type_category: "Hemisphere Land-Water Division",
+    type_category_hi: "गोलार्ध भूमि-जल विभाजन",
+    question_text: "The ratio of land to water on Earth is 1:2. In the Northern Hemisphere, the ratio is 2:3. What is the ratio of land to water in the Southern Hemisphere?",
+    question_text_hi: "पृथ्वी पर भूमि और पानी का अनुपात 1:2 है। उत्तरी गोलार्ध में यह अनुपात 2:3 है। दक्षिणी गोलार्ध में भूमि और पानी का अनुपात क्या है?",
+    options: {
+      a: "4:11",
+      b: "11:4",
+      c: "1:3",
+      d: "3:1"
+    },
+    options_hi: {
+      a: "4:11",
+      b: "11:4",
+      c: "1:3",
+      d: "3:1"
+    },
+    correct_option: "a",
+    solution_text: "Earth sum = 1 + 2 = 3. Northern Hemisphere (NH) sum = 2 + 3 = 5.\nLet Earth area = 30 units (LCM of 3 and 5, doubled).\nEarth Land = (1/3) × 30 = 10 units; Earth Water = (2/3) × 30 = 20 units.\nEach hemisphere has half the Earth area = 15 units.\nNorthern Hemisphere (15 units):\nNH Land = (2/5) × 15 = 6 units.\nNH Water = (3/5) × 15 = 9 units.\nSouthern Hemisphere (SH):\nSH Land = Earth Land - NH Land = 10 - 6 = 4 units.\nSH Water = Earth Water - NH Water = 20 - 9 = 11 units.\nRatio of Land to Water in SH = 4 : 11.",
+    solution_text_hi: "पृथ्वी का क्षेत्रफल 30 इकाई मानें:\nपृथ्वी भूमि = 10, पानी = 20।\nउत्तरी गोलार्ध = 15 इकाई => भूमि = 6, पानी = 9।\nदक्षिणी गोलार्ध: भूमि = 10 - 6 = 4, पानी = 20 - 9 = 11।\nअनुपात = 4 : 11।",
+    shortcut_text: "Earth = 30 (10:20). NH = 15 (6:9). SH = (10-6) : (20-9) = 4 : 11.",
+    shortcut_text_hi: "SH भूमि = 10 - 6 = 4, SH पानी = 20 - 9 = 11 => 4 : 11।"
+  },
+  {
+    question_number: 8,
+    practice_set: "SET D",
+    level: "Level 2: More Than Moderate",
+    level_group: "Level 2: More Than Moderate",
+    type_code: "Type 2",
+    type_category: "Successive Milk Replacement",
+    type_category_hi: "क्रमिक दूध प्रतिस्थापन",
+    question_text: "A vessel contains 60 liters of pure milk. 6 liters of milk are taken out and replaced with water. This process is repeated one more time. Find the final quantity of milk left in the vessel.",
+    question_text_hi: "एक बर्तन में 60 लीटर शुद्ध दूध है। 6 लीटर दूध निकाला जाता है और उसकी जगह पानी डाल दिया जाता है। यह प्रक्रिया एक बार और दोहराई जाती है। बर्तन में बचे दूध की अंतिम मात्रा ज्ञात कीजिए।",
+    options: {
+      a: "48 Liters / लीटर",
+      b: "48.6 Liters / लीटर",
+      c: "50 Liters / लीटर",
+      d: "54 Liters / लीटर"
+    },
+    options_hi: {
+      a: "48 लीटर",
+      b: "48.6 लीटर",
+      c: "50 लीटर",
+      d: "54 लीटर"
+    },
+    correct_option: "b",
+    solution_text: "Formula for successive dilution:\nFinal Milk = Initial Milk × (1 - Replacement / Total)^n\nHere Initial = 60 L, Replacement = 6 L, Total = 60 L, n = 2.\nFinal Milk = 60 × (1 - 6/60)² = 60 × (9/10)² = 60 × 0.81 = 48.6 Liters.",
+    solution_text_hi: "अंतिम मात्रा = प्रारंभिक × (1 - निकाला गया/कुल)^n\n= 60 × (1 - 6/60)² = 60 × (9/10)² = 60 × 0.81 = 48.6 लीटर।",
+    shortcut_text: "60 × (9/10)² = 60 × 0.81 = 48.6 Liters.",
+    shortcut_text_hi: "60 × 0.81 = 48.6 लीटर।"
+  },
+  {
+    question_number: 9,
+    practice_set: "SET D",
+    level: "Level 2: More Than Moderate",
+    level_group: "Level 2: More Than Moderate",
+    type_code: "Type 1",
+    type_category: "Three-Person Income-Expenditure",
+    type_category_hi: "तीन व्यक्तियों की आय-व्यय",
+    question_text: "The incomes of A, B, and C are in the ratio 3:7:4, and their expenses are in the ratio 4:3:5. If A saves Rs. 400 out of an income of Rs. 2,400, find the savings of B.",
+    question_text_hi: "A, B, और C की आय 3:7:4 के अनुपात में है, और उनके व्यय 4:3:5 के अनुपात में हैं। यदि A Rs. 2,400 की आय में से Rs. 400 बचाता है, तो B की बचत ज्ञात कीजिए।",
+    options: {
+      a: "Rs. 4,025",
+      b: "Rs. 4,100",
+      c: "Rs. 4,700",
+      d: "Rs. 5,125"
+    },
+    options_hi: {
+      a: "₹4,025",
+      b: "₹4,100",
+      c: "₹4,700",
+      d: "₹5,125"
+    },
+    correct_option: "b",
+    solution_text: "A's Income = 3x = Rs. 2,400 => x = 800.\nB's Income = 7x = 7 × 800 = Rs. 5,600.\nA's Expense = Income - Savings = 2,400 - 400 = Rs. 2,000.\nExpense ratio of A = 4y = 2,000 => y = 500.\nB's Expense = 3y = 3 × 500 = Rs. 1,500.\nB's Savings = B's Income - B's Expense = 5,600 - 1,500 = Rs. 4,100.",
+    solution_text_hi: "A की आय = 3x = 2400 => x = 800।\nB की आय = 7 × 800 = 5600।\nA का व्यय = 2400 - 400 = 2000 => 4y = 2000 => y = 500।\nB का व्यय = 3 × 500 = 1500।\nB की बचत = 5600 - 1500 = Rs. 4,100।",
+    shortcut_text: "B's Income = 7(800) = 5600. B's Expense = 3(500) = 1500.\nSavings = 5600 - 1500 = Rs. 4,100.",
+    shortcut_text_hi: "5600 - 1500 = Rs. 4,100।"
+  },
+  {
+    question_number: 10,
+    practice_set: "SET D",
+    level: "Level 2: More Than Moderate",
+    level_group: "Level 2: More Than Moderate",
+    type_code: "Type 2",
+    type_category: "Weighted Multi-Container Mixture",
+    type_category_hi: "भारित बहु-कंटेनर मिश्रण",
+    question_text: "Three containers have their volumes in the ratio 3:4:5. They are full of mixtures of milk and water. The mixtures contain milk and water in the ratios 4:1, 3:1, and 5:2 respectively. If the contents of all three containers are poured into a fourth container, what is the ratio of milk to water in the new container?",
+    question_text_hi: "तीन कंटेनरों के आयतन का अनुपात 3:4:5 है। वे दूध और पानी के मिश्रण से भरे हुए हैं। मिश्रण में दूध और पानी का अनुपात क्रमशः 4:1, 3:1, और 5:2 है। यदि सभी तीन कंटेनरों की सामग्री को चौथे कंटेनर में डाला जाता है, तो नए कंटेनर में दूध और पानी का अनुपात क्या होगा?",
+    options: {
+      a: "137:113",
+      b: "113:137",
+      c: "157:53",
+      d: "53:157"
+    },
+    options_hi: {
+      a: "137:113",
+      b: "113:137",
+      c: "157:53",
+      d: "53:157"
+    },
+    correct_option: "c",
+    solution_text: "Sum of ratio parts: (4+1)=5, (3+1)=4, (5+2)=7.\nLCM of 5, 4, 7 = 140.\nLet container volumes be: C1 = 3 × 140 = 420, C2 = 4 × 140 = 560, C3 = 5 × 140 = 700.\nC1: Milk = (4/5) × 420 = 336, Water = 84.\nC2: Milk = (3/4) × 560 = 420, Water = 140.\nC3: Milk = (5/7) × 700 = 500, Water = 200.\nTotal Milk = 336 + 420 + 500 = 1256.\nTotal Water = 84 + 140 + 200 = 424.\nRatio Milk : Water = 1256 : 424 = 157 : 53.",
+    solution_text_hi: "अनुपातों के योग: 5, 4, 7 का LCM = 140।\nआयतन: C1 = 420, C2 = 560, C3 = 700।\nC1: दूध = 336, पानी = 84।\nC2: दूध = 420, पानी = 140।\nC3: दूध = 500, पानी = 200।\nकुल दूध = 1256, कुल पानी = 424।\nअनुपात = 1256 : 424 = 157 : 53।",
+    shortcut_text: "Total Milk = 336 + 420 + 500 = 1256. Total Water = 424.\n1256 : 424 = 157 : 53.",
+    shortcut_text_hi: "1256 : 424 = 157 : 53।"
+  },
+
+  // ==========================================
+  // LEVEL 3: INSPIRED FROM PYQS (Q11 to Q15)
+  // ==========================================
+  {
+    question_number: 11,
+    practice_set: "SET D",
+    level: "Level 3: Inspired from PYQs",
+    level_group: "Level 3: Inspired from PYQs",
+    type_code: "Type 2",
+    type_category: "Mixture Cost & Profit Percentage",
+    type_category_hi: "मिश्रण लागत और लाभ प्रतिशत",
+    question_text: "A trader mixes 26 kg of rice priced at Rs. 20 per kg with 30 kg of another rice variety priced at Rs. 36 per kg. If he sells the entire mixture at Rs. 30 per kg, what is his approximate profit percentage?",
+    question_text_hi: "एक व्यापारी Rs. 20 प्रति किलो की कीमत वाले 26 किलो चावल को Rs. 36 प्रति किलो की कीमत वाले 30 किलो चावल के साथ मिलाता है। यदि वह पूरे मिश्रण को Rs. 30 प्रति किलो पर बेचता है, तो उसका अनुमानित लाभ प्रतिशत क्या है?",
+    options: {
+      a: "5%",
+      b: "10%",
+      c: "12%",
+      d: "15%"
+    },
+    options_hi: {
+      a: "5%",
+      b: "10%",
+      c: "12%",
+      d: "15%"
+    },
+    correct_option: "a",
+    solution_text: "Total Cost Price (CP) = (26 × 20) + (30 × 36) = 520 + 1080 = Rs. 1600.\nTotal Weight = 26 + 30 = 56 kg.\nTotal Selling Price (SP) = 56 × 30 = Rs. 1680.\nProfit = SP - CP = 1680 - 1600 = Rs. 80.\nProfit Percentage = (80 / 1600) × 100 = 5%.",
+    solution_text_hi: "कुल क्रय मूल्य = (26 × 20) + (30 × 36) = 520 + 1080 = Rs. 1600।\nकुल वजन = 56 किलो => कुल विक्रय मूल्य = 56 × 30 = Rs. 1680।\nलाभ = 1680 - 1600 = Rs. 80।\nलाभ % = (80 / 1600) × 100 = 5%।",
+    shortcut_text: "CP = 1600, SP = 1680. Profit = 80.\nProfit % = 80 / 16 = 5%.",
+    shortcut_text_hi: "लाभ % = (80 / 1600) × 100 = 5%।"
+  },
+  {
+    question_number: 12,
+    practice_set: "SET D",
+    level: "Level 3: Inspired from PYQs",
+    level_group: "Level 3: Inspired from PYQs",
+    type_code: "Type 2",
+    type_category: "Three-Component Alloy Modification",
+    type_category_hi: "त्रि-घटक मिश्र धातु संशोधन",
+    question_text: "An alloy contains copper, zinc, and nickel in the ratio 5:3:2. What quantity of nickel (in kg) must be added to 100 kg of this alloy to make the new ratio 5:3:3?",
+    question_text_hi: "एक मिश्र धातु में तांबा, जस्ता और निकल 5:3:2 के अनुपात में हैं। नया अनुपात 5:3:3 बनाने के लिए इस मिश्र धातु के 100 किलो में कितना निकल (किलो में) मिलाया जाना चाहिए?",
+    options: {
+      a: "10 kg / किलो",
+      b: "12 kg / किलो",
+      c: "15 kg / किलो",
+      d: "20 kg / किलो"
+    },
+    options_hi: {
+      a: "10 किलो",
+      b: "12 किलो",
+      c: "15 किलो",
+      d: "20 किलो"
+    },
+    correct_option: "a",
+    solution_text: "Initial units: 5 + 3 + 2 = 10 units = 100 kg => 1 unit = 10 kg.\nInitial quantities: Copper = 50 kg, Zinc = 30 kg, Nickel = 20 kg.\nIn the new ratio 5:3:3, copper and zinc remain unchanged at 50 kg and 30 kg (still 5 and 3 units).\nNew Nickel needed = 3 units = 3 × 10 = 30 kg.\nNickel to add = 30 - 20 = 10 kg.",
+    solution_text_hi: "प्रारंभिक कुल 10 इकाई = 100 किलो => 1 इकाई = 10 किलो।\nतांबा = 50 किलो, जस्ता = 30 किलो, निकल = 20 किलो।\nनया अनुपात 5:3:3 => निकल की नई मात्रा = 3 इकाई = 30 किलो।\nमिलाया गया निकल = 30 - 20 = 10 किलो।",
+    shortcut_text: "Nickel increases by (3 - 2) = 1 unit.\n1 unit = 100 / 10 = 10 kg.",
+    shortcut_text_hi: "निकल में वृद्धि = 3 - 2 = 1 इकाई = 10 किलो।"
+  },
+  {
+    question_number: 13,
+    practice_set: "SET D",
+    level: "Level 3: Inspired from PYQs",
+    level_group: "Level 3: Inspired from PYQs",
+    type_code: "Type 4",
+    type_category: "Square Proportionality & Breakage",
+    type_category_hi: "वर्ग समानुपात और विखंडन",
+    question_text: "The price of a diamond is directly proportional to the square of its weight. A diamond breaks into four pieces whose weights are in the ratio 1:2:3:4. If this breakage results in a loss of Rs. 1,40,000, find the initial price of the unbroken diamond.",
+    question_text_hi: "हीरे की कीमत उसके वजन के वर्ग के सीधे आनुपातिक होती है। एक हीरा चार टुकड़ों में टूट जाता है जिनका वजन 1:2:3:4 के अनुपात में है। यदि इस टूटने से Rs. 1,40,000 का नुकसान होता है, तो बिना टूटे हीरे की प्रारंभिक कीमत ज्ञात कीजिए।",
+    options: {
+      a: "Rs. 1,50,000",
+      b: "Rs. 2,00,000",
+      c: "Rs. 2,50,000",
+      d: "Rs. 3,00,000"
+    },
+    options_hi: {
+      a: "₹1,50,000",
+      b: "₹2,00,000",
+      c: "₹2,50,000",
+      d: "₹3,00,000"
+    },
+    correct_option: "b",
+    solution_text: "Price P ∝ W².\nTotal weight W = 1 + 2 + 3 + 4 = 10 units.\nOriginal price ∝ 10² = 100 units.\nValue of 4 pieces ∝ (1² + 2² + 3² + 4²) = 1 + 4 + 9 + 16 = 30 units.\nLoss in value = 100 - 30 = 70 units.\nGiven loss = Rs. 1,40,000.\n70 units = 1,40,000 => 1 unit = Rs. 2,000.\nOriginal price = 100 units = 100 × 2,000 = Rs. 2,00,000.",
+    solution_text_hi: "मूल्य P ∝ W²।\nकुल वजन = 1 + 2 + 3 + 4 = 10 इकाई।\nमूल कीमत = 10² = 100 इकाई।\nटुकड़ों की कीमत = 1² + 2² + 3² + 4² = 30 इकाई।\nहानि = 100 - 30 = 70 इकाई = Rs. 1,40,000 => 1 इकाई = Rs. 2,000।\nप्रारंभिक कीमत = 100 × 2,000 = Rs. 2,00,000।",
+    shortcut_text: "Loss = 10² - (1+4+9+16) = 100 - 30 = 70 units.\n70 units = 140,000 => 1 unit = 2,000.\nOriginal = 100 × 2,000 = Rs. 2,00,000.",
+    shortcut_text_hi: "70 इकाई = 1,40,000 => 100 इकाई = Rs. 2,00,000।"
+  },
+  {
+    question_number: 14,
+    practice_set: "SET D",
+    level: "Level 3: Inspired from PYQs",
+    level_group: "Level 3: Inspired from PYQs",
+    type_code: "Type 6",
+    type_category: "Partnership Investment & Time",
+    type_category_hi: "साझेदारी निवेश और समय",
+    question_text: "A and B started a business by investing Rs. 50,000 and Rs. 60,000 respectively. After 4 months, C joins them with an investment of Rs. 70,000. At the end of the year, they earn a total profit of Rs. 47,000. What is C's share of the profit?",
+    question_text_hi: "A और B ने क्रमशः Rs. 50,000 और Rs. 60,000 का निवेश करके एक व्यवसाय शुरू किया। 4 महीने बाद, C Rs. 70,000 के निवेश के साथ उनके साथ जुड़ जाता है। वर्ष के अंत में, वे Rs. 47,000 का कुल लाभ कमाते हैं। लाभ में C का हिस्सा क्या है?",
+    options: {
+      a: "Rs. 10,000",
+      b: "Rs. 12,000",
+      c: "Rs. 14,000",
+      d: "Rs. 15,000"
+    },
+    options_hi: {
+      a: "₹10,000",
+      b: "₹12,000",
+      c: "₹14,000",
+      d: "₹15,000"
+    },
+    correct_option: "c",
+    solution_text: "Profit ratio = (Capital × Time):\nA: 50,000 × 12 = 600,000\nB: 60,000 × 12 = 720,000\nC: 70,000 × 8 (since joined after 4 months) = 560,000\nRatio A : B : C = 600 : 720 : 560 = 60 : 72 : 56 = 15 : 18 : 14.\nTotal profit units = 15 + 18 + 14 = 47 units.\n47 units = Rs. 47,000 => 1 unit = Rs. 1,000.\nC's share = 14 units = 14 × 1,000 = Rs. 14,000.",
+    solution_text_hi: "लाभ का अनुपात = निवेश × समय:\nA = 50 × 12 = 600\nB = 60 × 12 = 720\nC = 70 × 8 = 560\nअनुपात = 15 : 18 : 14। कुल = 47 इकाई = Rs. 47,000 => 1 इकाई = Rs. 1,000।\nC का हिस्सा = 14 × 1,000 = Rs. 14,000।",
+    shortcut_text: "Ratio = (5×12) : (6×12) : (7×8) = 60 : 72 : 56 = 15 : 18 : 14.\nTotal = 47 units = 47,000. C = 14 × 1,000 = Rs. 14,000.",
+    shortcut_text_hi: "47 इकाई = Rs. 47,000 => C का हिस्सा = Rs. 14,000।"
+  },
+  {
+    question_number: 15,
+    practice_set: "SET D",
+    level: "Level 3: Inspired from PYQs",
+    level_group: "Level 3: Inspired from PYQs",
+    type_code: "Type 2",
+    type_category: "Successive Dilution 3-Cycles",
+    type_category_hi: "क्रमिक तनुकरण 3-चक्र",
+    question_text: "A container contains 40 liters of milk. From this, 4 liters of milk is taken out and replaced by water. This process is repeated exactly two more times (three times total). How much pure milk remains in the container?",
+    question_text_hi: "एक कंटेनर में 40 लीटर दूध है। इसमें से 4 लीटर दूध निकालकर उसकी जगह पानी डाल दिया जाता है। यह प्रक्रिया ठीक दो बार और (कुल तीन बार) दोहराई जाती है। कंटेनर में कितना शुद्ध दूध बचता है?",
+    options: {
+      a: "28 Liters / लीटर",
+      b: "29.16 Liters / लीटर",
+      c: "30 Liters / लीटर",
+      d: "32.4 Liters / लीटर"
+    },
+    options_hi: {
+      a: "28 लीटर",
+      b: "29.16 लीटर",
+      c: "30 लीटर",
+      d: "32.4 लीटर"
+    },
+    correct_option: "b",
+    solution_text: "Formula: Remaining Milk = Initial × (1 - x / V)^n\nHere Initial = 40 L, x = 4 L, V = 40 L, n = 3.\nRemaining Milk = 40 × (1 - 4/40)³ = 40 × (9/10)³\n= 40 × (729 / 1000) = 29160 / 1000 = 29.16 Liters.",
+    solution_text_hi: "दूध की शेष मात्रा = 40 × (1 - 4/40)³ = 40 × (9/10)³\n= 40 × (729 / 1000) = 29.16 लीटर।",
+    shortcut_text: "40 × (0.9)³ = 40 × 0.729 = 29.16 Liters.",
+    shortcut_text_hi: "40 × 0.729 = 29.16 लीटर।"
+  },
+
+  // ==========================================
+  // LEVEL 4: PYQ+ (Q16 to Q20)
+  // ==========================================
+  {
+    question_number: 16,
+    practice_set: "SET D",
+    level: "Level 4: PYQ+",
+    level_group: "Level 4: PYQ+",
+    type_code: "Type 1",
+    type_category: "Linked Income-Expense Scaling",
+    type_category_hi: "संयुक्त आय-व्यय स्केलिंग",
+    question_text: "The incomes of A and B are in the ratio 5:3, and their expenditures are in the ratio 9:5. If A's income is exactly twice B's expenditure, what is the ratio of their savings?",
+    question_text_hi: "A और B की आय 5:3 के अनुपात में है, और उनके व्यय 9:5 के अनुपात में हैं। यदि A की आय B के व्यय की ठीक दोगुनी है, तो उनकी बचत का अनुपात क्या है?",
+    options: {
+      a: "11:7",
+      b: "13:5",
+      c: "1:1",
+      d: "15:8"
+    },
+    options_hi: {
+      a: "11:7",
+      b: "13:5",
+      c: "1:1",
+      d: "15:8"
+    },
+    correct_option: "c",
+    solution_text: "Let incomes be 5x and 3x. Let expenditures be 9y and 5y.\nGiven: A's income = 2 × B's expenditure\n5x = 2(5y) = 10y => x = 2y.\nSavings of A = Income - Expenditure = 5x - 9y = 5(2y) - 9y = 10y - 9y = y.\nSavings of B = 3x - 5y = 3(2y) - 5y = 6y - 5y = y.\nRatio of savings = y : y = 1 : 1.",
+    solution_text_hi: "आय = 5x, 3x तथा व्यय = 9y, 5y।\n5x = 2(5y) = 10y => x = 2y।\nA की बचत = 5(2y) - 9y = y।\nB की बचत = 3(2y) - 5y = y।\nबचत का अनुपात = y : y = 1 : 1।",
+    shortcut_text: "5x = 10y => x = 2y.\nA savings = 10y - 9y = y. B savings = 6y - 5y = y. Ratio = 1 : 1.",
+    shortcut_text_hi: "A की बचत = y, B की बचत = y => अनुपात = 1 : 1।"
+  },
+  {
+    question_number: 17,
+    practice_set: "SET D",
+    level: "Level 4: PYQ+",
+    level_group: "Level 4: PYQ+",
+    type_code: "Type 1",
+    type_category: "Leap Frequency & Distance Ratio",
+    type_category_hi: "छलांग आवृत्ति और दूरी अनुपात",
+    question_text: "A dog takes 3 leaps for every 5 leaps of a hare. If 1 leap of the dog is equal in distance to 3 leaps of the hare, what is the ratio of the speed of the dog to that of the hare?",
+    question_text_hi: "एक कुत्ता एक खरगोश की हर 5 छलांग पर 3 छलांग लगाता है। यदि कुत्ते की 1 छलांग दूरी में खरगोश की 3 छलांग के बराबर है, तो कुत्ते और खरगोश की गति का अनुपात क्या है?",
+    options: {
+      a: "8:9",
+      b: "9:8",
+      c: "5:9",
+      d: "9:5"
+    },
+    options_hi: {
+      a: "8:9",
+      b: "9:8",
+      c: "5:9",
+      d: "9:5"
+    },
+    correct_option: "d",
+    solution_text: "Speed = Leap Frequency × Distance per leap.\nFrequency ratio (Dog : Hare) = 3 : 5.\nDistance: 1 leap of Dog = 3 leaps of Hare => (Dog distance / Hare distance) = 3 / 1.\nSpeed ratio = (3 × 3) : (5 × 1) = 9 : 5.",
+    solution_text_hi: "गति = छलांग आवृत्ति × प्रति छलांग दूरी।\nआवृत्ति = 3 : 5।\nदूरी: कुत्ते की 1 छलांग = खरगोश की 3 छलांग => 3 : 1।\nगति का अनुपात = (3 × 3) : (5 × 1) = 9 : 5।",
+    shortcut_text: "Speed = Frequency × Step = (3 × 3) : (5 × 1) = 9 : 5.",
+    shortcut_text_hi: "(3 × 3) : (5 × 1) = 9 : 5।"
+  },
+  {
+    question_number: 18,
+    practice_set: "SET D",
+    level: "Level 4: PYQ+",
+    level_group: "Level 4: PYQ+",
+    type_code: "Type 1",
+    type_category: "Exam Pass-Fail Population Shift",
+    type_category_hi: "परीक्षा उत्तीर्ण-अनुत्तीर्ण परिवर्तन",
+    question_text: "In an examination, the ratio of candidates who passed to those who failed was 25:4. If 5 more candidates had appeared and the number of failures was 2 less than earlier, the pass-to-fail ratio would have been 22:3. Find the total number of students who appeared initially.",
+    question_text_hi: "एक परीक्षा में, उत्तीर्ण होने वाले और अनुत्तीर्ण होने वाले उम्मीदवारों का अनुपात 25:4 था। यदि 5 और उम्मीदवार उपस्थित होते और अनुत्तीर्ण होने वालों की संख्या पहले की तुलना में 2 कम होती, तो उत्तीर्ण और अनुत्तीर्ण का अनुपात 22:3 होता। प्रारंभ में उपस्थित होने वाले छात्रों की कुल संख्या ज्ञात कीजिए।",
+    options: {
+      a: "145",
+      b: "150",
+      c: "155",
+      d: "160"
+    },
+    options_hi: {
+      a: "145",
+      b: "150",
+      c: "155",
+      d: "160"
+    },
+    correct_option: "a",
+    solution_text: "Initial Pass = 25x, Fail = 4x. Total candidates = 25x + 4x = 29x.\nNew conditions:\nNew Total = 29x + 5\nNew Fail = 4x - 2\nNew Pass = New Total - New Fail = (29x + 5) - (4x - 2) = 25x + 7.\nNew Pass / Fail ratio:\n(25x + 7) / (4x - 2) = 22 / 3\n3(25x + 7) = 22(4x - 2)\n75x + 21 = 88x - 44\n13x = 65 => x = 5.\nInitial candidates who appeared = 29x = 29 × 5 = 145.",
+    solution_text_hi: "प्रारंभिक उत्तीर्ण = 25x, अनुत्तीर्ण = 4x, कुल = 29x।\nनया कुल = 29x + 5, नए अनुत्तीर्ण = 4x - 2।\nनए उत्तीर्ण = (29x + 5) - (4x - 2) = 25x + 7।\n(25x + 7) / (4x - 2) = 22 / 3\n75x + 21 = 88x - 44 => 13x = 65 => x = 5।\nप्रारंभिक कुल छात्र = 29 × 5 = 145।",
+    shortcut_text: "(25x + 7) / (4x - 2) = 22 / 3 => 13x = 65 => x = 5.\nTotal = 29 × 5 = 145.",
+    shortcut_text_hi: "13x = 65 => x = 5। कुल छात्र = 29 × 5 = 145।"
+  },
+  {
+    question_number: 19,
+    practice_set: "SET D",
+    level: "Level 4: PYQ+",
+    level_group: "Level 4: PYQ+",
+    type_code: "Type 2",
+    type_category: "Reverse Replacement Concentration",
+    type_category_hi: "व्युत्क्रम प्रतिस्थापन सांद्रता",
+    question_text: "A vessel is full of a mixture containing 20% acid and 80% water. 50 liters of this mixture are taken out and replaced entirely with water. If the resulting mixture now contains 15% acid, find the initial total quantity of the mixture.",
+    question_text_hi: "एक बर्तन 20% एसिड और 80% पानी के मिश्रण से भरा है। इस मिश्रण का 50 लीटर निकाल लिया जाता है और पूरी तरह से पानी से बदल दिया जाता है। यदि परिणामी मिश्रण में अब 15% एसिड है, तो मिश्रण की प्रारंभिक कुल मात्रा ज्ञात कीजिए।",
+    options: {
+      a: "100 Liters / लीटर",
+      b: "150 Liters / लीटर",
+      c: "200 Liters / लीटर",
+      d: "250 Liters / लीटर"
+    },
+    options_hi: {
+      a: "100 लीटर",
+      b: "150 लीटर",
+      c: "200 लीटर",
+      d: "250 लीटर"
+    },
+    correct_option: "c",
+    solution_text: "Let total volume be V liters.\nUsing formula for concentration after single replacement with water:\nFinal % = Initial % × (1 - Removed / V)\n15 = 20 × (1 - 50 / V)\n15 / 20 = 1 - 50 / V\n3 / 4 = 1 - 50 / V\n50 / V = 1 - 3/4 = 1/4\nV = 50 × 4 = 200 Liters.",
+    solution_text_hi: "अंतिम % = प्रारंभिक % × (1 - निकाला गया / कुल)\n15 = 20 × (1 - 50/V) => 3/4 = 1 - 50/V\n50/V = 1/4 => V = 200 लीटर।",
+    shortcut_text: "Acid reduced from 20% to 15% (factor of 3/4).\nFraction replaced = 1 - 3/4 = 1/4.\n1/4 of Total = 50L => Total = 200 Liters.",
+    shortcut_text_hi: "1/4 भाग = 50 लीटर => कुल आयतन = 200 लीटर।"
+  },
+  {
+    question_number: 20,
+    practice_set: "SET D",
+    level: "Level 4: PYQ+",
+    level_group: "Level 4: PYQ+",
+    type_code: "Type 6",
+    type_category: "Fractional Capital & Duration Partnership",
+    type_category_hi: "आंशिक पूंजी व समय साझेदारी",
+    question_text: "X, Y, and Z start a business. X invests 1/4 of the total capital for 1/4 of the total time. Y invests 1/5 of the capital for 1/2 of the time. Z invests the remaining capital for the entire time. If the total profit is Rs. 11,400, find the profit share of Z.",
+    question_text_hi: "X, Y और Z एक व्यवसाय शुरू करते हैं। X कुल पूंजी का 1/4 भाग, कुल समय के 1/4 भाग के लिए निवेश करता है। Y पूंजी का 1/5 भाग, समय के 1/2 भाग के लिए निवेश करता है। Z शेष पूंजी को पूरे समय के लिए निवेश करता है। यदि कुल लाभ Rs. 11,400 है, तो Z का लाभ हिस्सा ज्ञात कीजिए।",
+    options: {
+      a: "Rs. 4,500",
+      b: "Rs. 5,400",
+      c: "Rs. 6,600",
+      d: "Rs. 8,800"
+    },
+    options_hi: {
+      a: "₹4,500",
+      b: "₹5,400",
+      c: "₹6,600",
+      d: "₹8,800"
+    },
+    correct_option: "d",
+    solution_text: "Let total capital = 20, total time = 4 units.\nX: Capital = (1/4) × 20 = 5, Time = (1/4) × 4 = 1. Share = 5 × 1 = 5.\nY: Capital = (1/5) × 20 = 4, Time = (1/2) × 4 = 2. Share = 4 × 2 = 8.\nZ: Capital = 20 - (5 + 4) = 11, Time = 4. Share = 11 × 4 = 44.\nProfit ratio X : Y : Z = 5 : 8 : 44.\nTotal units = 5 + 8 + 44 = 57 units.\n57 units = Rs. 11,400 => 1 unit = Rs. 200.\nZ's profit share = 44 × 200 = Rs. 8,800.",
+    solution_text_hi: "कुल पूंजी = 20, कुल समय = 4 मानें।\nX = 5 × 1 = 5\nY = 4 × 2 = 8\nZ = 11 × 4 = 44\nअनुपात = 5 : 8 : 44। कुल = 57 इकाई = Rs. 11,400 => 1 इकाई = Rs. 200।\nZ का हिस्सा = 44 × 200 = Rs. 8,800।",
+    shortcut_text: "Ratio = (1/16) : (1/10) : (11/20) = 5 : 8 : 44.\nZ share = (44/57) × 11,400 = 44 × 200 = Rs. 8,800.",
+    shortcut_text_hi: "(44/57) × 11,400 = 44 × 200 = Rs. 8,800।"
+  },
+
+  // ==========================================
+  // LEVEL 5: PYQ++ (Q21 to Q25)
+  // ==========================================
+  {
+    question_number: 21,
+    practice_set: "SET D",
+    level: "Level 5: PYQ++",
+    level_group: "Level 5: PYQ++",
+    type_code: "Type 2",
+    type_category: "Multi-Juice Replacement & Differential",
+    type_category_hi: "बहु-रस प्रतिस्थापन और अंतर",
+    question_text: "A container holds a mixture of orange, apple, and guava juices in the ratio of 5:7:4 respectively. 24 liters of this mixture is taken out, and then 10 liters of orange juice and 6 liters of guava juice are added to the vessel. If the resultant quantity of apple juice is 14 liters more than the resultant quantity of orange juice, what was the initial quantity of mixture in the vessel?",
+    question_text_hi: "एक कंटेनर में संतरे, सेब और अमरुद के रस का मिश्रण क्रमशः 5:7:4 के अनुपात में है। इस मिश्रण का 24 लीटर निकाला जाता है, और फिर बर्तन में 10 लीटर संतरे का रस और 6 लीटर अमरुद का रस मिलाया जाता है। यदि सेब के रस की परिणामी मात्रा संतरे के रस की परिणामी मात्रा से 14 लीटर अधिक है, तो बर्तन में मिश्रण की प्रारंभिक मात्रा क्या थी?",
+    options: {
+      a: "210 Liters / लीटर",
+      b: "216 Liters / लीटर",
+      c: "235 Liters / लीटर",
+      d: "240 Liters / लीटर"
+    },
+    options_hi: {
+      a: "210 लीटर",
+      b: "216 लीटर",
+      c: "235 लीटर",
+      d: "240 लीटर"
+    },
+    correct_option: "b",
+    solution_text: "Initial juices ratio = 5x, 7x, 4x. Total = 16x.\nIn 24 liters removed:\nOrange removed = (5/16) × 24 = 7.5 Liters.\nApple removed = (7/16) × 24 = 10.5 Liters.\nThen 10L orange juice is added:\nFinal Orange = 5x - 7.5 + 10 = 5x + 2.5 Liters.\nFinal Apple = 7x - 10.5 Liters.\nGiven condition: Final Apple = Final Orange + 14\n7x - 10.5 = (5x + 2.5) + 14\n7x - 10.5 = 5x + 16.5\n2x = 27 => x = 13.5.\nInitial quantity in vessel = 16x = 16 × 13.5 = 216 Liters.",
+    solution_text_hi: "कुल मिश्रण = 16x।\n24L निकालने पर: संतरा = 7.5L, सेब = 10.5L।\nनया संतरा = 5x - 7.5 + 10 = 5x + 2.5।\nनया सेब = 7x - 10.5।\n7x - 10.5 = (5x + 2.5) + 14 => 2x = 27 => x = 13.5।\nप्रारंभिक मिश्रण = 16 × 13.5 = 216 लीटर।",
+    shortcut_text: "2x = 10.5 + 2.5 + 14 = 27 => x = 13.5.\nTotal = 16 × 13.5 = 216 Liters.",
+    shortcut_text_hi: "2x = 27 => x = 13.5। कुल = 16 × 13.5 = 216 लीटर।"
+  },
+  {
+    question_number: 22,
+    practice_set: "SET D",
+    level: "Level 5: PYQ++",
+    level_group: "Level 5: PYQ++",
+    type_code: "Type 6",
+    type_category: "Accidental Swap & Bill Increase",
+    type_category_hi: "आकस्मिक अदला-बदली और बिल वृद्धि",
+    question_text: "An order was placed for 5 kg of premium coffee and some additional kilograms of ordinary coffee. The price of the premium coffee per kg was three times that of the ordinary coffee. Upon delivery, it was found that the quantities of premium and ordinary coffee had been accidentally swapped, which increased the bill by 40%. Find the original ratio of premium coffee to ordinary coffee.",
+    question_text_hi: "5 किलो प्रीमियम कॉफी और कुछ अतिरिक्त किलोग्राम साधारण कॉफी का ऑर्डर दिया गया था। प्रति किलो प्रीमियम कॉफी की कीमत साधारण कॉफी से तीन गुना थी। डिलीवरी पर, यह पाया गया कि प्रीमियम और साधारण कॉफी की मात्रा गलती से बदल दी गई थी, जिससे बिल में 40% की वृद्धि हुई। प्रीमियम कॉफी और साधारण कॉफी का मूल अनुपात ज्ञात कीजिए।",
+    options: {
+      a: "1:2",
+      b: "2:1",
+      c: "1:3",
+      d: "3:1"
+    },
+    options_hi: {
+      a: "1:2",
+      b: "2:1",
+      c: "1:3",
+      d: "3:1"
+    },
+    correct_option: "a",
+    solution_text: "Let ordinary coffee ordered = x kg.\nPrice of ordinary = Rs. 1/kg, Price of premium = Rs. 3/kg.\nOriginal bill = 5(3) + x(1) = 15 + x.\nSwapped delivery: x kg premium and 5 kg ordinary.\nSwapped bill = x(3) + 5(1) = 3x + 5.\nGiven: Swapped bill = 1.40 × Original bill\n3x + 5 = 1.4(15 + x) = 21 + 1.4x\n3x - 1.4x = 21 - 5\n1.6x = 16 => x = 10 kg.\nOriginal ratio (Premium : Ordinary) = 5 : 10 = 1 : 2.",
+    solution_text_hi: "माना साधारण कॉफी = x किलो। दर = साधारण 1, प्रीमियम 3।\nमूल बिल = 5(3) + x(1) = 15 + x।\nअदला-बदली बिल = 3x + 5।\n3x + 5 = 1.4(15 + x) => 1.6x = 16 => x = 10 किलो।\nमूल अनुपात = 5 : 10 = 1 : 2।",
+    shortcut_text: "3x + 5 = 1.4(15 + x) => 1.6x = 16 => x = 10 kg.\nRatio = 5 : 10 = 1 : 2.",
+    shortcut_text_hi: "1.6x = 16 => x = 10। अनुपात = 5 : 10 = 1 : 2।"
+  },
+  {
+    question_number: 23,
+    practice_set: "SET D",
+    level: "Level 5: PYQ++",
+    level_group: "Level 5: PYQ++",
+    type_code: "Type 2",
+    type_category: "Dilution After Partial Removal",
+    type_category_hi: "आंशिक निष्कासन के बाद तनुकरण",
+    question_text: "In a 90-liter mixture of milk and water, the percentage of water is 30%. A milkman gave 18 liters of this mixture to a customer and then added 18 liters of pure water to the remaining mixture. What is the final percentage of milk in the mixture?",
+    question_text_hi: "दूध और पानी के 90-लीटर मिश्रण में, पानी का प्रतिशत 30% है। एक दूधवाले ने एक ग्राहक को इस मिश्रण का 18 लीटर दिया और फिर शेष मिश्रण में 18 लीटर शुद्ध पानी मिला दिया। मिश्रण में दूध का अंतिम प्रतिशत क्या है?",
+    options: {
+      a: "42%",
+      b: "48%",
+      c: "52%",
+      d: "56%"
+    },
+    options_hi: {
+      a: "42%",
+      b: "48%",
+      c: "52%",
+      d: "56%"
+    },
+    correct_option: "d",
+    solution_text: "Initial milk concentration = 100% - 30% = 70%.\nInitial Milk quantity = 70% of 90 = 63 Liters.\nWhen 18 liters is taken out, remaining mixture = 90 - 18 = 72 Liters.\nMilk remaining in 72L = 70% of 72 = 50.4 Liters.\n18 liters of pure water is added, restoring total volume to 72 + 18 = 90 Liters.\nMilk quantity remains 50.4 Liters.\nFinal percentage of milk = (50.4 / 90) × 100 = 56%.",
+    solution_text_hi: "दूध का प्रारंभिक प्रतिशत = 70%।\n18L निकालने के बाद शेष मिश्रण = 72L।\n72L में दूध = 72 का 70% = 50.4 लीटर।\n18L पानी मिलाने पर कुल मिश्रण पुनः 90L हो जाता है।\nदूध का अंतिम प्रतिशत = (50.4 / 90) × 100 = 56%।",
+    shortcut_text: "Milk remaining = 70% of (90 - 18) = 50.4L.\nFinal % = (50.4 / 90) × 100 = 56%.",
+    shortcut_text_hi: "70% × (72 / 90) = 70% × 0.8 = 56%।"
+  },
+  {
+    question_number: 24,
+    practice_set: "SET D",
+    level: "Level 5: PYQ++",
+    level_group: "Level 5: PYQ++",
+    type_code: "Type 4",
+    type_category: "Candle Burning Rate Ratio",
+    type_category_hi: "मोमबत्ती जलने की दर अनुपात",
+    question_text: "Two candles of the exact same height are lighted at the same time. The first is fully consumed in 8 hours and the second in 6 hours. Assuming each burns at a constant rate, how many hours after being lighted will the ratio of the height of the first candle to the second become 2:1?",
+    question_text_hi: "बिल्कुल समान ऊंचाई की दो मोमबत्तियां एक ही समय पर जलाई जाती हैं। पहली 8 घंटे में और दूसरी 6 घंटे में पूरी तरह से जल जाती है। यह मानते हुए कि प्रत्येक एक स्थिर दर पर जलती है, जलाए जाने के कितने घंटे बाद पहली और दूसरी मोमबत्ती की ऊंचाई का अनुपात 2:1 हो जाएगा?",
+    options: {
+      a: "3.6 hours / घंटे",
+      b: "4 hours / घंटे",
+      c: "4.8 hours / घंटे",
+      d: "5 hours / घंटे"
+    },
+    options_hi: {
+      a: "3.6 घंटे",
+      b: "4 घंटे",
+      c: "4.8 घंटे",
+      d: "5 घंटे"
+    },
+    correct_option: "c",
+    solution_text: "Let initial height of both candles be H.\nHeight remaining after t hours:\nCandle 1: h1 = H(1 - t/8)\nCandle 2: h2 = H(1 - t/6)\nGiven condition: h1 / h2 = 2 / 1\n(1 - t/8) / (1 - t/6) = 2 / 1\n1 - t/8 = 2(1 - t/6) = 2 - t/3\nt/3 - t/8 = 2 - 1 = 1\n(8t - 3t) / 24 = 1\n5t / 24 = 1 => t = 24 / 5 = 4.8 hours.",
+    solution_text_hi: "माना ऊंचाई H है। t घंटे बाद ऊंचाई:\nh1 = H(1 - t/8), h2 = H(1 - t/6)।\n(1 - t/8) / (1 - t/6) = 2 / 1\n1 - t/8 = 2 - t/3 => t/3 - t/8 = 1\n5t / 24 = 1 => t = 4.8 घंटे।",
+    shortcut_text: "t/3 - t/8 = 1 => 5t/24 = 1 => t = 24/5 = 4.8 hours.",
+    shortcut_text_hi: "5t/24 = 1 => t = 24/5 = 4.8 घंटे।"
+  },
+  {
+    question_number: 25,
+    practice_set: "SET D",
+    level: "Level 5: PYQ++",
+    level_group: "Level 5: PYQ++",
+    type_code: "Type 3",
+    type_category: "Multi-Stage Consecutive Alligation",
+    type_category_hi: "बहु-चरणीय क्रमिक मिश्रण",
+    question_text: "Alloy A consists of iron and copper in the ratio 3:4. Alloy B consists of iron and copper in the ratio 5:2. Alloy C is prepared by mixing A and B in the ratio 4:5. If Alloy C is then mixed with pure copper in the ratio 3:1 to form Alloy D, what is the final ratio of iron to copper in Alloy D?",
+    question_text_hi: "मिश्र धातु A में लोहा और तांबा 3:4 के अनुपात में है। मिश्र धातु B में लोहा और तांबा 5:2 के अनुपात में है। मिश्र धातु C को A और B को 4:5 के अनुपात में मिलाकर तैयार किया जाता है। यदि मिश्र धातु C को फिर शुद्ध तांबे के साथ 3:1 के अनुपात में मिलाकर मिश्र धातु D बनाया जाता है, तो मिश्र धातु D में लोहे और तांबे का अंतिम अनुपात क्या है?",
+    options: {
+      a: "11:15",
+      b: "13:17",
+      c: "37:47",
+      d: "17:23"
+    },
+    options_hi: {
+      a: "11:15",
+      b: "13:17",
+      c: "37:47",
+      d: "17:23"
+    },
+    correct_option: "c",
+    solution_text: "Both A (3:4) and B (5:2) have sum = 7 parts.\nAlloy C is formed by 4 parts of A and 5 parts of B (total 9 parts):\nIron in C = 4(3/7) + 5(5/7) = 12/7 + 25/7 = 37/7.\nCopper in C = 4(4/7) + 5(2/7) = 16/7 + 10/7 = 26/7.\nRatio Fe : Cu in C = 37 : 26 (total 63 units).\nNow mix 3 parts of C with 1 part pure copper:\nLet 3 parts C = 3 × 63 = 189 units => Fe = 3 × 37 = 111, Cu = 3 × 26 = 78.\n1 part pure copper = 1 × 63 = 63 units of Cu.\nTotal Fe in Alloy D = 111.\nTotal Cu in Alloy D = 78 + 63 = 141.\nFinal Ratio Fe : Cu = 111 : 141 = 37 : 47 (dividing by 3).",
+    solution_text_hi: "A (3:4, योग 7) और B (5:2, योग 7)।\nमिश्र धातु C (4 भाग A, 5 भाग B):\nलोहा = 4(3/7) + 5(5/7) = 37/7।\nतांबा = 4(4/7) + 5(2/7) = 26/7।\nC में Fe : Cu = 37 : 26 (कुल 63 इकाई)।\n3 भाग C और 1 भाग शुद्ध तांबा:\nFe = 3 × 37 = 111।\nCu = (3 × 26) + 63 = 78 + 63 = 141।\nअंतिम अनुपात = 111 : 141 = 37 : 47।",
+    shortcut_text: "Fe = 3 × 37 = 111. Cu = 3 × 26 + 63 = 141.\n111 : 141 = 37 : 47.",
+    shortcut_text_hi: "111 : 141 = 37 : 47।"
+  },
+
+  // ==========================================
+  // LEVEL 6: ADVANCED / MAINS LEVEL (Q26 to Q30)
+  // ==========================================
+  {
+    question_number: 26,
+    practice_set: "SET D",
+    level: "Level 6: Advanced / Mains Level",
+    level_group: "Level 6: Advanced / Mains Level",
+    type_code: "Type 2",
+    type_category: "Varying Volume Successive Replacement",
+    type_category_hi: "परिवर्ती मात्रा क्रमिक प्रतिस्थापन",
+    question_text: "A vessel contains 400 liters of pure milk. First, 20 liters of milk are taken out and replaced by water. Then 40 liters of the new mixture are taken out and replaced by water. Finally, 60 liters of the resulting mixture are taken out and replaced by water. Find the final amount of milk in the vessel.",
+    question_text_hi: "एक बर्तन में 400 लीटर शुद्ध दूध है। पहले 20 लीटर दूध निकाला जाता है और पानी से बदल दिया जाता है। फिर नए मिश्रण का 40 लीटर निकाला जाता है और पानी से बदल दिया जाता है। अंत में, परिणामी मिश्रण का 60 लीटर निकाला जाता है और पानी से बदल दिया जाता है। बर्तन में दूध की अंतिम मात्रा ज्ञात कीजिए।",
+    options: {
+      a: "280.5 Liters / लीटर",
+      b: "290.7 Liters / लीटर",
+      c: "300.0 Liters / लीटर",
+      d: "310.4 Liters / लीटर"
+    },
+    options_hi: {
+      a: "280.5 लीटर",
+      b: "290.7 लीटर",
+      c: "300.0 लीटर",
+      d: "310.4 लीटर"
+    },
+    correct_option: "b",
+    solution_text: "Using the compounding replacement formula with varying removal quantities:\nFinal Milk = Initial × (1 - x1/V) × (1 - x2/V) × (1 - x3/V)\n= 400 × (1 - 20/400) × (1 - 40/400) × (1 - 60/400)\n= 400 × (380/400) × (360/400) × (340/400)\n= 400 × (19/20) × (9/10) × (17/20)\n= (400 × 19 × 9 × 17) / 4000\n= (19 × 9 × 17) / 10\n= (171 × 17) / 10 = 2907 / 10 = 290.7 Liters.",
+    solution_text_hi: "क्रमिक प्रतिस्थापन सूत्र से:\nदूध = 400 × (1 - 20/400) × (1 - 40/400) × (1 - 60/400)\n= 400 × (19/20) × (9/10) × (17/20)\n= (19 × 9 × 17) / 10 = 2907 / 10 = 290.7 लीटर।",
+    shortcut_text: "400 × (19/20) × (9/10) × (17/20) = (171 × 17) / 10 = 290.7 Liters.",
+    shortcut_text_hi: "(171 × 17) / 10 = 290.7 लीटर।"
+  },
+  {
+    question_number: 27,
+    practice_set: "SET D",
+    level: "Level 6: Advanced / Mains Level",
+    level_group: "Level 6: Advanced / Mains Level",
+    type_code: "Type 3",
+    type_category: "Alligation of Zinc Proportions",
+    type_category_hi: "जस्ता अनुपातों का मिश्रण नियम",
+    question_text: "Two alloys consist of zinc and copper in the ratios 1:2 and 2:3. In what ratio should the two alloys be mixed to form a new alloy containing zinc and copper in the ratio 5:8?",
+    question_text_hi: "दो मिश्र धातुओं में जस्ता और तांबा 1:2 और 2:3 के अनुपात में है। जस्ता और तांबा 5:8 के अनुपात में युक्त एक नई मिश्र धातु बनाने के लिए दोनों मिश्र धातुओं को किस अनुपात में मिलाया जाना चाहिए?",
+    options: {
+      a: "3:10",
+      b: "2:5",
+      c: "1:4",
+      d: "3:8"
+    },
+    options_hi: {
+      a: "3:10",
+      b: "2:5",
+      c: "1:4",
+      d: "3:8"
+    },
+    correct_option: "a",
+    solution_text: "Fraction of Zinc in Alloy 1 = 1 / (1 + 2) = 1/3.\nFraction of Zinc in Alloy 2 = 2 / (2 + 3) = 2/5.\nFraction of Zinc in Mean Mixture = 5 / (5 + 8) = 5/13.\nApplying Rule of Alligation:\n|5/13 - 2/5| : |5/13 - 1/3|\n= |(25 - 26) / 65| : |(15 - 13) / 39|\n= 1/65 : 2/39\nMultiply both by 195 (LCM of 65 and 39):\n(195 / 65) : 2 × (195 / 39) = 3 : 2 × 5 = 3 : 10.",
+    solution_text_hi: "जस्ता अनुपात: A = 1/3, B = 2/5, माध्य = 5/13।\nमिश्रण नियम:\n|5/13 - 2/5| : |5/13 - 1/3| = 1/65 : 2/39।\n195 से गुणा करने पर: 3 : 10।",
+    shortcut_text: "1/65 : 2/39 = 39 : 130 = 3 : 10.",
+    shortcut_text_hi: "1/65 : 2/39 = 39 : 130 = 3 : 10।"
+  },
+  {
+    question_number: 28,
+    practice_set: "SET D",
+    level: "Level 6: Advanced / Mains Level",
+    level_group: "Level 6: Advanced / Mains Level",
+    type_code: "Type 2",
+    type_category: "Constant Component Dilution",
+    type_category_hi: "स्थिर घटक तनुकरण",
+    question_text: "A mixture of milk and water measures 60 liters. It contains 10% water. How much water must be added to make the water content 25% of the total mixture?",
+    question_text_hi: "दूध और पानी का एक मिश्रण 60 लीटर का है। इसमें 10% पानी है। कुल मिश्रण का पानी 25% बनाने के लिए इसमें कितना पानी मिलाया जाना चाहिए?",
+    options: {
+      a: "10 Liters / लीटर",
+      b: "12 Liters / लीटर",
+      c: "15 Liters / लीटर",
+      d: "18 Liters / लीटर"
+    },
+    options_hi: {
+      a: "10 लीटर",
+      b: "12 लीटर",
+      c: "15 लीटर",
+      d: "18 लीटर"
+    },
+    correct_option: "b",
+    solution_text: "Milk quantity remains unchanged because only water is added.\nInitial Milk = (100% - 10%) of 60 = 90% of 60 = 54 Liters.\nIn the new mixture, water is 25%, so milk is 75%.\n75% of New Total Volume = 54 Liters\nNew Total Volume = 54 / 0.75 = 72 Liters.\nWater added = New Volume - Initial Volume = 72 - 60 = 12 Liters.",
+    solution_text_hi: "दूध की मात्रा स्थिर रहती है:\nप्रारंभिक दूध = 60 का 90% = 54 लीटर।\nनए मिश्रण में दूध = 100% - 25% = 75%।\nनया कुल आयतन = 54 / 0.75 = 72 लीटर।\nमिलाया गया पानी = 72 - 60 = 12 लीटर।",
+    shortcut_text: "Milk is constant: 54 / 0.75 = 72L.\nWater added = 72 - 60 = 12 Liters.",
+    shortcut_text_hi: "54 / 0.75 = 72 लीटर => मिलाया गया पानी = 72 - 60 = 12 लीटर।"
+  },
+  {
+    question_number: 29,
+    practice_set: "SET D",
+    level: "Level 6: Advanced / Mains Level",
+    level_group: "Level 6: Advanced / Mains Level",
+    type_code: "Type 1",
+    type_category: "Triple Component Percentage Expansion",
+    type_category_hi: "त्रिक घटक प्रतिशत विस्तार",
+    question_text: "The ratio of the prices of three items A, B, and C is 3:5:7. If the price of A is increased by 20%, B by 10%, and C by 30%, what will be the new ratio of their prices?",
+    question_text_hi: "तीन वस्तुओं A, B, और C की कीमतों का अनुपात 3:5:7 है। यदि A की कीमत में 20%, B में 10% और C में 30% की वृद्धि की जाती है, तो उनकी कीमतों का नया अनुपात क्या होगा?",
+    options: {
+      a: "30:50:70",
+      b: "35:56:90",
+      c: "36:55:91",
+      d: "38:52:95"
+    },
+    options_hi: {
+      a: "30:50:70",
+      b: "35:56:90",
+      c: "36:55:91",
+      d: "38:52:95"
+    },
+    correct_option: "c",
+    solution_text: "Let the initial prices be 300, 500, and 700.\nPrice of A after 20% increase = 300 × 1.20 = 360.\nPrice of B after 10% increase = 500 × 1.10 = 550.\nPrice of C after 30% increase = 700 × 1.30 = 910.\nNew ratio = 360 : 550 : 910 = 36 : 55 : 91.",
+    solution_text_hi: "माना प्रारंभिक कीमतें 300, 500 और 700 हैं।\nA = 300 × 1.20 = 360।\nB = 500 × 1.10 = 550।\nC = 700 × 1.30 = 910।\nनया अनुपात = 360 : 550 : 910 = 36 : 55 : 91।",
+    shortcut_text: "(3 × 1.2) : (5 × 1.1) : (7 × 1.3) = 3.6 : 5.5 : 9.1 = 36 : 55 : 91.",
+    shortcut_text_hi: "3.6 : 5.5 : 9.1 = 36 : 55 : 91।"
+  },
+  {
+    question_number: 30,
+    practice_set: "SET D",
+    level: "Level 6: Advanced / Mains Level",
+    level_group: "Level 6: Advanced / Mains Level",
+    type_code: "Type 1",
+    type_category: "Equal Savings Step Matching",
+    type_category_hi: "समान बचत अंतर मिलान",
+    question_text: "The incomes of X and Y are in the ratio 4:3, and their expenses are in the ratio 3:2. If X and Y each save Rs. 4,000, what is the income of X?",
+    question_text_hi: "X और Y की आय 4:3 के अनुपात में है, और उनके व्यय 3:2 के अनुपात में हैं। यदि X और Y प्रत्येक Rs. 4,000 की बचत करते हैं, तो X की आय क्या है?",
+    options: {
+      a: "Rs. 12,000",
+      b: "Rs. 16,000",
+      c: "Rs. 20,000",
+      d: "Rs. 24,000"
+    },
+    options_hi: {
+      a: "₹12,000",
+      b: "₹16,000",
+      c: "₹20,000",
+      d: "₹24,000"
+    },
+    correct_option: "b",
+    solution_text: "Income ratio X : Y = 4 : 3\nExpenditure ratio X : Y = 3 : 2\nDifference in income and expenditure units:\nFor X: 4 - 3 = 1 unit.\nFor Y: 3 - 2 = 1 unit.\nSince both differences are equal to savings:\n1 unit = Rs. 4,000.\nIncome of X = 4 units = 4 × 4,000 = Rs. 16,000.",
+    solution_text_hi: "आय = 4 : 3\nव्यय = 3 : 2\nबचत = 4 - 3 = 1 इकाई (X के लिए), 3 - 2 = 1 इकाई (Y के लिए)।\n1 इकाई = Rs. 4,000।\nX की आय = 4 × 4,000 = Rs. 16,000।",
+    shortcut_text: "Ratio step diff: (4 - 3) = 1 unit = Rs. 4,000.\nX income = 4 × 4,000 = Rs. 16,000.",
+    shortcut_text_hi: "1 इकाई = Rs. 4,000 => X = 4 × 4,000 = Rs. 16,000।"
+  }
+];
+
 if (typeof window !== "undefined") {
   window.RATIO_SET_A_QUESTIONS = RATIO_SET_A_QUESTIONS;
   window.RATIO_SET_B_QUESTIONS = RATIO_SET_B_QUESTIONS;
   window.RATIO_SET_C_QUESTIONS = RATIO_SET_C_QUESTIONS;
+  window.RATIO_SET_D_QUESTIONS = RATIO_SET_D_QUESTIONS;
 }
 
