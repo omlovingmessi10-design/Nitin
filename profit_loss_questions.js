@@ -15,9 +15,9 @@ const PROFIT_LOSS_SET_A_QUESTIONS = [
     level_group: "Level 1: Moderate",
     type_code: "Type 1",
     type_category: "Markup & Single Discount",
-    type_category_hi: "à¤…à¤‚à¤•à¤¿à¤¤ à¤®à¥‚à¤²à¥à¤¯ à¤”à¤° à¤à¤•à¤² à¤›à¥‚à¤Ÿ",
+    type_category_hi: "अंकित मूल्य और एकल छूट",
     question_text: "A shopkeeper marks an article at 25% above the cost price. If he gives a discount of 10% on the marked price, find his profit percentage.",
-    question_text_hi: "à¤à¤• à¤¦à¥à¤•à¤¾à¤¨à¤¦à¤¾à¤° à¤à¤• à¤µà¤¸à¥à¤¤à¥ à¤ªà¤° à¤•à¥à¤°à¤¯ à¤®à¥‚à¤²à¥à¤¯ à¤¸à¥‡ 25% à¤…à¤§à¤¿à¤• à¤®à¥‚à¤²à¥à¤¯ à¤…à¤‚à¤•à¤¿à¤¤ à¤•à¤°à¤¤à¤¾ à¤¹à¥ˆà¥¤ à¤¯à¤¦à¤¿ à¤µà¤¹ à¤…à¤‚à¤•à¤¿à¤¤ à¤®à¥‚à¤²à¥à¤¯ à¤ªà¤° 10% à¤•à¥€ à¤›à¥‚à¤Ÿ à¤¦à¥‡à¤¤à¤¾ à¤¹à¥ˆ, à¤¤à¥‹ à¤‰à¤¸à¤•à¤¾ à¤²à¤¾à¤­ à¤ªà¥à¤°à¤¤à¤¿à¤¶à¤¤ à¤œà¥à¤žà¤¾à¤¤ à¤•à¥€à¤œà¤¿à¤à¥¤",
+    question_text_hi: "एक दुकानदार एक वस्तु पर क्रय मूल्य से 25% अधिक मूल्य अंकित करता है। यदि वह अंकित मूल्य पर 10% की छूट देता है, तो उसका लाभ प्रतिशत ज्ञात कीजिए।",
     options: {
       a: "12.5%",
       b: "15%",
@@ -31,10 +31,10 @@ const PROFIT_LOSS_SET_A_QUESTIONS = [
       d: "11.25%"
     },
     correct_option: "a",
-    solution_text: "Let Cost Price (CP) = â‚¹100.\nMarked Price (MP) = 100 + 25 = â‚¹125.\nDiscount = 10% of 125 = â‚¹12.5.\nSelling Price (SP) = 125 - 12.5 = â‚¹112.5.\nProfit = SP - CP = 112.5 - 100 = â‚¹12.5.\nProfit% = (12.5 / 100) Ã— 100 = 12.5%.\nCorrect Answer: Option (a).",
-    solution_text_hi: "à¤®à¤¾à¤¨à¤¾ à¤•à¥à¤°à¤¯ à¤®à¥‚à¤²à¥à¤¯ (CP) = â‚¹100à¥¤\nà¤…à¤‚à¤•à¤¿à¤¤ à¤®à¥‚à¤²à¥à¤¯ (MP) = 100 + 25 = â‚¹125à¥¤\nà¤›à¥‚à¤Ÿ = 125 à¤•à¤¾ 10% = â‚¹12.5à¥¤\nà¤µà¤¿à¤•à¥à¤°à¤¯ à¤®à¥‚à¤²à¥à¤¯ (SP) = 125 - 12.5 = â‚¹112.5à¥¤\nà¤²à¤¾à¤­ = SP - CP = 112.5 - 100 = â‚¹12.5à¥¤\nà¤²à¤¾à¤­% = 12.5%à¥¤ à¤…à¤¤à¤ƒ à¤¸à¤¹à¥€ à¤‰à¤¤à¥à¤¤à¤° (a) à¤¹à¥ˆà¥¤",
-    shortcut_text: "Formula: Net Change = x + y + (xy / 100)\n= +25 - 10 - (25 Ã— 10 / 100) = 15 - 2.5 = 12.5%.",
-    shortcut_text_hi: "à¤¸à¥‚à¤¤à¥à¤°: à¤•à¥à¤² à¤ªà¥à¤°à¤­à¤¾à¤µ = x + y + (xy / 100)\n= +25 - 10 - 2.5 = 12.5% à¤²à¤¾à¤­à¥¤"
+    solution_text: "Let Cost Price (CP) = ₹100.\nMarked Price (MP) = 100 + 25 = ₹125.\nDiscount = 10% of 125 = ₹12.5.\nSelling Price (SP) = 125 - 12.5 = ₹112.5.\nProfit = SP - CP = 112.5 - 100 = ₹12.5.\nProfit% = (12.5 / 100) × 100 = 12.5%.\nCorrect Answer: Option (a).",
+    solution_text_hi: "माना क्रय मूल्य (CP) = ₹100।\nअंकित मूल्य (MP) = 100 + 25 = ₹125।\nछूट = 125 का 10% = ₹12.5।\nविक्रय मूल्य (SP) = 125 - 12.5 = ₹112.5।\nलाभ = SP - CP = 112.5 - 100 = ₹12.5।\nलाभ% = 12.5%। अतः सही उत्तर (a) है।",
+    shortcut_text: "Formula: Net Change = x + y + (xy / 100)\n= +25 - 10 - (25 × 10 / 100) = 15 - 2.5 = 12.5%.",
+    shortcut_text_hi: "सूत्र: कुल प्रभाव = x + y + (xy / 100)\n= +25 - 10 - 2.5 = 12.5% लाभ।"
   },
   {
     question_number: 2,
@@ -43,9 +43,9 @@ const PROFIT_LOSS_SET_A_QUESTIONS = [
     level_group: "Level 1: Moderate",
     type_code: "Type 2",
     type_category: "SP of x = CP of y",
-    type_category_hi: "x à¤•à¤¾ à¤µà¤¿à¤•à¥à¤°à¤¯ à¤®à¥‚à¤²à¥à¤¯ = y à¤•à¤¾ à¤•à¥à¤°à¤¯ à¤®à¥‚à¤²à¥à¤¯",
+    type_category_hi: "x का विक्रय मूल्य = y का क्रय मूल्य",
     question_text: "The selling price of 32 items is equal to the cost price of 38 items. Find the profit percentage.",
-    question_text_hi: "32 à¤µà¤¸à¥à¤¤à¥à¤“à¤‚ à¤•à¤¾ à¤µà¤¿à¤•à¥à¤°à¤¯ à¤®à¥‚à¤²à¥à¤¯ 38 à¤µà¤¸à¥à¤¤à¥à¤“à¤‚ à¤•à¥‡ à¤•à¥à¤°à¤¯ à¤®à¥‚à¤²à¥à¤¯ à¤•à¥‡ à¤¬à¤°à¤¾à¤¬à¤° à¤¹à¥ˆà¥¤ à¤²à¤¾à¤­ à¤ªà¥à¤°à¤¤à¤¿à¤¶à¤¤ à¤œà¥à¤žà¤¾à¤¤ à¤•à¥€à¤œà¤¿à¤à¥¤",
+    question_text_hi: "32 वस्तुओं का विक्रय मूल्य 38 वस्तुओं के क्रय मूल्य के बराबर है। लाभ प्रतिशत ज्ञात कीजिए।",
     options: {
       a: "16.25%",
       b: "15.79%",
@@ -59,10 +59,10 @@ const PROFIT_LOSS_SET_A_QUESTIONS = [
       d: "19.25%"
     },
     correct_option: "c",
-    solution_text: "Given: 32 Ã— SP = 38 Ã— CP\n=> SP / CP = 38 / 32 = 19 / 16\nProfit per unit = 19 - 16 = 3 units\nProfit% = (Profit / CP) Ã— 100\n= (3 / 16) Ã— 100 = 18.75%.\nCorrect Answer: Option (c).",
-    solution_text_hi: "à¤¦à¤¿à¤¯à¤¾ à¤—à¤¯à¤¾ à¤¹à¥ˆ: 32 Ã— SP = 38 Ã— CP\n=> SP / CP = 38 / 32 = 19 / 16\nà¤²à¤¾à¤­ = 19 - 16 = 3 à¤‡à¤•à¤¾à¤ˆ\nà¤²à¤¾à¤­% = (3 / 16) Ã— 100 = 18.75%à¥¤\nà¤…à¤¤à¤ƒ à¤¸à¤¹à¥€ à¤‰à¤¤à¥à¤¤à¤° (c) à¤¹à¥ˆà¥¤",
+    solution_text: "Given: 32 × SP = 38 × CP\n=> SP / CP = 38 / 32 = 19 / 16\nProfit per unit = 19 - 16 = 3 units\nProfit% = (Profit / CP) × 100\n= (3 / 16) × 100 = 18.75%.\nCorrect Answer: Option (c).",
+    solution_text_hi: "दिया गया है: 32 × SP = 38 × CP\n=> SP / CP = 38 / 32 = 19 / 16\nलाभ = 19 - 16 = 3 इकाई\nलाभ% = (3 / 16) × 100 = 18.75%।\nअतः सही उत्तर (c) है।",
     shortcut_text: "SP/CP = 38/32 = 19/16.\nFractional Profit = 3/16 = 18.75%.",
-    shortcut_text_hi: "SP/CP = 38/32 = 19/16à¥¤\nà¤­à¤¿à¤¨à¥à¤¨ à¤°à¥‚à¤ª à¤®à¥‡à¤‚ à¤²à¤¾à¤­ = 3/16 = 18.75%à¥¤"
+    shortcut_text_hi: "SP/CP = 38/32 = 19/16।\nभिन्न रूप में लाभ = 3/16 = 18.75%।"
   },
   {
     question_number: 3,
@@ -71,9 +71,9 @@ const PROFIT_LOSS_SET_A_QUESTIONS = [
     level_group: "Level 1: Moderate",
     type_code: "Type 3",
     type_category: "Cost Price Change with Constant SP",
-    type_category_hi: "à¤¸à¤®à¤¾à¤¨ à¤µà¤¿à¤•à¥à¤°à¤¯ à¤®à¥‚à¤²à¥à¤¯ à¤ªà¤° à¤•à¥à¤°à¤¯ à¤®à¥‚à¤²à¥à¤¯ à¤ªà¤°à¤¿à¤µà¤°à¥à¤¤à¤¨",
+    type_category_hi: "समान विक्रय मूल्य पर क्रय मूल्य परिवर्तन",
     question_text: "The initial profit percentage on the sale of an item was 74%. If the cost price of the item went up by 50%, but the selling price remained the same, what would be the new profit percentage?",
-    question_text_hi: "à¤•à¤¿à¤¸à¥€ à¤µà¤¸à¥à¤¤à¥ à¤•à¥€ à¤¬à¤¿à¤•à¥à¤°à¥€ à¤ªà¤° à¤ªà¥à¤°à¤¾à¤°à¤‚à¤­à¤¿à¤• à¤²à¤¾à¤­ à¤ªà¥à¤°à¤¤à¤¿à¤¶à¤¤ 74% à¤¥à¤¾à¥¤ à¤¯à¤¦à¤¿ à¤µà¤¸à¥à¤¤à¥ à¤•à¤¾ à¤•à¥à¤°à¤¯ à¤®à¥‚à¤²à¥à¤¯ 50% à¤¬à¤¢à¤¼ à¤œà¤¾à¤¤à¤¾ à¤¹à¥ˆ, à¤²à¥‡à¤•à¤¿à¤¨ à¤µà¤¿à¤•à¥à¤°à¤¯ à¤®à¥‚à¤²à¥à¤¯ à¤¸à¤®à¤¾à¤¨ à¤°à¤¹à¤¤à¤¾ à¤¹à¥ˆ, à¤¤à¥‹ à¤¨à¤¯à¤¾ à¤²à¤¾à¤­ à¤ªà¥à¤°à¤¤à¤¿à¤¶à¤¤ à¤•à¥à¤¯à¤¾ à¤¹à¥‹à¤—à¤¾?",
+    question_text_hi: "किसी वस्तु की बिक्री पर प्रारंभिक लाभ प्रतिशत 74% था। यदि वस्तु का क्रय मूल्य 50% बढ़ जाता है, लेकिन विक्रय मूल्य समान रहता है, तो नया लाभ प्रतिशत क्या होगा?",
     options: {
       a: "8%",
       b: "16%",
@@ -87,10 +87,10 @@ const PROFIT_LOSS_SET_A_QUESTIONS = [
       d: "24%"
     },
     correct_option: "b",
-    solution_text: "Let initial Cost Price (CPâ‚) = â‚¹100.\nInitial Profit = 74% => Initial Selling Price (SP) = â‚¹174.\nNew Cost Price (CPâ‚‚) = 100 + 50% of 100 = â‚¹150.\nSelling price remains constant at â‚¹174.\nNew Profit = SP - CPâ‚‚ = 174 - 150 = â‚¹24.\nNew Profit% = (24 / 150) Ã— 100 = 16%.\nCorrect Answer: Option (b).",
-    solution_text_hi: "à¤®à¤¾à¤¨à¤¾ à¤ªà¥à¤°à¤¾à¤°à¤‚à¤­à¤¿à¤• à¤•à¥à¤°à¤¯ à¤®à¥‚à¤²à¥à¤¯ (CPâ‚) = â‚¹100à¥¤\nà¤ªà¥à¤°à¤¾à¤°à¤‚à¤­à¤¿à¤• à¤²à¤¾à¤­ = 74% => à¤ªà¥à¤°à¤¾à¤°à¤‚à¤­à¤¿à¤• à¤µà¤¿à¤•à¥à¤°à¤¯ à¤®à¥‚à¤²à¥à¤¯ (SP) = â‚¹174à¥¤\nà¤¨à¤¯à¤¾ à¤•à¥à¤°à¤¯ à¤®à¥‚à¤²à¥à¤¯ (CPâ‚‚) = 100 + 50 = â‚¹150à¥¤\nà¤µà¤¿à¤•à¥à¤°à¤¯ à¤®à¥‚à¤²à¥à¤¯ à¤¸à¤®à¤¾à¤¨ à¤°à¤¹à¤¤à¤¾ à¤¹à¥ˆ = â‚¹174à¥¤\nà¤¨à¤¯à¤¾ à¤²à¤¾à¤­ = 174 - 150 = â‚¹24à¥¤\nà¤¨à¤¯à¤¾ à¤²à¤¾à¤­% = (24 / 150) Ã— 100 = 16%à¥¤\nà¤…à¤¤à¤ƒ à¤¸à¤¹à¥€ à¤‰à¤¤à¥à¤¤à¤° (b) à¤¹à¥ˆà¥¤",
+    solution_text: "Let initial Cost Price (CP₁) = ₹100.\nInitial Profit = 74% => Initial Selling Price (SP) = ₹174.\nNew Cost Price (CP₂) = 100 + 50% of 100 = ₹150.\nSelling price remains constant at ₹174.\nNew Profit = SP - CP₂ = 174 - 150 = ₹24.\nNew Profit% = (24 / 150) × 100 = 16%.\nCorrect Answer: Option (b).",
+    solution_text_hi: "माना प्रारंभिक क्रय मूल्य (CP₁) = ₹100।\nप्रारंभिक लाभ = 74% => प्रारंभिक विक्रय मूल्य (SP) = ₹174।\nनया क्रय मूल्य (CP₂) = 100 + 50 = ₹150।\nविक्रय मूल्य समान रहता है = ₹174।\nनया लाभ = 174 - 150 = ₹24।\nनया लाभ% = (24 / 150) × 100 = 16%।\nअतः सही उत्तर (b) है।",
     shortcut_text: "CP: 100 -> 150; SP = 174.\nProfit = 24 on 150 => 24/150 = 4/25 = 16%.",
-    shortcut_text_hi: "CP: 100 -> 150; SP = 174à¥¤\nà¤²à¤¾à¤­ = 150 à¤ªà¤° 24 => (24/150) Ã— 100 = 16%à¥¤"
+    shortcut_text_hi: "CP: 100 -> 150; SP = 174।\nलाभ = 150 पर 24 => (24/150) × 100 = 16%।"
   },
   {
     question_number: 4,
@@ -99,9 +99,9 @@ const PROFIT_LOSS_SET_A_QUESTIONS = [
     level_group: "Level 1: Moderate",
     type_code: "Type 1",
     type_category: "Marked Price Profit vs Discount",
-    type_category_hi: "à¤…à¤‚à¤•à¤¿à¤¤ à¤®à¥‚à¤²à¥à¤¯ à¤²à¤¾à¤­ à¤¬à¤¨à¤¾à¤® à¤›à¥‚à¤Ÿ",
+    type_category_hi: "अंकित मूल्य लाभ बनाम छूट",
     question_text: "A retailer would have made a profit of 18% if he sold an article at its marked price. If he allowed a discount of 10% on the marked price, what would his actual profit on that article have been?",
-    question_text_hi: "à¤à¤• à¤–à¥à¤¦à¤°à¤¾ à¤µà¤¿à¤•à¥à¤°à¥‡à¤¤à¤¾ à¤•à¥‹ 18% à¤•à¤¾ à¤²à¤¾à¤­ à¤¹à¥‹à¤¤à¤¾ à¤¯à¤¦à¤¿ à¤µà¤¹ à¤•à¤¿à¤¸à¥€ à¤µà¤¸à¥à¤¤à¥ à¤•à¥‹ à¤‰à¤¸à¤•à¥‡ à¤…à¤‚à¤•à¤¿à¤¤ à¤®à¥‚à¤²à¥à¤¯ à¤ªà¤° à¤¬à¥‡à¤šà¤¤à¤¾à¥¤ à¤¯à¤¦à¤¿ à¤‰à¤¸à¤¨à¥‡ à¤…à¤‚à¤•à¤¿à¤¤ à¤®à¥‚à¤²à¥à¤¯ à¤ªà¤° 10% à¤•à¥€ à¤›à¥‚à¤Ÿ à¤¦à¥€, à¤¤à¥‹ à¤‰à¤¸ à¤µà¤¸à¥à¤¤à¥ à¤ªà¤° à¤‰à¤¸à¤•à¤¾ à¤µà¤¾à¤¸à¥à¤¤à¤µà¤¿à¤• à¤²à¤¾à¤­ à¤•à¥à¤¯à¤¾ à¤¹à¥‹à¤—à¤¾?",
+    question_text_hi: "एक खुदरा विक्रेता को 18% का लाभ होता यदि वह किसी वस्तु को उसके अंकित मूल्य पर बेचता। यदि उसने अंकित मूल्य पर 10% की छूट दी, तो उस वस्तु पर उसका वास्तविक लाभ क्या होगा?",
     options: {
       a: "6.2%",
       b: "5.5%",
@@ -115,10 +115,10 @@ const PROFIT_LOSS_SET_A_QUESTIONS = [
       d: "4.6%"
     },
     correct_option: "a",
-    solution_text: "Let Cost Price (CP) = â‚¹100.\nAt marked price, profit is 18%, so Marked Price (MP) = â‚¹118.\nDiscount allowed = 10% on MP.\nActual SP = 118 Ã— (1 - 0.10) = 118 Ã— 0.9 = â‚¹106.2.\nActual Profit = Actual SP - CP = 106.2 - 100 = â‚¹6.2.\nActual Profit% = 6.2%.\nCorrect Answer: Option (a).",
-    solution_text_hi: "à¤®à¤¾à¤¨à¤¾ à¤•à¥à¤°à¤¯ à¤®à¥‚à¤²à¥à¤¯ (CP) = â‚¹100à¥¤\nà¤…à¤‚à¤•à¤¿à¤¤ à¤®à¥‚à¤²à¥à¤¯ à¤ªà¤° à¤¬à¥‡à¤šà¤¨à¥‡ à¤ªà¤° 18% à¤²à¤¾à¤­ à¤¹à¥‹à¤¤à¤¾ à¤¹à¥ˆ, à¤…à¤¤à¤ƒ à¤…à¤‚à¤•à¤¿à¤¤ à¤®à¥‚à¤²à¥à¤¯ (MP) = â‚¹118à¥¤\nà¤›à¥‚à¤Ÿ = 10%à¥¤\nà¤µà¤¾à¤¸à¥à¤¤à¤µà¤¿à¤• SP = 118 Ã— 0.90 = â‚¹106.2à¥¤\nà¤µà¤¾à¤¸à¥à¤¤à¤µà¤¿à¤• à¤²à¤¾à¤­ = 106.2 - 100 = â‚¹6.2 (6.2%)à¥¤\nà¤…à¤¤à¤ƒ à¤¸à¤¹à¥€ à¤‰à¤¤à¥à¤¤à¤° (a) à¤¹à¥ˆà¥¤",
-    shortcut_text: "CP = 100, MP = 118.\nSP = 118 Ã— 0.9 = 106.2 => 6.2% profit.",
-    shortcut_text_hi: "CP = 100, MP = 118à¥¤ SP = 118 Ã— 0.9 = 106.2 => 6.2% à¤²à¤¾à¤­à¥¤"
+    solution_text: "Let Cost Price (CP) = ₹100.\nAt marked price, profit is 18%, so Marked Price (MP) = ₹118.\nDiscount allowed = 10% on MP.\nActual SP = 118 × (1 - 0.10) = 118 × 0.9 = ₹106.2.\nActual Profit = Actual SP - CP = 106.2 - 100 = ₹6.2.\nActual Profit% = 6.2%.\nCorrect Answer: Option (a).",
+    solution_text_hi: "माना क्रय मूल्य (CP) = ₹100।\nअंकित मूल्य पर बेचने पर 18% लाभ होता है, अतः अंकित मूल्य (MP) = ₹118।\nछूट = 10%।\nवास्तविक SP = 118 × 0.90 = ₹106.2।\nवास्तविक लाभ = 106.2 - 100 = ₹6.2 (6.2%)।\nअतः सही उत्तर (a) है।",
+    shortcut_text: "CP = 100, MP = 118.\nSP = 118 × 0.9 = 106.2 => 6.2% profit.",
+    shortcut_text_hi: "CP = 100, MP = 118। SP = 118 × 0.9 = 106.2 => 6.2% लाभ।"
   },
   {
     question_number: 5,
@@ -127,9 +127,9 @@ const PROFIT_LOSS_SET_A_QUESTIONS = [
     level_group: "Level 1: Moderate",
     type_code: "Type 1",
     type_category: "Successive Discounts & Net Gain",
-    type_category_hi: "à¤•à¥à¤°à¤®à¤¾à¤—à¤¤ à¤›à¥‚à¤Ÿ à¤”à¤° à¤¶à¥à¤¦à¥à¤§ à¤²à¤¾à¤­",
-    question_text: "A trader purchases a table for â‚¹1,500 and sells it after allowing two successive discounts of 10% and 20% on its marked price of â‚¹2,500. What is his profit or loss percentage?",
-    question_text_hi: "à¤à¤• à¤µà¥à¤¯à¤¾à¤ªà¤¾à¤°à¥€ â‚¹1,500 à¤®à¥‡à¤‚ à¤à¤• à¤®à¥‡à¤œ à¤–à¤°à¥€à¤¦à¤¤à¤¾ à¤¹à¥ˆ à¤”à¤° à¤‰à¤¸à¤•à¥‡ â‚¹2,500 à¤•à¥‡ à¤…à¤‚à¤•à¤¿à¤¤ à¤®à¥‚à¤²à¥à¤¯ à¤ªà¤° 10% à¤”à¤° 20% à¤•à¥€ à¤¦à¥‹ à¤•à¥à¤°à¤®à¤¾à¤—à¤¤ à¤›à¥‚à¤Ÿ à¤¦à¥‡à¤•à¤° à¤¬à¥‡à¤šà¤¤à¤¾ à¤¹à¥ˆà¥¤ à¤‰à¤¸à¤•à¤¾ à¤²à¤¾à¤­ à¤¯à¤¾ à¤¹à¤¾à¤¨à¤¿ à¤ªà¥à¤°à¤¤à¤¿à¤¶à¤¤ à¤•à¥à¤¯à¤¾ à¤¹à¥ˆ?",
+    type_category_hi: "क्रमागत छूट और शुद्ध लाभ",
+    question_text: "A trader purchases a table for ₹1,500 and sells it after allowing two successive discounts of 10% and 20% on its marked price of ₹2,500. What is his profit or loss percentage?",
+    question_text_hi: "एक व्यापारी ₹1,500 में एक मेज खरीदता है और उसके ₹2,500 के अंकित मूल्य पर 10% और 20% की दो क्रमागत छूट देकर बेचता है। उसका लाभ या हानि प्रतिशत क्या है?",
     options: {
       a: "20% Profit",
       b: "15% Profit",
@@ -137,16 +137,16 @@ const PROFIT_LOSS_SET_A_QUESTIONS = [
       d: "25% Profit"
     },
     options_hi: {
-      a: "20% à¤²à¤¾à¤­",
-      b: "15% à¤²à¤¾à¤­",
-      c: "20% à¤¹à¤¾à¤¨à¤¿",
-      d: "25% à¤²à¤¾à¤­"
+      a: "20% लाभ",
+      b: "15% लाभ",
+      c: "20% हानि",
+      d: "25% लाभ"
     },
     correct_option: "a",
-    solution_text: "Cost Price (CP) = â‚¹1,500.\nMarked Price (MP) = â‚¹2,500.\nSingle equivalent discount for 10% and 20%:\nD_eq = 10 + 20 - (10 Ã— 20 / 100) = 30 - 2 = 28%.\nSelling Price (SP) = 2,500 Ã— (100 - 28)% = 2,500 Ã— 0.72 = â‚¹1,800.\nProfit = SP - CP = 1,800 - 1,500 = â‚¹300.\nProfit% = (300 / 1500) Ã— 100 = 20%.\nCorrect Answer: Option (a).",
-    solution_text_hi: "à¤•à¥à¤°à¤¯ à¤®à¥‚à¤²à¥à¤¯ (CP) = â‚¹1,500à¥¤ à¤…à¤‚à¤•à¤¿à¤¤ à¤®à¥‚à¤²à¥à¤¯ (MP) = â‚¹2,500à¥¤\n10% à¤”à¤° 20% à¤•à¥€ à¤à¤•à¤² à¤¸à¤®à¤¤à¥à¤²à¥à¤¯ à¤›à¥‚à¤Ÿ:\nD = 10 + 20 - (200 / 100) = 28%à¥¤\nà¤µà¤¿à¤•à¥à¤°à¤¯ à¤®à¥‚à¤²à¥à¤¯ (SP) = 2500 Ã— (1 - 0.28) = 2500 Ã— 0.72 = â‚¹1,800à¥¤\nà¤²à¤¾à¤­ = 1800 - 1500 = â‚¹300à¥¤\nà¤²à¤¾à¤­% = (300 / 1500) Ã— 100 = 20% à¤²à¤¾à¤­à¥¤\nà¤…à¤¤à¤ƒ à¤¸à¤¹à¥€ à¤‰à¤¤à¥à¤¤à¤° (a) à¤¹à¥ˆà¥¤",
-    shortcut_text: "Net discount = 28%.\nSP = 2500 Ã— 0.72 = 1800.\nProfit% = (300 / 1500) Ã— 100 = 20% Profit.",
-    shortcut_text_hi: "à¤¸à¤®à¤¤à¥à¤²à¥à¤¯ à¤›à¥‚à¤Ÿ = 28%à¥¤ SP = 2500 Ã— 0.72 = 1800à¥¤\nà¤²à¤¾à¤­% = (300 / 1500) Ã— 100 = 20% à¤²à¤¾à¤­à¥¤"
+    solution_text: "Cost Price (CP) = ₹1,500.\nMarked Price (MP) = ₹2,500.\nSingle equivalent discount for 10% and 20%:\nD_eq = 10 + 20 - (10 × 20 / 100) = 30 - 2 = 28%.\nSelling Price (SP) = 2,500 × (100 - 28)% = 2,500 × 0.72 = ₹1,800.\nProfit = SP - CP = 1,800 - 1,500 = ₹300.\nProfit% = (300 / 1500) × 100 = 20%.\nCorrect Answer: Option (a).",
+    solution_text_hi: "क्रय मूल्य (CP) = ₹1,500। अंकित मूल्य (MP) = ₹2,500।\n10% और 20% की एकल समतुल्य छूट:\nD = 10 + 20 - (200 / 100) = 28%।\nविक्रय मूल्य (SP) = 2500 × (1 - 0.28) = 2500 × 0.72 = ₹1,800।\nलाभ = 1800 - 1500 = ₹300।\nलाभ% = (300 / 1500) × 100 = 20% लाभ।\nअतः सही उत्तर (a) है।",
+    shortcut_text: "Net discount = 28%.\nSP = 2500 × 0.72 = 1800.\nProfit% = (300 / 1500) × 100 = 20% Profit.",
+    shortcut_text_hi: "समतुल्य छूट = 28%। SP = 2500 × 0.72 = 1800।\nलाभ% = (300 / 1500) × 100 = 20% लाभ।"
   },
   {
     question_number: 6,
@@ -155,9 +155,9 @@ const PROFIT_LOSS_SET_A_QUESTIONS = [
     level_group: "Level 1: Moderate",
     type_code: "Type 1",
     type_category: "Markup and Reduction on Bill",
-    type_category_hi: "à¤…à¤‚à¤•à¤¿à¤¤ à¤®à¥‚à¤²à¥à¤¯ à¤”à¤° à¤¬à¤¿à¤² à¤›à¥‚à¤Ÿ",
+    type_category_hi: "अंकित मूल्य और बिल छूट",
     question_text: "A tradesman marks his goods 25% above the cost price and allows his customers a 12% reduction on their bills. What percentage profit does he make?",
-    question_text_hi: "à¤à¤• à¤µà¥à¤¯à¤¾à¤ªà¤¾à¤°à¥€ à¤…à¤ªà¤¨à¥‡ à¤®à¤¾à¤² à¤ªà¤° à¤•à¥à¤°à¤¯ à¤®à¥‚à¤²à¥à¤¯ à¤¸à¥‡ 25% à¤…à¤§à¤¿à¤• à¤…à¤‚à¤•à¤¿à¤¤ à¤•à¤°à¤¤à¤¾ à¤¹à¥ˆ à¤”à¤° à¤…à¤ªà¤¨à¥‡ à¤—à¥à¤°à¤¾à¤¹à¤•à¥‹à¤‚ à¤•à¥‹ à¤‰à¤¨à¤•à¥‡ à¤¬à¤¿à¤²à¥‹à¤‚ à¤ªà¤° 12% à¤•à¥€ à¤›à¥‚à¤Ÿ à¤¦à¥‡à¤¤à¤¾ à¤¹à¥ˆà¥¤ à¤µà¤¹ à¤•à¤¿à¤¤à¤¨à¥‡ à¤ªà¥à¤°à¤¤à¤¿à¤¶à¤¤ à¤²à¤¾à¤­ à¤•à¤®à¤¾à¤¤à¤¾ à¤¹à¥ˆ?",
+    question_text_hi: "एक व्यापारी अपने माल पर क्रय मूल्य से 25% अधिक अंकित करता है और अपने ग्राहकों को उनके बिलों पर 12% की छूट देता है। वह कितने प्रतिशत लाभ कमाता है?",
     options: {
       a: "10%",
       b: "12.5%",
@@ -171,10 +171,10 @@ const PROFIT_LOSS_SET_A_QUESTIONS = [
       d: "18%"
     },
     correct_option: "a",
-    solution_text: "Let CP = â‚¹100.\nMarked Price (MP) = 100 + 25 = â‚¹125.\nDiscount allowed = 12% on â‚¹125.\nDiscount Amount = 125 Ã— (12 / 100) = â‚¹15.\nSelling Price (SP) = 125 - 15 = â‚¹110.\nProfit% = [(110 - 100) / 100] Ã— 100 = 10%.\nCorrect Answer: Option (a).",
-    solution_text_hi: "à¤®à¤¾à¤¨à¤¾ CP = â‚¹100à¥¤\nà¤…à¤‚à¤•à¤¿à¤¤ à¤®à¥‚à¤²à¥à¤¯ (MP) = â‚¹125à¥¤\nà¤›à¥‚à¤Ÿ = 125 à¤•à¤¾ 12% = â‚¹15à¥¤\nà¤µà¤¿à¤•à¥à¤°à¤¯ à¤®à¥‚à¤²à¥à¤¯ (SP) = 125 - 15 = â‚¹110à¥¤\nà¤²à¤¾à¤­% = 110 - 100 = 10%à¥¤\nà¤…à¤¤à¤ƒ à¤¸à¤¹à¥€ à¤‰à¤¤à¥à¤¤à¤° (a) à¤¹à¥ˆà¥¤",
-    shortcut_text: "Net% = 25 - 12 - (25 Ã— 12 / 100) = 13 - 3 = 10%.",
-    shortcut_text_hi: "à¤¶à¥à¤¦à¥à¤§ à¤²à¤¾à¤­% = 25 - 12 - 3 = 10%à¥¤"
+    solution_text: "Let CP = ₹100.\nMarked Price (MP) = 100 + 25 = ₹125.\nDiscount allowed = 12% on ₹125.\nDiscount Amount = 125 × (12 / 100) = ₹15.\nSelling Price (SP) = 125 - 15 = ₹110.\nProfit% = [(110 - 100) / 100] × 100 = 10%.\nCorrect Answer: Option (a).",
+    solution_text_hi: "माना CP = ₹100।\nअंकित मूल्य (MP) = ₹125।\nछूट = 125 का 12% = ₹15।\nविक्रय मूल्य (SP) = 125 - 15 = ₹110।\nलाभ% = 110 - 100 = 10%।\nअतः सही उत्तर (a) है।",
+    shortcut_text: "Net% = 25 - 12 - (25 × 12 / 100) = 13 - 3 = 10%.",
+    shortcut_text_hi: "शुद्ध लाभ% = 25 - 12 - 3 = 10%।"
   },
 
   // ==========================================
@@ -187,26 +187,26 @@ const PROFIT_LOSS_SET_A_QUESTIONS = [
     level_group: "Level 2: More Than Moderate",
     type_code: "Type 4",
     type_category: "Difference between Profit and Loss %",
-    type_category_hi: "à¤²à¤¾à¤­ à¤”à¤° à¤¹à¤¾à¤¨à¤¿ % à¤•à¥‡ à¤¬à¥€à¤š à¤•à¤¾ à¤…à¤‚à¤¤à¤°",
-    question_text: "The difference between 12% gain and 4% loss on the sale of an item was â‚¹28. What was the cost price of the item?",
-    question_text_hi: "à¤µà¤¸à¥à¤¤à¥ à¤•à¥€ à¤¬à¤¿à¤•à¥à¤°à¥€ à¤ªà¤° 12% à¤²à¤¾à¤­ à¤”à¤° 4% à¤¹à¤¾à¤¨à¤¿ à¤•à¥‡ à¤¬à¥€à¤š à¤•à¤¾ à¤…à¤‚à¤¤à¤° â‚¹28 à¤¥à¤¾à¥¤ à¤µà¤¸à¥à¤¤à¥ à¤•à¤¾ à¤•à¥à¤°à¤¯ à¤®à¥‚à¤²à¥à¤¯ à¤•à¥à¤¯à¤¾ à¤¥à¤¾?",
+    type_category_hi: "लाभ और हानि % के बीच का अंतर",
+    question_text: "The difference between 12% gain and 4% loss on the sale of an item was ₹28. What was the cost price of the item?",
+    question_text_hi: "वस्तु की बिक्री पर 12% लाभ और 4% हानि के बीच का अंतर ₹28 था। वस्तु का क्रय मूल्य क्या था?",
     options: {
-      a: "â‚¹175",
-      b: "â‚¹189",
-      c: "â‚¹196",
-      d: "â‚¹168"
+      a: "₹175",
+      b: "₹189",
+      c: "₹196",
+      d: "₹168"
     },
     options_hi: {
-      a: "â‚¹175",
-      b: "â‚¹189",
-      c: "â‚¹196",
-      d: "â‚¹168"
+      a: "₹175",
+      b: "₹189",
+      c: "₹196",
+      d: "₹168"
     },
     correct_option: "a",
-    solution_text: "Let Cost Price = CP.\nSPâ‚ at 12% gain = 1.12 CP.\nSPâ‚‚ at 4% loss = 0.96 CP.\nDifference = 1.12 CP - 0.96 CP = 0.16 CP.\n0.16 CP = â‚¹28\nCP = 28 / 0.16 = (28 Ã— 100) / 16 = â‚¹175.\nCorrect Answer: Option (a).",
-    solution_text_hi: "à¤®à¤¾à¤¨à¤¾ à¤•à¥à¤°à¤¯ à¤®à¥‚à¤²à¥à¤¯ = CPà¥¤\n12% à¤²à¤¾à¤­ à¤ªà¤° SPâ‚ = 1.12 CPà¥¤\n4% à¤¹à¤¾à¤¨à¤¿ à¤ªà¤° SPâ‚‚ = 0.96 CPà¥¤\nà¤…à¤‚à¤¤à¤° = 12% - (-4%) = 16%à¥¤\n16% = â‚¹28\n100% = (28 / 16) Ã— 100 = â‚¹175à¥¤\nà¤…à¤¤à¤ƒ à¤¸à¤¹à¥€ à¤‰à¤¤à¥à¤¤à¤° (a) à¤¹à¥ˆà¥¤",
-    shortcut_text: "Net% difference = 12% + 4% = 16%.\nCP = (28 / 16) Ã— 100 = â‚¹175.",
-    shortcut_text_hi: "à¤ªà¥à¤°à¤¤à¤¿à¤¶à¤¤ à¤…à¤‚à¤¤à¤° = 12% + 4% = 16% = â‚¹28 => CP = (28/16) Ã— 100 = â‚¹175à¥¤"
+    solution_text: "Let Cost Price = CP.\nSP₁ at 12% gain = 1.12 CP.\nSP₂ at 4% loss = 0.96 CP.\nDifference = 1.12 CP - 0.96 CP = 0.16 CP.\n0.16 CP = ₹28\nCP = 28 / 0.16 = (28 × 100) / 16 = ₹175.\nCorrect Answer: Option (a).",
+    solution_text_hi: "माना क्रय मूल्य = CP।\n12% लाभ पर SP₁ = 1.12 CP।\n4% हानि पर SP₂ = 0.96 CP।\nअंतर = 12% - (-4%) = 16%।\n16% = ₹28\n100% = (28 / 16) × 100 = ₹175।\nअतः सही उत्तर (a) है।",
+    shortcut_text: "Net% difference = 12% + 4% = 16%.\nCP = (28 / 16) × 100 = ₹175.",
+    shortcut_text_hi: "प्रतिशत अंतर = 12% + 4% = 16% = ₹28 => CP = (28/16) × 100 = ₹175।"
   },
   {
     question_number: 8,
@@ -215,26 +215,26 @@ const PROFIT_LOSS_SET_A_QUESTIONS = [
     level_group: "Level 2: More Than Moderate",
     type_code: "Type 5",
     type_category: "Hypothetical CP & SP Changes",
-    type_category_hi: "à¤•à¤¾à¤²à¥à¤ªà¤¨à¤¿à¤• à¤•à¥à¤°à¤¯ à¤”à¤° à¤µà¤¿à¤•à¥à¤°à¤¯ à¤®à¥‚à¤²à¥à¤¯ à¤ªà¤°à¤¿à¤µà¤°à¥à¤¤à¤¨",
-    question_text: "A shopkeeper sells an article at 20% profit. If he had bought the article at 10% less and sold it at â‚¹18 more than the previous selling price, he would have made 40% profit. What is the original cost price of the article?",
-    question_text_hi: "à¤à¤• à¤¦à¥à¤•à¤¾à¤¨à¤¦à¤¾à¤° à¤à¤• à¤µà¤¸à¥à¤¤à¥ à¤•à¥‹ 20% à¤²à¤¾à¤­ à¤ªà¤° à¤¬à¥‡à¤šà¤¤à¤¾ à¤¹à¥ˆà¥¤ à¤¯à¤¦à¤¿ à¤‰à¤¸à¤¨à¥‡ à¤µà¤¸à¥à¤¤à¥ à¤•à¥‹ 10% à¤•à¤® à¤ªà¤° à¤–à¤°à¥€à¤¦à¤¾ à¤¹à¥‹à¤¤à¤¾ à¤”à¤° à¤‡à¤¸à¥‡ à¤ªà¤¿à¤›à¤²à¥‡ à¤µà¤¿à¤•à¥à¤°à¤¯ à¤®à¥‚à¤²à¥à¤¯ à¤¸à¥‡ â‚¹18 à¤…à¤§à¤¿à¤• à¤ªà¤° à¤¬à¥‡à¤šà¤¾ à¤¹à¥‹à¤¤à¤¾, à¤¤à¥‹ à¤‰à¤¸à¥‡ 40% à¤²à¤¾à¤­ à¤¹à¥‹à¤¤à¤¾à¥¤ à¤µà¤¸à¥à¤¤à¥ à¤•à¤¾ à¤®à¥‚à¤² à¤•à¥à¤°à¤¯ à¤®à¥‚à¤²à¥à¤¯ à¤•à¥à¤¯à¤¾ à¤¹à¥ˆ?",
+    type_category_hi: "काल्पनिक क्रय और विक्रय मूल्य परिवर्तन",
+    question_text: "A shopkeeper sells an article at 20% profit. If he had bought the article at 10% less and sold it at ₹18 more than the previous selling price, he would have made 40% profit. What is the original cost price of the article?",
+    question_text_hi: "एक दुकानदार एक वस्तु को 20% लाभ पर बेचता है। यदि उसने वस्तु को 10% कम पर खरीदा होता और इसे पिछले विक्रय मूल्य से ₹18 अधिक पर बेचा होता, तो उसे 40% लाभ होता। वस्तु का मूल क्रय मूल्य क्या है?",
     options: {
-      a: "â‚¹350",
-      b: "â‚¹320",
-      c: "â‚¹300",
-      d: "â‚¹280"
+      a: "₹350",
+      b: "₹320",
+      c: "₹300",
+      d: "₹280"
     },
     options_hi: {
-      a: "â‚¹350",
-      b: "â‚¹320",
-      c: "â‚¹300",
-      d: "â‚¹280"
+      a: "₹350",
+      b: "₹320",
+      c: "₹300",
+      d: "₹280"
     },
     correct_option: "c",
-    solution_text: "Let original CP = 100x.\nOriginal SP = 120x.\nNew CP = 100x - 10% = 90x.\nNew SP = 120x + 18.\nGiven: New Profit = 40%\n=> New SP = 1.40 Ã— New CP\n=> 120x + 18 = 1.40 Ã— 90x = 126x\n=> 126x - 120x = 18\n=> 6x = 18 => x = 3.\nOriginal CP = 100x = 100 Ã— 3 = â‚¹300.\nCorrect Answer: Option (c).",
-    solution_text_hi: "à¤®à¤¾à¤¨à¤¾ à¤®à¥‚à¤² CP = 100xà¥¤\nà¤®à¥‚à¤² SP = 120xà¥¤\nà¤¨à¤¯à¤¾ CP = 90xà¥¤\nà¤¨à¤¯à¤¾ SP = 120x + 18à¥¤\nà¤ªà¥à¤°à¤¶à¥à¤¨à¤¾à¤¨à¥à¤¸à¤¾à¤°: à¤¨à¤¯à¤¾ SP = 90x Ã— 1.40 = 126xà¥¤\n126x - 120x = 18 => 6x = 18 => x = 3à¥¤\nà¤®à¥‚à¤² CP = 100x = â‚¹300à¥¤\nà¤…à¤¤à¤ƒ à¤¸à¤¹à¥€ à¤‰à¤¤à¥à¤¤à¤° (c) à¤¹à¥ˆà¥¤",
-    shortcut_text: "126% - 120% = 6% = â‚¹18.\n100% = (18 / 6) Ã— 100 = â‚¹300.",
-    shortcut_text_hi: "à¤…à¤‚à¤¤à¤°: 126% - 120% = 6% = â‚¹18 => CP = (18/6) Ã— 100 = â‚¹300à¥¤"
+    solution_text: "Let original CP = 100x.\nOriginal SP = 120x.\nNew CP = 100x - 10% = 90x.\nNew SP = 120x + 18.\nGiven: New Profit = 40%\n=> New SP = 1.40 × New CP\n=> 120x + 18 = 1.40 × 90x = 126x\n=> 126x - 120x = 18\n=> 6x = 18 => x = 3.\nOriginal CP = 100x = 100 × 3 = ₹300.\nCorrect Answer: Option (c).",
+    solution_text_hi: "माना मूल CP = 100x।\nमूल SP = 120x।\nनया CP = 90x।\nनया SP = 120x + 18।\nप्रश्नानुसार: नया SP = 90x × 1.40 = 126x।\n126x - 120x = 18 => 6x = 18 => x = 3।\nमूल CP = 100x = ₹300।\nअतः सही उत्तर (c) है।",
+    shortcut_text: "126% - 120% = 6% = ₹18.\n100% = (18 / 6) × 100 = ₹300.",
+    shortcut_text_hi: "अंतर: 126% - 120% = 6% = ₹18 => CP = (18/6) × 100 = ₹300।"
   },
   {
     question_number: 9,
@@ -243,26 +243,26 @@ const PROFIT_LOSS_SET_A_QUESTIONS = [
     level_group: "Level 2: More Than Moderate",
     type_code: "Type 2",
     type_category: "Loss Equal to Cost Price of Articles",
-    type_category_hi: "à¤µà¤¸à¥à¤¤à¥à¤“à¤‚ à¤•à¥‡ à¤•à¥à¤°à¤¯ à¤®à¥‚à¤²à¥à¤¯ à¤•à¥‡ à¤¬à¤°à¤¾à¤¬à¤° à¤¹à¤¾à¤¨à¤¿",
-    question_text: "Chandrasekhar sold 12 identical articles for a total of â‚¹420, incurring a loss equal to the cost price of 7 such articles. The cost price of 1 such article is:",
-    question_text_hi: "à¤šà¤¨à¥à¤¦à¥à¤°à¤¶à¥‡à¤–à¤° à¤¨à¥‡ â‚¹420 à¤•à¥‡ à¤•à¥à¤² à¤®à¥‚à¤²à¥à¤¯ à¤ªà¤° 12 à¤¸à¤®à¤¾à¤¨ à¤µà¤¸à¥à¤¤à¥à¤à¤‚ à¤¬à¥‡à¤šà¥€à¤‚, à¤œà¤¿à¤¸à¤¸à¥‡ à¤‰à¤¸à¥‡ à¤à¤¸à¥€ 7 à¤µà¤¸à¥à¤¤à¥à¤“à¤‚ à¤•à¥‡ à¤•à¥à¤°à¤¯ à¤®à¥‚à¤²à¥à¤¯ à¤•à¥‡ à¤¬à¤°à¤¾à¤¬à¤° à¤¹à¤¾à¤¨à¤¿ à¤¹à¥à¤ˆà¥¤ à¤à¤¸à¥€ 1 à¤µà¤¸à¥à¤¤à¥ à¤•à¤¾ à¤•à¥à¤°à¤¯ à¤®à¥‚à¤²à¥à¤¯ à¤¹à¥ˆ:",
+    type_category_hi: "वस्तुओं के क्रय मूल्य के बराबर हानि",
+    question_text: "Chandrasekhar sold 12 identical articles for a total of ₹420, incurring a loss equal to the cost price of 7 such articles. The cost price of 1 such article is:",
+    question_text_hi: "चन्द्रशेखर ने ₹420 के कुल मूल्य पर 12 समान वस्तुएं बेचीं, जिससे उसे ऐसी 7 वस्तुओं के क्रय मूल्य के बराबर हानि हुई। ऐसी 1 वस्तु का क्रय मूल्य है:",
     options: {
-      a: "â‚¹84",
-      b: "â‚¹48",
-      c: "â‚¹60",
-      d: "â‚¹35"
+      a: "₹84",
+      b: "₹48",
+      c: "₹60",
+      d: "₹35"
     },
     options_hi: {
-      a: "â‚¹84",
-      b: "â‚¹48",
-      c: "â‚¹60",
-      d: "â‚¹35"
+      a: "₹84",
+      b: "₹48",
+      c: "₹60",
+      d: "₹35"
     },
     correct_option: "a",
-    solution_text: "Let CP of 1 article = c.\nTotal CP of 12 articles = 12c.\nTotal SP of 12 articles = â‚¹420.\nLoss = 12c - 420.\nGiven: Loss = CP of 7 articles = 7c.\n=> 12c - 420 = 7c\n=> 5c = 420\n=> c = 420 / 5 = â‚¹84.\nCorrect Answer: Option (a).",
-    solution_text_hi: "à¤®à¤¾à¤¨à¤¾ 1 à¤µà¤¸à¥à¤¤à¥ à¤•à¤¾ CP = cà¥¤\n12 à¤µà¤¸à¥à¤¤à¥à¤“à¤‚ à¤•à¤¾ à¤•à¥à¤² CP = 12cà¥¤ SP = â‚¹420à¥¤\nà¤¹à¤¾à¤¨à¤¿ = 12c - 420 = 7cà¥¤\n=> 5c = 420 => c = â‚¹84à¥¤\nà¤…à¤¤à¤ƒ 1 à¤µà¤¸à¥à¤¤à¥ à¤•à¤¾ à¤•à¥à¤°à¤¯ à¤®à¥‚à¤²à¥à¤¯ â‚¹84 à¤¹à¥ˆà¥¤ à¤µà¤¿à¤•à¤²à¥à¤ª (a)à¥¤",
-    shortcut_text: "Net units paying for SP: 12 - 7 = 5 units = â‚¹420.\n1 unit CP = 420 / 5 = â‚¹84.",
-    shortcut_text_hi: "à¤ªà¥à¤°à¤­à¤¾à¤µà¥€ à¤µà¤¸à¥à¤¤à¥à¤à¤‚ = 12 - 7 = 5 à¤‡à¤•à¤¾à¤ˆ = â‚¹420 => 1 à¤‡à¤•à¤¾à¤ˆ CP = 420 / 5 = â‚¹84à¥¤"
+    solution_text: "Let CP of 1 article = c.\nTotal CP of 12 articles = 12c.\nTotal SP of 12 articles = ₹420.\nLoss = 12c - 420.\nGiven: Loss = CP of 7 articles = 7c.\n=> 12c - 420 = 7c\n=> 5c = 420\n=> c = 420 / 5 = ₹84.\nCorrect Answer: Option (a).",
+    solution_text_hi: "माना 1 वस्तु का CP = c।\n12 वस्तुओं का कुल CP = 12c। SP = ₹420।\nहानि = 12c - 420 = 7c।\n=> 5c = 420 => c = ₹84।\nअतः 1 वस्तु का क्रय मूल्य ₹84 है। विकल्प (a)।",
+    shortcut_text: "Net units paying for SP: 12 - 7 = 5 units = ₹420.\n1 unit CP = 420 / 5 = ₹84.",
+    shortcut_text_hi: "प्रभावी वस्तुएं = 12 - 7 = 5 इकाई = ₹420 => 1 इकाई CP = 420 / 5 = ₹84।"
   },
   {
     question_number: 10,
@@ -271,26 +271,26 @@ const PROFIT_LOSS_SET_A_QUESTIONS = [
     level_group: "Level 2: More Than Moderate",
     type_code: "Type 6",
     type_category: "Simultaneous Equations of Articles",
-    type_category_hi: "à¤µà¤¸à¥à¤¤à¥à¤“à¤‚ à¤•à¥‡ à¤¯à¥à¤—à¤ªà¤¤ à¤¸à¤®à¥€à¤•à¤°à¤£",
-    question_text: "The cost of 10 chairs is equal to that of 4 tables. The cost of 15 chairs and 2 tables is equal to â‚¹2,000. The cost of a table is:",
-    question_text_hi: "10 à¤•à¥à¤°à¥à¤¸à¤¿à¤¯à¥‹à¤‚ à¤•à¥€ à¤•à¥€à¤®à¤¤ 4 à¤®à¥‡à¤œà¥‹à¤‚ à¤•à¥‡ à¤¬à¤°à¤¾à¤¬à¤° à¤¹à¥ˆà¥¤ 15 à¤•à¥à¤°à¥à¤¸à¤¿à¤¯à¥‹à¤‚ à¤”à¤° 2 à¤®à¥‡à¤œà¥‹à¤‚ à¤•à¥€ à¤•à¥€à¤®à¤¤ â‚¹2,000 à¤•à¥‡ à¤¬à¤°à¤¾à¤¬à¤° à¤¹à¥ˆà¥¤ à¤à¤• à¤®à¥‡à¤œ à¤•à¥€ à¤•à¥€à¤®à¤¤ à¤¹à¥ˆ:",
+    type_category_hi: "वस्तुओं के युगपत समीकरण",
+    question_text: "The cost of 10 chairs is equal to that of 4 tables. The cost of 15 chairs and 2 tables is equal to ₹2,000. The cost of a table is:",
+    question_text_hi: "10 कुर्सियों की कीमत 4 मेजों के बराबर है। 15 कुर्सियों और 2 मेजों की कीमत ₹2,000 के बराबर है। एक मेज की कीमत है:",
     options: {
-      a: "â‚¹100",
-      b: "â‚¹500",
-      c: "â‚¹200",
-      d: "â‚¹250"
+      a: "₹100",
+      b: "₹500",
+      c: "₹200",
+      d: "₹250"
     },
     options_hi: {
-      a: "â‚¹100",
-      b: "â‚¹500",
-      c: "â‚¹200",
-      d: "â‚¹250"
+      a: "₹100",
+      b: "₹500",
+      c: "₹200",
+      d: "₹250"
     },
     correct_option: "d",
-    solution_text: "Let cost of 1 chair = C and cost of 1 table = T.\nGiven: 10 C = 4 T => C = (4 / 10) T = 0.4 T.\nAlso given: 15 C + 2 T = â‚¹2,000.\nSubstitute C = 0.4 T:\n15 Ã— (0.4 T) + 2 T = 2,000\n6 T + 2 T = 2,000\n8 T = 2,000 => T = 2,000 / 8 = â‚¹250.\nCost of 1 table = â‚¹250.\nCorrect Answer: Option (d).",
-    solution_text_hi: "à¤®à¤¾à¤¨à¤¾ à¤•à¥à¤°à¥à¤¸à¥€ = C à¤”à¤° à¤®à¥‡à¤œ = Tà¥¤\n10 C = 4 T => C = 0.4 Tà¥¤\n15 C + 2 T = 2000\n15(0.4 T) + 2 T = 2000 => 8 T = 2000 => T = â‚¹250à¥¤\nà¤…à¤¤à¤ƒ à¤¸à¤¹à¥€ à¤‰à¤¤à¥à¤¤à¤° (d) à¤¹à¥ˆà¥¤",
-    shortcut_text: "15 Chairs = 6 Tables (since 5 Chairs = 2 Tables).\n6 Tables + 2 Tables = 8 Tables = â‚¹2,000 => 1 Table = â‚¹250.",
-    shortcut_text_hi: "10 C = 4 T => 15 C = 6 Tà¥¤\n6 T + 2 T = 8 T = â‚¹2,000 => 1 T = â‚¹250à¥¤"
+    solution_text: "Let cost of 1 chair = C and cost of 1 table = T.\nGiven: 10 C = 4 T => C = (4 / 10) T = 0.4 T.\nAlso given: 15 C + 2 T = ₹2,000.\nSubstitute C = 0.4 T:\n15 × (0.4 T) + 2 T = 2,000\n6 T + 2 T = 2,000\n8 T = 2,000 => T = 2,000 / 8 = ₹250.\nCost of 1 table = ₹250.\nCorrect Answer: Option (d).",
+    solution_text_hi: "माना कुर्सी = C और मेज = T।\n10 C = 4 T => C = 0.4 T।\n15 C + 2 T = 2000\n15(0.4 T) + 2 T = 2000 => 8 T = 2000 => T = ₹250।\nअतः सही उत्तर (d) है।",
+    shortcut_text: "15 Chairs = 6 Tables (since 5 Chairs = 2 Tables).\n6 Tables + 2 Tables = 8 Tables = ₹2,000 => 1 Table = ₹250.",
+    shortcut_text_hi: "10 C = 4 T => 15 C = 6 T।\n6 T + 2 T = 8 T = ₹2,000 => 1 T = ₹250।"
   },
   {
     question_number: 11,
@@ -299,26 +299,26 @@ const PROFIT_LOSS_SET_A_QUESTIONS = [
     level_group: "Level 2: More Than Moderate",
     type_code: "Type 6",
     type_category: "Multi-item Split Profit Equating",
-    type_category_hi: "à¤¬à¤¹à¥-à¤µà¤¸à¥à¤¤à¥ à¤µà¤¿à¤­à¤¾à¤œà¤¨ à¤²à¤¾à¤­ à¤¸à¤®à¥€à¤•à¤°à¤£",
-    question_text: "Sarita buys two old Samsung phones and three Mi mobile phones for â‚¹40,200. If she sells the Samsung phones at a 10% profit and the Mi Phones at a 20% profit then her total profit is â‚¹5,640. The cost price of the Mi Phone is:",
-    question_text_hi: "à¤¸à¤°à¤¿à¤¤à¤¾ â‚¹40,200 à¤®à¥‡à¤‚ à¤¦à¥‹ à¤ªà¥à¤°à¤¾à¤¨à¥‡ à¤¸à¥ˆà¤®à¤¸à¤‚à¤— à¤«à¥‹à¤¨ à¤”à¤° à¤¤à¥€à¤¨ à¤à¤®à¤†à¤ˆ à¤®à¥‹à¤¬à¤¾à¤‡à¤² à¤«à¥‹à¤¨ à¤–à¤°à¥€à¤¦à¤¤à¥€ à¤¹à¥ˆà¥¤ à¤¯à¤¦à¤¿ à¤µà¤¹ à¤¸à¥ˆà¤®à¤¸à¤‚à¤— à¤«à¥‹à¤¨ à¤•à¥‹ 10% à¤²à¤¾à¤­ à¤ªà¤° à¤”à¤° à¤à¤®à¤†à¤ˆ à¤«à¥‹à¤¨ à¤•à¥‹ 20% à¤²à¤¾à¤­ à¤ªà¤° à¤¬à¥‡à¤šà¤¤à¥€ à¤¹à¥ˆ à¤¤à¥‹ à¤‰à¤¸à¤•à¤¾ à¤•à¥à¤² à¤²à¤¾à¤­ â‚¹5,640 à¤¹à¥ˆà¥¤ à¤à¤®à¤†à¤ˆ à¤«à¥‹à¤¨ à¤•à¤¾ à¤•à¥à¤°à¤¯ à¤®à¥‚à¤²à¥à¤¯ à¤¹à¥ˆ:",
+    type_category_hi: "बहु-वस्तु विभाजन लाभ समीकरण",
+    question_text: "Sarita buys two old Samsung phones and three Mi mobile phones for ₹40,200. If she sells the Samsung phones at a 10% profit and the Mi Phones at a 20% profit then her total profit is ₹5,640. The cost price of the Mi Phone is:",
+    question_text_hi: "सरिता ₹40,200 में दो पुराने सैमसंग फोन और तीन एमआई मोबाइल फोन खरीदती है। यदि वह सैमसंग फोन को 10% लाभ पर और एमआई फोन को 20% लाभ पर बेचती है तो उसका कुल लाभ ₹5,640 है। एमआई फोन का क्रय मूल्य है:",
     options: {
-      a: "â‚¹5,400",
-      b: "â‚¹1,200",
-      c: "â‚¹4,400",
-      d: "â‚¹5,000"
+      a: "₹5,400",
+      b: "₹1,200",
+      c: "₹4,400",
+      d: "₹5,000"
     },
     options_hi: {
-      a: "â‚¹5,400",
-      b: "â‚¹1,200",
-      c: "â‚¹4,400",
-      d: "â‚¹5,000"
+      a: "₹5,400",
+      b: "₹1,200",
+      c: "₹4,400",
+      d: "₹5,000"
     },
     correct_option: "a",
-    solution_text: "Let CP of 1 Samsung phone = S and CP of 1 Mi phone = M.\nTotal CP: 2S + 3M = â‚¹40,200  --- (Equation 1)\nTotal Profit: 10% of (2S) + 20% of (3M) = â‚¹5,640\n=> 0.2S + 0.6M = 5,640\nMultiply by 10: 2S + 6M = 56,400  --- (Equation 2)\nSubtracting Equation 1 from Equation 2:\n(2S + 6M) - (2S + 3M) = 56,400 - 40,200\n3M = 16,200 => M = 16,200 / 3 = â‚¹5,400.\nCost price of each Mi phone = â‚¹5,400.\nCorrect Answer: Option (a).",
-    solution_text_hi: "à¤®à¤¾à¤¨à¤¾ à¤¸à¥ˆà¤®à¤¸à¤‚à¤— = S, à¤à¤®à¤†à¤ˆ = Mà¥¤\n2S + 3M = â‚¹40,200  --- (1)\nà¤²à¤¾à¤­: 0.2S + 0.6M = â‚¹5,640\n10 à¤¸à¥‡ à¤—à¥à¤£à¤¾ à¤•à¤°à¤¨à¥‡ à¤ªà¤°: 2S + 6M = â‚¹56,400  --- (2)\n(2) à¤®à¥‡à¤‚ à¤¸à¥‡ (1) à¤˜à¤Ÿà¤¾à¤¨à¥‡ à¤ªà¤°: 3M = 16,200 => M = â‚¹5,400à¥¤\nà¤…à¤¤à¤ƒ à¤¸à¤¹à¥€ à¤‰à¤¤à¥à¤¤à¤° (a) à¤¹à¥ˆà¥¤",
-    shortcut_text: "2S + 6M = 56,400 and 2S + 3M = 40,200.\n3M = 16,200 => 1 Mi Phone = â‚¹5,400.",
-    shortcut_text_hi: "2S + 6M = 56,400 à¤¤à¤¥à¤¾ 2S + 3M = 40,200 => 3M = 16,200 => M = â‚¹5,400à¥¤"
+    solution_text: "Let CP of 1 Samsung phone = S and CP of 1 Mi phone = M.\nTotal CP: 2S + 3M = ₹40,200  --- (Equation 1)\nTotal Profit: 10% of (2S) + 20% of (3M) = ₹5,640\n=> 0.2S + 0.6M = 5,640\nMultiply by 10: 2S + 6M = 56,400  --- (Equation 2)\nSubtracting Equation 1 from Equation 2:\n(2S + 6M) - (2S + 3M) = 56,400 - 40,200\n3M = 16,200 => M = 16,200 / 3 = ₹5,400.\nCost price of each Mi phone = ₹5,400.\nCorrect Answer: Option (a).",
+    solution_text_hi: "माना सैमसंग = S, एमआई = M।\n2S + 3M = ₹40,200  --- (1)\nलाभ: 0.2S + 0.6M = ₹5,640\n10 से गुणा करने पर: 2S + 6M = ₹56,400  --- (2)\n(2) में से (1) घटाने पर: 3M = 16,200 => M = ₹5,400।\nअतः सही उत्तर (a) है।",
+    shortcut_text: "2S + 6M = 56,400 and 2S + 3M = 40,200.\n3M = 16,200 => 1 Mi Phone = ₹5,400.",
+    shortcut_text_hi: "2S + 6M = 56,400 तथा 2S + 3M = 40,200 => 3M = 16,200 => M = ₹5,400।"
   },
   {
     question_number: 12,
@@ -327,26 +327,26 @@ const PROFIT_LOSS_SET_A_QUESTIONS = [
     level_group: "Level 2: More Than Moderate",
     type_code: "Type 7",
     type_category: "Exchange of Profit and Loss Percentages",
-    type_category_hi: "à¤²à¤¾à¤­ à¤”à¤° à¤¹à¤¾à¤¨à¤¿ à¤ªà¥à¤°à¤¤à¤¿à¤¶à¤¤ à¤•à¤¾ à¤ªà¤¾à¤°à¤¸à¥à¤ªà¤°à¤¿à¤• à¤µà¤¿à¤¨à¤¿à¤®à¤¯",
-    question_text: "A person sells his table at a profit of 12 1/2% and chair at a loss of 8 1/3% but on the whole he gains â‚¹25. On the other hand, if he sells the table at a loss of 8 1/3% and the chair at a profit of 12 1/2% then he neither gains nor loses. Find the cost price of the table.",
-    question_text_hi: "à¤à¤• à¤µà¥à¤¯à¤•à¥à¤¤à¤¿ à¤…à¤ªà¤¨à¥€ à¤®à¥‡à¤œ à¤•à¥‹ 12 1/2% à¤•à¥‡ à¤²à¤¾à¤­ à¤ªà¤° à¤”à¤° à¤•à¥à¤°à¥à¤¸à¥€ à¤•à¥‹ 8 1/3% à¤•à¥€ à¤¹à¤¾à¤¨à¤¿ à¤ªà¤° à¤¬à¥‡à¤šà¤¤à¤¾ à¤¹à¥ˆ, à¤²à¥‡à¤•à¤¿à¤¨ à¤•à¥à¤² à¤®à¤¿à¤²à¤¾à¤•à¤° à¤‰à¤¸à¥‡ â‚¹25 à¤•à¤¾ à¤²à¤¾à¤­ à¤¹à¥‹à¤¤à¤¾ à¤¹à¥ˆà¥¤ à¤¦à¥‚à¤¸à¤°à¥€ à¤“à¤°, à¤¯à¤¦à¤¿ à¤µà¤¹ à¤®à¥‡à¤œ à¤•à¥‹ 8 1/3% à¤•à¥€ à¤¹à¤¾à¤¨à¤¿ à¤ªà¤° à¤”à¤° à¤•à¥à¤°à¥à¤¸à¥€ à¤•à¥‹ 12 1/2% à¤•à¥‡ à¤²à¤¾à¤­ à¤ªà¤° à¤¬à¥‡à¤šà¤¤à¤¾ à¤¹à¥ˆ, à¤¤à¥‹ à¤‰à¤¸à¥‡ à¤¨ à¤¤à¥‹ à¤²à¤¾à¤­ à¤¹à¥‹à¤¤à¤¾ à¤¹à¥ˆ à¤”à¤° à¤¨ à¤¹à¥€ à¤¹à¤¾à¤¨à¤¿à¥¤ à¤®à¥‡à¤œ à¤•à¤¾ à¤•à¥à¤°à¤¯ à¤®à¥‚à¤²à¥à¤¯ à¤œà¥à¤žà¤¾à¤¤ à¤•à¥€à¤œà¤¿à¤à¥¤",
+    type_category_hi: "लाभ और हानि प्रतिशत का पारस्परिक विनिमय",
+    question_text: "A person sells his table at a profit of 12 1/2% and chair at a loss of 8 1/3% but on the whole he gains ₹25. On the other hand, if he sells the table at a loss of 8 1/3% and the chair at a profit of 12 1/2% then he neither gains nor loses. Find the cost price of the table.",
+    question_text_hi: "एक व्यक्ति अपनी मेज को 12 1/2% के लाभ पर और कुर्सी को 8 1/3% की हानि पर बेचता है, लेकिन कुल मिलाकर उसे ₹25 का लाभ होता है। दूसरी ओर, यदि वह मेज को 8 1/3% की हानि पर और कुर्सी को 12 1/2% के लाभ पर बेचता है, तो उसे न तो लाभ होता है और न ही हानि। मेज का क्रय मूल्य ज्ञात कीजिए।",
     options: {
-      a: "â‚¹360",
-      b: "â‚¹350",
-      c: "â‚¹380",
-      d: "â‚¹370"
+      a: "₹360",
+      b: "₹350",
+      c: "₹380",
+      d: "₹370"
     },
     options_hi: {
-      a: "â‚¹360",
-      b: "â‚¹350",
-      c: "â‚¹380",
-      d: "â‚¹370"
+      a: "₹360",
+      b: "₹350",
+      c: "₹380",
+      d: "₹370"
     },
     correct_option: "a",
-    solution_text: "Let CP of Table = T and CP of Chair = C.\nNote: 12 1/2% = 1/8 and 8 1/3% = 1/12.\nCase 2: Loss on Table = Gain on Chair (Neither gain nor loss)\n=> (1/12) T = (1/8) C\n=> 2T = 3C => C = (2/3) T.\nCase 1: (1/8) T - (1/12) C = â‚¹25\nSubstitute C = (2/3) T:\n(1/8) T - (1/12) Ã— (2/3) T = 25\n(1/8) T - (1/18) T = 25\nLCM(8, 18) = 72.\n(9T - 4T) / 72 = 25\n5T / 72 = 25 => T = (25 Ã— 72) / 5 = 5 Ã— 72 = â‚¹360.\nCost price of the table = â‚¹360.\nCorrect Answer: Option (a).",
-    solution_text_hi: "12 1/2% = 1/8, 8 1/3% = 1/12à¥¤\nà¤¸à¥à¤¥à¤¿à¤¤à¤¿ 2: (1/12) T = (1/8) C => C = (2/3) Tà¥¤\nà¤¸à¥à¤¥à¤¿à¤¤à¤¿ 1: (1/8) T - (1/12) C = 25\n(1/8) T - (1/18) T = 25 => 5T / 72 = 25 => T = â‚¹360à¥¤\nà¤…à¤¤à¤ƒ à¤®à¥‡à¤œ à¤•à¤¾ à¤•à¥à¤°à¤¯ à¤®à¥‚à¤²à¥à¤¯ â‚¹360 à¤¹à¥ˆà¥¤ à¤µà¤¿à¤•à¤²à¥à¤ª (a)à¥¤",
-    shortcut_text: "From Case 2: T : C = (1/8) : (1/12) = 12 : 8 = 3 : 2.\nProfit = (1/8)(3x) - (1/12)(2x) = 3x/8 - x/6 = 5x/24 = 25 => x = 120.\nT = 3x = 3 Ã— 120 = â‚¹360.",
-    shortcut_text_hi: "T : C = 3 : 2à¥¤ 3x/8 - 2x/12 = 5x/24 = 25 => x = 120 => T = 3 Ã— 120 = â‚¹360à¥¤"
+    solution_text: "Let CP of Table = T and CP of Chair = C.\nNote: 12 1/2% = 1/8 and 8 1/3% = 1/12.\nCase 2: Loss on Table = Gain on Chair (Neither gain nor loss)\n=> (1/12) T = (1/8) C\n=> 2T = 3C => C = (2/3) T.\nCase 1: (1/8) T - (1/12) C = ₹25\nSubstitute C = (2/3) T:\n(1/8) T - (1/12) × (2/3) T = 25\n(1/8) T - (1/18) T = 25\nLCM(8, 18) = 72.\n(9T - 4T) / 72 = 25\n5T / 72 = 25 => T = (25 × 72) / 5 = 5 × 72 = ₹360.\nCost price of the table = ₹360.\nCorrect Answer: Option (a).",
+    solution_text_hi: "12 1/2% = 1/8, 8 1/3% = 1/12।\nस्थिति 2: (1/12) T = (1/8) C => C = (2/3) T।\nस्थिति 1: (1/8) T - (1/12) C = 25\n(1/8) T - (1/18) T = 25 => 5T / 72 = 25 => T = ₹360।\nअतः मेज का क्रय मूल्य ₹360 है। विकल्प (a)।",
+    shortcut_text: "From Case 2: T : C = (1/8) : (1/12) = 12 : 8 = 3 : 2.\nProfit = (1/8)(3x) - (1/12)(2x) = 3x/8 - x/6 = 5x/24 = 25 => x = 120.\nT = 3x = 3 × 120 = ₹360.",
+    shortcut_text_hi: "T : C = 3 : 2। 3x/8 - 2x/12 = 5x/24 = 25 => x = 120 => T = 3 × 120 = ₹360।"
   },
 // ==========================================
   // LEVEL 3: INSPIRED FROM PYQS (Q13 to Q18)
@@ -358,26 +358,26 @@ const PROFIT_LOSS_SET_A_QUESTIONS = [
     level_group: "Level 3: Inspired from PYQs",
     type_code: "Type 8",
     type_category: "Price Shift for Targeted Gain",
-    type_category_hi: "à¤µà¤¾à¤‚à¤›à¤¿à¤¤ à¤²à¤¾à¤­ à¤•à¥‡ à¤²à¤¿à¤ à¤®à¥‚à¤²à¥à¤¯ à¤ªà¤°à¤¿à¤µà¤°à¥à¤¤à¤¨",
-    question_text: "By selling an item for â‚¹4,125, A gains 10%. At what price should he sell the item in order to gain 18%?",
-    question_text_hi: "à¤à¤• à¤µà¤¸à¥à¤¤à¥ à¤•à¥‹ â‚¹4,125 à¤®à¥‡à¤‚ à¤¬à¥‡à¤šà¤¨à¥‡ à¤ªà¤° A à¤•à¥‹ 10% à¤•à¤¾ à¤²à¤¾à¤­ à¤¹à¥‹à¤¤à¤¾ à¤¹à¥ˆà¥¤ 18% à¤²à¤¾à¤­ à¤ªà¥à¤°à¤¾à¤ªà¥à¤¤ à¤•à¤°à¤¨à¥‡ à¤•à¥‡ à¤²à¤¿à¤ à¤‰à¤¸à¥‡ à¤µà¤¸à¥à¤¤à¥ à¤•à¥‹ à¤•à¤¿à¤¸ à¤•à¥€à¤®à¤¤ à¤ªà¤° à¤¬à¥‡à¤šà¤¨à¤¾ à¤šà¤¾à¤¹à¤¿à¤?",
+    type_category_hi: "वांछित लाभ के लिए मूल्य परिवर्तन",
+    question_text: "By selling an item for ₹4,125, A gains 10%. At what price should he sell the item in order to gain 18%?",
+    question_text_hi: "एक वस्तु को ₹4,125 में बेचने पर A को 10% का लाभ होता है। 18% लाभ प्राप्त करने के लिए उसे वस्तु को किस कीमत पर बेचना चाहिए?",
     options: {
-      a: "â‚¹4,450",
-      b: "â‚¹4,425",
-      c: "â‚¹4,400",
-      d: "â‚¹4,510"
+      a: "₹4,450",
+      b: "₹4,425",
+      c: "₹4,400",
+      d: "₹4,510"
     },
     options_hi: {
-      a: "â‚¹4,450",
-      b: "â‚¹4,425",
-      c: "â‚¹4,400",
-      d: "â‚¹4,510"
+      a: "₹4,450",
+      b: "₹4,425",
+      c: "₹4,400",
+      d: "₹4,510"
     },
     correct_option: "b",
-    solution_text: "Given: SPâ‚ = â‚¹4,125 at 10% profit.\nCP = SPâ‚ / (1 + 0.10) = 4,125 / 1.10 = â‚¹3,750.\nRequired Profit = 18%.\nRequired SPâ‚‚ = CP Ã— (1 + 0.18) = 3,750 Ã— 1.18 = â‚¹4,425.\nCorrect Answer: Option (b).",
-    solution_text_hi: "à¤¦à¤¿à¤¯à¤¾ à¤—à¤¯à¤¾ à¤¹à¥ˆ: 10% à¤²à¤¾à¤­ à¤ªà¤° SPâ‚ = â‚¹4,125à¥¤\nCP = 4125 / 1.10 = â‚¹3,750à¥¤\n18% à¤²à¤¾à¤­ à¤•à¥‡ à¤²à¤¿à¤ à¤…à¤­à¥€à¤·à¥à¤Ÿ SP = 3750 Ã— 1.18 = â‚¹4,425à¥¤\nà¤…à¤¤à¤ƒ à¤¸à¤¹à¥€ à¤‰à¤¤à¥à¤¤à¤° (b) à¤¹à¥ˆà¥¤",
-    shortcut_text: "SPâ‚‚ = (SPâ‚ / 110) Ã— 118 = (4125 / 110) Ã— 118 = 37.5 Ã— 118 = â‚¹4,425.",
-    shortcut_text_hi: "SPâ‚‚ = (4125 / 110) Ã— 118 = 37.5 Ã— 118 = â‚¹4,425à¥¤"
+    solution_text: "Given: SP₁ = ₹4,125 at 10% profit.\nCP = SP₁ / (1 + 0.10) = 4,125 / 1.10 = ₹3,750.\nRequired Profit = 18%.\nRequired SP₂ = CP × (1 + 0.18) = 3,750 × 1.18 = ₹4,425.\nCorrect Answer: Option (b).",
+    solution_text_hi: "दिया गया है: 10% लाभ पर SP₁ = ₹4,125।\nCP = 4125 / 1.10 = ₹3,750।\n18% लाभ के लिए अभीष्ट SP = 3750 × 1.18 = ₹4,425।\nअतः सही उत्तर (b) है।",
+    shortcut_text: "SP₂ = (SP₁ / 110) × 118 = (4125 / 110) × 118 = 37.5 × 118 = ₹4,425.",
+    shortcut_text_hi: "SP₂ = (4125 / 110) × 118 = 37.5 × 118 = ₹4,425।"
   },
   {
     question_number: 14,
@@ -386,26 +386,26 @@ const PROFIT_LOSS_SET_A_QUESTIONS = [
     level_group: "Level 3: Inspired from PYQs",
     type_code: "Type 8",
     type_category: "Reversal from Loss to High Profit",
-    type_category_hi: "à¤¹à¤¾à¤¨à¤¿ à¤¸à¥‡ à¤‰à¤šà¥à¤š à¤²à¤¾à¤­ à¤®à¥‡à¤‚ à¤°à¥‚à¤ªà¤¾à¤‚à¤¤à¤°à¤£",
-    question_text: "The owner loses 20% when he sells a plot for â‚¹19,50,000. At what price must he sell the plot in order to gain a profit of 20%?",
-    question_text_hi: "à¤œà¤¬ à¤®à¤¾à¤²à¤¿à¤• à¤à¤• à¤ªà¥à¤²à¥‰à¤Ÿ à¤•à¥‹ â‚¹19,50,000 à¤®à¥‡à¤‚ à¤¬à¥‡à¤šà¤¤à¤¾ à¤¹à¥ˆ à¤¤à¥‹ à¤‰à¤¸à¥‡ 20% à¤•à¥€ à¤¹à¤¾à¤¨à¤¿ à¤¹à¥‹à¤¤à¥€ à¤¹à¥ˆà¥¤ 20% à¤•à¤¾ à¤²à¤¾à¤­ à¤ªà¥à¤°à¤¾à¤ªà¥à¤¤ à¤•à¤°à¤¨à¥‡ à¤•à¥‡ à¤²à¤¿à¤ à¤‰à¤¸à¥‡ à¤ªà¥à¤²à¥‰à¤Ÿ à¤•à¥‹ à¤•à¤¿à¤¸ à¤•à¥€à¤®à¤¤ à¤ªà¤° à¤¬à¥‡à¤šà¤¨à¤¾ à¤šà¤¾à¤¹à¤¿à¤?",
+    type_category_hi: "हानि से उच्च लाभ में रूपांतरण",
+    question_text: "The owner loses 20% when he sells a plot for ₹19,50,000. At what price must he sell the plot in order to gain a profit of 20%?",
+    question_text_hi: "जब मालिक एक प्लॉट को ₹19,50,000 में बेचता है तो उसे 20% की हानि होती है। 20% का लाभ प्राप्त करने के लिए उसे प्लॉट को किस कीमत पर बेचना चाहिए?",
     options: {
-      a: "â‚¹22,50,000",
-      b: "â‚¹21,00,000",
-      c: "â‚¹29,25,000",
-      d: "â‚¹25,95,000"
+      a: "₹22,50,000",
+      b: "₹21,00,000",
+      c: "₹29,25,000",
+      d: "₹25,95,000"
     },
     options_hi: {
-      a: "â‚¹22,50,000",
-      b: "â‚¹21,00,000",
-      c: "â‚¹29,25,000",
-      d: "â‚¹25,95,000"
+      a: "₹22,50,000",
+      b: "₹21,00,000",
+      c: "₹29,25,000",
+      d: "₹25,95,000"
     },
     correct_option: "c",
-    solution_text: "At 20% loss, SP = 80% of CP = â‚¹19,50,000.\nCP = 19,50,000 / 0.80 = â‚¹24,37,500.\nFor 20% profit, Required SP = 120% of CP\n= 24,37,500 Ã— 1.20 = â‚¹29,25,000.\nCorrect Answer: Option (c).",
-    solution_text_hi: "20% à¤¹à¤¾à¤¨à¤¿ à¤ªà¤° SP = CP à¤•à¤¾ 80% = â‚¹19,50,000à¥¤\nCP = 19,50,000 / 0.80 = â‚¹24,37,500à¥¤\n20% à¤²à¤¾à¤­ à¤•à¥‡ à¤²à¤¿à¤ SP = 24,37,500 Ã— 1.20 = â‚¹29,25,000à¥¤\nà¤…à¤¤à¤ƒ à¤¸à¤¹à¥€ à¤‰à¤¤à¥à¤¤à¤° (c) à¤¹à¥ˆà¥¤",
-    shortcut_text: "SPâ‚‚ = (19,50,000 / 80) Ã— 120 = 19,50,000 Ã— 1.5 = â‚¹29,25,000.",
-    shortcut_text_hi: "à¤¸à¥€à¤§à¥‡ à¤…à¤¨à¥à¤ªà¤¾à¤¤ à¤¸à¥‡: 80% = 19,50,000 => 120% = 19,50,000 Ã— (120/80) = â‚¹29,25,000à¥¤"
+    solution_text: "At 20% loss, SP = 80% of CP = ₹19,50,000.\nCP = 19,50,000 / 0.80 = ₹24,37,500.\nFor 20% profit, Required SP = 120% of CP\n= 24,37,500 × 1.20 = ₹29,25,000.\nCorrect Answer: Option (c).",
+    solution_text_hi: "20% हानि पर SP = CP का 80% = ₹19,50,000।\nCP = 19,50,000 / 0.80 = ₹24,37,500।\n20% लाभ के लिए SP = 24,37,500 × 1.20 = ₹29,25,000।\nअतः सही उत्तर (c) है।",
+    shortcut_text: "SP₂ = (19,50,000 / 80) × 120 = 19,50,000 × 1.5 = ₹29,25,000.",
+    shortcut_text_hi: "सीधे अनुपात से: 80% = 19,50,000 => 120% = 19,50,000 × (120/80) = ₹29,25,000।"
   },
   {
     question_number: 15,
@@ -414,26 +414,26 @@ const PROFIT_LOSS_SET_A_QUESTIONS = [
     level_group: "Level 3: Inspired from PYQs",
     type_code: "Type 4",
     type_category: "Profit/Loss Gap to Target Price",
-    type_category_hi: "à¤²à¤¾à¤­/à¤¹à¤¾à¤¨à¤¿ à¤…à¤‚à¤¤à¤° à¤¸à¥‡ à¤…à¤­à¥€à¤·à¥à¤Ÿ à¤µà¤¿à¤•à¥à¤°à¤¯ à¤®à¥‚à¤²à¥à¤¯",
-    question_text: "The difference between a 12.5% profit and a 10.5% loss, while selling an item, is â‚¹161. What would the selling price of the item be if the intended profit is 19%?",
-    question_text_hi: "à¤à¤• à¤µà¤¸à¥à¤¤à¥ à¤•à¥‹ à¤¬à¥‡à¤šà¤¤à¥‡ à¤¸à¤®à¤¯ 12.5% à¤²à¤¾à¤­ à¤”à¤° 10.5% à¤¹à¤¾à¤¨à¤¿ à¤•à¥‡ à¤¬à¥€à¤š à¤•à¤¾ à¤…à¤‚à¤¤à¤° â‚¹161 à¤¹à¥ˆà¥¤ à¤¯à¤¦à¤¿ à¤…à¤ªà¥‡à¤•à¥à¤·à¤¿à¤¤ à¤²à¤¾à¤­ 19% à¤¹à¥ˆ à¤¤à¥‹ à¤µà¤¸à¥à¤¤à¥ à¤•à¤¾ à¤µà¤¿à¤•à¥à¤°à¤¯ à¤®à¥‚à¤²à¥à¤¯ à¤•à¥à¤¯à¤¾ à¤¹à¥‹à¤—à¤¾?",
+    type_category_hi: "लाभ/हानि अंतर से अभीष्ट विक्रय मूल्य",
+    question_text: "The difference between a 12.5% profit and a 10.5% loss, while selling an item, is ₹161. What would the selling price of the item be if the intended profit is 19%?",
+    question_text_hi: "एक वस्तु को बेचते समय 12.5% लाभ और 10.5% हानि के बीच का अंतर ₹161 है। यदि अपेक्षित लाभ 19% है तो वस्तु का विक्रय मूल्य क्या होगा?",
     options: {
-      a: "â‚¹833",
-      b: "â‚¹798",
-      c: "â‚¹817",
-      d: "â‚¹850"
+      a: "₹833",
+      b: "₹798",
+      c: "₹817",
+      d: "₹850"
     },
     options_hi: {
-      a: "â‚¹833",
-      b: "â‚¹798",
-      c: "â‚¹817",
-      d: "â‚¹850"
+      a: "₹833",
+      b: "₹798",
+      c: "₹817",
+      d: "₹850"
     },
     correct_option: "a",
-    solution_text: "Net percentage gap = 12.5% - (-10.5%) = 23% of CP.\nGiven: 23% of CP = â‚¹161\n=> CP = (161 / 23) Ã— 100 = 7 Ã— 100 = â‚¹700.\nTarget Profit = 19%.\nRequired SP = 700 Ã— (1 + 0.19) = 700 Ã— 1.19 = â‚¹833.\nCorrect Answer: Option (a).",
-    solution_text_hi: "à¤ªà¥à¤°à¤¤à¤¿à¤¶à¤¤ à¤…à¤‚à¤¤à¤° = 12.5% + 10.5% = 23%à¥¤\n23% = â‚¹161 => CP = (161 / 23) Ã— 100 = â‚¹700à¥¤\n19% à¤²à¤¾à¤­ à¤ªà¤° SP = 700 Ã— 1.19 = â‚¹833à¥¤\nà¤…à¤¤à¤ƒ à¤¸à¤¹à¥€ à¤‰à¤¤à¥à¤¤à¤° (a) à¤¹à¥ˆà¥¤",
-    shortcut_text: "23% = 161 => 1% = 7 => CP = 700.\nSP at 19% = 700 + 19Ã—7 = 700 + 133 = â‚¹833.",
-    shortcut_text_hi: "23% = 161 => 1% = 7 => CP = 700à¥¤ SP = 700 + 133 = â‚¹833à¥¤"
+    solution_text: "Net percentage gap = 12.5% - (-10.5%) = 23% of CP.\nGiven: 23% of CP = ₹161\n=> CP = (161 / 23) × 100 = 7 × 100 = ₹700.\nTarget Profit = 19%.\nRequired SP = 700 × (1 + 0.19) = 700 × 1.19 = ₹833.\nCorrect Answer: Option (a).",
+    solution_text_hi: "प्रतिशत अंतर = 12.5% + 10.5% = 23%।\n23% = ₹161 => CP = (161 / 23) × 100 = ₹700।\n19% लाभ पर SP = 700 × 1.19 = ₹833।\nअतः सही उत्तर (a) है।",
+    shortcut_text: "23% = 161 => 1% = 7 => CP = 700.\nSP at 19% = 700 + 19×7 = 700 + 133 = ₹833.",
+    shortcut_text_hi: "23% = 161 => 1% = 7 => CP = 700। SP = 700 + 133 = ₹833।"
   },
   {
     question_number: 16,
@@ -442,26 +442,26 @@ const PROFIT_LOSS_SET_A_QUESTIONS = [
     level_group: "Level 3: Inspired from PYQs",
     type_code: "Type 2",
     type_category: "Profit Equal to SP of Items",
-    type_category_hi: "à¤µà¤¸à¥à¤¤à¥à¤“à¤‚ à¤•à¥‡ à¤µà¤¿à¤•à¥à¤°à¤¯ à¤®à¥‚à¤²à¥à¤¯ à¤•à¥‡ à¤¬à¤°à¤¾à¤¬à¤° à¤²à¤¾à¤­",
-    question_text: "A shopkeeper bought 25 chairs from a manufacturer for â‚¹37,500 and sold them at a profit equal to the selling price of 5 chairs. Then the SP of one chair is:",
-    question_text_hi: "à¤à¤• à¤¦à¥à¤•à¤¾à¤¨à¤¦à¤¾à¤° à¤¨à¥‡ à¤à¤• à¤¨à¤¿à¤°à¥à¤®à¤¾à¤¤à¤¾ à¤¸à¥‡ â‚¹37,500 à¤®à¥‡à¤‚ 25 à¤•à¥à¤°à¥à¤¸à¤¿à¤¯à¤¾à¤‚ à¤–à¤°à¥€à¤¦à¥€à¤‚ à¤”à¤° à¤‰à¤¨à¥à¤¹à¥‡à¤‚ 5 à¤•à¥à¤°à¥à¤¸à¤¿à¤¯à¥‹à¤‚ à¤•à¥‡ à¤µà¤¿à¤•à¥à¤°à¤¯ à¤®à¥‚à¤²à¥à¤¯ à¤•à¥‡ à¤¬à¤°à¤¾à¤¬à¤° à¤²à¤¾à¤­ à¤ªà¤° à¤¬à¥‡à¤š à¤¦à¤¿à¤¯à¤¾à¥¤ à¤¤à¥‹ à¤à¤• à¤•à¥à¤°à¥à¤¸à¥€ à¤•à¤¾ à¤µà¤¿à¤•à¥à¤°à¤¯ à¤®à¥‚à¤²à¥à¤¯ à¤¹à¥ˆ:",
+    type_category_hi: "वस्तुओं के विक्रय मूल्य के बराबर लाभ",
+    question_text: "A shopkeeper bought 25 chairs from a manufacturer for ₹37,500 and sold them at a profit equal to the selling price of 5 chairs. Then the SP of one chair is:",
+    question_text_hi: "एक दुकानदार ने एक निर्माता से ₹37,500 में 25 कुर्सियां खरीदीं और उन्हें 5 कुर्सियों के विक्रय मूल्य के बराबर लाभ पर बेच दिया। तो एक कुर्सी का विक्रय मूल्य है:",
     options: {
-      a: "â‚¹1,875",
-      b: "â‚¹1,200",
-      c: "â‚¹1,500",
-      d: "â‚¹1,250"
+      a: "₹1,875",
+      b: "₹1,200",
+      c: "₹1,500",
+      d: "₹1,250"
     },
     options_hi: {
-      a: "â‚¹1,875",
-      b: "â‚¹1,200",
-      c: "â‚¹1,500",
-      d: "â‚¹1,250"
+      a: "₹1,875",
+      b: "₹1,200",
+      c: "₹1,500",
+      d: "₹1,250"
     },
     correct_option: "a",
-    solution_text: "Let SP of 1 chair = S.\nTotal CP of 25 chairs = â‚¹37,500.\nTotal SP of 25 chairs = 25S.\nProfit = Total SP - Total CP = 25S - 37,500.\nGiven: Profit = SP of 5 chairs = 5S.\n=> 25S - 37,500 = 5S\n=> 20S = 37,500\n=> S = 37,500 / 20 = â‚¹1,875.\nSP of one chair = â‚¹1,875.\nCorrect Answer: Option (a).",
-    solution_text_hi: "à¤®à¤¾à¤¨à¤¾ 1 à¤•à¥à¤°à¥à¤¸à¥€ à¤•à¤¾ SP = Sà¥¤\n25S - 37,500 = 5S => 20S = 37,500 => S = â‚¹1,875à¥¤\nà¤…à¤¤à¤ƒ à¤¸à¤¹à¥€ à¤‰à¤¤à¥à¤¤à¤° (a) à¤¹à¥ˆà¥¤",
-    shortcut_text: "Profit = 5 SP => 25 SP - 25 CP = 5 SP => 20 SP = 25 CP = 37,500.\nSP = 37,500 / 20 = â‚¹1,875.",
-    shortcut_text_hi: "20 SP = 37,500 => SP = 37,500 / 20 = â‚¹1,875à¥¤"
+    solution_text: "Let SP of 1 chair = S.\nTotal CP of 25 chairs = ₹37,500.\nTotal SP of 25 chairs = 25S.\nProfit = Total SP - Total CP = 25S - 37,500.\nGiven: Profit = SP of 5 chairs = 5S.\n=> 25S - 37,500 = 5S\n=> 20S = 37,500\n=> S = 37,500 / 20 = ₹1,875.\nSP of one chair = ₹1,875.\nCorrect Answer: Option (a).",
+    solution_text_hi: "माना 1 कुर्सी का SP = S।\n25S - 37,500 = 5S => 20S = 37,500 => S = ₹1,875।\nअतः सही उत्तर (a) है।",
+    shortcut_text: "Profit = 5 SP => 25 SP - 25 CP = 5 SP => 20 SP = 25 CP = 37,500.\nSP = 37,500 / 20 = ₹1,875.",
+    shortcut_text_hi: "20 SP = 37,500 => SP = 37,500 / 20 = ₹1,875।"
   },
   {
     question_number: 17,
@@ -470,26 +470,26 @@ const PROFIT_LOSS_SET_A_QUESTIONS = [
     level_group: "Level 3: Inspired from PYQs",
     type_code: "Type 4",
     type_category: "Difference in SP for Profit Conversion",
-    type_category_hi: "à¤²à¤¾à¤­ à¤°à¥‚à¤ªà¤¾à¤‚à¤¤à¤°à¤£ à¤•à¥‡ à¤²à¤¿à¤ à¤µà¤¿à¤•à¥à¤°à¤¯ à¤®à¥‚à¤²à¥à¤¯ à¤®à¥‡à¤‚ à¤…à¤‚à¤¤à¤°",
-    question_text: "Pavan sold an item at a loss of 12.5%. If he could have sold it for â‚¹56 more, he would have made a profit of 22.5%. What should be the selling price of the item to make a profit of 25%?",
-    question_text_hi: "à¤ªà¤µà¤¨ à¤¨à¥‡ à¤à¤• à¤µà¤¸à¥à¤¤à¥ à¤•à¥‹ 12.5% à¤•à¥€ à¤¹à¤¾à¤¨à¤¿ à¤ªà¤° à¤¬à¥‡à¤šà¤¾à¥¤ à¤¯à¤¦à¤¿ à¤µà¤¹ à¤‡à¤¸à¥‡ â‚¹56 à¤…à¤§à¤¿à¤• à¤®à¥‡à¤‚ à¤¬à¥‡à¤šà¤¤à¤¾, à¤¤à¥‹ à¤‰à¤¸à¥‡ 22.5% à¤•à¤¾ à¤²à¤¾à¤­ à¤¹à¥‹à¤¤à¤¾à¥¤ 25% à¤•à¤¾ à¤²à¤¾à¤­ à¤•à¤®à¤¾à¤¨à¥‡ à¤•à¥‡ à¤²à¤¿à¤ à¤µà¤¸à¥à¤¤à¥ à¤•à¤¾ à¤µà¤¿à¤•à¥à¤°à¤¯ à¤®à¥‚à¤²à¥à¤¯ à¤•à¥à¤¯à¤¾ à¤¹à¥‹à¤¨à¤¾ à¤šà¤¾à¤¹à¤¿à¤?",
+    type_category_hi: "लाभ रूपांतरण के लिए विक्रय मूल्य में अंतर",
+    question_text: "Pavan sold an item at a loss of 12.5%. If he could have sold it for ₹56 more, he would have made a profit of 22.5%. What should be the selling price of the item to make a profit of 25%?",
+    question_text_hi: "पवन ने एक वस्तु को 12.5% की हानि पर बेचा। यदि वह इसे ₹56 अधिक में बेचता, तो उसे 22.5% का लाभ होता। 25% का लाभ कमाने के लिए वस्तु का विक्रय मूल्य क्या होना चाहिए?",
     options: {
-      a: "â‚¹182",
-      b: "â‚¹190",
-      c: "â‚¹185",
-      d: "â‚¹200"
+      a: "₹182",
+      b: "₹190",
+      c: "₹185",
+      d: "₹200"
     },
     options_hi: {
-      a: "â‚¹182",
-      b: "â‚¹190",
-      c: "â‚¹185",
-      d: "â‚¹200"
+      a: "₹182",
+      b: "₹190",
+      c: "₹185",
+      d: "₹200"
     },
     correct_option: "d",
-    solution_text: "Net change in percentage = 22.5% - (-12.5%) = 35% of CP.\nGiven: 35% of CP = â‚¹56\n=> CP = (56 / 35) Ã— 100 = (8 / 5) Ã— 100 = â‚¹160.\nTo make a profit of 25%:\nRequired SP = 160 Ã— 1.25 = â‚¹200.\nCorrect Answer: Option (d).",
-    solution_text_hi: "à¤•à¥à¤² à¤ªà¥à¤°à¤¤à¤¿à¤¶à¤¤ à¤…à¤‚à¤¤à¤° = 22.5% - (-12.5%) = 35%à¥¤\n35% = â‚¹56 => CP = (56 / 35) Ã— 100 = â‚¹160à¥¤\n25% à¤²à¤¾à¤­ à¤•à¥‡ à¤²à¤¿à¤ à¤…à¤­à¥€à¤·à¥à¤Ÿ SP = 160 Ã— 1.25 = â‚¹200à¥¤\nà¤…à¤¤à¤ƒ à¤¸à¤¹à¥€ à¤‰à¤¤à¥à¤¤à¤° (d) à¤¹à¥ˆà¥¤",
-    shortcut_text: "35% = 56 => 1% = 1.6 => CP = 160.\nSP at 25% profit = 160 Ã— 1.25 = â‚¹200.",
-    shortcut_text_hi: "35% = 56 => CP = 160 => SP = 160 Ã— 1.25 = â‚¹200à¥¤"
+    solution_text: "Net change in percentage = 22.5% - (-12.5%) = 35% of CP.\nGiven: 35% of CP = ₹56\n=> CP = (56 / 35) × 100 = (8 / 5) × 100 = ₹160.\nTo make a profit of 25%:\nRequired SP = 160 × 1.25 = ₹200.\nCorrect Answer: Option (d).",
+    solution_text_hi: "कुल प्रतिशत अंतर = 22.5% - (-12.5%) = 35%।\n35% = ₹56 => CP = (56 / 35) × 100 = ₹160।\n25% लाभ के लिए अभीष्ट SP = 160 × 1.25 = ₹200।\nअतः सही उत्तर (d) है।",
+    shortcut_text: "35% = 56 => 1% = 1.6 => CP = 160.\nSP at 25% profit = 160 × 1.25 = ₹200.",
+    shortcut_text_hi: "35% = 56 => CP = 160 => SP = 160 × 1.25 = ₹200।"
   },
   {
     question_number: 18,
@@ -498,26 +498,26 @@ const PROFIT_LOSS_SET_A_QUESTIONS = [
     level_group: "Level 3: Inspired from PYQs",
     type_code: "Type 9",
     type_category: "Weighted Average Profit on Portions",
-    type_category_hi: "à¤­à¤¾à¤—à¥‹à¤‚ à¤ªà¤° à¤­à¤¾à¤°à¤¿à¤¤ à¤”à¤¸à¤¤ à¤²à¤¾à¤­",
-    question_text: "A trader buys 60 bags of grain at the rate of â‚¹400 each. If he sells 18 bags at 8% profit. To get a total profit of 16.4% on 60 bags, at what rate should he sell the remaining bags?",
-    question_text_hi: "à¤à¤• à¤µà¥à¤¯à¤¾à¤ªà¤¾à¤°à¥€ â‚¹400 à¤ªà¥à¤°à¤¤à¤¿ à¤¬à¥ˆà¤— à¤•à¥€ à¤¦à¤° à¤¸à¥‡ à¤…à¤¨à¤¾à¤œ à¤•à¥‡ 60 à¤¬à¥ˆà¤— à¤–à¤°à¥€à¤¦à¤¤à¤¾ à¤¹à¥ˆà¥¤ à¤¯à¤¦à¤¿ à¤µà¤¹ 18 à¤¬à¥ˆà¤— 8% à¤²à¤¾à¤­ à¤ªà¤° à¤¬à¥‡à¤šà¤¤à¤¾ à¤¹à¥ˆ, à¤¤à¥‹ 60 à¤¬à¥ˆà¤— à¤ªà¤° 16.4% à¤•à¤¾ à¤•à¥à¤² à¤²à¤¾à¤­ à¤ªà¥à¤°à¤¾à¤ªà¥à¤¤ à¤•à¤°à¤¨à¥‡ à¤•à¥‡ à¤²à¤¿à¤ à¤‰à¤¸à¥‡ à¤¶à¥‡à¤· à¤¬à¥ˆà¤— à¤•à¤¿à¤¸ à¤¦à¤° à¤ªà¤° à¤¬à¥‡à¤šà¤¨à¥‡ à¤šà¤¾à¤¹à¤¿à¤?",
+    type_category_hi: "भागों पर भारित औसत लाभ",
+    question_text: "A trader buys 60 bags of grain at the rate of ₹400 each. If he sells 18 bags at 8% profit. To get a total profit of 16.4% on 60 bags, at what rate should he sell the remaining bags?",
+    question_text_hi: "एक व्यापारी ₹400 प्रति बैग की दर से अनाज के 60 बैग खरीदता है। यदि वह 18 बैग 8% लाभ पर बेचता है, तो 60 बैग पर 16.4% का कुल लाभ प्राप्त करने के लिए उसे शेष बैग किस दर पर बेचने चाहिए?",
     options: {
-      a: "â‚¹400",
-      b: "â‚¹480",
-      c: "â‚¹540",
-      d: "â‚¹520"
+      a: "₹400",
+      b: "₹480",
+      c: "₹540",
+      d: "₹520"
     },
     options_hi: {
-      a: "â‚¹400",
-      b: "â‚¹480",
-      c: "â‚¹540",
-      d: "â‚¹520"
+      a: "₹400",
+      b: "₹480",
+      c: "₹540",
+      d: "₹520"
     },
     correct_option: "b",
-    solution_text: "Total Cost Price = 60 Ã— 400 = â‚¹24,000.\nDesired Total Selling Price = 24,000 Ã— (1 + 0.164) = 24,000 Ã— 1.164 = â‚¹27,936.\nSP of first 18 bags = 18 Ã— 400 Ã— 1.08 = 7,200 Ã— 1.08 = â‚¹7,776.\nRemaining SP required for (60 - 18 = 42) bags = 27,936 - 7,776 = â‚¹20,160.\nRate per remaining bag = 20,160 / 42 = â‚¹480.\nCorrect Answer: Option (b).",
-    solution_text_hi: "à¤•à¥à¤² CP = 60 Ã— 400 = â‚¹24,000à¥¤\nà¤•à¥à¤² à¤²à¤•à¥à¤·à¤¿à¤¤ SP = 24,000 Ã— 1.164 = â‚¹27,936à¥¤\n18 à¤¬à¥ˆà¤— à¤•à¤¾ SP = 18 Ã— 400 Ã— 1.08 = â‚¹7,776à¥¤\nà¤¶à¥‡à¤· 42 à¤¬à¥ˆà¤— à¤•à¤¾ SP = 27,936 - 7,776 = â‚¹20,160à¥¤\nà¤¦à¤° = 20,160 / 42 = â‚¹480 à¤ªà¥à¤°à¤¤à¤¿ à¤¬à¥ˆà¤—à¥¤\nà¤…à¤¤à¤ƒ à¤¸à¤¹à¥€ à¤‰à¤¤à¥à¤¤à¤° (b) à¤¹à¥ˆà¥¤",
-    shortcut_text: "Ratio of bags = 18 : 42 = 3 : 7.\nOverall profit% = (3 Ã— 8% + 7 Ã— x%) / 10 = 16.4%\n=> 24 + 7x = 164 => 7x = 140 => x = 20% profit.\nRate = 400 Ã— 1.20 = â‚¹480.",
-    shortcut_text_hi: "à¤…à¤¨à¥à¤ªà¤¾à¤¤ 18:42 = 3:7à¥¤ (3Ã—8 + 7x)/10 = 16.4 => 7x = 140 => x = 20%à¥¤ à¤¦à¤° = 400 Ã— 1.20 = â‚¹480à¥¤"
+    solution_text: "Total Cost Price = 60 × 400 = ₹24,000.\nDesired Total Selling Price = 24,000 × (1 + 0.164) = 24,000 × 1.164 = ₹27,936.\nSP of first 18 bags = 18 × 400 × 1.08 = 7,200 × 1.08 = ₹7,776.\nRemaining SP required for (60 - 18 = 42) bags = 27,936 - 7,776 = ₹20,160.\nRate per remaining bag = 20,160 / 42 = ₹480.\nCorrect Answer: Option (b).",
+    solution_text_hi: "कुल CP = 60 × 400 = ₹24,000।\nकुल लक्षित SP = 24,000 × 1.164 = ₹27,936।\n18 बैग का SP = 18 × 400 × 1.08 = ₹7,776।\nशेष 42 बैग का SP = 27,936 - 7,776 = ₹20,160।\nदर = 20,160 / 42 = ₹480 प्रति बैग।\nअतः सही उत्तर (b) है।",
+    shortcut_text: "Ratio of bags = 18 : 42 = 3 : 7.\nOverall profit% = (3 × 8% + 7 × x%) / 10 = 16.4%\n=> 24 + 7x = 164 => 7x = 140 => x = 20% profit.\nRate = 400 × 1.20 = ₹480.",
+    shortcut_text_hi: "अनुपात 18:42 = 3:7। (3×8 + 7x)/10 = 16.4 => 7x = 140 => x = 20%। दर = 400 × 1.20 = ₹480।"
   },
 
   // ==========================================
@@ -530,26 +530,26 @@ const PROFIT_LOSS_SET_A_QUESTIONS = [
     level_group: "Level 4: PYQ+",
     type_code: "Type 10",
     type_category: "Successive Buy-Sell Transactions",
-    type_category_hi: "à¤•à¥à¤°à¤®à¤¿à¤• à¤•à¥à¤°à¤¯-à¤µà¤¿à¤•à¥à¤°à¤¯ à¤²à¥‡à¤¨-à¤¦à¥‡à¤¨",
-    question_text: "Himani bought a washing machine for â‚¹8,000 and spent â‚¹500 on its repairs. She sold it at 20% profit. With the money she got by selling it, she bought another washing machine and sold it at 10% loss. What is her overall profit or loss?",
-    question_text_hi: "à¤¹à¤¿à¤®à¤¾à¤¨à¥€ à¤¨à¥‡ â‚¹8,000 à¤®à¥‡à¤‚ à¤à¤• à¤µà¤¾à¤¶à¤¿à¤‚à¤— à¤®à¤¶à¥€à¤¨ à¤–à¤°à¥€à¤¦à¥€ à¤”à¤° à¤‰à¤¸à¤•à¥€ à¤®à¤°à¤®à¥à¤®à¤¤ à¤ªà¤° â‚¹500 à¤–à¤°à¥à¤š à¤•à¤¿à¤à¥¤ à¤‰à¤¸à¤¨à¥‡ à¤‡à¤¸à¥‡ 20% à¤²à¤¾à¤­ à¤ªà¤° à¤¬à¥‡à¤šà¤¾à¥¤ à¤‡à¤¸à¥‡ à¤¬à¥‡à¤šà¤•à¤° à¤®à¤¿à¤²à¥‡ à¤ªà¥ˆà¤¸à¥‡ à¤¸à¥‡ à¤‰à¤¸à¤¨à¥‡ à¤à¤• à¤”à¤° à¤µà¤¾à¤¶à¤¿à¤‚à¤— à¤®à¤¶à¥€à¤¨ à¤–à¤°à¥€à¤¦à¥€ à¤”à¤° à¤‰à¤¸à¥‡ 10% à¤¹à¤¾à¤¨à¤¿ à¤ªà¤° à¤¬à¥‡à¤š à¤¦à¤¿à¤¯à¤¾à¥¤ à¤‰à¤¸à¤•à¤¾ à¤•à¥à¤² à¤²à¤¾à¤­ / à¤¹à¤¾à¤¨à¤¿ à¤•à¥à¤¯à¤¾ à¤¹à¥ˆ?",
+    type_category_hi: "क्रमिक क्रय-विक्रय लेन-देन",
+    question_text: "Himani bought a washing machine for ₹8,000 and spent ₹500 on its repairs. She sold it at 20% profit. With the money she got by selling it, she bought another washing machine and sold it at 10% loss. What is her overall profit or loss?",
+    question_text_hi: "हिमानी ने ₹8,000 में एक वाशिंग मशीन खरीदी और उसकी मरम्मत पर ₹500 खर्च किए। उसने इसे 20% लाभ पर बेचा। इसे बेचकर मिले पैसे से उसने एक और वाशिंग मशीन खरीदी और उसे 10% हानि पर बेच दिया। उसका कुल लाभ / हानि क्या है?",
     options: {
-      a: "Profit â‚¹640",
-      b: "Loss â‚¹640",
-      c: "Profit â‚¹680",
-      d: "Loss â‚¹600"
+      a: "Profit ₹640",
+      b: "Loss ₹640",
+      c: "Profit ₹680",
+      d: "Loss ₹600"
     },
     options_hi: {
-      a: "â‚¹640 à¤²à¤¾à¤­",
-      b: "â‚¹640 à¤¹à¤¾à¤¨à¤¿",
-      c: "â‚¹680 à¤²à¤¾à¤­",
-      d: "â‚¹600 à¤¹à¤¾à¤¨à¤¿"
+      a: "₹640 लाभ",
+      b: "₹640 हानि",
+      c: "₹680 लाभ",
+      d: "₹600 हानि"
     },
     correct_option: "c",
-    solution_text: "Total Cost Price 1 = 8,000 + 500 = â‚¹8,500.\nSelling Price 1 = 8,500 Ã— 1.20 = â‚¹10,200.\nCost Price 2 = â‚¹10,200.\nSelling Price 2 = 10,200 Ã— (1 - 0.10) = 10,200 Ã— 0.90 = â‚¹9,180.\nOverall Net Profit = Final SP - Initial CP = 9,180 - 8,500 = â‚¹680.\nCorrect Answer: Option (c).",
-    solution_text_hi: "à¤ªà¥à¤°à¤¾à¤°à¤‚à¤­à¤¿à¤• CP = 8,000 + 500 = â‚¹8,500à¥¤\nSPâ‚ = 8,500 Ã— 1.20 = â‚¹10,200à¥¤\nCPâ‚‚ = â‚¹10,200à¥¤\nSPâ‚‚ = 10,200 Ã— 0.90 = â‚¹9,180à¥¤\nà¤•à¥à¤² à¤²à¤¾à¤­ = 9,180 - 8,500 = â‚¹680 (à¤²à¤¾à¤­)à¥¤\nà¤…à¤¤à¤ƒ à¤¸à¤¹à¥€ à¤‰à¤¤à¥à¤¤à¤° (c) à¤¹à¥ˆà¥¤",
-    shortcut_text: "Net factor = 1.20 Ã— 0.90 = 1.08.\nFinal amount = 8,500 Ã— 1.08 = â‚¹9,180.\nProfit = 9,180 - 8,500 = â‚¹680.",
-    shortcut_text_hi: "à¤¶à¥à¤¦à¥à¤§ à¤—à¥à¤£à¤• = 1.20 Ã— 0.90 = 1.08à¥¤ à¤…à¤‚à¤¤à¤¿à¤® à¤°à¤¾à¤¶à¤¿ = 8500 Ã— 1.08 = 9180 => à¤²à¤¾à¤­ = â‚¹680à¥¤"
+    solution_text: "Total Cost Price 1 = 8,000 + 500 = ₹8,500.\nSelling Price 1 = 8,500 × 1.20 = ₹10,200.\nCost Price 2 = ₹10,200.\nSelling Price 2 = 10,200 × (1 - 0.10) = 10,200 × 0.90 = ₹9,180.\nOverall Net Profit = Final SP - Initial CP = 9,180 - 8,500 = ₹680.\nCorrect Answer: Option (c).",
+    solution_text_hi: "प्रारंभिक CP = 8,000 + 500 = ₹8,500।\nSP₁ = 8,500 × 1.20 = ₹10,200।\nCP₂ = ₹10,200।\nSP₂ = 10,200 × 0.90 = ₹9,180।\nकुल लाभ = 9,180 - 8,500 = ₹680 (लाभ)।\nअतः सही उत्तर (c) है।",
+    shortcut_text: "Net factor = 1.20 × 0.90 = 1.08.\nFinal amount = 8,500 × 1.08 = ₹9,180.\nProfit = 9,180 - 8,500 = ₹680.",
+    shortcut_text_hi: "शुद्ध गुणक = 1.20 × 0.90 = 1.08। अंतिम राशि = 8500 × 1.08 = 9180 => लाभ = ₹680।"
   },
   {
     question_number: 20,
@@ -558,26 +558,26 @@ const PROFIT_LOSS_SET_A_QUESTIONS = [
     level_group: "Level 4: PYQ+",
     type_code: "Type 9",
     type_category: "Split Quantities at Differential Rates",
-    type_category_hi: "à¤µà¤¿à¤­à¤¿à¤¨à¥à¤¨ à¤¦à¤°à¥‹à¤‚ à¤ªà¤° à¤®à¤¾à¤¤à¥à¤°à¤¾ à¤µà¤¿à¤­à¤¾à¤œà¤¨",
-    question_text: "Arvind bought 120 m cloth for â‚¹15,000. He sold 45% of it at a gain of 40%, 25% of it at a loss of 10% and the remaining cloth at the cost price. His profit (in â‚¹) in the entire transaction is:",
-    question_text_hi: "à¤…à¤°à¤µà¤¿à¤‚à¤¦ à¤¨à¥‡ â‚¹15,000 à¤®à¥‡à¤‚ 120 à¤®à¥€à¤Ÿà¤° à¤•à¤ªà¤¡à¤¼à¤¾ à¤–à¤°à¥€à¤¦à¤¾à¥¤ à¤‰à¤¸à¤¨à¥‡ à¤‡à¤¸à¤•à¤¾ 45% à¤¹à¤¿à¤¸à¥à¤¸à¤¾ 40% à¤•à¥‡ à¤²à¤¾à¤­ à¤ªà¤°, à¤‡à¤¸à¤•à¤¾ 25% à¤¹à¤¿à¤¸à¥à¤¸à¤¾ 10% à¤•à¥€ à¤¹à¤¾à¤¨à¤¿ à¤ªà¤° à¤”à¤° à¤¶à¥‡à¤· à¤•à¤ªà¤¡à¤¼à¤¾ à¤•à¥à¤°à¤¯ à¤®à¥‚à¤²à¥à¤¯ à¤ªà¤° à¤¬à¥‡à¤š à¤¦à¤¿à¤¯à¤¾à¥¤ à¤ªà¥‚à¤°à¥‡ à¤²à¥‡à¤¨-à¤¦à¥‡à¤¨ à¤®à¥‡à¤‚ à¤‰à¤¸à¤•à¤¾ à¤²à¤¾à¤­ (â‚¹ à¤®à¥‡à¤‚) à¤¹à¥ˆ:",
+    type_category_hi: "विभिन्न दरों पर मात्रा विभाजन",
+    question_text: "Arvind bought 120 m cloth for ₹15,000. He sold 45% of it at a gain of 40%, 25% of it at a loss of 10% and the remaining cloth at the cost price. His profit (in ₹) in the entire transaction is:",
+    question_text_hi: "अरविंद ने ₹15,000 में 120 मीटर कपड़ा खरीदा। उसने इसका 45% हिस्सा 40% के लाभ पर, इसका 25% हिस्सा 10% की हानि पर और शेष कपड़ा क्रय मूल्य पर बेच दिया। पूरे लेन-देन में उसका लाभ (₹ में) है:",
     options: {
-      a: "â‚¹4,075",
-      b: "â‚¹2,325",
-      c: "â‚¹4,180",
-      d: "â‚¹2,035"
+      a: "₹4,075",
+      b: "₹2,325",
+      c: "₹4,180",
+      d: "₹2,035"
     },
     options_hi: {
-      a: "â‚¹4,075",
-      b: "â‚¹2,325",
-      c: "â‚¹4,180",
-      d: "â‚¹2,035"
+      a: "₹4,075",
+      b: "₹2,325",
+      c: "₹4,180",
+      d: "₹2,035"
     },
     correct_option: "b",
-    solution_text: "Total CP = â‚¹15,000.\nProfit from first portion (45% of stock at 40% gain):\nProfitâ‚ = 15,000 Ã— 0.45 Ã— 0.40 = â‚¹2,700.\nLoss from second portion (25% of stock at 10% loss):\nLossâ‚‚ = 15,000 Ã— 0.25 Ã— 0.10 = â‚¹375.\nProfit from remaining 30% sold at cost price = â‚¹0.\nNet Profit = 2,700 - 375 = â‚¹2,325.\nCorrect Answer: Option (b).",
-    solution_text_hi: "à¤•à¥à¤² CP = â‚¹15,000à¥¤\n45% à¤­à¤¾à¤— à¤ªà¤° 40% à¤²à¤¾à¤­ = 15000 Ã— 0.45 Ã— 0.40 = â‚¹2,700à¥¤\n25% à¤­à¤¾à¤— à¤ªà¤° 10% à¤¹à¤¾à¤¨à¤¿ = 15000 Ã— 0.25 Ã— 0.10 = â‚¹375à¥¤\nà¤¶à¥‡à¤· 30% à¤ªà¤° à¤²à¤¾à¤­ = â‚¹0à¥¤\nà¤•à¥à¤² à¤²à¤¾à¤­ = 2,700 - 375 = â‚¹2,325à¥¤\nà¤…à¤¤à¤ƒ à¤¸à¤¹à¥€ à¤‰à¤¤à¥à¤¤à¤° (b) à¤¹à¥ˆà¥¤",
-    shortcut_text: "Net profit% = (45% Ã— 40%) - (25% Ã— 10%) + 0 = 18% - 2.5% = 15.5%.\nProfit = 15,000 Ã— 15.5% = â‚¹2,325.",
-    shortcut_text_hi: "à¤•à¥à¤² à¤²à¤¾à¤­% = 45%Ã—40% - 25%Ã—10% = 18% - 2.5% = 15.5% => 15000 à¤•à¤¾ 15.5% = â‚¹2,325à¥¤"
+    solution_text: "Total CP = ₹15,000.\nProfit from first portion (45% of stock at 40% gain):\nProfit₁ = 15,000 × 0.45 × 0.40 = ₹2,700.\nLoss from second portion (25% of stock at 10% loss):\nLoss₂ = 15,000 × 0.25 × 0.10 = ₹375.\nProfit from remaining 30% sold at cost price = ₹0.\nNet Profit = 2,700 - 375 = ₹2,325.\nCorrect Answer: Option (b).",
+    solution_text_hi: "कुल CP = ₹15,000।\n45% भाग पर 40% लाभ = 15000 × 0.45 × 0.40 = ₹2,700।\n25% भाग पर 10% हानि = 15000 × 0.25 × 0.10 = ₹375।\nशेष 30% पर लाभ = ₹0।\nकुल लाभ = 2,700 - 375 = ₹2,325।\nअतः सही उत्तर (b) है।",
+    shortcut_text: "Net profit% = (45% × 40%) - (25% × 10%) + 0 = 18% - 2.5% = 15.5%.\nProfit = 15,000 × 15.5% = ₹2,325.",
+    shortcut_text_hi: "कुल लाभ% = 45%×40% - 25%×10% = 18% - 2.5% = 15.5% => 15000 का 15.5% = ₹2,325।"
   },
   {
     question_number: 21,
@@ -586,26 +586,26 @@ const PROFIT_LOSS_SET_A_QUESTIONS = [
     level_group: "Level 4: PYQ+",
     type_code: "Type 11",
     type_category: "Two Articles Sold at Same SP",
-    type_category_hi: "à¤¸à¤®à¤¾à¤¨ à¤µà¤¿à¤•à¥à¤°à¤¯ à¤®à¥‚à¤²à¥à¤¯ à¤ªà¤° à¤¦à¥‹ à¤µà¤¸à¥à¤¤à¥à¤à¤‚",
-    question_text: "A person bought articles A and B for a total of â‚¹2,312. He sold A at a loss of 16% and sold B at a gain of 20%. The selling prices of A and B were the same. What was the difference between the cost prices of A and B?",
-    question_text_hi: "à¤à¤• à¤µà¥à¤¯à¤•à¥à¤¤à¤¿ à¤¨à¥‡ â‚¹2,312 à¤®à¥‡à¤‚ à¤µà¤¸à¥à¤¤à¥à¤à¤‚ A à¤”à¤° B à¤–à¤°à¥€à¤¦à¥€à¤‚à¥¤ à¤‰à¤¸à¤¨à¥‡ A à¤•à¥‹ 16% à¤•à¥€ à¤¹à¤¾à¤¨à¤¿ à¤ªà¤° à¤”à¤° B à¤•à¥‹ 20% à¤•à¥‡ à¤²à¤¾à¤­ à¤ªà¤° à¤¬à¥‡à¤šà¤¾à¥¤ A à¤”à¤° B à¤•à¥‡ à¤µà¤¿à¤•à¥à¤°à¤¯ à¤®à¥‚à¤²à¥à¤¯ à¤¸à¤®à¤¾à¤¨ à¤¥à¥‡à¥¤ A à¤”à¤° B à¤•à¥‡ à¤•à¥à¤°à¤¯ à¤®à¥‚à¤²à¥à¤¯ à¤•à¥‡ à¤¬à¥€à¤š à¤•à¤¾ à¤…à¤‚à¤¤à¤° à¤•à¥à¤¯à¤¾ à¤¥à¤¾?",
+    type_category_hi: "समान विक्रय मूल्य पर दो वस्तुएं",
+    question_text: "A person bought articles A and B for a total of ₹2,312. He sold A at a loss of 16% and sold B at a gain of 20%. The selling prices of A and B were the same. What was the difference between the cost prices of A and B?",
+    question_text_hi: "एक व्यक्ति ने ₹2,312 में वस्तुएं A और B खरीदीं। उसने A को 16% की हानि पर और B को 20% के लाभ पर बेचा। A और B के विक्रय मूल्य समान थे। A और B के क्रय मूल्य के बीच का अंतर क्या था?",
     options: {
-      a: "â‚¹408",
-      b: "â‚¹428",
-      c: "â‚¹420",
-      d: "â‚¹416"
+      a: "₹408",
+      b: "₹428",
+      c: "₹420",
+      d: "₹416"
     },
     options_hi: {
-      a: "â‚¹408",
-      b: "â‚¹428",
-      c: "â‚¹420",
-      d: "â‚¹416"
+      a: "₹408",
+      b: "₹428",
+      c: "₹420",
+      d: "₹416"
     },
     correct_option: "a",
-    solution_text: "Given: SP_A = SP_B\n=> CP_A Ã— (1 - 0.16) = CP_B Ã— (1 + 0.20)\n=> 0.84 CP_A = 1.20 CP_B\n=> CP_A / CP_B = 1.20 / 0.84 = 120 / 84 = 10 / 7.\nSum of ratio parts = 10 + 7 = 17 parts.\n17 parts = â‚¹2,312 => 1 part = 2,312 / 17 = â‚¹136.\nDifference between CP_A and CP_B = 10 - 7 = 3 parts.\nDifference = 3 Ã— 136 = â‚¹408.\nCorrect Answer: Option (a).",
-    solution_text_hi: "SP à¤¸à¤®à¤¾à¤¨ à¤¹à¥ˆ: 0.84 A = 1.20 B => A / B = 1.20 / 0.84 = 10 / 7à¥¤\nà¤•à¥à¤² 17 à¤‡à¤•à¤¾à¤ˆ = â‚¹2,312 => 1 à¤‡à¤•à¤¾à¤ˆ = 136à¥¤\nà¤…à¤‚à¤¤à¤° = 10 - 7 = 3 à¤‡à¤•à¤¾à¤ˆ = 3 Ã— 136 = â‚¹408à¥¤\nà¤…à¤¤à¤ƒ à¤¸à¤¹à¥€ à¤‰à¤¤à¥à¤¤à¤° (a) à¤¹à¥ˆà¥¤",
-    shortcut_text: "A : B = 1.20 : 0.84 = 10 : 7.\nDiff = (3 / 17) Ã— 2312 = 3 Ã— 136 = â‚¹408.",
-    shortcut_text_hi: "A : B = 10 : 7 => à¤…à¤‚à¤¤à¤° = (3/17) Ã— 2312 = â‚¹408à¥¤"
+    solution_text: "Given: SP_A = SP_B\n=> CP_A × (1 - 0.16) = CP_B × (1 + 0.20)\n=> 0.84 CP_A = 1.20 CP_B\n=> CP_A / CP_B = 1.20 / 0.84 = 120 / 84 = 10 / 7.\nSum of ratio parts = 10 + 7 = 17 parts.\n17 parts = ₹2,312 => 1 part = 2,312 / 17 = ₹136.\nDifference between CP_A and CP_B = 10 - 7 = 3 parts.\nDifference = 3 × 136 = ₹408.\nCorrect Answer: Option (a).",
+    solution_text_hi: "SP समान है: 0.84 A = 1.20 B => A / B = 1.20 / 0.84 = 10 / 7।\nकुल 17 इकाई = ₹2,312 => 1 इकाई = 136।\nअंतर = 10 - 7 = 3 इकाई = 3 × 136 = ₹408।\nअतः सही उत्तर (a) है।",
+    shortcut_text: "A : B = 1.20 : 0.84 = 10 : 7.\nDiff = (3 / 17) × 2312 = 3 × 136 = ₹408.",
+    shortcut_text_hi: "A : B = 10 : 7 => अंतर = (3/17) × 2312 = ₹408।"
   },
   {
     question_number: 22,
@@ -614,9 +614,9 @@ const PROFIT_LOSS_SET_A_QUESTIONS = [
     level_group: "Level 4: PYQ+",
     type_code: "Type 11",
     type_category: "Same SP with Equal Gain & Loss %",
-    type_category_hi: "à¤¸à¤®à¤¾à¤¨ à¤µà¤¿à¤•à¥à¤°à¤¯ à¤®à¥‚à¤²à¥à¤¯, à¤¸à¤®à¤¾à¤¨ à¤²à¤¾à¤­ à¤”à¤° à¤¹à¤¾à¤¨à¤¿ à¤ªà¥à¤°à¤¤à¤¿à¤¶à¤¤",
-    question_text: "A shopkeeper sold two toys for â‚¹990 each. On the first toy he gained 10% and on the second he lost 10%. Find the total percentage gain or loss.",
-    question_text_hi: "à¤à¤• à¤¦à¥à¤•à¤¾à¤¨à¤¦à¤¾à¤° à¤¨à¥‡ à¤¦à¥‹ à¤–à¤¿à¤²à¥Œà¤¨à¥‡ â‚¹990 à¤ªà¥à¤°à¤¤à¥à¤¯à¥‡à¤• à¤®à¥‡à¤‚ à¤¬à¥‡à¤šà¥‡à¥¤ à¤ªà¤¹à¤²à¥‡ à¤–à¤¿à¤²à¥Œà¤¨à¥‡ à¤ªà¤° à¤‰à¤¸à¥‡ 10% à¤•à¤¾ à¤²à¤¾à¤­ à¤¹à¥à¤† à¤”à¤° à¤¦à¥‚à¤¸à¤°à¥‡ à¤ªà¤° à¤‰à¤¸à¥‡ 10% à¤•à¥€ à¤¹à¤¾à¤¨à¤¿ à¤¹à¥à¤ˆà¥¤ à¤•à¥à¤² à¤²à¤¾à¤­ à¤¯à¤¾ à¤¹à¤¾à¤¨à¤¿ à¤ªà¥à¤°à¤¤à¤¿à¤¶à¤¤ à¤œà¥à¤žà¤¾à¤¤ à¤•à¥€à¤œà¤¿à¤à¥¤",
+    type_category_hi: "समान विक्रय मूल्य, समान लाभ और हानि प्रतिशत",
+    question_text: "A shopkeeper sold two toys for ₹990 each. On the first toy he gained 10% and on the second he lost 10%. Find the total percentage gain or loss.",
+    question_text_hi: "एक दुकानदार ने दो खिलौने ₹990 प्रत्येक में बेचे। पहले खिलौने पर उसे 10% का लाभ हुआ और दूसरे पर उसे 10% की हानि हुई। कुल लाभ या हानि प्रतिशत ज्ञात कीजिए।",
     options: {
       a: "10% Loss",
       b: "10% Gain",
@@ -624,16 +624,16 @@ const PROFIT_LOSS_SET_A_QUESTIONS = [
       d: "1% Gain"
     },
     options_hi: {
-      a: "10% à¤¹à¤¾à¤¨à¤¿",
-      b: "10% à¤²à¤¾à¤­",
-      c: "1% à¤¹à¤¾à¤¨à¤¿",
-      d: "1% à¤²à¤¾à¤­"
+      a: "10% हानि",
+      b: "10% लाभ",
+      c: "1% हानि",
+      d: "1% लाभ"
     },
     correct_option: "c",
-    solution_text: "Standard Property: When two items are sold at the same selling price, one at a profit of x% and the other at a loss of x%, there is always an overall loss given by:\nLoss% = xÂ² / 100.\nHere, x = 10.\nLoss% = 10Â² / 100 = 100 / 100 = 1%.\nHence, there is an overall loss of 1%.\nCorrect Answer: Option (c).",
-    solution_text_hi: "à¤®à¤¾à¤¨à¤• à¤¨à¤¿à¤¯à¤®: à¤œà¤¬ à¤¦à¥‹ à¤µà¤¸à¥à¤¤à¥à¤“à¤‚ à¤•à¤¾ à¤µà¤¿à¤•à¥à¤°à¤¯ à¤®à¥‚à¤²à¥à¤¯ à¤¸à¤®à¤¾à¤¨ à¤¹à¥‹ à¤”à¤° à¤à¤• à¤ªà¤° x% à¤²à¤¾à¤­ à¤¤à¤¥à¤¾ à¤¦à¥‚à¤¸à¤°à¥€ à¤ªà¤° x% à¤¹à¤¾à¤¨à¤¿ à¤¹à¥‹, à¤¤à¥‹ à¤¸à¤¦à¥ˆà¤µ à¤¹à¤¾à¤¨à¤¿ à¤¹à¥‹à¤¤à¥€ à¤¹à¥ˆ:\nà¤¹à¤¾à¤¨à¤¿% = xÂ² / 100 = 10Â² / 100 = 1% à¤¹à¤¾à¤¨à¤¿à¥¤\nà¤…à¤¤à¤ƒ à¤¸à¤¹à¥€ à¤‰à¤¤à¥à¤¤à¤° (c) à¤¹à¥ˆà¥¤",
-    shortcut_text: "Loss% = xÂ² / 100 = 10Â² / 100 = 1% Loss.",
-    shortcut_text_hi: "à¤¹à¤¾à¤¨à¤¿% = 10Â² / 100 = 1% à¤¹à¤¾à¤¨à¤¿à¥¤"
+    solution_text: "Standard Property: When two items are sold at the same selling price, one at a profit of x% and the other at a loss of x%, there is always an overall loss given by:\nLoss% = x² / 100.\nHere, x = 10.\nLoss% = 10² / 100 = 100 / 100 = 1%.\nHence, there is an overall loss of 1%.\nCorrect Answer: Option (c).",
+    solution_text_hi: "मानक नियम: जब दो वस्तुओं का विक्रय मूल्य समान हो और एक पर x% लाभ तथा दूसरी पर x% हानि हो, तो सदैव हानि होती है:\nहानि% = x² / 100 = 10² / 100 = 1% हानि।\nअतः सही उत्तर (c) है।",
+    shortcut_text: "Loss% = x² / 100 = 10² / 100 = 1% Loss.",
+    shortcut_text_hi: "हानि% = 10² / 100 = 1% हानि।"
   },
   {
     question_number: 23,
@@ -642,26 +642,26 @@ const PROFIT_LOSS_SET_A_QUESTIONS = [
     level_group: "Level 4: PYQ+",
     type_code: "Type 12",
     type_category: "Overall No Profit No Loss Balancing",
-    type_category_hi: "à¤¨ à¤²à¤¾à¤­ à¤¨ à¤¹à¤¾à¤¨à¤¿ à¤¸à¤®à¤—à¥à¤° à¤¸à¤‚à¤¤à¥à¤²à¤¨",
-    question_text: "A dealer sells a table for â‚¹400 making a profit of 25%. He sells another table at a loss of 10% and on the whole transaction he makes neither profit nor loss. How much did the second table cost for him?",
-    question_text_hi: "à¤à¤• à¤¡à¥€à¤²à¤° à¤à¤• à¤®à¥‡à¤œ à¤•à¥‹ â‚¹400 à¤®à¥‡à¤‚ à¤¬à¥‡à¤šà¤•à¤° 25% à¤•à¤¾ à¤²à¤¾à¤­ à¤•à¤®à¤¾à¤¤à¤¾ à¤¹à¥ˆà¥¤ à¤µà¤¹ à¤à¤• à¤…à¤¨à¥à¤¯ à¤®à¥‡à¤œ à¤•à¥‹ 10% à¤•à¥€ à¤¹à¤¾à¤¨à¤¿ à¤ªà¤° à¤¬à¥‡à¤šà¤¤à¤¾ à¤¹à¥ˆ à¤”à¤° à¤ªà¥‚à¤°à¥‡ à¤²à¥‡à¤¨-à¤¦à¥‡à¤¨ à¤®à¥‡à¤‚ à¤‰à¤¸à¥‡ à¤¨ à¤¤à¥‹ à¤²à¤¾à¤­ à¤¹à¥‹à¤¤à¤¾ à¤¹à¥ˆ à¤”à¤° à¤¨ à¤¹à¥€ à¤¹à¤¾à¤¨à¤¿à¥¤ à¤¦à¥‚à¤¸à¤°à¥€ à¤®à¥‡à¤œ à¤•à¥€ à¤•à¥€à¤®à¤¤ à¤‰à¤¸à¤•à¥‡ à¤²à¤¿à¤ à¤•à¤¿à¤¤à¤¨à¥€ à¤¥à¥€?",
+    type_category_hi: "न लाभ न हानि समग्र संतुलन",
+    question_text: "A dealer sells a table for ₹400 making a profit of 25%. He sells another table at a loss of 10% and on the whole transaction he makes neither profit nor loss. How much did the second table cost for him?",
+    question_text_hi: "एक डीलर एक मेज को ₹400 में बेचकर 25% का लाभ कमाता है। वह एक अन्य मेज को 10% की हानि पर बेचता है और पूरे लेन-देन में उसे न तो लाभ होता है और न ही हानि। दूसरी मेज की कीमत उसके लिए कितनी थी?",
     options: {
-      a: "â‚¹750",
-      b: "â‚¹700",
-      c: "â‚¹800",
-      d: "â‚¹850"
+      a: "₹750",
+      b: "₹700",
+      c: "₹800",
+      d: "₹850"
     },
     options_hi: {
-      a: "â‚¹750",
-      b: "â‚¹700",
-      c: "â‚¹800",
-      d: "â‚¹850"
+      a: "₹750",
+      b: "₹700",
+      c: "₹800",
+      d: "₹850"
     },
     correct_option: "c",
-    solution_text: "First Table:\nSPâ‚ = â‚¹400, Profitâ‚ = 25%.\nCPâ‚ = 400 / 1.25 = â‚¹320.\nProfit Amount on 1st Table = 400 - 320 = â‚¹80.\nSecond Table:\nSold at 10% loss.\nSince there is no overall profit or loss:\nLoss Amount on 2nd Table = Profit Amount on 1st Table = â‚¹80.\n10% of CPâ‚‚ = â‚¹80\n=> CPâ‚‚ = 80 / 0.10 = â‚¹800.\nCost price of the second table = â‚¹800.\nCorrect Answer: Option (c).",
-    solution_text_hi: "à¤ªà¤¹à¤²à¥€ à¤®à¥‡à¤œ: CPâ‚ = 400 / 1.25 = â‚¹320à¥¤ à¤²à¤¾à¤­ = 400 - 320 = â‚¹80à¥¤\nà¤¨ à¤²à¤¾à¤­ à¤¨ à¤¹à¤¾à¤¨à¤¿ à¤¹à¥‹à¤¨à¥‡ à¤•à¥‡ à¤²à¤¿à¤: à¤¦à¥‚à¤¸à¤°à¥€ à¤®à¥‡à¤œ à¤ªà¤° à¤¹à¤¾à¤¨à¤¿ = â‚¹80à¥¤\nCPâ‚‚ à¤•à¤¾ 10% = â‚¹80 => CPâ‚‚ = â‚¹800à¥¤\nà¤…à¤¤à¤ƒ à¤¸à¤¹à¥€ à¤‰à¤¤à¥à¤¤à¤° (c) à¤¹à¥ˆà¥¤",
-    shortcut_text: "Profitâ‚ = 400 - 320 = 80.\nLossâ‚‚ = 10% of CPâ‚‚ = 80 => CPâ‚‚ = â‚¹800.",
-    shortcut_text_hi: "à¤ªà¤¹à¤²à¥€ à¤®à¥‡à¤œ à¤•à¤¾ à¤²à¤¾à¤­ = â‚¹80 => 10% = â‚¹80 => à¤¦à¥‚à¤¸à¤°à¥€ à¤®à¥‡à¤œ à¤•à¤¾ CP = â‚¹800à¥¤"
+    solution_text: "First Table:\nSP₁ = ₹400, Profit₁ = 25%.\nCP₁ = 400 / 1.25 = ₹320.\nProfit Amount on 1st Table = 400 - 320 = ₹80.\nSecond Table:\nSold at 10% loss.\nSince there is no overall profit or loss:\nLoss Amount on 2nd Table = Profit Amount on 1st Table = ₹80.\n10% of CP₂ = ₹80\n=> CP₂ = 80 / 0.10 = ₹800.\nCost price of the second table = ₹800.\nCorrect Answer: Option (c).",
+    solution_text_hi: "पहली मेज: CP₁ = 400 / 1.25 = ₹320। लाभ = 400 - 320 = ₹80।\nन लाभ न हानि होने के लिए: दूसरी मेज पर हानि = ₹80।\nCP₂ का 10% = ₹80 => CP₂ = ₹800।\nअतः सही उत्तर (c) है।",
+    shortcut_text: "Profit₁ = 400 - 320 = 80.\nLoss₂ = 10% of CP₂ = 80 => CP₂ = ₹800.",
+    shortcut_text_hi: "पहली मेज का लाभ = ₹80 => 10% = ₹80 => दूसरी मेज का CP = ₹800।"
   },
   {
     question_number: 24,
@@ -670,9 +670,9 @@ const PROFIT_LOSS_SET_A_QUESTIONS = [
     level_group: "Level 4: PYQ+",
     type_code: "Type 9",
     type_category: "Equal CP Split with Target Total Profit",
-    type_category_hi: "à¤¸à¤®à¤¾à¤¨ à¤•à¥à¤°à¤¯ à¤®à¥‚à¤²à¥à¤¯ à¤ªà¤° à¤•à¥à¤² à¤²à¤¾à¤­ à¤²à¤•à¥à¤·à¥à¤¯",
-    question_text: "Two items whose cost price is â‚¹2,500 each, one is sold at a profit of 5%. If the total profit is 20%, then find the profit on the second item.",
-    question_text_hi: "à¤¦à¥‹ à¤µà¤¸à¥à¤¤à¥à¤à¤ à¤œà¤¿à¤¨à¤•à¤¾ à¤•à¥à¤°à¤¯ à¤®à¥‚à¤²à¥à¤¯ à¤ªà¥à¤°à¤¤à¥à¤¯à¥‡à¤• à¤•à¤¾ â‚¹2,500 à¤¹à¥ˆ, à¤à¤• à¤•à¥‹ 5% à¤•à¥‡ à¤²à¤¾à¤­ à¤ªà¤° à¤¬à¥‡à¤šà¤¾ à¤œà¤¾à¤¤à¤¾ à¤¹à¥ˆà¥¤ à¤¯à¤¦à¤¿ à¤•à¥à¤² à¤²à¤¾à¤­ 20% à¤¹à¥ˆ, à¤¤à¥‹ à¤¦à¥‚à¤¸à¤°à¥€ à¤µà¤¸à¥à¤¤à¥ à¤ªà¤° à¤²à¤¾à¤­ à¤œà¥à¤žà¤¾à¤¤ à¤•à¥€à¤œà¤¿à¤à¥¤",
+    type_category_hi: "समान क्रय मूल्य पर कुल लाभ लक्ष्य",
+    question_text: "Two items whose cost price is ₹2,500 each, one is sold at a profit of 5%. If the total profit is 20%, then find the profit on the second item.",
+    question_text_hi: "दो वस्तुएँ जिनका क्रय मूल्य प्रत्येक का ₹2,500 है, एक को 5% के लाभ पर बेचा जाता है। यदि कुल लाभ 20% है, तो दूसरी वस्तु पर लाभ ज्ञात कीजिए।",
     options: {
       a: "20%",
       b: "25%",
@@ -686,10 +686,10 @@ const PROFIT_LOSS_SET_A_QUESTIONS = [
       d: "35%"
     },
     correct_option: "d",
-    solution_text: "Total Cost Price = 2,500 + 2,500 = â‚¹5,000.\nTotal Desired Profit = 20% of 5,000 = â‚¹1,000.\nProfit from Item 1 = 5% of 2,500 = â‚¹125.\nRequired Profit from Item 2 = 1,000 - 125 = â‚¹875.\nProfit% on Item 2 = (875 / 2,500) Ã— 100 = 35%.\nCorrect Answer: Option (d).",
-    solution_text_hi: "à¤•à¥à¤² CP = â‚¹5,000à¥¤ à¤•à¥à¤² 20% à¤²à¤¾à¤­ = â‚¹1,000à¥¤\nà¤µà¤¸à¥à¤¤à¥ 1 à¤ªà¤° à¤²à¤¾à¤­ = 2500 à¤•à¤¾ 5% = â‚¹125à¥¤\nà¤µà¤¸à¥à¤¤à¥ 2 à¤ªà¤° à¤…à¤­à¥€à¤·à¥à¤Ÿ à¤²à¤¾à¤­ = 1000 - 125 = â‚¹875à¥¤\nà¤µà¤¸à¥à¤¤à¥ 2 à¤•à¤¾ à¤²à¤¾à¤­% = (875 / 2500) Ã— 100 = 35%à¥¤\nà¤…à¤¤à¤ƒ à¤¸à¤¹à¥€ à¤‰à¤¤à¥à¤¤à¤° (d) à¤¹à¥ˆà¥¤",
-    shortcut_text: "Since CPs are equal, Average Profit% = (Pâ‚ + Pâ‚‚) / 2 = Total Profit%\n=> (5 + Pâ‚‚) / 2 = 20 => 5 + Pâ‚‚ = 40 => Pâ‚‚ = 35%.",
-    shortcut_text_hi: "CP à¤¸à¤®à¤¾à¤¨ à¤¹à¥‹à¤¨à¥‡ à¤ªà¤°: (5% + Pâ‚‚) / 2 = 20% => Pâ‚‚ = 40% - 5% = 35%à¥¤"
+    solution_text: "Total Cost Price = 2,500 + 2,500 = ₹5,000.\nTotal Desired Profit = 20% of 5,000 = ₹1,000.\nProfit from Item 1 = 5% of 2,500 = ₹125.\nRequired Profit from Item 2 = 1,000 - 125 = ₹875.\nProfit% on Item 2 = (875 / 2,500) × 100 = 35%.\nCorrect Answer: Option (d).",
+    solution_text_hi: "कुल CP = ₹5,000। कुल 20% लाभ = ₹1,000।\nवस्तु 1 पर लाभ = 2500 का 5% = ₹125।\nवस्तु 2 पर अभीष्ट लाभ = 1000 - 125 = ₹875।\nवस्तु 2 का लाभ% = (875 / 2500) × 100 = 35%।\nअतः सही उत्तर (d) है।",
+    shortcut_text: "Since CPs are equal, Average Profit% = (P₁ + P₂) / 2 = Total Profit%\n=> (5 + P₂) / 2 = 20 => 5 + P₂ = 40 => P₂ = 35%.",
+    shortcut_text_hi: "CP समान होने पर: (5% + P₂) / 2 = 20% => P₂ = 40% - 5% = 35%।"
   },
 
   // ==========================================
@@ -702,9 +702,9 @@ const PROFIT_LOSS_SET_A_QUESTIONS = [
     level_group: "Level 5: PYQ++",
     type_code: "Type 13",
     type_category: "Dishonest Weight with Above CP Markup",
-    type_category_hi: "à¤…à¤‚à¤•à¤¿à¤¤ à¤®à¥‚à¤²à¥à¤¯ à¤”à¤° à¤—à¤²à¤¤ à¤µà¤œà¤¨ à¤¸à¤‚à¤¯à¥‹à¤œà¤¨",
+    type_category_hi: "अंकित मूल्य और गलत वजन संयोजन",
     question_text: "A shopkeeper uses a weight of 950 gm instead of 1 kg and sells the articles at the marked price, which is 15% above the cost price. What is his profit percentage?",
-    question_text_hi: "à¤à¤• à¤¦à¥à¤•à¤¾à¤¨à¤¦à¤¾à¤° 1 à¤•à¤¿à¤²à¥‹ à¤•à¥‡ à¤¸à¥à¤¥à¤¾à¤¨ à¤ªà¤° 950 à¤—à¥à¤°à¤¾à¤® à¤•à¥‡ à¤µà¤œà¤¨ à¤•à¤¾ à¤‰à¤ªà¤¯à¥‹à¤— à¤•à¤°à¤¤à¤¾ à¤¹à¥ˆ à¤”à¤° à¤µà¤¸à¥à¤¤à¥à¤“à¤‚ à¤•à¥‹ à¤…à¤‚à¤•à¤¿à¤¤ à¤®à¥‚à¤²à¥à¤¯ à¤ªà¤° à¤¬à¥‡à¤šà¤¤à¤¾ à¤¹à¥ˆ, à¤œà¥‹ à¤•à¥à¤°à¤¯ à¤®à¥‚à¤²à¥à¤¯ à¤¸à¥‡ 15% à¤…à¤§à¤¿à¤• à¤¹à¥ˆà¥¤ à¤‰à¤¸à¤•à¤¾ à¤²à¤¾à¤­ à¤ªà¥à¤°à¤¤à¤¿à¤¶à¤¤ à¤•à¥à¤¯à¤¾ à¤¹à¥ˆ?",
+    question_text_hi: "एक दुकानदार 1 किलो के स्थान पर 950 ग्राम के वजन का उपयोग करता है और वस्तुओं को अंकित मूल्य पर बेचता है, जो क्रय मूल्य से 15% अधिक है। उसका लाभ प्रतिशत क्या है?",
     options: {
       a: "23 7/19%",
       b: "20 5/19%",
@@ -718,10 +718,10 @@ const PROFIT_LOSS_SET_A_QUESTIONS = [
       d: "22 3/19%"
     },
     correct_option: "c",
-    solution_text: "Let CP of 1 gm = â‚¹1.\nActual cost of goods given (950 gm) = â‚¹950.\nCustomer pays marked price for 1,000 gm, marked 15% above CP:\nSelling Price = 1,000 Ã— 1.15 = â‚¹1,150.\nProfit = 1,150 - 950 = â‚¹200.\nProfit% = (200 / 950) Ã— 100 = (400 / 19)% = 21 1/19%.\nCorrect Answer: Option (c).",
-    solution_text_hi: "à¤®à¤¾à¤¨à¤¾ 1 à¤—à¥à¤°à¤¾à¤® à¤•à¤¾ CP = â‚¹1à¥¤\nà¤¦à¤¿à¤ à¤—à¤ 950 à¤—à¥à¤°à¤¾à¤® à¤•à¤¾ à¤µà¤¾à¤¸à¥à¤¤à¤µà¤¿à¤• CP = â‚¹950à¥¤\n1000 à¤—à¥à¤°à¤¾à¤® à¤•à¤¾ 15% à¤…à¤§à¤¿à¤• à¤ªà¤° SP = 1000 Ã— 1.15 = â‚¹1,150à¥¤\nà¤²à¤¾à¤­ = 1,150 - 950 = â‚¹200à¥¤\nà¤²à¤¾à¤­% = (200 / 950) Ã— 100 = 400 / 19% = 21 1/19%à¥¤\nà¤…à¤¤à¤ƒ à¤¸à¤¹à¥€ à¤‰à¤¤à¥à¤¤à¤° (c) à¤¹à¥ˆà¥¤",
-    shortcut_text: "Multiplier = (1150 / 950) = 23 / 19.\nProfit% = (4 / 19) Ã— 100 = 21 1/19%.",
-    shortcut_text_hi: "à¤…à¤¨à¥à¤ªà¤¾à¤¤ = 1150 / 950 = 23 / 19 => à¤²à¤¾à¤­% = (4 / 19) Ã— 100 = 21 1/19%à¥¤"
+    solution_text: "Let CP of 1 gm = ₹1.\nActual cost of goods given (950 gm) = ₹950.\nCustomer pays marked price for 1,000 gm, marked 15% above CP:\nSelling Price = 1,000 × 1.15 = ₹1,150.\nProfit = 1,150 - 950 = ₹200.\nProfit% = (200 / 950) × 100 = (400 / 19)% = 21 1/19%.\nCorrect Answer: Option (c).",
+    solution_text_hi: "माना 1 ग्राम का CP = ₹1।\nदिए गए 950 ग्राम का वास्तविक CP = ₹950।\n1000 ग्राम का 15% अधिक पर SP = 1000 × 1.15 = ₹1,150।\nलाभ = 1,150 - 950 = ₹200।\nलाभ% = (200 / 950) × 100 = 400 / 19% = 21 1/19%।\nअतः सही उत्तर (c) है।",
+    shortcut_text: "Multiplier = (1150 / 950) = 23 / 19.\nProfit% = (4 / 19) × 100 = 21 1/19%.",
+    shortcut_text_hi: "अनुपात = 1150 / 950 = 23 / 19 => लाभ% = (4 / 19) × 100 = 21 1/19%।"
   },
   {
     question_number: 26,
@@ -730,9 +730,9 @@ const PROFIT_LOSS_SET_A_QUESTIONS = [
     level_group: "Level 5: PYQ++",
     type_code: "Type 13",
     type_category: "False Weight for Target Gain %",
-    type_category_hi: "à¤µà¤¾à¤‚à¤›à¤¿à¤¤ à¤²à¤¾à¤­ % à¤•à¥‡ à¤²à¤¿à¤ à¤—à¤²à¤¤ à¤µà¤œà¤¨",
+    type_category_hi: "वांछित लाभ % के लिए गलत वजन",
     question_text: "A dishonest dealer professes to sell his goods at the cost price but uses a false weight and thus gains 20%. For a kilogram he uses a weight of how many grams?",
-    question_text_hi: "à¤à¤• à¤¬à¥‡à¤ˆà¤®à¤¾à¤¨ à¤¡à¥€à¤²à¤° à¤…à¤ªà¤¨à¥‡ à¤®à¤¾à¤² à¤•à¥‹ à¤•à¥à¤°à¤¯ à¤®à¥‚à¤²à¥à¤¯ à¤ªà¤° à¤¬à¥‡à¤šà¤¨à¥‡ à¤•à¤¾ à¤¦à¤¾à¤µà¤¾ à¤•à¤°à¤¤à¤¾ à¤¹à¥ˆ à¤²à¥‡à¤•à¤¿à¤¨ à¤—à¤²à¤¤ à¤µà¤œà¤¨ à¤•à¤¾ à¤‰à¤ªà¤¯à¥‹à¤— à¤•à¤°à¤¤à¤¾ à¤¹à¥ˆ à¤”à¤° à¤‡à¤¸ à¤ªà¥à¤°à¤•à¤¾à¤° 20% à¤•à¤¾ à¤²à¤¾à¤­ à¤ªà¥à¤°à¤¾à¤ªà¥à¤¤ à¤•à¤°à¤¤à¤¾ à¤¹à¥ˆà¥¤ à¤à¤• à¤•à¤¿à¤²à¥‹à¤—à¥à¤°à¤¾à¤® à¤•à¥‡ à¤²à¤¿à¤ à¤µà¤¹ à¤•à¤¿à¤¤à¤¨à¥‡ à¤—à¥à¤°à¤¾à¤® à¤•à¥‡ à¤µà¤œà¤¨ à¤•à¤¾ à¤‰à¤ªà¤¯à¥‹à¤— à¤•à¤°à¤¤à¤¾ à¤¹à¥ˆ?",
+    question_text_hi: "एक बेईमान डीलर अपने माल को क्रय मूल्य पर बेचने का दावा करता है लेकिन गलत वजन का उपयोग करता है और इस प्रकार 20% का लाभ प्राप्त करता है। एक किलोग्राम के लिए वह कितने ग्राम के वजन का उपयोग करता है?",
     options: {
       a: "750.5 gm",
       b: "708.06 gm",
@@ -740,16 +740,16 @@ const PROFIT_LOSS_SET_A_QUESTIONS = [
       d: "785.5 gm"
     },
     options_hi: {
-      a: "750.5 à¤—à¥à¤°à¤¾à¤®",
-      b: "708.06 à¤—à¥à¤°à¤¾à¤®",
-      c: "833.33 à¤—à¥à¤°à¤¾à¤®",
-      d: "785.5 à¤—à¥à¤°à¤¾à¤®"
+      a: "750.5 ग्राम",
+      b: "708.06 ग्राम",
+      c: "833.33 ग्राम",
+      d: "785.5 ग्राम"
     },
     correct_option: "c",
-    solution_text: "Let the false weight used be W grams.\nProfit% = [(1,000 - W) / W] Ã— 100\nGiven: Profit% = 20%\n=> 20 = [(1,000 - W) / W] Ã— 100\n=> 0.20 W = 1,000 - W\n=> 1.20 W = 1,000\n=> W = 1,000 / 1.20 = 10,000 / 12 = 833.33 gm.\nCorrect Answer: Option (c).",
-    solution_text_hi: "à¤®à¤¾à¤¨à¤¾ à¤ªà¥à¤°à¤¯à¥à¤•à¥à¤¤ à¤µà¤œà¤¨ = W à¤—à¥à¤°à¤¾à¤®à¥¤\nà¤²à¤¾à¤­% = [(1000 - W) / W] Ã— 100 = 20%\n=> 1000 - W = 0.2 W => 1.2 W = 1000 => W = 833.33 à¤—à¥à¤°à¤¾à¤®à¥¤\nà¤…à¤¤à¤ƒ à¤¸à¤¹à¥€ à¤‰à¤¤à¥à¤¤à¤° (c) à¤¹à¥ˆà¥¤",
+    solution_text: "Let the false weight used be W grams.\nProfit% = [(1,000 - W) / W] × 100\nGiven: Profit% = 20%\n=> 20 = [(1,000 - W) / W] × 100\n=> 0.20 W = 1,000 - W\n=> 1.20 W = 1,000\n=> W = 1,000 / 1.20 = 10,000 / 12 = 833.33 gm.\nCorrect Answer: Option (c).",
+    solution_text_hi: "माना प्रयुक्त वजन = W ग्राम।\nलाभ% = [(1000 - W) / W] × 100 = 20%\n=> 1000 - W = 0.2 W => 1.2 W = 1000 => W = 833.33 ग्राम।\nअतः सही उत्तर (c) है।",
     shortcut_text: "W = True Weight / (1 + Profit%) = 1000 / 1.20 = 833.33 gm.",
-    shortcut_text_hi: "W = 1000 / 1.20 = 833.33 à¤—à¥à¤°à¤¾à¤®à¥¤"
+    shortcut_text_hi: "W = 1000 / 1.20 = 833.33 ग्राम।"
   },
   {
     question_number: 27,
@@ -758,9 +758,9 @@ const PROFIT_LOSS_SET_A_QUESTIONS = [
     level_group: "Level 5: PYQ++",
     type_code: "Type 14",
     type_category: "Mixed Buying and Common Selling Rate",
-    type_category_hi: "à¤®à¤¿à¤¶à¥à¤°à¤¿à¤¤ à¤–à¤°à¥€à¤¦ à¤”à¤° à¤¸à¤‚à¤¯à¥à¤•à¥à¤¤ à¤¬à¤¿à¤•à¥à¤°à¥€ à¤¦à¤°",
-    question_text: "A man bought a number of apples at 5 for â‚¹50 and an equal number at 6 for â‚¹50. If he sells all of them at 11 for â‚¹100, what would be his percentage profit or loss?",
-    question_text_hi: "à¤à¤• à¤µà¥à¤¯à¤•à¥à¤¤à¤¿ à¤¨à¥‡ â‚¹50 à¤®à¥‡à¤‚ 5 à¤•à¥€ à¤¦à¤° à¤¸à¥‡ à¤•à¥à¤› à¤¸à¥‡à¤¬ à¤–à¤°à¥€à¤¦à¥‡ à¤”à¤° à¤‰à¤¤à¤¨à¥€ à¤¹à¥€ à¤¸à¤‚à¤–à¥à¤¯à¤¾ à¤®à¥‡à¤‚ â‚¹50 à¤®à¥‡à¤‚ 6 à¤•à¥€ à¤¦à¤° à¤¸à¥‡ à¤–à¤°à¥€à¤¦à¥‡à¥¤ à¤¯à¤¦à¤¿ à¤µà¤¹ à¤‰à¤¨à¥à¤¹à¥‡à¤‚ â‚¹100 à¤®à¥‡à¤‚ 11 à¤•à¥€ à¤¦à¤° à¤¸à¥‡ à¤¬à¥‡à¤šà¤¤à¤¾ à¤¹à¥ˆ, à¤¤à¥‹ à¤‰à¤¸à¤•à¤¾ à¤²à¤¾à¤­ à¤¯à¤¾ à¤¹à¤¾à¤¨à¤¿ à¤ªà¥à¤°à¤¤à¤¿à¤¶à¤¤ à¤•à¥à¤¯à¤¾ à¤¹à¥‹à¤—à¤¾?",
+    type_category_hi: "मिश्रित खरीद और संयुक्त बिक्री दर",
+    question_text: "A man bought a number of apples at 5 for ₹50 and an equal number at 6 for ₹50. If he sells all of them at 11 for ₹100, what would be his percentage profit or loss?",
+    question_text_hi: "एक व्यक्ति ने ₹50 में 5 की दर से कुछ सेब खरीदे और उतनी ही संख्या में ₹50 में 6 की दर से खरीदे। यदि वह उन्हें ₹100 में 11 की दर से बेचता है, तो उसका लाभ या हानि प्रतिशत क्या होगा?",
     options: {
       a: "100/121% loss",
       b: "100/121% profit",
@@ -768,16 +768,16 @@ const PROFIT_LOSS_SET_A_QUESTIONS = [
       d: "121/100% loss"
     },
     options_hi: {
-      a: "100/121% à¤¹à¤¾à¤¨à¤¿",
-      b: "100/121% à¤²à¤¾à¤­",
-      c: "121/100% à¤²à¤¾à¤­",
-      d: "121/100% à¤¹à¤¾à¤¨à¤¿"
+      a: "100/121% हानि",
+      b: "100/121% लाभ",
+      c: "121/100% लाभ",
+      d: "121/100% हानि"
     },
     correct_option: "a",
-    solution_text: "Let the man buy 330 apples of each variety (LCM of 5, 6, 11 = 330).\nTotal apples bought = 330 + 330 = 660 apples.\nCP of first 330 apples = (330 / 5) Ã— 50 = 66 Ã— 50 = â‚¹3,300.\nCP of second 330 apples = (330 / 6) Ã— 50 = 55 Ã— 50 = â‚¹2,750.\nTotal CP = 3,300 + 2,750 = â‚¹6,050.\nTotal SP of 660 apples = (660 / 11) Ã— 100 = 60 Ã— 100 = â‚¹6,000.\nLoss = 6,050 - 6,000 = â‚¹50.\nLoss% = (50 / 6,050) Ã— 100 = (50 / 60.5) = 100 / 121% loss.\nCorrect Answer: Option (a).",
-    solution_text_hi: "à¤®à¤¾à¤¨à¤¾ à¤ªà¥à¤°à¤¤à¥à¤¯à¥‡à¤• à¤ªà¥à¤°à¤•à¤¾à¤° à¤•à¥‡ 330 à¤¸à¥‡à¤¬ à¤–à¤°à¥€à¤¦à¥‡ à¤—à¤ (5, 6, 11 à¤•à¤¾ LCM = 330)à¥¤\nà¤•à¥à¤² 660 à¤¸à¥‡à¤¬à¥¤\nCPâ‚ = (330 / 5) Ã— 50 = â‚¹3,300à¥¤\nCPâ‚‚ = (330 / 6) Ã— 50 = â‚¹2,750à¥¤\nà¤•à¥à¤² CP = â‚¹6,050à¥¤\nSP = (660 / 11) Ã— 100 = â‚¹6,000à¥¤\nà¤¹à¤¾à¤¨à¤¿ = â‚¹50à¥¤ à¤¹à¤¾à¤¨à¤¿% = (50 / 6050) Ã— 100 = 100/121% à¤¹à¤¾à¤¨à¤¿à¥¤\nà¤…à¤¤à¤ƒ à¤¸à¤¹à¥€ à¤‰à¤¤à¥à¤¤à¤° (a) à¤¹à¥ˆà¥¤",
-    shortcut_text: "CP of 1 apple = (10 + 25/3) / 2 = 55 / 6.\nSP of 1 apple = 100 / 11.\nLoss% = [(55/6 - 100/11) / (55/6)] Ã— 100 = (5/66) / (55/6) Ã— 100 = 100/121% loss.",
-    shortcut_text_hi: "CP = 55/6, SP = 100/11 => à¤¹à¤¾à¤¨à¤¿% = 100/121% à¤¹à¤¾à¤¨à¤¿à¥¤"
+    solution_text: "Let the man buy 330 apples of each variety (LCM of 5, 6, 11 = 330).\nTotal apples bought = 330 + 330 = 660 apples.\nCP of first 330 apples = (330 / 5) × 50 = 66 × 50 = ₹3,300.\nCP of second 330 apples = (330 / 6) × 50 = 55 × 50 = ₹2,750.\nTotal CP = 3,300 + 2,750 = ₹6,050.\nTotal SP of 660 apples = (660 / 11) × 100 = 60 × 100 = ₹6,000.\nLoss = 6,050 - 6,000 = ₹50.\nLoss% = (50 / 6,050) × 100 = (50 / 60.5) = 100 / 121% loss.\nCorrect Answer: Option (a).",
+    solution_text_hi: "माना प्रत्येक प्रकार के 330 सेब खरीदे गए (5, 6, 11 का LCM = 330)।\nकुल 660 सेब।\nCP₁ = (330 / 5) × 50 = ₹3,300।\nCP₂ = (330 / 6) × 50 = ₹2,750।\nकुल CP = ₹6,050।\nSP = (660 / 11) × 100 = ₹6,000।\nहानि = ₹50। हानि% = (50 / 6050) × 100 = 100/121% हानि।\nअतः सही उत्तर (a) है।",
+    shortcut_text: "CP of 1 apple = (10 + 25/3) / 2 = 55 / 6.\nSP of 1 apple = 100 / 11.\nLoss% = [(55/6 - 100/11) / (55/6)] × 100 = (5/66) / (55/6) × 100 = 100/121% loss.",
+    shortcut_text_hi: "CP = 55/6, SP = 100/11 => हानि% = 100/121% हानि।"
   },
   {
     question_number: 28,
@@ -786,9 +786,9 @@ const PROFIT_LOSS_SET_A_QUESTIONS = [
     level_group: "Level 5: PYQ++",
     type_code: "Type 1",
     type_category: "Equal Discount and Profit Ratio",
-    type_category_hi: "à¤¸à¤®à¤¾à¤¨ à¤›à¥‚à¤Ÿ à¤”à¤° à¤²à¤¾à¤­ à¤ªà¥à¤°à¤¤à¤¿à¤¶à¤¤ à¤…à¤¨à¥à¤ªà¤¾à¤¤",
+    type_category_hi: "समान छूट और लाभ प्रतिशत अनुपात",
     question_text: "If the discount and percentage profit are both 20%, then by what percentage is the marked price above the cost price?",
-    question_text_hi: "à¤¯à¤¦à¤¿ à¤›à¥‚à¤Ÿ à¤”à¤° à¤²à¤¾à¤­ à¤ªà¥à¤°à¤¤à¤¿à¤¶à¤¤ à¤¦à¥‹à¤¨à¥‹à¤‚ 20% à¤¹à¥ˆà¤‚, à¤¤à¥‹ à¤…à¤‚à¤•à¤¿à¤¤ à¤®à¥‚à¤²à¥à¤¯ à¤•à¥à¤°à¤¯ à¤®à¥‚à¤²à¥à¤¯ à¤¸à¥‡ à¤•à¤¿à¤¤à¤¨à¥‡ à¤ªà¥à¤°à¤¤à¤¿à¤¶à¤¤ à¤…à¤§à¤¿à¤• à¤¹à¥ˆ?",
+    question_text_hi: "यदि छूट और लाभ प्रतिशत दोनों 20% हैं, तो अंकित मूल्य क्रय मूल्य से कितने प्रतिशत अधिक है?",
     options: {
       a: "50%",
       b: "40%",
@@ -803,9 +803,9 @@ const PROFIT_LOSS_SET_A_QUESTIONS = [
     },
     correct_option: "a",
     solution_text: "Standard Ratio Formula:\nMP / CP = (100 + Profit%) / (100 - Discount%)\nHere Profit% = 20% and Discount% = 20%.\nMP / CP = (100 + 20) / (100 - 20) = 120 / 80 = 3 / 2.\nMarkup = (3 - 2) / 2 = 1 / 2 = 50%.\nTherefore, Marked Price is 50% above the Cost Price.\nCorrect Answer: Option (a).",
-    solution_text_hi: "à¤¸à¥‚à¤¤à¥à¤°: MP / CP = (100 + à¤²à¤¾à¤­%) / (100 - à¤›à¥‚à¤Ÿ%)\nMP / CP = (100 + 20) / (100 - 20) = 120 / 80 = 3 / 2à¥¤\nà¤…à¤‚à¤•à¤¿à¤¤ à¤®à¥‚à¤²à¥à¤¯ à¤®à¥‡à¤‚ à¤µà¥ƒà¤¦à¥à¤§à¤¿ = (3 - 2) / 2 = 1/2 = 50%à¥¤\nà¤…à¤¤à¤ƒ à¤¸à¤¹à¥€ à¤‰à¤¤à¥à¤¤à¤° (a) à¤¹à¥ˆà¥¤",
+    solution_text_hi: "सूत्र: MP / CP = (100 + लाभ%) / (100 - छूट%)\nMP / CP = (100 + 20) / (100 - 20) = 120 / 80 = 3 / 2।\nअंकित मूल्य में वृद्धि = (3 - 2) / 2 = 1/2 = 50%।\nअतः सही उत्तर (a) है।",
     shortcut_text: "MP / CP = 120 / 80 = 1.5 => MP is 50% above CP.",
-    shortcut_text_hi: "MP / CP = 120 / 80 = 1.5 => 50% à¤…à¤§à¤¿à¤•à¥¤"
+    shortcut_text_hi: "MP / CP = 120 / 80 = 1.5 => 50% अधिक।"
   },
   {
     question_number: 29,
@@ -814,26 +814,26 @@ const PROFIT_LOSS_SET_A_QUESTIONS = [
     level_group: "Level 5: PYQ++",
     type_code: "Type 15",
     type_category: "Intermediary vs Direct Customer Sale",
-    type_category_hi: "à¤®à¤§à¥à¤¯à¤¸à¥à¤¥ à¤¬à¤¨à¤¾à¤® à¤ªà¥à¤°à¤¤à¥à¤¯à¤•à¥à¤· à¤—à¥à¤°à¤¾à¤¹à¤• à¤¬à¤¿à¤•à¥à¤°à¥€",
-    question_text: "A weaver sells a saree at â‚¹150 to a shopkeeper and earns a profit of 25%. The shopkeeper sells the same saree to a customer and earns a profit of 30%. If the weaver could sell the saree directly to the customer at â‚¹180, then what would be his profit % and what would be the customer's profit (savings) in â‚¹?",
-    question_text_hi: "à¤à¤• à¤¬à¥à¤¨à¤•à¤° à¤à¤• à¤¸à¤¾à¤¡à¤¼à¥€ â‚¹150 à¤®à¥‡à¤‚ à¤à¤• à¤¦à¥à¤•à¤¾à¤¨à¤¦à¤¾à¤° à¤•à¥‹ à¤¬à¥‡à¤šà¤¤à¤¾ à¤¹à¥ˆ à¤”à¤° 25% à¤•à¤¾ à¤²à¤¾à¤­ à¤•à¤®à¤¾à¤¤à¤¾ à¤¹à¥ˆà¥¤ à¤¦à¥à¤•à¤¾à¤¨à¤¦à¤¾à¤° à¤¨à¥‡ à¤µà¤¹à¥€ à¤¸à¤¾à¤¡à¤¼à¥€ à¤à¤• à¤—à¥à¤°à¤¾à¤¹à¤• à¤•à¥‹ à¤¬à¥‡à¤šà¥€ à¤”à¤° 30% à¤•à¤¾ à¤²à¤¾à¤­ à¤•à¤®à¤¾à¤¯à¤¾à¥¤ à¤¯à¤¦à¤¿ à¤¬à¥à¤¨à¤•à¤° à¤¸à¤¾à¤¡à¤¼à¥€ à¤•à¥‹ à¤¸à¥€à¤§à¥‡ à¤—à¥à¤°à¤¾à¤¹à¤• à¤•à¥‹ â‚¹180 à¤®à¥‡à¤‚ à¤¬à¥‡à¤š à¤¸à¤•à¤¤à¤¾, à¤¤à¥‹ à¤‰à¤¸à¤•à¤¾ à¤²à¤¾à¤­ % à¤•à¥à¤¯à¤¾ à¤¹à¥‹à¤¤à¤¾ à¤”à¤° à¤—à¥à¤°à¤¾à¤¹à¤• à¤•à¤¾ à¤²à¤¾à¤­ (à¤¬à¤šà¤¤) â‚¹ à¤®à¥‡à¤‚ à¤•à¥à¤¯à¤¾ à¤¹à¥‹à¤¤à¤¾?",
+    type_category_hi: "मध्यस्थ बनाम प्रत्यक्ष ग्राहक बिक्री",
+    question_text: "A weaver sells a saree at ₹150 to a shopkeeper and earns a profit of 25%. The shopkeeper sells the same saree to a customer and earns a profit of 30%. If the weaver could sell the saree directly to the customer at ₹180, then what would be his profit % and what would be the customer's profit (savings) in ₹?",
+    question_text_hi: "एक बुनकर एक साड़ी ₹150 में एक दुकानदार को बेचता है और 25% का लाभ कमाता है। दुकानदार ने वही साड़ी एक ग्राहक को बेची और 30% का लाभ कमाया। यदि बुनकर साड़ी को सीधे ग्राहक को ₹180 में बेच सकता, तो उसका लाभ % क्या होता और ग्राहक का लाभ (बचत) ₹ में क्या होता?",
     options: {
-      a: "50%, â‚¹25",
-      b: "60%, â‚¹20",
-      c: "50%, â‚¹15",
-      d: "40%, â‚¹20"
+      a: "50%, ₹25",
+      b: "60%, ₹20",
+      c: "50%, ₹15",
+      d: "40%, ₹20"
     },
     options_hi: {
-      a: "50%, â‚¹25",
-      b: "60%, â‚¹20",
-      c: "50%, â‚¹15",
-      d: "40%, â‚¹20"
+      a: "50%, ₹25",
+      b: "60%, ₹20",
+      c: "50%, ₹15",
+      d: "40%, ₹20"
     },
     correct_option: "c",
-    solution_text: "Weaver's SP = â‚¹150 at 25% profit.\nWeaver's CP = 150 / 1.25 = â‚¹120.\nShopkeeper's CP = â‚¹150.\nShopkeeper's SP to customer at 30% profit = 150 Ã— 1.30 = â‚¹195.\nIf weaver sells directly at â‚¹180:\nWeaver's Profit = 180 - 120 = â‚¹60.\nWeaver's Profit% = (60 / 120) Ã— 100 = 50%.\nCustomer's price from shopkeeper was â‚¹195; direct price is â‚¹180.\nCustomer's profit (savings) = 195 - 180 = â‚¹15.\nAnswer: 50%, â‚¹15.\nCorrect Answer: Option (c).",
-    solution_text_hi: "à¤¬à¥à¤¨à¤•à¤° à¤•à¤¾ CP = 150 / 1.25 = â‚¹120à¥¤\nà¤¦à¥à¤•à¤¾à¤¨à¤¦à¤¾à¤° à¤•à¤¾ à¤—à¥à¤°à¤¾à¤¹à¤• à¤•à¥‹ SP = 150 Ã— 1.30 = â‚¹195à¥¤\nà¤¸à¥€à¤§à¥‡ â‚¹180 à¤®à¥‡à¤‚ à¤¬à¥‡à¤šà¤¨à¥‡ à¤ªà¤°:\nà¤¬à¥à¤¨à¤•à¤° à¤•à¤¾ à¤²à¤¾à¤­ = 180 - 120 = â‚¹60 => à¤²à¤¾à¤­% = (60/120) Ã— 100 = 50%à¥¤\nà¤—à¥à¤°à¤¾à¤¹à¤• à¤•à¥€ à¤¬à¤šà¤¤ = 195 - 180 = â‚¹15à¥¤\nà¤…à¤¤à¤ƒ à¤¸à¤¹à¥€ à¤‰à¤¤à¥à¤¤à¤° (c) à¤¹à¥ˆà¥¤",
-    shortcut_text: "Weaver CP = 120 => At 180, Profit% = 60/120 = 50%.\nCustomer pays 180 instead of 195 => saves â‚¹15.",
-    shortcut_text_hi: "à¤¬à¥à¤¨à¤•à¤° CP = 120 => 180 à¤ªà¤° à¤²à¤¾à¤­ = 50%à¥¤ à¤—à¥à¤°à¤¾à¤¹à¤• à¤¬à¤šà¤¤ = 195 - 180 = â‚¹15à¥¤"
+    solution_text: "Weaver's SP = ₹150 at 25% profit.\nWeaver's CP = 150 / 1.25 = ₹120.\nShopkeeper's CP = ₹150.\nShopkeeper's SP to customer at 30% profit = 150 × 1.30 = ₹195.\nIf weaver sells directly at ₹180:\nWeaver's Profit = 180 - 120 = ₹60.\nWeaver's Profit% = (60 / 120) × 100 = 50%.\nCustomer's price from shopkeeper was ₹195; direct price is ₹180.\nCustomer's profit (savings) = 195 - 180 = ₹15.\nAnswer: 50%, ₹15.\nCorrect Answer: Option (c).",
+    solution_text_hi: "बुनकर का CP = 150 / 1.25 = ₹120।\nदुकानदार का ग्राहक को SP = 150 × 1.30 = ₹195।\nसीधे ₹180 में बेचने पर:\nबुनकर का लाभ = 180 - 120 = ₹60 => लाभ% = (60/120) × 100 = 50%।\nग्राहक की बचत = 195 - 180 = ₹15।\nअतः सही उत्तर (c) है।",
+    shortcut_text: "Weaver CP = 120 => At 180, Profit% = 60/120 = 50%.\nCustomer pays 180 instead of 195 => saves ₹15.",
+    shortcut_text_hi: "बुनकर CP = 120 => 180 पर लाभ = 50%। ग्राहक बचत = 195 - 180 = ₹15।"
   },
   {
     question_number: 30,
@@ -842,26 +842,26 @@ const PROFIT_LOSS_SET_A_QUESTIONS = [
     level_group: "Level 5: PYQ++",
     type_code: "Type 10",
     type_category: "Multi-party Chain of Sales",
-    type_category_hi: "à¤¶à¥à¤°à¥ƒà¤‚à¤–à¤²à¤¾ à¤•à¥à¤°à¤¯-à¤µà¤¿à¤•à¥à¤°à¤¯ à¤²à¥‡à¤¨-à¤¦à¥‡à¤¨",
-    question_text: "Reema buys a car for â‚¹75,000. She spends â‚¹10,000 on its repairing. Later she sold this car to Cheeru at 15% profit. Cheeru sold it to Ritu at 10% profit. What sum of money was spent by Ritu to buy the car?",
-    question_text_hi: "à¤°à¥€à¤®à¤¾ â‚¹75,000 à¤®à¥‡à¤‚ à¤à¤• à¤•à¤¾à¤° à¤–à¤°à¥€à¤¦à¤¤à¥€ à¤¹à¥ˆà¥¤ à¤µà¤¹ à¤‡à¤¸à¤•à¥€ à¤®à¤°à¤®à¥à¤®à¤¤ à¤ªà¤° â‚¹10,000 à¤–à¤°à¥à¤š à¤•à¤°à¤¤à¥€ à¤¹à¥ˆà¥¤ à¤¬à¤¾à¤¦ à¤®à¥‡à¤‚ à¤‰à¤¸à¤¨à¥‡ à¤‡à¤¸ à¤•à¤¾à¤° à¤•à¥‹ à¤šà¥€à¤°à¥‚ à¤•à¥‹ 15% à¤²à¤¾à¤­ à¤ªà¤° à¤¬à¥‡à¤š à¤¦à¤¿à¤¯à¤¾à¥¤ à¤šà¥€à¤°à¥‚ à¤¨à¥‡ à¤‡à¤¸à¥‡ à¤°à¤¿à¤¤à¥ à¤•à¥‹ 10% à¤²à¤¾à¤­ à¤ªà¤° à¤¬à¥‡à¤š à¤¦à¤¿à¤¯à¤¾à¥¤ à¤•à¤¾à¤° à¤–à¤°à¥€à¤¦à¤¨à¥‡ à¤•à¥‡ à¤²à¤¿à¤ à¤°à¤¿à¤¤à¥ à¤¦à¥à¤µà¤¾à¤°à¤¾ à¤•à¤¿à¤¤à¤¨à¥€ à¤°à¤¾à¤¶à¤¿ à¤–à¤°à¥à¤š à¤•à¥€ à¤—à¤ˆ?",
+    type_category_hi: "श्रृंखला क्रय-विक्रय लेन-देन",
+    question_text: "Reema buys a car for ₹75,000. She spends ₹10,000 on its repairing. Later she sold this car to Cheeru at 15% profit. Cheeru sold it to Ritu at 10% profit. What sum of money was spent by Ritu to buy the car?",
+    question_text_hi: "रीमा ₹75,000 में एक कार खरीदती है। वह इसकी मरम्मत पर ₹10,000 खर्च करती है। बाद में उसने इस कार को चीरू को 15% लाभ पर बेच दिया। चीरू ने इसे रितु को 10% लाभ पर बेच दिया। कार खरीदने के लिए रितु द्वारा कितनी राशि खर्च की गई?",
     options: {
-      a: "â‚¹1,02,575",
-      b: "â‚¹1,05,752",
-      c: "â‚¹1,02,252",
-      d: "â‚¹1,07,525"
+      a: "₹1,02,575",
+      b: "₹1,05,752",
+      c: "₹1,02,252",
+      d: "₹1,07,525"
     },
     options_hi: {
-      a: "â‚¹1,02,575",
-      b: "â‚¹1,05,752",
-      c: "â‚¹1,02,252",
-      d: "â‚¹1,07,525"
+      a: "₹1,02,575",
+      b: "₹1,05,752",
+      c: "₹1,02,252",
+      d: "₹1,07,525"
     },
     correct_option: "d",
-    solution_text: "Reema's total cost = 75,000 + 10,000 = â‚¹85,000.\nReema sells to Cheeru at 15% profit:\nCheeru's cost = 85,000 Ã— 1.15 = â‚¹97,750.\nCheeru sells to Ritu at 10% profit:\nRitu's purchase price = 97,750 Ã— 1.10 = â‚¹1,07,525.\nCorrect Answer: Option (d).",
-    solution_text_hi: "à¤°à¥€à¤®à¤¾ à¤•à¤¾ à¤•à¥à¤² CP = 75,000 + 10,000 = â‚¹85,000à¥¤\nà¤šà¥€à¤°à¥‚ à¤•à¤¾ CP = 85,000 Ã— 1.15 = â‚¹97,750à¥¤\nà¤°à¤¿à¤¤à¥ à¤•à¤¾ CP = 97,750 Ã— 1.10 = â‚¹1,07,525à¥¤\nà¤…à¤¤à¤ƒ à¤¸à¤¹à¥€ à¤‰à¤¤à¥à¤¤à¤° (d) à¤¹à¥ˆà¥¤",
-    shortcut_text: "Ritu's Price = 85,000 Ã— 1.15 Ã— 1.10 = 85,000 Ã— 1.265 = â‚¹1,07,525.",
-    shortcut_text_hi: "à¤°à¤¿à¤¤à¥ à¤•à¤¾ à¤®à¥‚à¤²à¥à¤¯ = 85,000 Ã— 1.15 Ã— 1.10 = â‚¹1,07,525à¥¤"
+    solution_text: "Reema's total cost = 75,000 + 10,000 = ₹85,000.\nReema sells to Cheeru at 15% profit:\nCheeru's cost = 85,000 × 1.15 = ₹97,750.\nCheeru sells to Ritu at 10% profit:\nRitu's purchase price = 97,750 × 1.10 = ₹1,07,525.\nCorrect Answer: Option (d).",
+    solution_text_hi: "रीमा का कुल CP = 75,000 + 10,000 = ₹85,000।\nचीरू का CP = 85,000 × 1.15 = ₹97,750।\nरितु का CP = 97,750 × 1.10 = ₹1,07,525।\nअतः सही उत्तर (d) है।",
+    shortcut_text: "Ritu's Price = 85,000 × 1.15 × 1.10 = 85,000 × 1.265 = ₹1,07,525.",
+    shortcut_text_hi: "रितु का मूल्य = 85,000 × 1.15 × 1.10 = ₹1,07,525।"
   }
 ];
 
@@ -876,9 +876,9 @@ const PROFIT_LOSS_SET_B_QUESTIONS = [
     level_group: "Level 1: Moderate",
     type_code: "Type 16",
     type_category: "Loss Percentage from Selling Price and Loss",
-    type_category_hi: "à¤µà¤¿à¤•à¥à¤°à¤¯ à¤®à¥‚à¤²à¥à¤¯ à¤”à¤° à¤¹à¤¾à¤¨à¤¿ à¤¸à¥‡ à¤¹à¤¾à¤¨à¤¿ à¤ªà¥à¤°à¤¤à¤¿à¤¶à¤¤",
-    question_text: "By selling an item for â‚¹222 a person incurs a loss of â‚¹48. What is the percentage of loss incurred in the transaction?",
-    question_text_hi: "à¤à¤• à¤µà¤¸à¥à¤¤à¥ à¤•à¥‹ â‚¹222 à¤®à¥‡à¤‚ à¤¬à¥‡à¤šà¤¨à¥‡ à¤ªà¤° à¤à¤• à¤µà¥à¤¯à¤•à¥à¤¤à¤¿ à¤•à¥‹ â‚¹48 à¤•à¥€ à¤¹à¤¾à¤¨à¤¿ à¤¹à¥‹à¤¤à¥€ à¤¹à¥ˆà¥¤ à¤²à¥‡à¤¨-à¤¦à¥‡à¤¨ à¤®à¥‡à¤‚ à¤¹à¥‹à¤¨à¥‡ à¤µà¤¾à¤²à¥€ à¤¹à¤¾à¤¨à¤¿ à¤•à¤¾ à¤ªà¥à¤°à¤¤à¤¿à¤¶à¤¤ à¤•à¥à¤¯à¤¾ à¤¹à¥ˆ?",
+    type_category_hi: "विक्रय मूल्य और हानि से हानि प्रतिशत",
+    question_text: "By selling an item for ₹222 a person incurs a loss of ₹48. What is the percentage of loss incurred in the transaction?",
+    question_text_hi: "एक वस्तु को ₹222 में बेचने पर एक व्यक्ति को ₹48 की हानि होती है। लेन-देन में होने वाली हानि का प्रतिशत क्या है?",
     options: {
       a: "17 7/9%",
       b: "21 23/37%",
@@ -892,10 +892,10 @@ const PROFIT_LOSS_SET_B_QUESTIONS = [
       d: "18 8/9%"
     },
     correct_option: "a",
-    solution_text: "Selling Price (SP) = â‚¹222.\nLoss = â‚¹48.\nCost Price (CP) = SP + Loss = 222 + 48 = â‚¹270.\nLoss% = (Loss / CP) Ã— 100\n= (48 / 270) Ã— 100 = (16 / 90) Ã— 100 = 160 / 9% = 17 7/9%.\nCorrect Answer: Option (a).",
-    solution_text_hi: "à¤µà¤¿à¤•à¥à¤°à¤¯ à¤®à¥‚à¤²à¥à¤¯ (SP) = â‚¹222à¥¤ à¤¹à¤¾à¤¨à¤¿ = â‚¹48à¥¤\nà¤•à¥à¤°à¤¯ à¤®à¥‚à¤²à¥à¤¯ (CP) = 222 + 48 = â‚¹270à¥¤\nà¤¹à¤¾à¤¨à¤¿% = (48 / 270) Ã— 100 = 160 / 9 = 17 7/9%à¥¤\nà¤…à¤¤à¤ƒ à¤¸à¤¹à¥€ à¤‰à¤¤à¥à¤¤à¤° (a) à¤¹à¥ˆà¥¤",
+    solution_text: "Selling Price (SP) = ₹222.\nLoss = ₹48.\nCost Price (CP) = SP + Loss = 222 + 48 = ₹270.\nLoss% = (Loss / CP) × 100\n= (48 / 270) × 100 = (16 / 90) × 100 = 160 / 9% = 17 7/9%.\nCorrect Answer: Option (a).",
+    solution_text_hi: "विक्रय मूल्य (SP) = ₹222। हानि = ₹48।\nक्रय मूल्य (CP) = 222 + 48 = ₹270।\nहानि% = (48 / 270) × 100 = 160 / 9 = 17 7/9%।\nअतः सही उत्तर (a) है।",
     shortcut_text: "CP = 222 + 48 = 270.\nLoss% = 48/270 = 16/90 = 17.77% = 17 7/9%.",
-    shortcut_text_hi: "CP = 270 => à¤¹à¤¾à¤¨à¤¿% = (48/270) Ã— 100 = 17 7/9%à¥¤"
+    shortcut_text_hi: "CP = 270 => हानि% = (48/270) × 100 = 17 7/9%।"
   },
   {
     question_number: 2,
@@ -904,9 +904,9 @@ const PROFIT_LOSS_SET_B_QUESTIONS = [
     level_group: "Level 1: Moderate",
     type_code: "Type 13",
     type_category: "Dishonest Dealer Faulty Weight at CP",
-    type_category_hi: "à¤•à¥à¤°à¤¯ à¤®à¥‚à¤²à¥à¤¯ à¤ªà¤° à¤—à¤²à¤¤ à¤µà¤œà¤¨ à¤•à¤¾ à¤‰à¤ªà¤¯à¥‹à¤—",
+    type_category_hi: "क्रय मूल्य पर गलत वजन का उपयोग",
     question_text: "A dealer claims to sell his goods at cost price but uses a weight that actually weighs 800 gm though 1 kg is written on it. Find his gain percentage.",
-    question_text_hi: "à¤à¤• à¤¡à¥€à¤²à¤° à¤…à¤ªà¤¨à¥‡ à¤®à¤¾à¤² à¤•à¥‹ à¤•à¥à¤°à¤¯ à¤®à¥‚à¤²à¥à¤¯ à¤ªà¤° à¤¬à¥‡à¤šà¤¨à¥‡ à¤•à¤¾ à¤¦à¤¾à¤µà¤¾ à¤•à¤°à¤¤à¤¾ à¤¹à¥ˆ à¤²à¥‡à¤•à¤¿à¤¨ à¤à¤• à¤à¤¸à¥‡ à¤µà¤œà¤¨ à¤•à¤¾ à¤‰à¤ªà¤¯à¥‹à¤— à¤•à¤°à¤¤à¤¾ à¤¹à¥ˆ à¤œà¤¿à¤¸à¤•à¤¾ à¤µà¤œà¤¨ à¤µà¤¾à¤¸à¥à¤¤à¤µ à¤®à¥‡à¤‚ 800 à¤—à¥à¤°à¤¾à¤® à¤¹à¥ˆ, à¤¹à¤¾à¤²à¤¾à¤‚à¤•à¤¿ à¤‰à¤¸ à¤ªà¤° 1 à¤•à¤¿à¤²à¥‹ à¤²à¤¿à¤–à¤¾ à¤¹à¥‹à¤¤à¤¾ à¤¹à¥ˆà¥¤ à¤‰à¤¸à¤•à¤¾ à¤²à¤¾à¤­ à¤ªà¥à¤°à¤¤à¤¿à¤¶à¤¤ à¤œà¥à¤žà¤¾à¤¤ à¤•à¥€à¤œà¤¿à¤à¥¤",
+    question_text_hi: "एक डीलर अपने माल को क्रय मूल्य पर बेचने का दावा करता है लेकिन एक ऐसे वजन का उपयोग करता है जिसका वजन वास्तव में 800 ग्राम है, हालांकि उस पर 1 किलो लिखा होता है। उसका लाभ प्रतिशत ज्ञात कीजिए।",
     options: {
       a: "25%",
       b: "18%",
@@ -920,10 +920,10 @@ const PROFIT_LOSS_SET_B_QUESTIONS = [
       d: "15%"
     },
     correct_option: "a",
-    solution_text: "Standard Formula for Faulty Weight:\nGain% = [(Error) / (True Value - Error)] Ã— 100\nError = 1,000 gm - 800 gm = 200 gm.\nActual Weight Given = 800 gm.\nGain% = (200 / 800) Ã— 100 = (1 / 4) Ã— 100 = 25%.\nCorrect Answer: Option (a).",
-    solution_text_hi: "à¤¤à¥à¤°à¥à¤Ÿà¤¿ = 1000 - 800 = 200 à¤—à¥à¤°à¤¾à¤®à¥¤\nà¤²à¤¾à¤­% = (à¤¤à¥à¤°à¥à¤Ÿà¤¿ / à¤¦à¤¿à¤¯à¤¾ à¤—à¤¯à¤¾ à¤µà¤¾à¤¸à¥à¤¤à¤µà¤¿à¤• à¤µà¤œà¤¨) Ã— 100\n= (200 / 800) Ã— 100 = 25% à¤²à¤¾à¤­à¥¤\nà¤…à¤¤à¤ƒ à¤¸à¤¹à¥€ à¤‰à¤¤à¥à¤¤à¤° (a) à¤¹à¥ˆà¥¤",
-    shortcut_text: "Gain% = (200 / 800) Ã— 100 = 25%.",
-    shortcut_text_hi: "à¤¸à¥€à¤§à¥‡: (200/800) Ã— 100 = 25%à¥¤"
+    solution_text: "Standard Formula for Faulty Weight:\nGain% = [(Error) / (True Value - Error)] × 100\nError = 1,000 gm - 800 gm = 200 gm.\nActual Weight Given = 800 gm.\nGain% = (200 / 800) × 100 = (1 / 4) × 100 = 25%.\nCorrect Answer: Option (a).",
+    solution_text_hi: "त्रुटि = 1000 - 800 = 200 ग्राम।\nलाभ% = (त्रुटि / दिया गया वास्तविक वजन) × 100\n= (200 / 800) × 100 = 25% लाभ।\nअतः सही उत्तर (a) है।",
+    shortcut_text: "Gain% = (200 / 800) × 100 = 25%.",
+    shortcut_text_hi: "सीधे: (200/800) × 100 = 25%।"
   },
   {
     question_number: 3,
@@ -932,9 +932,9 @@ const PROFIT_LOSS_SET_B_QUESTIONS = [
     level_group: "Level 1: Moderate",
     type_code: "Type 2",
     type_category: "SP of x Articles = CP of y Articles",
-    type_category_hi: "x à¤•à¤¾ à¤µà¤¿à¤•à¥à¤°à¤¯ à¤®à¥‚à¤²à¥à¤¯ = y à¤•à¤¾ à¤•à¥à¤°à¤¯ à¤®à¥‚à¤²à¥à¤¯",
+    type_category_hi: "x का विक्रय मूल्य = y का क्रय मूल्य",
     question_text: "The selling price of 9 articles is equal to the cost price of 15 articles. In this transaction there is a:",
-    question_text_hi: "9 à¤µà¤¸à¥à¤¤à¥à¤“à¤‚ à¤•à¤¾ à¤µà¤¿à¤•à¥à¤°à¤¯ à¤®à¥‚à¤²à¥à¤¯ 15 à¤µà¤¸à¥à¤¤à¥à¤“à¤‚ à¤•à¥‡ à¤•à¥à¤°à¤¯ à¤®à¥‚à¤²à¥à¤¯ à¤•à¥‡ à¤¬à¤°à¤¾à¤¬à¤° à¤¹à¥ˆà¥¤ à¤‡à¤¸ à¤²à¥‡à¤¨-à¤¦à¥‡à¤¨ à¤®à¥‡à¤‚ à¤•à¥à¤¯à¤¾ à¤¹à¥‹à¤¤à¤¾ à¤¹à¥ˆ:",
+    question_text_hi: "9 वस्तुओं का विक्रय मूल्य 15 वस्तुओं के क्रय मूल्य के बराबर है। इस लेन-देन में क्या होता है:",
     options: {
       a: "loss of 40%",
       b: "gain of 66.6% nearly",
@@ -942,16 +942,16 @@ const PROFIT_LOSS_SET_B_QUESTIONS = [
       d: "gain of 40%"
     },
     options_hi: {
-      a: "40% à¤•à¥€ à¤¹à¤¾à¤¨à¤¿",
-      b: "à¤²à¤—à¤­à¤— 66.6% à¤•à¤¾ à¤²à¤¾à¤­",
-      c: "à¤²à¤—à¤­à¤— 66.6% à¤•à¥€ à¤¹à¤¾à¤¨à¤¿",
-      d: "40% à¤•à¤¾ à¤²à¤¾à¤­"
+      a: "40% की हानि",
+      b: "लगभग 66.6% का लाभ",
+      c: "लगभग 66.6% की हानि",
+      d: "40% का लाभ"
     },
     correct_option: "b",
-    solution_text: "Given: 9 Ã— SP = 15 Ã— CP\n=> SP / CP = 15 / 9 = 5 / 3\nSince SP > CP, there is a profit.\nProfit per unit = 5 - 3 = 2 units.\nProfit% = (2 / 3) Ã— 100 = 66.66% â‰ˆ 66.6% gain.\nCorrect Answer: Option (b).",
-    solution_text_hi: "9 Ã— SP = 15 Ã— CP => SP / CP = 15 / 9 = 5 / 3à¥¤\nà¤²à¤¾à¤­ = 5 - 3 = 2 à¤‡à¤•à¤¾à¤ˆà¥¤\nà¤²à¤¾à¤­% = (2 / 3) Ã— 100 = 66.66% â‰ˆ 66.6% à¤•à¤¾ à¤²à¤¾à¤­à¥¤\nà¤…à¤¤à¤ƒ à¤¸à¤¹à¥€ à¤‰à¤¤à¥à¤¤à¤° (b) à¤¹à¥ˆà¥¤",
+    solution_text: "Given: 9 × SP = 15 × CP\n=> SP / CP = 15 / 9 = 5 / 3\nSince SP > CP, there is a profit.\nProfit per unit = 5 - 3 = 2 units.\nProfit% = (2 / 3) × 100 = 66.66% ≈ 66.6% gain.\nCorrect Answer: Option (b).",
+    solution_text_hi: "9 × SP = 15 × CP => SP / CP = 15 / 9 = 5 / 3।\nलाभ = 5 - 3 = 2 इकाई।\nलाभ% = (2 / 3) × 100 = 66.66% ≈ 66.6% का लाभ।\nअतः सही उत्तर (b) है।",
     shortcut_text: "SP/CP = 5/3 => Profit = 2/3 = 66.6%.",
-    shortcut_text_hi: "SP/CP = 5/3 => 2/3 à¤²à¤¾à¤­ = 66.6% à¤²à¤¾à¤­à¥¤"
+    shortcut_text_hi: "SP/CP = 5/3 => 2/3 लाभ = 66.6% लाभ।"
   },
   {
     question_number: 4,
@@ -960,9 +960,9 @@ const PROFIT_LOSS_SET_B_QUESTIONS = [
     level_group: "Level 1: Moderate",
     type_code: "Type 14",
     type_category: "Cross Multiplying Rate of Purchase and Sale",
-    type_category_hi: "à¤•à¥à¤°à¤¯ à¤”à¤° à¤µà¤¿à¤•à¥à¤°à¤¯ à¤¦à¤° à¤•à¤¾ à¤¤à¤¿à¤°à¥à¤¯à¤• à¤—à¥à¤£à¤¾",
-    question_text: "A seller buys a certain number of bananas at the rate of 8 for â‚¹5 and sells them at the rate of 5 for â‚¹8. What will be his profit percentage?",
-    question_text_hi: "à¤à¤• à¤µà¤¿à¤•à¥à¤°à¥‡à¤¤à¤¾ â‚¹5 à¤®à¥‡à¤‚ 8 à¤•à¥€ à¤¦à¤° à¤¸à¥‡ à¤•à¥à¤› à¤•à¥‡à¤²à¥‡ à¤–à¤°à¥€à¤¦à¤¤à¤¾ à¤¹à¥ˆ à¤”à¤° à¤‰à¤¨à¥à¤¹à¥‡à¤‚ â‚¹8 à¤®à¥‡à¤‚ 5 à¤•à¥€ à¤¦à¤° à¤¸à¥‡ à¤¬à¥‡à¤šà¤¤à¤¾ à¤¹à¥ˆà¥¤ à¤‰à¤¸à¤•à¤¾ à¤²à¤¾à¤­ à¤ªà¥à¤°à¤¤à¤¿à¤¶à¤¤ à¤•à¥à¤¯à¤¾ à¤¹à¥‹à¤—à¤¾?",
+    type_category_hi: "क्रय और विक्रय दर का तिर्यक गुणा",
+    question_text: "A seller buys a certain number of bananas at the rate of 8 for ₹5 and sells them at the rate of 5 for ₹8. What will be his profit percentage?",
+    question_text_hi: "एक विक्रेता ₹5 में 8 की दर से कुछ केले खरीदता है और उन्हें ₹8 में 5 की दर से बेचता है। उसका लाभ प्रतिशत क्या होगा?",
     options: {
       a: "40%",
       b: "144%",
@@ -976,10 +976,10 @@ const PROFIT_LOSS_SET_B_QUESTIONS = [
       d: "48%"
     },
     correct_option: "c",
-    solution_text: "Cost Price of 1 banana = 5 / 8 = â‚¹0.625.\nSelling Price of 1 banana = 8 / 5 = â‚¹1.60.\nProfit on 1 banana = 1.60 - 0.625 = â‚¹0.975.\nProfit% = (0.975 / 0.625) Ã— 100 = (39 / 25) Ã— 100 = 156%.\nCorrect Answer: Option (c).",
-    solution_text_hi: "1 à¤•à¥‡à¤²à¥‡ à¤•à¤¾ CP = 5 / 8 à¤°à¥à¤ªà¤¯à¥‡à¥¤\n1 à¤•à¥‡à¤²à¥‡ à¤•à¤¾ SP = 8 / 5 à¤°à¥à¤ªà¤¯à¥‡à¥¤\nà¤²à¤¾à¤­ = 8/5 - 5/8 = (64 - 25) / 40 = 39 / 40 à¤°à¥à¤ªà¤¯à¥‡à¥¤\nà¤²à¤¾à¤­% = [(39/40) / (5/8)] Ã— 100 = (39 / 25) Ã— 100 = 156%à¥¤\nà¤…à¤¤à¤ƒ à¤¸à¤¹à¥€ à¤‰à¤¤à¥à¤¤à¤° (c) à¤¹à¥ˆà¥¤",
-    shortcut_text: "Cross-multiply items and rates:\nCP = 5 Ã— 5 = 25; SP = 8 Ã— 8 = 64.\nProfit% = [(64 - 25) / 25] Ã— 100 = (39 / 25) Ã— 100 = 156%.",
-    shortcut_text_hi: "à¤¤à¤¿à¤°à¥à¤¯à¤• à¤—à¥à¤£à¤¾ à¤µà¤¿à¤§à¤¿: CP = 5 Ã— 5 = 25; SP = 8 Ã— 8 = 64à¥¤\nà¤²à¤¾à¤­% = [(64 - 25)/25] Ã— 100 = 156%à¥¤"
+    solution_text: "Cost Price of 1 banana = 5 / 8 = ₹0.625.\nSelling Price of 1 banana = 8 / 5 = ₹1.60.\nProfit on 1 banana = 1.60 - 0.625 = ₹0.975.\nProfit% = (0.975 / 0.625) × 100 = (39 / 25) × 100 = 156%.\nCorrect Answer: Option (c).",
+    solution_text_hi: "1 केले का CP = 5 / 8 रुपये।\n1 केले का SP = 8 / 5 रुपये।\nलाभ = 8/5 - 5/8 = (64 - 25) / 40 = 39 / 40 रुपये।\nलाभ% = [(39/40) / (5/8)] × 100 = (39 / 25) × 100 = 156%।\nअतः सही उत्तर (c) है।",
+    shortcut_text: "Cross-multiply items and rates:\nCP = 5 × 5 = 25; SP = 8 × 8 = 64.\nProfit% = [(64 - 25) / 25] × 100 = (39 / 25) × 100 = 156%.",
+    shortcut_text_hi: "तिर्यक गुणा विधि: CP = 5 × 5 = 25; SP = 8 × 8 = 64।\nलाभ% = [(64 - 25)/25] × 100 = 156%।"
   },
   {
     question_number: 5,
@@ -988,26 +988,26 @@ const PROFIT_LOSS_SET_B_QUESTIONS = [
     level_group: "Level 1: Moderate",
     type_code: "Type 1",
     type_category: "Direct Selling Price from Cost and Profit",
-    type_category_hi: "à¤•à¥à¤°à¤¯ à¤®à¥‚à¤²à¥à¤¯ à¤”à¤° à¤²à¤¾à¤­ à¤¸à¥‡ à¤µà¤¿à¤•à¥à¤°à¤¯ à¤®à¥‚à¤²à¥à¤¯",
-    question_text: "A person bought an article for â‚¹1,975 and sold it at a profit of 12%. What was the selling price of the article?",
-    question_text_hi: "à¤à¤• à¤µà¥à¤¯à¤•à¥à¤¤à¤¿ à¤¨à¥‡ à¤à¤• à¤µà¤¸à¥à¤¤à¥ â‚¹1,975 à¤®à¥‡à¤‚ à¤–à¤°à¥€à¤¦à¥€ à¤”à¤° à¤‰à¤¸à¥‡ 12% à¤•à¥‡ à¤²à¤¾à¤­ à¤ªà¤° à¤¬à¥‡à¤š à¤¦à¤¿à¤¯à¤¾à¥¤ à¤µà¤¸à¥à¤¤à¥ à¤•à¤¾ à¤µà¤¿à¤•à¥à¤°à¤¯ à¤®à¥‚à¤²à¥à¤¯ à¤•à¥à¤¯à¤¾ à¤¥à¤¾?",
+    type_category_hi: "क्रय मूल्य और लाभ से विक्रय मूल्य",
+    question_text: "A person bought an article for ₹1,975 and sold it at a profit of 12%. What was the selling price of the article?",
+    question_text_hi: "एक व्यक्ति ने एक वस्तु ₹1,975 में खरीदी और उसे 12% के लाभ पर बेच दिया। वस्तु का विक्रय मूल्य क्या था?",
     options: {
-      a: "â‚¹2,212",
-      b: "â‚¹2,192",
-      c: "â‚¹2,222",
-      d: "â‚¹2,202"
+      a: "₹2,212",
+      b: "₹2,192",
+      c: "₹2,222",
+      d: "₹2,202"
     },
     options_hi: {
-      a: "â‚¹2,212",
-      b: "â‚¹2,192",
-      c: "â‚¹2,222",
-      d: "â‚¹2,202"
+      a: "₹2,212",
+      b: "₹2,192",
+      c: "₹2,222",
+      d: "₹2,202"
     },
     correct_option: "a",
-    solution_text: "Cost Price (CP) = â‚¹1,975.\nProfit% = 12%.\nProfit Amount = 1,975 Ã— (12 / 100) = â‚¹237.\nSelling Price (SP) = CP + Profit = 1,975 + 237 = â‚¹2,212.\nCorrect Answer: Option (a).",
-    solution_text_hi: "CP = â‚¹1,975à¥¤ à¤²à¤¾à¤­ = 12%à¥¤\nà¤²à¤¾à¤­ à¤°à¤¾à¤¶à¤¿ = 1975 Ã— 0.12 = â‚¹237à¥¤\nSP = 1975 + 237 = â‚¹2,212à¥¤\nà¤…à¤¤à¤ƒ à¤¸à¤¹à¥€ à¤‰à¤¤à¥à¤¤à¤° (a) à¤¹à¥ˆà¥¤",
-    shortcut_text: "SP = 1,975 Ã— 1.12 = â‚¹2,212.",
-    shortcut_text_hi: "SP = 1975 Ã— 1.12 = â‚¹2,212à¥¤"
+    solution_text: "Cost Price (CP) = ₹1,975.\nProfit% = 12%.\nProfit Amount = 1,975 × (12 / 100) = ₹237.\nSelling Price (SP) = CP + Profit = 1,975 + 237 = ₹2,212.\nCorrect Answer: Option (a).",
+    solution_text_hi: "CP = ₹1,975। लाभ = 12%।\nलाभ राशि = 1975 × 0.12 = ₹237।\nSP = 1975 + 237 = ₹2,212।\nअतः सही उत्तर (a) है।",
+    shortcut_text: "SP = 1,975 × 1.12 = ₹2,212.",
+    shortcut_text_hi: "SP = 1975 × 1.12 = ₹2,212।"
   },
   {
     question_number: 6,
@@ -1016,9 +1016,9 @@ const PROFIT_LOSS_SET_B_QUESTIONS = [
     level_group: "Level 1: Moderate",
     type_code: "Type 2",
     type_category: "Unknown Count of Articles for Given Profit %",
-    type_category_hi: "à¤¦à¤¿à¤ à¤—à¤ à¤²à¤¾à¤­ % à¤•à¥‡ à¤²à¤¿à¤ à¤…à¤œà¥à¤žà¤¾à¤¤ à¤µà¤¸à¥à¤¤à¥ à¤¸à¤‚à¤–à¥à¤¯à¤¾",
+    type_category_hi: "दिए गए लाभ % के लिए अज्ञात वस्तु संख्या",
     question_text: "The cost price of 120 pens is the same as the selling price of x pens. If the profit is 25%, then the value of x is:",
-    question_text_hi: "120 à¤ªà¥‡à¤¨ à¤•à¤¾ à¤•à¥à¤°à¤¯ à¤®à¥‚à¤²à¥à¤¯ x à¤ªà¥‡à¤¨ à¤•à¥‡ à¤µà¤¿à¤•à¥à¤°à¤¯ à¤®à¥‚à¤²à¥à¤¯ à¤•à¥‡ à¤¸à¤®à¤¾à¤¨ à¤¹à¥ˆà¥¤ à¤¯à¤¦à¤¿ à¤²à¤¾à¤­ 25% à¤¹à¥ˆ, à¤¤à¥‹ x à¤•à¤¾ à¤®à¤¾à¤¨ à¤¹à¥ˆ:",
+    question_text_hi: "120 पेन का क्रय मूल्य x पेन के विक्रय मूल्य के समान है। यदि लाभ 25% है, तो x का मान है:",
     options: {
       a: "91",
       b: "95",
@@ -1032,10 +1032,10 @@ const PROFIT_LOSS_SET_B_QUESTIONS = [
       d: "90"
     },
     correct_option: "c",
-    solution_text: "Given: 120 Ã— CP = x Ã— SP\n=> SP / CP = 120 / x.\nGiven Profit = 25% => SP / CP = 1 + 0.25 = 1.25 = 5 / 4.\n=> 120 / x = 5 / 4\n=> 5x = 120 Ã— 4 = 480\n=> x = 480 / 5 = 96.\nCorrect Answer: Option (c).",
-    solution_text_hi: "à¤¦à¤¿à¤¯à¤¾ à¤—à¤¯à¤¾ à¤¹à¥ˆ: 120 Ã— CP = x Ã— SP => SP / CP = 120 / xà¥¤\n25% à¤²à¤¾à¤­ => SP / CP = 125 / 100 = 5 / 4à¥¤\n120 / x = 5 / 4 => 5x = 480 => x = 96à¥¤\nà¤…à¤¤à¤ƒ à¤¸à¤¹à¥€ à¤‰à¤¤à¥à¤¤à¤° (c) à¤¹à¥ˆà¥¤",
+    solution_text: "Given: 120 × CP = x × SP\n=> SP / CP = 120 / x.\nGiven Profit = 25% => SP / CP = 1 + 0.25 = 1.25 = 5 / 4.\n=> 120 / x = 5 / 4\n=> 5x = 120 × 4 = 480\n=> x = 480 / 5 = 96.\nCorrect Answer: Option (c).",
+    solution_text_hi: "दिया गया है: 120 × CP = x × SP => SP / CP = 120 / x।\n25% लाभ => SP / CP = 125 / 100 = 5 / 4।\n120 / x = 5 / 4 => 5x = 480 => x = 96।\nअतः सही उत्तर (c) है।",
     shortcut_text: "x = 120 / 1.25 = 96.",
-    shortcut_text_hi: "x = 120 / 1.25 = 96à¥¤"
+    shortcut_text_hi: "x = 120 / 1.25 = 96।"
   },
 
   // ==========================================
@@ -1048,26 +1048,26 @@ const PROFIT_LOSS_SET_B_QUESTIONS = [
     level_group: "Level 2: More Than Moderate",
     type_code: "Type 8",
     type_category: "Cost Price from Loss Percentage",
-    type_category_hi: "à¤¹à¤¾à¤¨à¤¿ à¤ªà¥à¤°à¤¤à¤¿à¤¶à¤¤ à¤¸à¥‡ à¤•à¥à¤°à¤¯ à¤®à¥‚à¤²à¥à¤¯",
-    question_text: "By selling an item for â‚¹2,332 a person incurred a loss of 12%. What was the cost price of the item?",
-    question_text_hi: "à¤à¤• à¤µà¤¸à¥à¤¤à¥ à¤•à¥‹ â‚¹2,332 à¤®à¥‡à¤‚ à¤¬à¥‡à¤šà¤¨à¥‡ à¤ªà¤° à¤à¤• à¤µà¥à¤¯à¤•à¥à¤¤à¤¿ à¤•à¥‹ 12% à¤•à¥€ à¤¹à¤¾à¤¨à¤¿ à¤¹à¥à¤ˆà¥¤ à¤µà¤¸à¥à¤¤à¥ à¤•à¤¾ à¤•à¥à¤°à¤¯ à¤®à¥‚à¤²à¥à¤¯ à¤•à¥à¤¯à¤¾ à¤¥à¤¾?",
+    type_category_hi: "हानि प्रतिशत से क्रय मूल्य",
+    question_text: "By selling an item for ₹2,332 a person incurred a loss of 12%. What was the cost price of the item?",
+    question_text_hi: "एक वस्तु को ₹2,332 में बेचने पर एक व्यक्ति को 12% की हानि हुई। वस्तु का क्रय मूल्य क्या था?",
     options: {
-      a: "â‚¹2,650",
-      b: "â‚¹2,675",
-      c: "â‚¹2,620",
-      d: "â‚¹2,625"
+      a: "₹2,650",
+      b: "₹2,675",
+      c: "₹2,620",
+      d: "₹2,625"
     },
     options_hi: {
-      a: "â‚¹2,650",
-      b: "â‚¹2,675",
-      c: "â‚¹2,620",
-      d: "â‚¹2,625"
+      a: "₹2,650",
+      b: "₹2,675",
+      c: "₹2,620",
+      d: "₹2,625"
     },
     correct_option: "a",
-    solution_text: "Selling Price (SP) = â‚¹2,332.\nLoss% = 12% => SP = 88% of CP.\n0.88 CP = 2,332\nCP = 2,332 / 0.88 = (2,332 Ã— 100) / 88 = â‚¹2,650.\nCost price of the item = â‚¹2,650.\nCorrect Answer: Option (a).",
-    solution_text_hi: "12% à¤¹à¤¾à¤¨à¤¿ à¤ªà¤° SP = 88% of CP = â‚¹2,332à¥¤\nCP = 2332 / 0.88 = â‚¹2,650à¥¤\nà¤…à¤¤à¤ƒ à¤µà¤¸à¥à¤¤à¥ à¤•à¤¾ à¤•à¥à¤°à¤¯ à¤®à¥‚à¤²à¥à¤¯ â‚¹2,650 à¤¹à¥ˆà¥¤ à¤µà¤¿à¤•à¤²à¥à¤ª (a)à¥¤",
-    shortcut_text: "88% = 2332 => 1% = 26.5 => 100% = â‚¹2,650.",
-    shortcut_text_hi: "88% = 2332 => 100% = (2332/88) Ã— 100 = â‚¹2,650à¥¤"
+    solution_text: "Selling Price (SP) = ₹2,332.\nLoss% = 12% => SP = 88% of CP.\n0.88 CP = 2,332\nCP = 2,332 / 0.88 = (2,332 × 100) / 88 = ₹2,650.\nCost price of the item = ₹2,650.\nCorrect Answer: Option (a).",
+    solution_text_hi: "12% हानि पर SP = 88% of CP = ₹2,332।\nCP = 2332 / 0.88 = ₹2,650।\nअतः वस्तु का क्रय मूल्य ₹2,650 है। विकल्प (a)।",
+    shortcut_text: "88% = 2332 => 1% = 26.5 => 100% = ₹2,650.",
+    shortcut_text_hi: "88% = 2332 => 100% = (2332/88) × 100 = ₹2,650।"
   },
   {
     question_number: 8,
@@ -1076,26 +1076,26 @@ const PROFIT_LOSS_SET_B_QUESTIONS = [
     level_group: "Level 2: More Than Moderate",
     type_code: "Type 5",
     type_category: "Simultaneous CP & SP Change with New %",
-    type_category_hi: "à¤•à¥à¤°à¤¯ à¤”à¤° à¤µà¤¿à¤•à¥à¤°à¤¯ à¤®à¥‚à¤²à¥à¤¯ à¤®à¥‡à¤‚ à¤¸à¤‚à¤¯à¥à¤•à¥à¤¤ à¤ªà¤°à¤¿à¤µà¤°à¥à¤¤à¤¨",
-    question_text: "An article is sold at a profit of 28%. If the cost price is increased by â‚¹50 and the selling price is reduced by â‚¹18, then the profit would be 11.6%. What is the original cost price (in â‚¹) of the article?",
-    question_text_hi: "à¤à¤• à¤µà¤¸à¥à¤¤à¥ 28% à¤•à¥‡ à¤²à¤¾à¤­ à¤ªà¤° à¤¬à¥‡à¤šà¥€ à¤œà¤¾à¤¤à¥€ à¤¹à¥ˆà¥¤ à¤¯à¤¦à¤¿ à¤•à¥à¤°à¤¯ à¤®à¥‚à¤²à¥à¤¯ à¤®à¥‡à¤‚ â‚¹50 à¤•à¥€ à¤µà¥ƒà¤¦à¥à¤§à¤¿ à¤•à¥€ à¤œà¤¾à¤¤à¥€ à¤¹à¥ˆ à¤”à¤° à¤µà¤¿à¤•à¥à¤°à¤¯ à¤®à¥‚à¤²à¥à¤¯ à¤®à¥‡à¤‚ â‚¹18 à¤•à¥€ à¤•à¤®à¥€ à¤•à¥€ à¤œà¤¾à¤¤à¥€ à¤¹à¥ˆ, à¤¤à¥‹ à¤²à¤¾à¤­ 11.6% à¤¹à¥‹à¤—à¤¾à¥¤ à¤µà¤¸à¥à¤¤à¥ à¤•à¤¾ à¤®à¥‚à¤² à¤•à¥à¤°à¤¯ à¤®à¥‚à¤²à¥à¤¯ (â‚¹ à¤®à¥‡à¤‚) à¤•à¥à¤¯à¤¾ à¤¹à¥ˆ?",
+    type_category_hi: "क्रय और विक्रय मूल्य में संयुक्त परिवर्तन",
+    question_text: "An article is sold at a profit of 28%. If the cost price is increased by ₹50 and the selling price is reduced by ₹18, then the profit would be 11.6%. What is the original cost price (in ₹) of the article?",
+    question_text_hi: "एक वस्तु 28% के लाभ पर बेची जाती है। यदि क्रय मूल्य में ₹50 की वृद्धि की जाती है और विक्रय मूल्य में ₹18 की कमी की जाती है, तो लाभ 11.6% होगा। वस्तु का मूल क्रय मूल्य (₹ में) क्या है?",
     options: {
-      a: "â‚¹480",
-      b: "â‚¹350",
-      c: "â‚¹450",
-      d: "â‚¹400"
+      a: "₹480",
+      b: "₹350",
+      c: "₹450",
+      d: "₹400"
     },
     options_hi: {
-      a: "â‚¹480",
-      b: "â‚¹350",
-      c: "â‚¹450",
-      d: "â‚¹400"
+      a: "₹480",
+      b: "₹350",
+      c: "₹450",
+      d: "₹400"
     },
     correct_option: "c",
-    solution_text: "Let original CP = x.\nOriginal SP = 1.28x.\nNew CP = x + 50.\nNew SP = 1.28x - 18.\nGiven: New Profit = 11.6%\n=> New SP = (1 + 0.116) Ã— New CP\n=> 1.28x - 18 = 1.116 Ã— (x + 50)\n=> 1.28x - 18 = 1.116x + 55.8\n=> 1.28x - 1.116x = 55.8 + 18\n=> 0.164x = 73.8\n=> x = 73.8 / 0.164 = 73,800 / 164 = â‚¹450.\nOriginal cost price = â‚¹450.\nCorrect Answer: Option (c).",
-    solution_text_hi: "à¤®à¤¾à¤¨à¤¾ à¤®à¥‚à¤² CP = xà¥¤ à¤®à¥‚à¤² SP = 1.28xà¥¤\nà¤¨à¤¯à¤¾ CP = x + 50à¥¤ à¤¨à¤¯à¤¾ SP = 1.28x - 18à¥¤\n1.28x - 18 = 1.116(x + 50) = 1.116x + 55.8\n0.164x = 73.8 => x = 73.8 / 0.164 = â‚¹450à¥¤\nà¤…à¤¤à¤ƒ à¤¸à¤¹à¥€ à¤‰à¤¤à¥à¤¤à¤° (c) à¤¹à¥ˆà¥¤",
-    shortcut_text: "0.164x = 55.8 + 18 = 73.8 => x = â‚¹450.",
-    shortcut_text_hi: "0.164x = 73.8 => x = â‚¹450à¥¤"
+    solution_text: "Let original CP = x.\nOriginal SP = 1.28x.\nNew CP = x + 50.\nNew SP = 1.28x - 18.\nGiven: New Profit = 11.6%\n=> New SP = (1 + 0.116) × New CP\n=> 1.28x - 18 = 1.116 × (x + 50)\n=> 1.28x - 18 = 1.116x + 55.8\n=> 1.28x - 1.116x = 55.8 + 18\n=> 0.164x = 73.8\n=> x = 73.8 / 0.164 = 73,800 / 164 = ₹450.\nOriginal cost price = ₹450.\nCorrect Answer: Option (c).",
+    solution_text_hi: "माना मूल CP = x। मूल SP = 1.28x।\nनया CP = x + 50। नया SP = 1.28x - 18।\n1.28x - 18 = 1.116(x + 50) = 1.116x + 55.8\n0.164x = 73.8 => x = 73.8 / 0.164 = ₹450।\nअतः सही उत्तर (c) है।",
+    shortcut_text: "0.164x = 55.8 + 18 = 73.8 => x = ₹450.",
+    shortcut_text_hi: "0.164x = 73.8 => x = ₹450।"
   },
   {
     question_number: 9,
@@ -1104,26 +1104,26 @@ const PROFIT_LOSS_SET_B_QUESTIONS = [
     level_group: "Level 2: More Than Moderate",
     type_code: "Type 17",
     type_category: "Equal Profit and Loss at Two Prices",
-    type_category_hi: "à¤¦à¥‹ à¤…à¤²à¤— à¤µà¤¿à¤•à¥à¤°à¤¯ à¤®à¥‚à¤²à¥à¤¯à¥‹à¤‚ à¤ªà¤° à¤¸à¤®à¤¾à¤¨ à¤²à¤¾à¤­ à¤”à¤° à¤¹à¤¾à¤¨à¤¿",
-    question_text: "The profit earned after selling an article for â‚¹1,875 is the same as the loss incurred after selling the article for â‚¹1,385. What is the cost price (in â‚¹) of the article?",
-    question_text_hi: "à¤à¤• à¤µà¤¸à¥à¤¤à¥ à¤•à¥‹ â‚¹1,875 à¤®à¥‡à¤‚ à¤¬à¥‡à¤šà¤¨à¥‡ à¤•à¥‡ à¤¬à¤¾à¤¦ à¤ªà¥à¤°à¤¾à¤ªà¥à¤¤ à¤²à¤¾à¤­ à¤µà¤¸à¥à¤¤à¥ à¤•à¥‹ â‚¹1,385 à¤®à¥‡à¤‚ à¤¬à¥‡à¤šà¤¨à¥‡ à¤•à¥‡ à¤¬à¤¾à¤¦ à¤¹à¥‹à¤¨à¥‡ à¤µà¤¾à¤²à¥€ à¤¹à¤¾à¤¨à¤¿ à¤•à¥‡ à¤¸à¤®à¤¾à¤¨ à¤¹à¥ˆà¥¤ à¤µà¤¸à¥à¤¤à¥ à¤•à¤¾ à¤•à¥à¤°à¤¯ à¤®à¥‚à¤²à¥à¤¯ (â‚¹ à¤®à¥‡à¤‚) à¤•à¥à¤¯à¤¾ à¤¹à¥ˆ?",
+    type_category_hi: "दो अलग विक्रय मूल्यों पर समान लाभ और हानि",
+    question_text: "The profit earned after selling an article for ₹1,875 is the same as the loss incurred after selling the article for ₹1,385. What is the cost price (in ₹) of the article?",
+    question_text_hi: "एक वस्तु को ₹1,875 में बेचने के बाद प्राप्त लाभ वस्तु को ₹1,385 में बेचने के बाद होने वाली हानि के समान है। वस्तु का क्रय मूल्य (₹ में) क्या है?",
     options: {
-      a: "â‚¹1,360",
-      b: "â‚¹1,660",
-      c: "â‚¹1,630",
-      d: "â‚¹1,650"
+      a: "₹1,360",
+      b: "₹1,660",
+      c: "₹1,630",
+      d: "₹1,650"
     },
     options_hi: {
-      a: "â‚¹1,360",
-      b: "â‚¹1,660",
-      c: "â‚¹1,630",
-      d: "â‚¹1,650"
+      a: "₹1,360",
+      b: "₹1,660",
+      c: "₹1,630",
+      d: "₹1,650"
     },
     correct_option: "c",
-    solution_text: "Let Cost Price = CP.\nProfit at â‚¹1,875 = 1,875 - CP.\nLoss at â‚¹1,385 = CP - 1,385.\nGiven: Profit = Loss\n=> 1,875 - CP = CP - 1,385\n=> 2 CP = 1,875 + 1,385 = 3,260\n=> CP = 3,260 / 2 = â‚¹1,630.\nCorrect Answer: Option (c).",
-    solution_text_hi: "à¤²à¤¾à¤­ = 1875 - CPà¥¤ à¤¹à¤¾à¤¨à¤¿ = CP - 1385à¥¤\n1875 - CP = CP - 1385 => 2 CP = 3260 => CP = â‚¹1,630à¥¤\nà¤…à¤¤à¤ƒ à¤¸à¤¹à¥€ à¤‰à¤¤à¥à¤¤à¤° (c) à¤¹à¥ˆà¥¤",
-    shortcut_text: "When profit = loss, CP is exactly the midpoint:\nCP = (1,875 + 1,385) / 2 = 3,260 / 2 = â‚¹1,630.",
-    shortcut_text_hi: "à¤¸à¤®à¤¾à¤¨ à¤²à¤¾à¤­ à¤”à¤° à¤¹à¤¾à¤¨à¤¿ à¤¹à¥‹à¤¨à¥‡ à¤ªà¤° CP = (SPâ‚ + SPâ‚‚) / 2 = (1875 + 1385) / 2 = â‚¹1,630à¥¤"
+    solution_text: "Let Cost Price = CP.\nProfit at ₹1,875 = 1,875 - CP.\nLoss at ₹1,385 = CP - 1,385.\nGiven: Profit = Loss\n=> 1,875 - CP = CP - 1,385\n=> 2 CP = 1,875 + 1,385 = 3,260\n=> CP = 3,260 / 2 = ₹1,630.\nCorrect Answer: Option (c).",
+    solution_text_hi: "लाभ = 1875 - CP। हानि = CP - 1385।\n1875 - CP = CP - 1385 => 2 CP = 3260 => CP = ₹1,630।\nअतः सही उत्तर (c) है।",
+    shortcut_text: "When profit = loss, CP is exactly the midpoint:\nCP = (1,875 + 1,385) / 2 = 3,260 / 2 = ₹1,630.",
+    shortcut_text_hi: "समान लाभ और हानि होने पर CP = (SP₁ + SP₂) / 2 = (1875 + 1385) / 2 = ₹1,630।"
   },
   {
     question_number: 10,
@@ -1132,26 +1132,26 @@ const PROFIT_LOSS_SET_B_QUESTIONS = [
     level_group: "Level 2: More Than Moderate",
     type_code: "Type 4",
     type_category: "Incremental Selling Price for Profit Increase",
-    type_category_hi: "à¤²à¤¾à¤­ à¤µà¥ƒà¤¦à¥à¤§à¤¿ à¤•à¥‡ à¤²à¤¿à¤ à¤µà¤¿à¤•à¥à¤°à¤¯ à¤®à¥‚à¤²à¥à¤¯ à¤®à¥‡à¤‚ à¤µà¥ƒà¤¦à¥à¤§à¤¿",
-    question_text: "An article was sold at a gain of 12%. Had it been sold for â‚¹33 more, the gain would have been 14%. The cost price of the article is:",
-    question_text_hi: "à¤à¤• à¤µà¤¸à¥à¤¤à¥ 12% à¤•à¥‡ à¤²à¤¾à¤­ à¤ªà¤° à¤¬à¥‡à¤šà¥€ à¤—à¤ˆà¥¤ à¤¯à¤¦à¤¿ à¤‡à¤¸à¥‡ â‚¹33 à¤…à¤§à¤¿à¤• à¤®à¥‡à¤‚ à¤¬à¥‡à¤šà¤¾ à¤œà¤¾à¤¤à¤¾, à¤¤à¥‹ à¤²à¤¾à¤­ 14% à¤¹à¥‹à¤¤à¤¾à¥¤ à¤µà¤¸à¥à¤¤à¥ à¤•à¤¾ à¤•à¥à¤°à¤¯ à¤®à¥‚à¤²à¥à¤¯ à¤¹à¥ˆ:",
+    type_category_hi: "लाभ वृद्धि के लिए विक्रय मूल्य में वृद्धि",
+    question_text: "An article was sold at a gain of 12%. Had it been sold for ₹33 more, the gain would have been 14%. The cost price of the article is:",
+    question_text_hi: "एक वस्तु 12% के लाभ पर बेची गई। यदि इसे ₹33 अधिक में बेचा जाता, तो लाभ 14% होता। वस्तु का क्रय मूल्य है:",
     options: {
-      a: "â‚¹1,750.00",
-      b: "â‚¹1,800.00",
-      c: "â‚¹1,650.00",
-      d: "â‚¹1,850.00"
+      a: "₹1,750.00",
+      b: "₹1,800.00",
+      c: "₹1,650.00",
+      d: "₹1,850.00"
     },
     options_hi: {
-      a: "â‚¹1,750.00",
-      b: "â‚¹1,800.00",
-      c: "â‚¹1,650.00",
-      d: "â‚¹1,850.00"
+      a: "₹1,750.00",
+      b: "₹1,800.00",
+      c: "₹1,650.00",
+      d: "₹1,850.00"
     },
     correct_option: "c",
-    solution_text: "Let Cost Price = CP.\nDifference in gain percentage = 14% - 12% = 2% of CP.\nGiven that this 2% increase corresponds to â‚¹33:\n2% of CP = â‚¹33\n1% of CP = 33 / 2 = â‚¹16.5\nCP = 16.5 Ã— 100 = â‚¹1,650.\nCorrect Answer: Option (c).",
-    solution_text_hi: "à¤²à¤¾à¤­ à¤®à¥‡à¤‚ à¤…à¤‚à¤¤à¤° = 14% - 12% = 2%à¥¤\n2% = â‚¹33 => 100% = (33 / 2) Ã— 100 = â‚¹1,650à¥¤\nà¤…à¤¤à¤ƒ à¤¸à¤¹à¥€ à¤‰à¤¤à¥à¤¤à¤° (c) à¤¹à¥ˆà¥¤",
-    shortcut_text: "2% = 33 => CP = 33 Ã— 50 = â‚¹1,650.",
-    shortcut_text_hi: "2% = 33 => CP = 33 Ã— 50 = â‚¹1,650à¥¤"
+    solution_text: "Let Cost Price = CP.\nDifference in gain percentage = 14% - 12% = 2% of CP.\nGiven that this 2% increase corresponds to ₹33:\n2% of CP = ₹33\n1% of CP = 33 / 2 = ₹16.5\nCP = 16.5 × 100 = ₹1,650.\nCorrect Answer: Option (c).",
+    solution_text_hi: "लाभ में अंतर = 14% - 12% = 2%।\n2% = ₹33 => 100% = (33 / 2) × 100 = ₹1,650।\nअतः सही उत्तर (c) है।",
+    shortcut_text: "2% = 33 => CP = 33 × 50 = ₹1,650.",
+    shortcut_text_hi: "2% = 33 => CP = 33 × 50 = ₹1,650।"
   },
   {
     question_number: 11,
@@ -1160,26 +1160,26 @@ const PROFIT_LOSS_SET_B_QUESTIONS = [
     level_group: "Level 2: More Than Moderate",
     type_code: "Type 9",
     type_category: "Split Stock Sold at Loss and Gain",
-    type_category_hi: "à¤µà¤¿à¤­à¤¾à¤œà¤¿à¤¤ à¤®à¤¾à¤² à¤ªà¤° à¤¹à¤¾à¤¨à¤¿ à¤”à¤° à¤²à¤¾à¤­",
-    question_text: "40% of the goods are sold at 2% loss while the rest of the goods are sold at 4% profit. If there is a total profit of â‚¹250, then the cost price of the goods sold is:",
-    question_text_hi: "40% à¤®à¤¾à¤² 2% à¤¹à¤¾à¤¨à¤¿ à¤ªà¤° à¤¬à¥‡à¤šà¤¾ à¤œà¤¾à¤¤à¤¾ à¤¹à¥ˆ à¤œà¤¬à¤•à¤¿ à¤¶à¥‡à¤· à¤®à¤¾à¤² 4% à¤²à¤¾à¤­ à¤ªà¤° à¤¬à¥‡à¤šà¤¾ à¤œà¤¾à¤¤à¤¾ à¤¹à¥ˆà¥¤ à¤¯à¤¦à¤¿ à¤•à¥à¤² à¤²à¤¾à¤­ â‚¹250 à¤¹à¥ˆ, à¤¤à¥‹ à¤¬à¥‡à¤šà¥‡ à¤—à¤ à¤®à¤¾à¤² à¤•à¤¾ à¤•à¥à¤°à¤¯ à¤®à¥‚à¤²à¥à¤¯ à¤¹à¥ˆ:",
+    type_category_hi: "विभाजित माल पर हानि और लाभ",
+    question_text: "40% of the goods are sold at 2% loss while the rest of the goods are sold at 4% profit. If there is a total profit of ₹250, then the cost price of the goods sold is:",
+    question_text_hi: "40% माल 2% हानि पर बेचा जाता है जबकि शेष माल 4% लाभ पर बेचा जाता है। यदि कुल लाभ ₹250 है, तो बेचे गए माल का क्रय मूल्य है:",
     options: {
-      a: "â‚¹5,625",
-      b: "â‚¹6,525",
-      c: "â‚¹9,000",
-      d: "â‚¹15,625"
+      a: "₹5,625",
+      b: "₹6,525",
+      c: "₹9,000",
+      d: "₹15,625"
     },
     options_hi: {
-      a: "â‚¹5,625",
-      b: "â‚¹6,525",
-      c: "â‚¹9,000",
-      d: "â‚¹15,625"
+      a: "₹5,625",
+      b: "₹6,525",
+      c: "₹9,000",
+      d: "₹15,625"
     },
     correct_option: "d",
-    solution_text: "Let total Cost Price = CP.\nPart 1: 40% of goods sold at 2% loss => Contribution = 0.40 Ã— (-2%) = -0.8% of CP.\nPart 2: 60% of goods sold at 4% profit => Contribution = 0.60 Ã— (+4%) = +2.4% of CP.\nOverall Net Profit% = 2.4% - 0.8% = 1.6% of CP.\nGiven: 1.6% of CP = â‚¹250\n=> CP = (250 / 1.6) Ã— 100 = (25,000 / 1.6) = â‚¹15,625.\nCost price of goods = â‚¹15,625.\nCorrect Answer: Option (d).",
-    solution_text_hi: "40% à¤®à¤¾à¤² à¤ªà¤° 2% à¤¹à¤¾à¤¨à¤¿ = -0.8%à¥¤\n60% à¤®à¤¾à¤² à¤ªà¤° 4% à¤²à¤¾à¤­ = +2.4%à¥¤\nà¤•à¥à¤² à¤¶à¥à¤¦à¥à¤§ à¤²à¤¾à¤­% = 2.4% - 0.8% = 1.6%à¥¤\n1.6% = â‚¹250 => CP = 250 / 0.016 = â‚¹15,625à¥¤\nà¤…à¤¤à¤ƒ à¤¸à¤¹à¥€ à¤‰à¤¤à¥à¤¤à¤° (d) à¤¹à¥ˆà¥¤",
-    shortcut_text: "Net% = (0.4 Ã— -2) + (0.6 Ã— 4) = 1.6% = 250 => CP = 250 / 0.016 = â‚¹15,625.",
-    shortcut_text_hi: "à¤¶à¥à¤¦à¥à¤§% = 1.6% = 250 => CP = â‚¹15,625à¥¤"
+    solution_text: "Let total Cost Price = CP.\nPart 1: 40% of goods sold at 2% loss => Contribution = 0.40 × (-2%) = -0.8% of CP.\nPart 2: 60% of goods sold at 4% profit => Contribution = 0.60 × (+4%) = +2.4% of CP.\nOverall Net Profit% = 2.4% - 0.8% = 1.6% of CP.\nGiven: 1.6% of CP = ₹250\n=> CP = (250 / 1.6) × 100 = (25,000 / 1.6) = ₹15,625.\nCost price of goods = ₹15,625.\nCorrect Answer: Option (d).",
+    solution_text_hi: "40% माल पर 2% हानि = -0.8%।\n60% माल पर 4% लाभ = +2.4%।\nकुल शुद्ध लाभ% = 2.4% - 0.8% = 1.6%।\n1.6% = ₹250 => CP = 250 / 0.016 = ₹15,625।\nअतः सही उत्तर (d) है।",
+    shortcut_text: "Net% = (0.4 × -2) + (0.6 × 4) = 1.6% = 250 => CP = 250 / 0.016 = ₹15,625.",
+    shortcut_text_hi: "शुद्ध% = 1.6% = 250 => CP = ₹15,625।"
   },
   {
     question_number: 12,
@@ -1188,26 +1188,26 @@ const PROFIT_LOSS_SET_B_QUESTIONS = [
     level_group: "Level 2: More Than Moderate",
     type_code: "Type 5",
     type_category: "Equal Decrement in CP and SP",
-    type_category_hi: "à¤•à¥à¤°à¤¯ à¤”à¤° à¤µà¤¿à¤•à¥à¤°à¤¯ à¤®à¥‚à¤²à¥à¤¯ à¤®à¥‡à¤‚ à¤¸à¤®à¤¾à¤¨ à¤•à¤®à¥€",
-    question_text: "An article is sold at a profit of 20%. If both the cost price and selling price are â‚¹100 less, the profit will be 4% more. Find the cost price.",
-    question_text_hi: "à¤à¤• à¤µà¤¸à¥à¤¤à¥ à¤•à¥‹ 20% à¤•à¥‡ à¤²à¤¾à¤­ à¤ªà¤° à¤¬à¥‡à¤šà¤¾ à¤œà¤¾à¤¤à¤¾ à¤¹à¥ˆà¥¤ à¤¯à¤¦à¤¿ à¤•à¥à¤°à¤¯ à¤®à¥‚à¤²à¥à¤¯ à¤”à¤° à¤µà¤¿à¤•à¥à¤°à¤¯ à¤®à¥‚à¤²à¥à¤¯ à¤¦à¥‹à¤¨à¥‹à¤‚ â‚¹100 à¤•à¤® à¤¹à¥‹à¤‚, à¤¤à¥‹ à¤²à¤¾à¤­ 4% à¤…à¤§à¤¿à¤• à¤¹à¥‹à¤—à¤¾à¥¤ à¤•à¥à¤°à¤¯ à¤®à¥‚à¤²à¥à¤¯ à¤œà¥à¤žà¤¾à¤¤ à¤•à¥€à¤œà¤¿à¤à¥¤",
+    type_category_hi: "क्रय और विक्रय मूल्य में समान कमी",
+    question_text: "An article is sold at a profit of 20%. If both the cost price and selling price are ₹100 less, the profit will be 4% more. Find the cost price.",
+    question_text_hi: "एक वस्तु को 20% के लाभ पर बेचा जाता है। यदि क्रय मूल्य और विक्रय मूल्य दोनों ₹100 कम हों, तो लाभ 4% अधिक होगा। क्रय मूल्य ज्ञात कीजिए।",
     options: {
-      a: "â‚¹800",
-      b: "â‚¹500",
-      c: "â‚¹600",
-      d: "â‚¹700"
+      a: "₹800",
+      b: "₹500",
+      c: "₹600",
+      d: "₹700"
     },
     options_hi: {
-      a: "â‚¹800",
-      b: "â‚¹500",
-      c: "â‚¹600",
-      d: "â‚¹700"
+      a: "₹800",
+      b: "₹500",
+      c: "₹600",
+      d: "₹700"
     },
     correct_option: "c",
-    solution_text: "Let original CP = x.\nOriginal SP = 1.20x.\nNew CP = x - 100.\nNew SP = 1.20x - 100.\nNew Profit% = 20% + 4% = 24%.\n=> New SP = 1.24 Ã— New CP\n=> 1.20x - 100 = 1.24 Ã— (x - 100)\n=> 1.20x - 100 = 1.24x - 124\n=> 1.24x - 1.20x = 124 - 100\n=> 0.04x = 24\n=> x = 24 / 0.04 = â‚¹600.\nCost price of the article = â‚¹600.\nCorrect Answer: Option (c).",
-    solution_text_hi: "à¤®à¤¾à¤¨à¤¾ à¤®à¥‚à¤² CP = xà¥¤ à¤®à¥‚à¤² SP = 1.20xà¥¤\nà¤¨à¤¯à¤¾ CP = x - 100à¥¤ à¤¨à¤¯à¤¾ SP = 1.20x - 100à¥¤\nà¤¨à¤¯à¤¾ à¤²à¤¾à¤­ = 24% => 1.20x - 100 = 1.24(x - 100) = 1.24x - 124à¥¤\n0.04x = 24 => x = 24 / 0.04 = â‚¹600à¥¤\nà¤…à¤¤à¤ƒ à¤¸à¤¹à¥€ à¤‰à¤¤à¥à¤¤à¤° (c) à¤¹à¥ˆà¥¤",
-    shortcut_text: "0.04x = 124 - 100 = 24 => x = 24 / 0.04 = â‚¹600.",
-    shortcut_text_hi: "0.04x = 24 => x = â‚¹600à¥¤"
+    solution_text: "Let original CP = x.\nOriginal SP = 1.20x.\nNew CP = x - 100.\nNew SP = 1.20x - 100.\nNew Profit% = 20% + 4% = 24%.\n=> New SP = 1.24 × New CP\n=> 1.20x - 100 = 1.24 × (x - 100)\n=> 1.20x - 100 = 1.24x - 124\n=> 1.24x - 1.20x = 124 - 100\n=> 0.04x = 24\n=> x = 24 / 0.04 = ₹600.\nCost price of the article = ₹600.\nCorrect Answer: Option (c).",
+    solution_text_hi: "माना मूल CP = x। मूल SP = 1.20x।\nनया CP = x - 100। नया SP = 1.20x - 100।\nनया लाभ = 24% => 1.20x - 100 = 1.24(x - 100) = 1.24x - 124।\n0.04x = 24 => x = 24 / 0.04 = ₹600।\nअतः सही उत्तर (c) है।",
+    shortcut_text: "0.04x = 124 - 100 = 24 => x = 24 / 0.04 = ₹600.",
+    shortcut_text_hi: "0.04x = 24 => x = ₹600।"
   },
 // ==========================================
   // LEVEL 3: INSPIRED FROM PYQS (Q13 to Q18)
@@ -1219,26 +1219,26 @@ const PROFIT_LOSS_SET_B_QUESTIONS = [
     level_group: "Level 3: Inspired from PYQs",
     type_code: "Type 11",
     type_category: "Two Articles with Same SP and Target Total Profit",
-    type_category_hi: "à¤¸à¤®à¤¾à¤¨ à¤µà¤¿à¤•à¥à¤°à¤¯ à¤®à¥‚à¤²à¥à¤¯ à¤ªà¤° à¤²à¤•à¥à¤·à¤¿à¤¤ à¤•à¥à¤² à¤²à¤¾à¤­",
-    question_text: "The selling price of 2 blankets are the same. One of the blankets is sold at 66 2/3% profit and the CP of the other blanket is â‚¹400 less than its SP. If the total profit on selling both the blankets is 50%, then find the selling price of each blanket.",
-    question_text_hi: "2 à¤•à¤‚à¤¬à¤²à¥‹à¤‚ à¤•à¤¾ à¤µà¤¿à¤•à¥à¤°à¤¯ à¤®à¥‚à¤²à¥à¤¯ à¤¸à¤®à¤¾à¤¨ à¤¹à¥ˆà¥¤ à¤à¤• à¤•à¤‚à¤¬à¤² 66 2/3% à¤²à¤¾à¤­ à¤ªà¤° à¤¬à¥‡à¤šà¤¾ à¤œà¤¾à¤¤à¤¾ à¤¹à¥ˆ à¤”à¤° à¤¦à¥‚à¤¸à¤°à¥‡ à¤•à¤‚à¤¬à¤² à¤•à¤¾ à¤•à¥à¤°à¤¯ à¤®à¥‚à¤²à¥à¤¯ à¤‰à¤¸à¤•à¥‡ à¤µà¤¿à¤•à¥à¤°à¤¯ à¤®à¥‚à¤²à¥à¤¯ à¤¸à¥‡ â‚¹400 à¤•à¤® à¤¹à¥ˆà¥¤ à¤¯à¤¦à¤¿ à¤¦à¥‹à¤¨à¥‹à¤‚ à¤•à¤‚à¤¬à¤²à¥‹à¤‚ à¤•à¥‹ à¤¬à¥‡à¤šà¤¨à¥‡ à¤ªà¤° à¤•à¥à¤² à¤²à¤¾à¤­ 50% à¤¹à¥ˆ, à¤¤à¥‹ à¤ªà¥à¤°à¤¤à¥à¤¯à¥‡à¤• à¤•à¤‚à¤¬à¤² à¤•à¤¾ à¤µà¤¿à¤•à¥à¤°à¤¯ à¤®à¥‚à¤²à¥à¤¯ à¤œà¥à¤žà¤¾à¤¤ à¤•à¥€à¤œà¤¿à¤à¥¤",
+    type_category_hi: "समान विक्रय मूल्य पर लक्षित कुल लाभ",
+    question_text: "The selling price of 2 blankets are the same. One of the blankets is sold at 66 2/3% profit and the CP of the other blanket is ₹400 less than its SP. If the total profit on selling both the blankets is 50%, then find the selling price of each blanket.",
+    question_text_hi: "2 कंबलों का विक्रय मूल्य समान है। एक कंबल 66 2/3% लाभ पर बेचा जाता है और दूसरे कंबल का क्रय मूल्य उसके विक्रय मूल्य से ₹400 कम है। यदि दोनों कंबलों को बेचने पर कुल लाभ 50% है, तो प्रत्येक कंबल का विक्रय मूल्य ज्ञात कीजिए।",
     options: {
-      a: "â‚¹1510",
-      b: "â‚¹1530",
-      c: "â‚¹1520",
-      d: "â‚¹1500"
+      a: "₹1510",
+      b: "₹1530",
+      c: "₹1520",
+      d: "₹1500"
     },
     options_hi: {
-      a: "â‚¹1510",
-      b: "â‚¹1530",
-      c: "â‚¹1520",
-      d: "â‚¹1500"
+      a: "₹1510",
+      b: "₹1530",
+      c: "₹1520",
+      d: "₹1500"
     },
     correct_option: "d",
-    solution_text: "Let the selling price of each blanket = S.\nTotal Selling Price = 2S.\nBlanket 1 is sold at 66 2/3% profit (fraction = 2/3):\n=> SPâ‚ = CPâ‚ Ã— (1 + 2/3) = (5/3) CPâ‚\n=> CPâ‚ = 3S / 5.\nBlanket 2 has CPâ‚‚ = S - 400.\nTotal CP = CPâ‚ + CPâ‚‚ = (3S / 5) + S - 400 = (8S / 5) - 400.\nTotal profit on both is 50%, so Total SP = 1.50 Ã— Total CP:\n2S = 1.5 Ã— [(8S / 5) - 400] = (12S / 5) - 600\nMultiply throughout by 5:\n10S = 12S - 3,000\n2S = 3,000 => S = â‚¹1,500.\nSelling price of each blanket = â‚¹1,500.\nCorrect Answer: Option (d).",
-    solution_text_hi: "à¤®à¤¾à¤¨à¤¾ à¤ªà¥à¤°à¤¤à¥à¤¯à¥‡à¤• à¤•à¤‚à¤¬à¤² à¤•à¤¾ SP = Sà¥¤ à¤•à¥à¤² SP = 2Sà¥¤\nà¤•à¤‚à¤¬à¤² 1 à¤ªà¤° 66 2/3% (2/3) à¤²à¤¾à¤­ => CPâ‚ = 3S/5à¥¤\nà¤•à¤‚à¤¬à¤² 2 à¤•à¤¾ CPâ‚‚ = S - 400à¥¤\nà¤•à¥à¤² CP = 8S/5 - 400à¥¤\nà¤•à¥à¤² 50% à¤²à¤¾à¤­ => 2S = 1.5(8S/5 - 400) = 2.4S - 600à¥¤\n0.4S = 600 => S = â‚¹1,500à¥¤\nà¤…à¤¤à¤ƒ à¤¸à¤¹à¥€ à¤‰à¤¤à¥à¤¤à¤° (d) à¤¹à¥ˆà¥¤",
-    shortcut_text: "2S = 1.5(8S/5 - 400) => 0.4S = 600 => S = â‚¹1,500.",
-    shortcut_text_hi: "0.4S = 600 => S = â‚¹1,500à¥¤"
+    solution_text: "Let the selling price of each blanket = S.\nTotal Selling Price = 2S.\nBlanket 1 is sold at 66 2/3% profit (fraction = 2/3):\n=> SP₁ = CP₁ × (1 + 2/3) = (5/3) CP₁\n=> CP₁ = 3S / 5.\nBlanket 2 has CP₂ = S - 400.\nTotal CP = CP₁ + CP₂ = (3S / 5) + S - 400 = (8S / 5) - 400.\nTotal profit on both is 50%, so Total SP = 1.50 × Total CP:\n2S = 1.5 × [(8S / 5) - 400] = (12S / 5) - 600\nMultiply throughout by 5:\n10S = 12S - 3,000\n2S = 3,000 => S = ₹1,500.\nSelling price of each blanket = ₹1,500.\nCorrect Answer: Option (d).",
+    solution_text_hi: "माना प्रत्येक कंबल का SP = S। कुल SP = 2S।\nकंबल 1 पर 66 2/3% (2/3) लाभ => CP₁ = 3S/5।\nकंबल 2 का CP₂ = S - 400।\nकुल CP = 8S/5 - 400।\nकुल 50% लाभ => 2S = 1.5(8S/5 - 400) = 2.4S - 600।\n0.4S = 600 => S = ₹1,500।\nअतः सही उत्तर (d) है।",
+    shortcut_text: "2S = 1.5(8S/5 - 400) => 0.4S = 600 => S = ₹1,500.",
+    shortcut_text_hi: "0.4S = 600 => S = ₹1,500।"
   },
   {
     question_number: 14,
@@ -1247,26 +1247,26 @@ const PROFIT_LOSS_SET_B_QUESTIONS = [
     level_group: "Level 3: Inspired from PYQs",
     type_code: "Type 8",
     type_category: "Price Shift from 30% Loss to 16% Gain",
-    type_category_hi: "30% à¤¹à¤¾à¤¨à¤¿ à¤¸à¥‡ 16% à¤²à¤¾à¤­ à¤®à¥‡à¤‚ à¤°à¥‚à¤ªà¤¾à¤‚à¤¤à¤°à¤£",
-    question_text: "By selling an item for â‚¹1,729 Rohini made a loss of 30%. At what price should she sell the item to make a gain of 16%?",
-    question_text_hi: "à¤°à¥‹à¤¹à¤¿à¤£à¥€ à¤•à¥‹ à¤à¤• à¤µà¤¸à¥à¤¤à¥ â‚¹1,729 à¤®à¥‡à¤‚ à¤¬à¥‡à¤šà¤¨à¥‡ à¤ªà¤° 30% à¤•à¥€ à¤¹à¤¾à¤¨à¤¿ à¤¹à¥à¤ˆà¥¤ 16% à¤•à¤¾ à¤²à¤¾à¤­ à¤•à¤®à¤¾à¤¨à¥‡ à¤•à¥‡ à¤²à¤¿à¤ à¤‰à¤¸à¥‡ à¤µà¤¸à¥à¤¤à¥ à¤•à¥‹ à¤•à¤¿à¤¸ à¤•à¥€à¤®à¤¤ à¤ªà¤° à¤¬à¥‡à¤šà¤¨à¤¾ à¤šà¤¾à¤¹à¤¿à¤?",
+    type_category_hi: "30% हानि से 16% लाभ में रूपांतरण",
+    question_text: "By selling an item for ₹1,729 Rohini made a loss of 30%. At what price should she sell the item to make a gain of 16%?",
+    question_text_hi: "रोहिणी को एक वस्तु ₹1,729 में बेचने पर 30% की हानि हुई। 16% का लाभ कमाने के लिए उसे वस्तु को किस कीमत पर बेचना चाहिए?",
     options: {
-      a: "â‚¹2,856.20",
-      b: "â‚¹2,865.20",
-      c: "â‚¹2,856.50",
-      d: "â‚¹2,866.40"
+      a: "₹2,856.20",
+      b: "₹2,865.20",
+      c: "₹2,856.50",
+      d: "₹2,866.40"
     },
     options_hi: {
-      a: "â‚¹2,856.20",
-      b: "â‚¹2,865.20",
-      c: "â‚¹2,856.50",
-      d: "â‚¹2,866.40"
+      a: "₹2,856.20",
+      b: "₹2,865.20",
+      c: "₹2,856.50",
+      d: "₹2,866.40"
     },
     correct_option: "b",
-    solution_text: "At 30% loss, SP = 70% of CP = â‚¹1,729.\nCP = 1,729 / 0.70 = â‚¹2,470.\nFor 16% gain, Required SP = 2,470 Ã— (1 + 0.16) = 2,470 Ã— 1.16 = â‚¹2,865.20.\nCorrect Answer: Option (b).",
-    solution_text_hi: "70% = â‚¹1,729 => CP = 1729 / 0.70 = â‚¹2,470à¥¤\n16% à¤²à¤¾à¤­ à¤ªà¤° SP = 2470 Ã— 1.16 = â‚¹2,865.20à¥¤\nà¤…à¤¤à¤ƒ à¤¸à¤¹à¥€ à¤‰à¤¤à¥à¤¤à¤° (b) à¤¹à¥ˆà¥¤",
-    shortcut_text: "SPâ‚‚ = (1729 / 70) Ã— 116 = 24.7 Ã— 116 = â‚¹2,865.20.",
-    shortcut_text_hi: "SPâ‚‚ = (1729 / 70) Ã— 116 = â‚¹2,865.20à¥¤"
+    solution_text: "At 30% loss, SP = 70% of CP = ₹1,729.\nCP = 1,729 / 0.70 = ₹2,470.\nFor 16% gain, Required SP = 2,470 × (1 + 0.16) = 2,470 × 1.16 = ₹2,865.20.\nCorrect Answer: Option (b).",
+    solution_text_hi: "70% = ₹1,729 => CP = 1729 / 0.70 = ₹2,470।\n16% लाभ पर SP = 2470 × 1.16 = ₹2,865.20।\nअतः सही उत्तर (b) है।",
+    shortcut_text: "SP₂ = (1729 / 70) × 116 = 24.7 × 116 = ₹2,865.20.",
+    shortcut_text_hi: "SP₂ = (1729 / 70) × 116 = ₹2,865.20।"
   },
   {
     question_number: 15,
@@ -1275,26 +1275,26 @@ const PROFIT_LOSS_SET_B_QUESTIONS = [
     level_group: "Level 3: Inspired from PYQs",
     type_code: "Type 17",
     type_category: "Midpoint CP to Required Profit Target",
-    type_category_hi: "à¤®à¤§à¥à¤¯ à¤¬à¤¿à¤‚à¤¦à¥ à¤•à¥à¤°à¤¯ à¤®à¥‚à¤²à¥à¤¯ à¤¸à¥‡ à¤²à¤•à¥à¤·à¤¿à¤¤ à¤²à¤¾à¤­",
-    question_text: "The percentage profit earned by James on selling an article for â‚¹1,920 is equal to the percentage loss incurred by selling the same article for â‚¹1,500. At what selling price should he sell the article if he wants to make a profit of 10%?",
-    question_text_hi: "à¤à¤• à¤µà¤¸à¥à¤¤à¥ à¤•à¥‹ â‚¹1,920 à¤®à¥‡à¤‚ à¤¬à¥‡à¤šà¤¨à¥‡ à¤ªà¤° à¤œà¥‡à¤®à¥à¤¸ à¤¦à¥à¤µà¤¾à¤°à¤¾ à¤…à¤°à¥à¤œà¤¿à¤¤ à¤²à¤¾à¤­ à¤ªà¥à¤°à¤¤à¤¿à¤¶à¤¤ à¤‰à¤¸à¥€ à¤µà¤¸à¥à¤¤à¥ à¤•à¥‹ â‚¹1,500 à¤®à¥‡à¤‚ à¤¬à¥‡à¤šà¤¨à¥‡ à¤ªà¤° à¤¹à¥à¤ˆ à¤¹à¤¾à¤¨à¤¿ à¤ªà¥à¤°à¤¤à¤¿à¤¶à¤¤ à¤•à¥‡ à¤¬à¤°à¤¾à¤¬à¤° à¤¹à¥ˆà¥¤ à¤¯à¤¦à¤¿ à¤µà¤¹ 10% à¤•à¤¾ à¤²à¤¾à¤­ à¤•à¤®à¤¾à¤¨à¤¾ à¤šà¤¾à¤¹à¤¤à¤¾ à¤¹à¥ˆ à¤¤à¥‹ à¤‰à¤¸à¥‡ à¤µà¤¸à¥à¤¤à¥ à¤•à¥‹ à¤•à¤¿à¤¸ à¤µà¤¿à¤•à¥à¤°à¤¯ à¤®à¥‚à¤²à¥à¤¯ à¤ªà¤° à¤¬à¥‡à¤šà¤¨à¤¾ à¤šà¤¾à¤¹à¤¿à¤?",
+    type_category_hi: "मध्य बिंदु क्रय मूल्य से लक्षित लाभ",
+    question_text: "The percentage profit earned by James on selling an article for ₹1,920 is equal to the percentage loss incurred by selling the same article for ₹1,500. At what selling price should he sell the article if he wants to make a profit of 10%?",
+    question_text_hi: "एक वस्तु को ₹1,920 में बेचने पर जेम्स द्वारा अर्जित लाभ प्रतिशत उसी वस्तु को ₹1,500 में बेचने पर हुई हानि प्रतिशत के बराबर है। यदि वह 10% का लाभ कमाना चाहता है तो उसे वस्तु को किस विक्रय मूल्य पर बेचना चाहिए?",
     options: {
-      a: "â‚¹2,000",
-      b: "â‚¹4,000",
-      c: "â‚¹1,881",
-      d: "â‚¹7,000"
+      a: "₹2,000",
+      b: "₹4,000",
+      c: "₹1,881",
+      d: "₹7,000"
     },
     options_hi: {
-      a: "â‚¹2,000",
-      b: "â‚¹4,000",
-      c: "â‚¹1,881",
-      d: "â‚¹7,000"
+      a: "₹2,000",
+      b: "₹4,000",
+      c: "₹1,881",
+      d: "₹7,000"
     },
     correct_option: "c",
-    solution_text: "Since percentage profit at â‚¹1,920 equals percentage loss at â‚¹1,500 (both on same CP):\nProfit Amount = Loss Amount\n1,920 - CP = CP - 1,500\n2 CP = 3,420 => CP = â‚¹1,710.\nTo make a profit of 10%:\nRequired SP = 1,710 Ã— 1.10 = â‚¹1,881.\nCorrect Answer: Option (c).",
-    solution_text_hi: "à¤¸à¤®à¤¾à¤¨ à¤²à¤¾à¤­ à¤”à¤° à¤¹à¤¾à¤¨à¤¿ à¤¹à¥‹à¤¨à¥‡ à¤ªà¤° CP = (1920 + 1500) / 2 = 3420 / 2 = â‚¹1,710à¥¤\n10% à¤²à¤¾à¤­ à¤ªà¤° SP = 1710 Ã— 1.10 = â‚¹1,881à¥¤\nà¤…à¤¤à¤ƒ à¤¸à¤¹à¥€ à¤‰à¤¤à¥à¤¤à¤° (c) à¤¹à¥ˆà¥¤",
-    shortcut_text: "CP = (1920 + 1500) / 2 = 1710.\nSP = 1710 Ã— 1.1 = â‚¹1,881.",
-    shortcut_text_hi: "CP = 1710 => SP = 1710 Ã— 1.1 = â‚¹1,881à¥¤"
+    solution_text: "Since percentage profit at ₹1,920 equals percentage loss at ₹1,500 (both on same CP):\nProfit Amount = Loss Amount\n1,920 - CP = CP - 1,500\n2 CP = 3,420 => CP = ₹1,710.\nTo make a profit of 10%:\nRequired SP = 1,710 × 1.10 = ₹1,881.\nCorrect Answer: Option (c).",
+    solution_text_hi: "समान लाभ और हानि होने पर CP = (1920 + 1500) / 2 = 3420 / 2 = ₹1,710।\n10% लाभ पर SP = 1710 × 1.10 = ₹1,881।\nअतः सही उत्तर (c) है।",
+    shortcut_text: "CP = (1920 + 1500) / 2 = 1710.\nSP = 1710 × 1.1 = ₹1,881.",
+    shortcut_text_hi: "CP = 1710 => SP = 1710 × 1.1 = ₹1,881।"
   },
   {
     question_number: 16,
@@ -1303,26 +1303,26 @@ const PROFIT_LOSS_SET_B_QUESTIONS = [
     level_group: "Level 3: Inspired from PYQs",
     type_code: "Type 18",
     type_category: "Cost Increase with New Profit Target",
-    type_category_hi: "à¤²à¤¾à¤—à¤¤ à¤µà¥ƒà¤¦à¥à¤§à¤¿ à¤•à¥‡ à¤¸à¤¾à¤¥ à¤¨à¤¯à¤¾ à¤²à¤¾à¤­ à¤²à¤•à¥à¤·à¥à¤¯",
-    question_text: "A television manufacturer earns a profit of 10% by selling one TV set for â‚¹24,750. If the production cost is increased by 15%, then what would be the new selling price of the TV set so as to gain a profit of 15%?",
-    question_text_hi: "à¤à¤• à¤Ÿà¥‡à¤²à¥€à¤µà¤¿à¤œà¤¨ à¤¨à¤¿à¤°à¥à¤®à¤¾à¤¤à¤¾ à¤à¤• à¤Ÿà¥€à¤µà¥€ à¤¸à¥‡à¤Ÿ â‚¹24,750 à¤®à¥‡à¤‚ à¤¬à¥‡à¤šà¤•à¤° 10% à¤•à¤¾ à¤²à¤¾à¤­ à¤•à¤®à¤¾à¤¤à¤¾ à¤¹à¥ˆà¥¤ à¤¯à¤¦à¤¿ à¤‰à¤¤à¥à¤ªà¤¾à¤¦à¤¨ à¤²à¤¾à¤—à¤¤ à¤®à¥‡à¤‚ 15% à¤•à¥€ à¤µà¥ƒà¤¦à¥à¤§à¤¿ à¤¹à¥‹ à¤œà¤¾à¤¤à¥€ à¤¹à¥ˆ, à¤¤à¥‹ 15% à¤•à¤¾ à¤²à¤¾à¤­ à¤ªà¥à¤°à¤¾à¤ªà¥à¤¤ à¤•à¤°à¤¨à¥‡ à¤•à¥‡ à¤²à¤¿à¤ à¤Ÿà¥€à¤µà¥€ à¤¸à¥‡à¤Ÿ à¤•à¤¾ à¤¨à¤¯à¤¾ à¤µà¤¿à¤•à¥à¤°à¤¯ à¤®à¥‚à¤²à¥à¤¯ à¤•à¥à¤¯à¤¾ à¤¹à¥‹à¤—à¤¾?",
+    type_category_hi: "लागत वृद्धि के साथ नया लाभ लक्ष्य",
+    question_text: "A television manufacturer earns a profit of 10% by selling one TV set for ₹24,750. If the production cost is increased by 15%, then what would be the new selling price of the TV set so as to gain a profit of 15%?",
+    question_text_hi: "एक टेलीविजन निर्माता एक टीवी सेट ₹24,750 में बेचकर 10% का लाभ कमाता है। यदि उत्पादन लागत में 15% की वृद्धि हो जाती है, तो 15% का लाभ प्राप्त करने के लिए टीवी सेट का नया विक्रय मूल्य क्या होगा?",
     options: {
-      a: "â‚¹28,756.25",
-      b: "â‚¹27,756.25",
-      c: "â‚¹29,756.25",
-      d: "â‚¹26,756.26"
+      a: "₹28,756.25",
+      b: "₹27,756.25",
+      c: "₹29,756.25",
+      d: "₹26,756.26"
     },
     options_hi: {
-      a: "â‚¹28,756.25",
-      b: "â‚¹27,756.25",
-      c: "â‚¹29,756.25",
-      d: "â‚¹26,756.26"
+      a: "₹28,756.25",
+      b: "₹27,756.25",
+      c: "₹29,756.25",
+      d: "₹26,756.26"
     },
     correct_option: "c",
-    solution_text: "Original Selling Price = â‚¹24,750 at 10% profit.\nInitial Production Cost = 24,750 / 1.10 = â‚¹22,500.\nNew Production Cost (increased by 15%) = 22,500 Ã— 1.15 = â‚¹25,875.\nNew Selling Price for 15% profit = 25,875 Ã— 1.15 = â‚¹29,756.25.\nCorrect Answer: Option (c).",
-    solution_text_hi: "à¤®à¥‚à¤² CP = 24,750 / 1.10 = â‚¹22,500à¥¤\nà¤¨à¤¯à¤¾ CP = 22,500 Ã— 1.15 = â‚¹25,875à¥¤\n15% à¤²à¤¾à¤­ à¤ªà¤° à¤¨à¤¯à¤¾ SP = 25,875 Ã— 1.15 = â‚¹29,756.25à¥¤\nà¤…à¤¤à¤ƒ à¤¸à¤¹à¥€ à¤‰à¤¤à¥à¤¤à¤° (c) à¤¹à¥ˆà¥¤",
-    shortcut_text: "New SP = (24,750 / 1.10) Ã— 1.15 Ã— 1.15 = 22,500 Ã— 1.3225 = â‚¹29,756.25.",
-    shortcut_text_hi: "New SP = 22,500 Ã— 1.15 Ã— 1.15 = â‚¹29,756.25à¥¤"
+    solution_text: "Original Selling Price = ₹24,750 at 10% profit.\nInitial Production Cost = 24,750 / 1.10 = ₹22,500.\nNew Production Cost (increased by 15%) = 22,500 × 1.15 = ₹25,875.\nNew Selling Price for 15% profit = 25,875 × 1.15 = ₹29,756.25.\nCorrect Answer: Option (c).",
+    solution_text_hi: "मूल CP = 24,750 / 1.10 = ₹22,500।\nनया CP = 22,500 × 1.15 = ₹25,875।\n15% लाभ पर नया SP = 25,875 × 1.15 = ₹29,756.25।\nअतः सही उत्तर (c) है।",
+    shortcut_text: "New SP = (24,750 / 1.10) × 1.15 × 1.15 = 22,500 × 1.3225 = ₹29,756.25.",
+    shortcut_text_hi: "New SP = 22,500 × 1.15 × 1.15 = ₹29,756.25।"
   },
   {
     question_number: 17,
@@ -1331,26 +1331,26 @@ const PROFIT_LOSS_SET_B_QUESTIONS = [
     level_group: "Level 3: Inspired from PYQs",
     type_code: "Type 8",
     type_category: "22% Loss to 6% Gain Price Transition",
-    type_category_hi: "22% à¤¹à¤¾à¤¨à¤¿ à¤¸à¥‡ 6% à¤²à¤¾à¤­ à¤®à¥‡à¤‚ à¤°à¥‚à¤ªà¤¾à¤‚à¤¤à¤°à¤£",
-    question_text: "A seller gets 22% loss on selling a set of books for â‚¹1,755. What should be its selling price for getting 6% profit?",
-    question_text_hi: "à¤à¤• à¤µà¤¿à¤•à¥à¤°à¥‡à¤¤à¤¾ à¤•à¥‹ à¤ªà¥à¤¸à¥à¤¤à¤•à¥‹à¤‚ à¤•à¤¾ à¤à¤• à¤¸à¥‡à¤Ÿ â‚¹1,755 à¤®à¥‡à¤‚ à¤¬à¥‡à¤šà¤¨à¥‡ à¤ªà¤° 22% à¤•à¥€ à¤¹à¤¾à¤¨à¤¿ à¤¹à¥‹à¤¤à¥€ à¤¹à¥ˆà¥¤ 6% à¤²à¤¾à¤­ à¤ªà¥à¤°à¤¾à¤ªà¥à¤¤ à¤•à¤°à¤¨à¥‡ à¤•à¥‡ à¤²à¤¿à¤ à¤‡à¤¸à¤•à¤¾ à¤µà¤¿à¤•à¥à¤°à¤¯ à¤®à¥‚à¤²à¥à¤¯ à¤•à¥à¤¯à¤¾ à¤¹à¥‹à¤¨à¤¾ à¤šà¤¾à¤¹à¤¿à¤?",
+    type_category_hi: "22% हानि से 6% लाभ में रूपांतरण",
+    question_text: "A seller gets 22% loss on selling a set of books for ₹1,755. What should be its selling price for getting 6% profit?",
+    question_text_hi: "एक विक्रेता को पुस्तकों का एक सेट ₹1,755 में बेचने पर 22% की हानि होती है। 6% लाभ प्राप्त करने के लिए इसका विक्रय मूल्य क्या होना चाहिए?",
     options: {
-      a: "â‚¹2,375",
-      b: "â‚¹2,385",
-      c: "â‚¹2,355",
-      d: "â‚¹2,365"
+      a: "₹2,375",
+      b: "₹2,385",
+      c: "₹2,355",
+      d: "₹2,365"
     },
     options_hi: {
-      a: "â‚¹2,375",
-      b: "â‚¹2,385",
-      c: "â‚¹2,355",
-      d: "â‚¹2,365"
+      a: "₹2,375",
+      b: "₹2,385",
+      c: "₹2,355",
+      d: "₹2,365"
     },
     correct_option: "b",
-    solution_text: "At 22% loss, SP = (100 - 22)% = 78% of CP = â‚¹1,755.\nCP = 1,755 / 0.78 = â‚¹2,250.\nFor 6% profit, Required SP = 2,250 Ã— 1.06 = â‚¹2,385.\nCorrect Answer: Option (b).",
-    solution_text_hi: "78% = â‚¹1,755 => CP = 1755 / 0.78 = â‚¹2,250à¥¤\n6% à¤²à¤¾à¤­ à¤ªà¤° à¤…à¤­à¥€à¤·à¥à¤Ÿ SP = 2250 Ã— 1.06 = â‚¹2,385à¥¤\nà¤…à¤¤à¤ƒ à¤¸à¤¹à¥€ à¤‰à¤¤à¥à¤¤à¤° (b) à¤¹à¥ˆà¥¤",
-    shortcut_text: "SPâ‚‚ = (1755 / 78) Ã— 106 = 22.5 Ã— 106 = â‚¹2,385.",
-    shortcut_text_hi: "SPâ‚‚ = (1755 / 78) Ã— 106 = 22.5 Ã— 106 = â‚¹2,385à¥¤"
+    solution_text: "At 22% loss, SP = (100 - 22)% = 78% of CP = ₹1,755.\nCP = 1,755 / 0.78 = ₹2,250.\nFor 6% profit, Required SP = 2,250 × 1.06 = ₹2,385.\nCorrect Answer: Option (b).",
+    solution_text_hi: "78% = ₹1,755 => CP = 1755 / 0.78 = ₹2,250।\n6% लाभ पर अभीष्ट SP = 2250 × 1.06 = ₹2,385।\nअतः सही उत्तर (b) है।",
+    shortcut_text: "SP₂ = (1755 / 78) × 106 = 22.5 × 106 = ₹2,385.",
+    shortcut_text_hi: "SP₂ = (1755 / 78) × 106 = 22.5 × 106 = ₹2,385।"
   },
   {
     question_number: 18,
@@ -1359,26 +1359,26 @@ const PROFIT_LOSS_SET_B_QUESTIONS = [
     level_group: "Level 3: Inspired from PYQs",
     type_code: "Type 9",
     type_category: "Mixed Grains with Different Profits",
-    type_category_hi: "à¤µà¤¿à¤­à¤¿à¤¨à¥à¤¨ à¤²à¤¾à¤­ à¤¦à¤°à¥‹à¤‚ à¤ªà¤° à¤¸à¤‚à¤¯à¥à¤•à¥à¤¤ à¤…à¤¨à¤¾à¤œ",
-    question_text: "The cost price of 5 kg of wheat and 10 kg of lentil were â‚¹70 and â‚¹80 per kg respectively. On selling, he gained 10% profit on wheat and 20% profit on lentil. What was the total selling price of all items?",
-    question_text_hi: "5 à¤•à¤¿à¤²à¥‹ à¤—à¥‡à¤¹à¥‚à¤‚ à¤”à¤° 10 à¤•à¤¿à¤²à¥‹ à¤¦à¤¾à¤² à¤•à¤¾ à¤•à¥à¤°à¤¯ à¤®à¥‚à¤²à¥à¤¯ à¤•à¥à¤°à¤®à¤¶à¤ƒ â‚¹70 à¤”à¤° â‚¹80 à¤ªà¥à¤°à¤¤à¤¿ à¤•à¤¿à¤²à¥‹ à¤¥à¤¾à¥¤ à¤¬à¥‡à¤šà¤¨à¥‡ à¤ªà¤°, à¤‰à¤¸à¥‡ à¤—à¥‡à¤¹à¥‚à¤‚ à¤ªà¤° 10% à¤”à¤° à¤¦à¤¾à¤² à¤ªà¤° 20% à¤•à¤¾ à¤²à¤¾à¤­ à¤¹à¥à¤†à¥¤ à¤¸à¤­à¥€ à¤µà¤¸à¥à¤¤à¥à¤“à¤‚ à¤•à¤¾ à¤•à¥à¤² à¤µà¤¿à¤•à¥à¤°à¤¯ à¤®à¥‚à¤²à¥à¤¯ à¤•à¥à¤¯à¤¾ à¤¥à¤¾?",
+    type_category_hi: "विभिन्न लाभ दरों पर संयुक्त अनाज",
+    question_text: "The cost price of 5 kg of wheat and 10 kg of lentil were ₹70 and ₹80 per kg respectively. On selling, he gained 10% profit on wheat and 20% profit on lentil. What was the total selling price of all items?",
+    question_text_hi: "5 किलो गेहूं और 10 किलो दाल का क्रय मूल्य क्रमशः ₹70 और ₹80 प्रति किलो था। बेचने पर, उसे गेहूं पर 10% और दाल पर 20% का लाभ हुआ। सभी वस्तुओं का कुल विक्रय मूल्य क्या था?",
     options: {
-      a: "â‚¹1,375",
-      b: "â‚¹1,345",
-      c: "â‚¹1,400",
-      d: "â‚¹1,350"
+      a: "₹1,375",
+      b: "₹1,345",
+      c: "₹1,400",
+      d: "₹1,350"
     },
     options_hi: {
-      a: "â‚¹1,375",
-      b: "â‚¹1,345",
-      c: "â‚¹1,400",
-      d: "â‚¹1,350"
+      a: "₹1,375",
+      b: "₹1,345",
+      c: "₹1,400",
+      d: "₹1,350"
     },
     correct_option: "b",
-    solution_text: "Wheat:\nCP = 5 kg Ã— â‚¹70 = â‚¹350.\nProfit = 10% => SP = 350 Ã— 1.10 = â‚¹385.\nLentil:\nCP = 10 kg Ã— â‚¹80 = â‚¹800.\nProfit = 20% => SP = 800 Ã— 1.20 = â‚¹960.\nTotal Selling Price = 385 + 960 = â‚¹1,345.\nCorrect Answer: Option (b).",
-    solution_text_hi: "à¤—à¥‡à¤¹à¥‚à¤‚: CP = 5 Ã— 70 = â‚¹350 => SP = 350 Ã— 1.10 = â‚¹385à¥¤\nà¤¦à¤¾à¤²: CP = 10 Ã— 80 = â‚¹800 => SP = 800 Ã— 1.20 = â‚¹960à¥¤\nà¤•à¥à¤² à¤µà¤¿à¤•à¥à¤°à¤¯ à¤®à¥‚à¤²à¥à¤¯ = 385 + 960 = â‚¹1,345à¥¤\nà¤…à¤¤à¤ƒ à¤¸à¤¹à¥€ à¤‰à¤¤à¥à¤¤à¤° (b) à¤¹à¥ˆà¥¤",
-    shortcut_text: "SP = (350 Ã— 1.10) + (800 Ã— 1.20) = 385 + 960 = â‚¹1,345.",
-    shortcut_text_hi: "à¤•à¥à¤² SP = 385 + 960 = â‚¹1,345à¥¤"
+    solution_text: "Wheat:\nCP = 5 kg × ₹70 = ₹350.\nProfit = 10% => SP = 350 × 1.10 = ₹385.\nLentil:\nCP = 10 kg × ₹80 = ₹800.\nProfit = 20% => SP = 800 × 1.20 = ₹960.\nTotal Selling Price = 385 + 960 = ₹1,345.\nCorrect Answer: Option (b).",
+    solution_text_hi: "गेहूं: CP = 5 × 70 = ₹350 => SP = 350 × 1.10 = ₹385।\nदाल: CP = 10 × 80 = ₹800 => SP = 800 × 1.20 = ₹960।\nकुल विक्रय मूल्य = 385 + 960 = ₹1,345।\nअतः सही उत्तर (b) है।",
+    shortcut_text: "SP = (350 × 1.10) + (800 × 1.20) = 385 + 960 = ₹1,345.",
+    shortcut_text_hi: "कुल SP = 385 + 960 = ₹1,345।"
   },
 
   // ==========================================
@@ -1391,26 +1391,26 @@ const PROFIT_LOSS_SET_B_QUESTIONS = [
     level_group: "Level 4: PYQ+",
     type_code: "Type 19",
     type_category: "Two Articles at Loss and Gain Combination",
-    type_category_hi: "à¤¹à¤¾à¤¨à¤¿ à¤”à¤° à¤²à¤¾à¤­ à¤•à¤¾ à¤¸à¤‚à¤¯à¥à¤•à¥à¤¤ à¤²à¥‡à¤¨-à¤¦à¥‡à¤¨",
-    question_text: "A man sold a shirt for â‚¹960 at a loss of 4%. He sells a sweater for â‚¹840 at a profit of 20%. Find his net profit or loss in â‚¹.",
-    question_text_hi: "à¤à¤• à¤µà¥à¤¯à¤•à¥à¤¤à¤¿ à¤¨à¥‡ à¤à¤• à¤¶à¤°à¥à¤Ÿ â‚¹960 à¤®à¥‡à¤‚ 4% à¤•à¥€ à¤¹à¤¾à¤¨à¤¿ à¤ªà¤° à¤¬à¥‡à¤šà¥€à¥¤ à¤µà¤¹ à¤à¤• à¤¸à¥à¤µà¥‡à¤Ÿà¤° â‚¹840 à¤®à¥‡à¤‚ 20% à¤•à¥‡ à¤²à¤¾à¤­ à¤ªà¤° à¤¬à¥‡à¤šà¤¤à¤¾ à¤¹à¥ˆà¥¤ à¤‰à¤¸à¤•à¤¾ à¤¶à¥à¤¦à¥à¤§ à¤²à¤¾à¤­ à¤¯à¤¾ à¤¹à¤¾à¤¨à¤¿ à¤œà¥à¤žà¤¾à¤¤ à¤•à¥€à¤œà¤¿à¤à¥¤",
+    type_category_hi: "हानि और लाभ का संयुक्त लेन-देन",
+    question_text: "A man sold a shirt for ₹960 at a loss of 4%. He sells a sweater for ₹840 at a profit of 20%. Find his net profit or loss in ₹.",
+    question_text_hi: "एक व्यक्ति ने एक शर्ट ₹960 में 4% की हानि पर बेची। वह एक स्वेटर ₹840 में 20% के लाभ पर बेचता है। उसका शुद्ध लाभ या हानि ज्ञात कीजिए।",
     options: {
-      a: "Profit, â‚¹100",
-      b: "Loss, â‚¹123",
-      c: "Loss, â‚¹100",
-      d: "Profit, â‚¹123"
+      a: "Profit, ₹100",
+      b: "Loss, ₹123",
+      c: "Loss, ₹100",
+      d: "Profit, ₹123"
     },
     options_hi: {
-      a: "â‚¹100 à¤²à¤¾à¤­",
-      b: "â‚¹123 à¤¹à¤¾à¤¨à¤¿",
-      c: "â‚¹100 à¤¹à¤¾à¤¨à¤¿",
-      d: "â‚¹123 à¤²à¤¾à¤­"
+      a: "₹100 लाभ",
+      b: "₹123 हानि",
+      c: "₹100 हानि",
+      d: "₹123 लाभ"
     },
     correct_option: "a",
-    solution_text: "Shirt: SP = â‚¹960 at 4% loss.\nCP_shirt = 960 / 0.96 = â‚¹1,000.\nLoss on shirt = 1,000 - 960 = â‚¹40.\nSweater: SP = â‚¹840 at 20% profit.\nCP_sweater = 840 / 1.20 = â‚¹700.\nProfit on sweater = 840 - 700 = â‚¹140.\nNet Profit = Profit on sweater - Loss on shirt = 140 - 40 = â‚¹100.\nCorrect Answer: Option (a).",
-    solution_text_hi: "à¤¶à¤°à¥à¤Ÿ à¤•à¤¾ CP = 960 / 0.96 = â‚¹1,000à¥¤ à¤¹à¤¾à¤¨à¤¿ = â‚¹40à¥¤\nà¤¸à¥à¤µà¥‡à¤Ÿà¤° à¤•à¤¾ CP = 840 / 1.20 = â‚¹700à¥¤ à¤²à¤¾à¤­ = â‚¹140à¥¤\nà¤¶à¥à¤¦à¥à¤§ à¤²à¤¾à¤­ = 140 - 40 = â‚¹100 (à¤²à¤¾à¤­)à¥¤\nà¤…à¤¤à¤ƒ à¤¸à¤¹à¥€ à¤‰à¤¤à¥à¤¤à¤° (a) à¤¹à¥ˆà¥¤",
-    shortcut_text: "Total SP = 960 + 840 = 1,800.\nTotal CP = 1,000 + 700 = 1,700.\nNet Profit = 1,800 - 1,700 = â‚¹100.",
-    shortcut_text_hi: "à¤•à¥à¤² SP = 1800, à¤•à¥à¤² CP = 1700 => à¤²à¤¾à¤­ = â‚¹100à¥¤"
+    solution_text: "Shirt: SP = ₹960 at 4% loss.\nCP_shirt = 960 / 0.96 = ₹1,000.\nLoss on shirt = 1,000 - 960 = ₹40.\nSweater: SP = ₹840 at 20% profit.\nCP_sweater = 840 / 1.20 = ₹700.\nProfit on sweater = 840 - 700 = ₹140.\nNet Profit = Profit on sweater - Loss on shirt = 140 - 40 = ₹100.\nCorrect Answer: Option (a).",
+    solution_text_hi: "शर्ट का CP = 960 / 0.96 = ₹1,000। हानि = ₹40।\nस्वेटर का CP = 840 / 1.20 = ₹700। लाभ = ₹140।\nशुद्ध लाभ = 140 - 40 = ₹100 (लाभ)।\nअतः सही उत्तर (a) है।",
+    shortcut_text: "Total SP = 960 + 840 = 1,800.\nTotal CP = 1,000 + 700 = 1,700.\nNet Profit = 1,800 - 1,700 = ₹100.",
+    shortcut_text_hi: "कुल SP = 1800, कुल CP = 1700 => लाभ = ₹100।"
   },
   {
     question_number: 20,
@@ -1419,26 +1419,26 @@ const PROFIT_LOSS_SET_B_QUESTIONS = [
     level_group: "Level 4: PYQ+",
     type_code: "Type 20",
     type_category: "Buy-Back Transaction with Loss on Resale",
-    type_category_hi: "à¤ªà¥à¤¨à¤°à¥à¤–à¤°à¥€à¤¦ à¤”à¤° à¤ªà¥à¤¨à¤°à¥à¤µà¤¿à¤•à¥à¤°à¤¯ à¤²à¥‡à¤¨-à¤¦à¥‡à¤¨",
-    question_text: "A motor car worth â‚¹2,00,000 is sold by Ramu at 5% profit to Rahul. Rahul sells the motor car back to Ramu at 2% loss. Ramu's net profit (in â‚¹) in the complete transaction is:",
-    question_text_hi: "à¤°à¤¾à¤®à¥‚ à¤¦à¥à¤µà¤¾à¤°à¤¾ â‚¹2,00,000 à¤®à¥‚à¤²à¥à¤¯ à¤•à¥€ à¤à¤• à¤®à¥‹à¤Ÿà¤° à¤•à¤¾à¤° 5% à¤²à¤¾à¤­ à¤ªà¤° à¤°à¤¾à¤¹à¥à¤² à¤•à¥‹ à¤¬à¥‡à¤šà¥€ à¤œà¤¾à¤¤à¥€ à¤¹à¥ˆà¥¤ à¤°à¤¾à¤¹à¥à¤² à¤®à¥‹à¤Ÿà¤° à¤•à¤¾à¤° à¤•à¥‹ 2% à¤¹à¤¾à¤¨à¤¿ à¤ªà¤° à¤°à¤¾à¤®à¥‚ à¤•à¥‹ à¤µà¤¾à¤ªà¤¸ à¤¬à¥‡à¤š à¤¦à¥‡à¤¤à¤¾ à¤¹à¥ˆà¥¤ à¤ªà¥‚à¤°à¥‡ à¤²à¥‡à¤¨-à¤¦à¥‡à¤¨ à¤®à¥‡à¤‚ à¤°à¤¾à¤®à¥‚ à¤•à¤¾ à¤¶à¥à¤¦à¥à¤§ à¤²à¤¾à¤­ (â‚¹ à¤®à¥‡à¤‚) à¤¹à¥ˆ:",
+    type_category_hi: "पुनर्खरीद और पुनर्विक्रय लेन-देन",
+    question_text: "A motor car worth ₹2,00,000 is sold by Ramu at 5% profit to Rahul. Rahul sells the motor car back to Ramu at 2% loss. Ramu's net profit (in ₹) in the complete transaction is:",
+    question_text_hi: "रामू द्वारा ₹2,00,000 मूल्य की एक मोटर कार 5% लाभ पर राहुल को बेची जाती है। राहुल मोटर कार को 2% हानि पर रामू को वापस बेच देता है। पूरे लेन-देन में रामू का शुद्ध लाभ (₹ में) है:",
     options: {
-      a: "â‚¹3,208",
-      b: "â‚¹2,058",
-      c: "â‚¹4,200",
-      d: "â‚¹3,200"
+      a: "₹3,208",
+      b: "₹2,058",
+      c: "₹4,200",
+      d: "₹3,200"
     },
     options_hi: {
-      a: "â‚¹3,208",
-      b: "â‚¹2,058",
-      c: "â‚¹4,200",
-      d: "â‚¹3,200"
+      a: "₹3,208",
+      b: "₹2,058",
+      c: "₹4,200",
+      d: "₹3,200"
     },
     correct_option: "c",
-    solution_text: "Step 1: Ramu sells car to Rahul at 5% profit:\nSelling Price (Rahul's CP) = 2,00,000 Ã— 1.05 = â‚¹2,10,000.\nRamu has received â‚¹2,10,000.\nStep 2: Rahul sells back to Ramu at 2% loss on â‚¹2,10,000:\nRahul's SP (Ramu pays) = 2,10,000 Ã— (1 - 0.02) = 2,10,000 Ã— 0.98 = â‚¹2,05,800.\nRamu receives his car back and keeps the difference in cash:\nNet Profit = Cash Received - Cash Paid = 2,10,000 - 2,05,800 = â‚¹4,200.\nCorrect Answer: Option (c).",
-    solution_text_hi: "à¤šà¤°à¤£ 1: à¤°à¤¾à¤®à¥‚ à¤¨à¥‡ à¤°à¤¾à¤¹à¥à¤² à¤•à¥‹ à¤¬à¥‡à¤šà¤¾ = 2,00,000 Ã— 1.05 = â‚¹2,10,000à¥¤\nà¤šà¤°à¤£ 2: à¤°à¤¾à¤¹à¥à¤² à¤¨à¥‡ 2% à¤¹à¤¾à¤¨à¤¿ à¤ªà¤° à¤°à¤¾à¤®à¥‚ à¤•à¥‹ à¤µà¤¾à¤ªà¤¸ à¤¬à¥‡à¤šà¤¾ = 2,10,000 Ã— 0.98 = â‚¹2,05,800à¥¤\nà¤°à¤¾à¤®à¥‚ à¤•à¥‡ à¤ªà¤¾à¤¸ à¤•à¤¾à¤° à¤µà¤¾à¤ªà¤¸ à¤† à¤—à¤ˆ à¤”à¤° à¤¨à¤•à¤¦ à¤¬à¤šà¤¾ = 2,10,000 - 2,05,800 = â‚¹4,200à¥¤\nà¤…à¤¤à¤ƒ à¤¸à¤¹à¥€ à¤‰à¤¤à¥à¤¤à¤° (c) à¤¹à¥ˆà¥¤",
-    shortcut_text: "Ramu's gain = 2% of Rahul's cost = 2% of â‚¹2,10,000 = â‚¹4,200.",
-    shortcut_text_hi: "à¤°à¤¾à¤®à¥‚ à¤•à¤¾ à¤²à¤¾à¤­ = 2,10,000 à¤•à¤¾ 2% = â‚¹4,200à¥¤"
+    solution_text: "Step 1: Ramu sells car to Rahul at 5% profit:\nSelling Price (Rahul's CP) = 2,00,000 × 1.05 = ₹2,10,000.\nRamu has received ₹2,10,000.\nStep 2: Rahul sells back to Ramu at 2% loss on ₹2,10,000:\nRahul's SP (Ramu pays) = 2,10,000 × (1 - 0.02) = 2,10,000 × 0.98 = ₹2,05,800.\nRamu receives his car back and keeps the difference in cash:\nNet Profit = Cash Received - Cash Paid = 2,10,000 - 2,05,800 = ₹4,200.\nCorrect Answer: Option (c).",
+    solution_text_hi: "चरण 1: रामू ने राहुल को बेचा = 2,00,000 × 1.05 = ₹2,10,000।\nचरण 2: राहुल ने 2% हानि पर रामू को वापस बेचा = 2,10,000 × 0.98 = ₹2,05,800।\nरामू के पास कार वापस आ गई और नकद बचा = 2,10,000 - 2,05,800 = ₹4,200।\nअतः सही उत्तर (c) है।",
+    shortcut_text: "Ramu's gain = 2% of Rahul's cost = 2% of ₹2,10,000 = ₹4,200.",
+    shortcut_text_hi: "रामू का लाभ = 2,10,000 का 2% = ₹4,200।"
   },
   {
     question_number: 21,
@@ -1447,26 +1447,26 @@ const PROFIT_LOSS_SET_B_QUESTIONS = [
     level_group: "Level 4: PYQ+",
     type_code: "Type 6",
     type_category: "Grouped Clothing Cost & Individual Sale",
-    type_category_hi: "à¤¸à¤‚à¤¯à¥à¤•à¥à¤¤ à¤µà¤¸à¥à¤¤à¥à¤° à¤²à¤¾à¤—à¤¤ à¤”à¤° à¤µà¥à¤¯à¤•à¥à¤¤à¤¿à¤—à¤¤ à¤¬à¤¿à¤•à¥à¤°à¥€",
-    question_text: "The set of 2 pants and 4 shirts or 1 pant and 6 shirts costs â‚¹5,600. A shopkeeper decides to sell them separately. He sold 10 shirts for â‚¹6,000. Find the loss or profit on each shirt.",
-    question_text_hi: "2 à¤ªà¥ˆà¤‚à¤Ÿ à¤”à¤° 4 à¤¶à¤°à¥à¤Ÿ à¤¯à¤¾ 1 à¤ªà¥ˆà¤‚à¤Ÿ à¤”à¤° 6 à¤¶à¤°à¥à¤Ÿ à¤•à¥‡ à¤¸à¥‡à¤Ÿ à¤•à¥€ à¤•à¥€à¤®à¤¤ â‚¹5,600 à¤¹à¥ˆà¥¤ à¤à¤• à¤¦à¥à¤•à¤¾à¤¨à¤¦à¤¾à¤° à¤‰à¤¨à¥à¤¹à¥‡à¤‚ à¤…à¤²à¤—-à¤…à¤²à¤— à¤¬à¥‡à¤šà¤¨à¥‡ à¤•à¤¾ à¤«à¥ˆà¤¸à¤²à¤¾ à¤•à¤°à¤¤à¤¾ à¤¹à¥ˆà¥¤ à¤‰à¤¸à¤¨à¥‡ â‚¹6,000 à¤®à¥‡à¤‚ 10 à¤¶à¤°à¥à¤Ÿ à¤¬à¥‡à¤šà¥€à¤‚à¥¤ à¤ªà¥à¤°à¤¤à¥à¤¯à¥‡à¤• à¤¶à¤°à¥à¤Ÿ à¤ªà¤° à¤¹à¤¾à¤¨à¤¿ à¤¯à¤¾ à¤²à¤¾à¤­ à¤œà¥à¤žà¤¾à¤¤ à¤•à¥€à¤œà¤¿à¤à¥¤",
+    type_category_hi: "संयुक्त वस्त्र लागत और व्यक्तिगत बिक्री",
+    question_text: "The set of 2 pants and 4 shirts or 1 pant and 6 shirts costs ₹5,600. A shopkeeper decides to sell them separately. He sold 10 shirts for ₹6,000. Find the loss or profit on each shirt.",
+    question_text_hi: "2 पैंट और 4 शर्ट या 1 पैंट और 6 शर्ट के सेट की कीमत ₹5,600 है। एक दुकानदार उन्हें अलग-अलग बेचने का फैसला करता है। उसने ₹6,000 में 10 शर्ट बेचीं। प्रत्येक शर्ट पर हानि या लाभ ज्ञात कीजिए।",
     options: {
-      a: "Profit â‚¹1,000",
-      b: "Loss â‚¹1,000",
-      c: "Profit â‚¹100",
-      d: "Loss â‚¹100"
+      a: "Profit ₹1,000",
+      b: "Loss ₹1,000",
+      c: "Profit ₹100",
+      d: "Loss ₹100"
     },
     options_hi: {
-      a: "â‚¹1,000 à¤²à¤¾à¤­",
-      b: "â‚¹1,000 à¤¹à¤¾à¤¨à¤¿",
-      c: "â‚¹100 à¤²à¤¾à¤­",
-      d: "â‚¹100 à¤¹à¤¾à¤¨à¤¿"
+      a: "₹1,000 लाभ",
+      b: "₹1,000 हानि",
+      c: "₹100 लाभ",
+      d: "₹100 हानि"
     },
     correct_option: "d",
-    solution_text: "Let CP of 1 pant = P and CP of 1 shirt = S.\nGiven: 2P + 4S = P + 6S = â‚¹5,600\nFrom 2P + 4S = P + 6S => P = 2S.\nSubstitute P = 2S into P + 6S = 5,600:\n2S + 6S = 5,600 => 8S = 5,600 => S = â‚¹700.\nCost price of 1 shirt = â‚¹700.\nSelling price of 1 shirt = 6,000 / 10 = â‚¹600.\nLoss per shirt = CP - SP = 700 - 600 = â‚¹100 Loss.\nCorrect Answer: Option (d).",
-    solution_text_hi: "2P + 4S = P + 6S => P = 2Sà¥¤\n2S + 6S = 5,600 => 8S = 5,600 => S = â‚¹700à¥¤\n1 à¤¶à¤°à¥à¤Ÿ à¤•à¤¾ SP = 6,000 / 10 = â‚¹600à¥¤\nà¤¹à¤¾à¤¨à¤¿ = 700 - 600 = â‚¹100 à¤¹à¤¾à¤¨à¤¿à¥¤\nà¤…à¤¤à¤ƒ à¤¸à¤¹à¥€ à¤‰à¤¤à¥à¤¤à¤° (d) à¤¹à¥ˆà¥¤",
-    shortcut_text: "8 Shirts = 5,600 => CP = 700. SP = 600 => Loss = â‚¹100.",
-    shortcut_text_hi: "8 à¤¶à¤°à¥à¤Ÿ = 5600 => CP = 700à¥¤ SP = 600 => à¤¹à¤¾à¤¨à¤¿ = â‚¹100à¥¤"
+    solution_text: "Let CP of 1 pant = P and CP of 1 shirt = S.\nGiven: 2P + 4S = P + 6S = ₹5,600\nFrom 2P + 4S = P + 6S => P = 2S.\nSubstitute P = 2S into P + 6S = 5,600:\n2S + 6S = 5,600 => 8S = 5,600 => S = ₹700.\nCost price of 1 shirt = ₹700.\nSelling price of 1 shirt = 6,000 / 10 = ₹600.\nLoss per shirt = CP - SP = 700 - 600 = ₹100 Loss.\nCorrect Answer: Option (d).",
+    solution_text_hi: "2P + 4S = P + 6S => P = 2S।\n2S + 6S = 5,600 => 8S = 5,600 => S = ₹700।\n1 शर्ट का SP = 6,000 / 10 = ₹600।\nहानि = 700 - 600 = ₹100 हानि।\nअतः सही उत्तर (d) है।",
+    shortcut_text: "8 Shirts = 5,600 => CP = 700. SP = 600 => Loss = ₹100.",
+    shortcut_text_hi: "8 शर्ट = 5600 => CP = 700। SP = 600 => हानि = ₹100।"
   },
   {
     question_number: 22,
@@ -1475,9 +1475,9 @@ const PROFIT_LOSS_SET_B_QUESTIONS = [
     level_group: "Level 4: PYQ+",
     type_code: "Type 2",
     type_category: "Ratio of x to y for Given Profit",
-    type_category_hi: "à¤¦à¤¿à¤ à¤—à¤ à¤²à¤¾à¤­ à¤•à¥‡ à¤²à¤¿à¤ x à¤”à¤° y à¤•à¤¾ à¤…à¤¨à¥à¤ªà¤¾à¤¤",
+    type_category_hi: "दिए गए लाभ के लिए x और y का अनुपात",
     question_text: "When the cost price of x articles is equal to the selling price of y articles, the profit is 25%. Find the ratio of x : y.",
-    question_text_hi: "à¤œà¤¬ x à¤µà¤¸à¥à¤¤à¥à¤“à¤‚ à¤•à¤¾ à¤•à¥à¤°à¤¯ à¤®à¥‚à¤²à¥à¤¯ y à¤µà¤¸à¥à¤¤à¥à¤“à¤‚ à¤•à¥‡ à¤µà¤¿à¤•à¥à¤°à¤¯ à¤®à¥‚à¤²à¥à¤¯ à¤•à¥‡ à¤¬à¤°à¤¾à¤¬à¤° à¤¹à¥‹à¤¤à¤¾ à¤¹à¥ˆ, à¤¤à¥‹ à¤²à¤¾à¤­ 25% à¤¹à¥‹à¤¤à¤¾ à¤¹à¥ˆ, à¤¤à¥‹ x : y à¤•à¤¾ à¤…à¤¨à¥à¤ªà¤¾à¤¤ à¤œà¥à¤žà¤¾à¤¤ à¤•à¥€à¤œà¤¿à¤à¥¤",
+    question_text_hi: "जब x वस्तुओं का क्रय मूल्य y वस्तुओं के विक्रय मूल्य के बराबर होता है, तो लाभ 25% होता है, तो x : y का अनुपात ज्ञात कीजिए।",
     options: {
       a: "4:5",
       b: "5:4",
@@ -1491,10 +1491,10 @@ const PROFIT_LOSS_SET_B_QUESTIONS = [
       d: "3:3"
     },
     correct_option: "b",
-    solution_text: "Given: x Ã— CP = y Ã— SP => SP / CP = x / y.\nProfit% = 25% => SP / CP = 1 + 0.25 = 125 / 100 = 5 / 4.\nEquating the ratios:\nx / y = 5 / 4.\nTherefore, x : y = 5 : 4.\nCorrect Answer: Option (b).",
-    solution_text_hi: "x Ã— CP = y Ã— SP => SP / CP = x / yà¥¤\n25% à¤²à¤¾à¤­ => SP / CP = 125 / 100 = 5 / 4à¥¤\nà¤…à¤¤à¤ƒ x : y = 5 : 4à¥¤ à¤µà¤¿à¤•à¤²à¥à¤ª (b)à¥¤",
+    solution_text: "Given: x × CP = y × SP => SP / CP = x / y.\nProfit% = 25% => SP / CP = 1 + 0.25 = 125 / 100 = 5 / 4.\nEquating the ratios:\nx / y = 5 / 4.\nTherefore, x : y = 5 : 4.\nCorrect Answer: Option (b).",
+    solution_text_hi: "x × CP = y × SP => SP / CP = x / y।\n25% लाभ => SP / CP = 125 / 100 = 5 / 4।\nअतः x : y = 5 : 4। विकल्प (b)।",
     shortcut_text: "x / y = SP / CP = 125 / 100 = 5 : 4.",
-    shortcut_text_hi: "x : y = SP : CP = 125 : 100 = 5 : 4à¥¤"
+    shortcut_text_hi: "x : y = SP : CP = 125 : 100 = 5 : 4।"
   },
   {
     question_number: 23,
@@ -1503,9 +1503,9 @@ const PROFIT_LOSS_SET_B_QUESTIONS = [
     level_group: "Level 4: PYQ+",
     type_code: "Type 21",
     type_category: "Ratio of Selling Prices with Differential Gains",
-    type_category_hi: "à¤µà¤¿à¤­à¤¿à¤¨à¥à¤¨ à¤²à¤¾à¤­à¥‹à¤‚ à¤ªà¤° à¤µà¤¿à¤•à¥à¤°à¤¯ à¤®à¥‚à¤²à¥à¤¯à¥‹à¤‚ à¤•à¤¾ à¤…à¤¨à¥à¤ªà¤¾à¤¤",
-    question_text: "On selling an item at a profit of 4% and 10%, there is a difference of â‚¹3 in selling price. Then, the ratio of the selling price of both is:",
-    question_text_hi: "à¤à¤• à¤µà¤¸à¥à¤¤à¥ à¤•à¥‹ 4% à¤”à¤° 10% à¤•à¥‡ à¤²à¤¾à¤­ à¤ªà¤° à¤¬à¥‡à¤šà¤¨à¥‡ à¤ªà¤°, à¤µà¤¿à¤•à¥à¤°à¤¯ à¤®à¥‚à¤²à¥à¤¯ à¤®à¥‡à¤‚ â‚¹3 à¤•à¤¾ à¤…à¤‚à¤¤à¤° à¤†à¤¤à¤¾ à¤¹à¥ˆ, à¤¤à¥‹ à¤¦à¥‹à¤¨à¥‹à¤‚ à¤•à¥‡ à¤µà¤¿à¤•à¥à¤°à¤¯ à¤®à¥‚à¤²à¥à¤¯ à¤•à¤¾ à¤…à¤¨à¥à¤ªà¤¾à¤¤ à¤¹à¥ˆ:",
+    type_category_hi: "विभिन्न लाभों पर विक्रय मूल्यों का अनुपात",
+    question_text: "On selling an item at a profit of 4% and 10%, there is a difference of ₹3 in selling price. Then, the ratio of the selling price of both is:",
+    question_text_hi: "एक वस्तु को 4% और 10% के लाभ पर बेचने पर, विक्रय मूल्य में ₹3 का अंतर आता है, तो दोनों के विक्रय मूल्य का अनुपात है:",
     options: {
       a: "52:55",
       b: "51:55",
@@ -1519,10 +1519,10 @@ const PROFIT_LOSS_SET_B_QUESTIONS = [
       d: "55:52"
     },
     correct_option: "a",
-    solution_text: "Let Cost Price = CP.\nSPâ‚ at 4% profit = 1.04 CP.\nSPâ‚‚ at 10% profit = 1.10 CP.\nRatio of SPâ‚ : SPâ‚‚ = 1.04 CP : 1.10 CP = 104 : 110.\nDividing by 2:\n= 52 : 55.\n(Note: The â‚¹3 difference confirms CP = 3 / 0.06 = â‚¹50, but the ratio is independent of CP).\nCorrect Answer: Option (a).",
-    solution_text_hi: "SPâ‚ = 1.04 CP, SPâ‚‚ = 1.10 CPà¥¤\nà¤…à¤¨à¥à¤ªà¤¾à¤¤ SPâ‚ : SPâ‚‚ = 104 : 110 = 52 : 55à¥¤\nà¤…à¤¤à¤ƒ à¤¸à¤¹à¥€ à¤‰à¤¤à¥à¤¤à¤° (a) à¤¹à¥ˆà¥¤",
+    solution_text: "Let Cost Price = CP.\nSP₁ at 4% profit = 1.04 CP.\nSP₂ at 10% profit = 1.10 CP.\nRatio of SP₁ : SP₂ = 1.04 CP : 1.10 CP = 104 : 110.\nDividing by 2:\n= 52 : 55.\n(Note: The ₹3 difference confirms CP = 3 / 0.06 = ₹50, but the ratio is independent of CP).\nCorrect Answer: Option (a).",
+    solution_text_hi: "SP₁ = 1.04 CP, SP₂ = 1.10 CP।\nअनुपात SP₁ : SP₂ = 104 : 110 = 52 : 55।\nअतः सही उत्तर (a) है।",
     shortcut_text: "Ratio = 104 : 110 = 52 : 55.",
-    shortcut_text_hi: "à¤…à¤¨à¥à¤ªà¤¾à¤¤ = 104 : 110 = 52 : 55à¥¤"
+    shortcut_text_hi: "अनुपात = 104 : 110 = 52 : 55।"
   },
   {
     question_number: 24,
@@ -1531,9 +1531,9 @@ const PROFIT_LOSS_SET_B_QUESTIONS = [
     level_group: "Level 4: PYQ+",
     type_code: "Type 21",
     type_category: "Ratio of Selling Prices at 8% and 12%",
-    type_category_hi: "8% à¤”à¤° 12% à¤ªà¤° à¤µà¤¿à¤•à¥à¤°à¤¯ à¤®à¥‚à¤²à¥à¤¯à¥‹à¤‚ à¤•à¤¾ à¤…à¤¨à¥à¤ªà¤¾à¤¤",
-    question_text: "The difference of selling prices of an item on the basis of profit of 8% and 12% is â‚¹3. The ratio of the selling prices of both the items is:",
-    question_text_hi: "8% à¤”à¤° 12% à¤•à¥‡ à¤²à¤¾à¤­ à¤•à¥‡ à¤†à¤§à¤¾à¤° à¤ªà¤° à¤•à¤¿à¤¸à¥€ à¤µà¤¸à¥à¤¤à¥ à¤•à¥‡ à¤µà¤¿à¤•à¥à¤°à¤¯ à¤®à¥‚à¤²à¥à¤¯ à¤•à¤¾ à¤…à¤‚à¤¤à¤° â‚¹3 à¤¹à¥ˆà¥¤ à¤¦à¥‹à¤¨à¥‹à¤‚ à¤µà¤¸à¥à¤¤à¥à¤“à¤‚ à¤•à¥‡ à¤µà¤¿à¤•à¥à¤°à¤¯ à¤®à¥‚à¤²à¥à¤¯ à¤•à¤¾ à¤…à¤¨à¥à¤ªà¤¾à¤¤ à¤¹à¥ˆ:",
+    type_category_hi: "8% और 12% पर विक्रय मूल्यों का अनुपात",
+    question_text: "The difference of selling prices of an item on the basis of profit of 8% and 12% is ₹3. The ratio of the selling prices of both the items is:",
+    question_text_hi: "8% और 12% के लाभ के आधार पर किसी वस्तु के विक्रय मूल्य का अंतर ₹3 है। दोनों वस्तुओं के विक्रय मूल्य का अनुपात है:",
     options: {
       a: "27:28",
       b: "27:29",
@@ -1547,10 +1547,10 @@ const PROFIT_LOSS_SET_B_QUESTIONS = [
       d: "27:31"
     },
     correct_option: "a",
-    solution_text: "Let Cost Price = CP.\nSPâ‚ at 8% profit = 1.08 CP.\nSPâ‚‚ at 12% profit = 1.12 CP.\nRatio SPâ‚ : SPâ‚‚ = 108 : 112.\nDividing both numbers by 4:\n108 / 4 = 27\n112 / 4 = 28\nRatio = 27 : 28.\nCorrect Answer: Option (a).",
-    solution_text_hi: "SPâ‚ = 1.08 CP, SPâ‚‚ = 1.12 CPà¥¤\nà¤…à¤¨à¥à¤ªà¤¾à¤¤ = 108 : 112 = 27 : 28à¥¤\nà¤…à¤¤à¤ƒ à¤¸à¤¹à¥€ à¤‰à¤¤à¥à¤¤à¤° (a) à¤¹à¥ˆà¥¤",
+    solution_text: "Let Cost Price = CP.\nSP₁ at 8% profit = 1.08 CP.\nSP₂ at 12% profit = 1.12 CP.\nRatio SP₁ : SP₂ = 108 : 112.\nDividing both numbers by 4:\n108 / 4 = 27\n112 / 4 = 28\nRatio = 27 : 28.\nCorrect Answer: Option (a).",
+    solution_text_hi: "SP₁ = 1.08 CP, SP₂ = 1.12 CP।\nअनुपात = 108 : 112 = 27 : 28।\nअतः सही उत्तर (a) है।",
     shortcut_text: "Ratio = 108 : 112 = 27 : 28.",
-    shortcut_text_hi: "à¤…à¤¨à¥à¤ªà¤¾à¤¤ = 108 : 112 = 27 : 28à¥¤"
+    shortcut_text_hi: "अनुपात = 108 : 112 = 27 : 28।"
   },
 
   // ==========================================
@@ -1563,9 +1563,9 @@ const PROFIT_LOSS_SET_B_QUESTIONS = [
     level_group: "Level 5: PYQ++",
     type_code: "Type 13",
     type_category: "False Weight for 25% Profit on Cost Price",
-    type_category_hi: "25% à¤²à¤¾à¤­ à¤•à¥‡ à¤²à¤¿à¤ à¤•à¤¿à¤²à¥‹à¤—à¥à¤°à¤¾à¤® à¤®à¥‡à¤‚ à¤—à¤²à¤¤ à¤µà¤œà¤¨",
+    type_category_hi: "25% लाभ के लिए किलोग्राम में गलत वजन",
     question_text: "A dishonest dealer professes to sell his goods at the cost price but uses a false weight and thus gains 25%. How much quantity of grains does he give for a kilogram?",
-    question_text_hi: "à¤à¤• à¤¬à¥‡à¤ˆà¤®à¤¾à¤¨ à¤¡à¥€à¤²à¤° à¤…à¤ªà¤¨à¥‡ à¤®à¤¾à¤² à¤•à¥‹ à¤•à¥à¤°à¤¯ à¤®à¥‚à¤²à¥à¤¯ à¤ªà¤° à¤¬à¥‡à¤šà¤¨à¥‡ à¤•à¤¾ à¤¦à¤¾à¤µà¤¾ à¤•à¤°à¤¤à¤¾ à¤¹à¥ˆ à¤²à¥‡à¤•à¤¿à¤¨ à¤—à¤²à¤¤ à¤µà¤œà¤¨ à¤•à¤¾ à¤‰à¤ªà¤¯à¥‹à¤— à¤•à¤°à¤¤à¤¾ à¤¹à¥ˆ à¤”à¤° à¤‡à¤¸ à¤ªà¥à¤°à¤•à¤¾à¤° 25% à¤•à¤¾ à¤²à¤¾à¤­ à¤ªà¥à¤°à¤¾à¤ªà¥à¤¤ à¤•à¤°à¤¤à¤¾ à¤¹à¥ˆà¥¤ à¤à¤• à¤•à¤¿à¤²à¥‹à¤—à¥à¤°à¤¾à¤® à¤•à¥‡ à¤²à¤¿à¤ à¤µà¤¹ à¤•à¤¿à¤¤à¤¨à¥‡ à¤—à¥à¤°à¤¾à¤® à¤…à¤¨à¤¾à¤œ à¤¦à¥‡à¤¤à¤¾ à¤¹à¥ˆ?",
+    question_text_hi: "एक बेईमान डीलर अपने माल को क्रय मूल्य पर बेचने का दावा करता है लेकिन गलत वजन का उपयोग करता है और इस प्रकार 25% का लाभ प्राप्त करता है। एक किलोग्राम के लिए वह कितने ग्राम अनाज देता है?",
     options: {
       a: "800 gram",
       b: "900 gram",
@@ -1573,16 +1573,16 @@ const PROFIT_LOSS_SET_B_QUESTIONS = [
       d: "975 gram"
     },
     options_hi: {
-      a: "800 à¤—à¥à¤°à¤¾à¤®",
-      b: "900 à¤—à¥à¤°à¤¾à¤®",
-      c: "750 à¤—à¥à¤°à¤¾à¤®",
-      d: "975 à¤—à¥à¤°à¤¾à¤®"
+      a: "800 ग्राम",
+      b: "900 ग्राम",
+      c: "750 ग्राम",
+      d: "975 ग्राम"
     },
     correct_option: "a",
-    solution_text: "Let the weight delivered for 1,000 gm be W grams.\nProfit% = [(1,000 - W) / W] Ã— 100\nGiven Profit% = 25%\n=> 25 / 100 = (1,000 - W) / W\n=> 1 / 4 = (1,000 - W) / W\n=> W = 4,000 - 4W\n=> 5W = 4,000 => W = 4,000 / 5 = 800 grams.\nCorrect Answer: Option (a).",
-    solution_text_hi: "à¤®à¤¾à¤¨à¤¾ à¤¦à¤¿à¤¯à¤¾ à¤—à¤¯à¤¾ à¤µà¤œà¤¨ = W à¤—à¥à¤°à¤¾à¤®à¥¤\nà¤²à¤¾à¤­ = [(1000 - W) / W] Ã— 100 = 25%\n1/4 = (1000 - W) / W => 5W = 4000 => W = 800 à¤—à¥à¤°à¤¾à¤®à¥¤\nà¤…à¤¤à¤ƒ à¤¸à¤¹à¥€ à¤‰à¤¤à¥à¤¤à¤° (a) à¤¹à¥ˆà¥¤",
+    solution_text: "Let the weight delivered for 1,000 gm be W grams.\nProfit% = [(1,000 - W) / W] × 100\nGiven Profit% = 25%\n=> 25 / 100 = (1,000 - W) / W\n=> 1 / 4 = (1,000 - W) / W\n=> W = 4,000 - 4W\n=> 5W = 4,000 => W = 4,000 / 5 = 800 grams.\nCorrect Answer: Option (a).",
+    solution_text_hi: "माना दिया गया वजन = W ग्राम।\nलाभ = [(1000 - W) / W] × 100 = 25%\n1/4 = (1000 - W) / W => 5W = 4000 => W = 800 ग्राम।\nअतः सही उत्तर (a) है।",
     shortcut_text: "W = 1,000 / 1.25 = 800 gram.",
-    shortcut_text_hi: "W = 1000 / 1.25 = 800 à¤—à¥à¤°à¤¾à¤®à¥¤"
+    shortcut_text_hi: "W = 1000 / 1.25 = 800 ग्राम।"
   },
   {
     question_number: 26,
@@ -1591,9 +1591,9 @@ const PROFIT_LOSS_SET_B_QUESTIONS = [
     level_group: "Level 5: PYQ++",
     type_code: "Type 22",
     type_category: "Bulk Quintal Purchase with Transportation Overhead",
-    type_category_hi: "à¤¥à¥‹à¤• à¤–à¤°à¥€à¤¦ à¤”à¤° à¤…à¤¤à¤¿à¤°à¤¿à¤•à¥à¤¤ à¤ªà¤°à¤¿à¤µà¤¹à¤¨ à¤µà¥à¤¯à¤¯",
-    question_text: "A dealer buys 200 quintals of wheat at â‚¹1,200 per quintal. He spends â‚¹10,000 on transportation and storage. If he sells the wheat at â‚¹13 per kg, then the profit percentage of the dealer is:",
-    question_text_hi: "à¤à¤• à¤¡à¥€à¤²à¤° â‚¹1,200 à¤ªà¥à¤°à¤¤à¤¿ à¤•à¥à¤µà¤¿à¤‚à¤Ÿà¤² à¤•à¥€ à¤¦à¤° à¤¸à¥‡ 200 à¤•à¥à¤µà¤¿à¤‚à¤Ÿà¤² à¤—à¥‡à¤¹à¥‚à¤‚ à¤–à¤°à¥€à¤¦à¤¤à¤¾ à¤¹à¥ˆà¥¤ à¤µà¤¹ à¤ªà¤°à¤¿à¤µà¤¹à¤¨ à¤”à¤° à¤­à¤‚à¤¡à¤¾à¤°à¤£ à¤ªà¤° â‚¹10,000 à¤–à¤°à¥à¤š à¤•à¤°à¤¤à¤¾ à¤¹à¥ˆà¥¤ à¤¯à¤¦à¤¿ à¤µà¤¹ à¤—à¥‡à¤¹à¥‚à¤‚ â‚¹13 à¤ªà¥à¤°à¤¤à¤¿ à¤•à¤¿à¤²à¥‹ à¤•à¥€ à¤¦à¤° à¤¸à¥‡ à¤¬à¥‡à¤šà¤¤à¤¾ à¤¹à¥ˆ, à¤¤à¥‹ à¤¡à¥€à¤²à¤° à¤•à¤¾ à¤²à¤¾à¤­ à¤ªà¥à¤°à¤¤à¤¿à¤¶à¤¤ à¤¹à¥ˆ:",
+    type_category_hi: "थोक खरीद और अतिरिक्त परिवहन व्यय",
+    question_text: "A dealer buys 200 quintals of wheat at ₹1,200 per quintal. He spends ₹10,000 on transportation and storage. If he sells the wheat at ₹13 per kg, then the profit percentage of the dealer is:",
+    question_text_hi: "एक डीलर ₹1,200 प्रति क्विंटल की दर से 200 क्विंटल गेहूं खरीदता है। वह परिवहन और भंडारण पर ₹10,000 खर्च करता है। यदि वह गेहूं ₹13 प्रति किलो की दर से बेचता है, तो डीलर का लाभ प्रतिशत है:",
     options: {
       a: "1%",
       b: "3%",
@@ -1607,10 +1607,10 @@ const PROFIT_LOSS_SET_B_QUESTIONS = [
       d: "4%"
     },
     correct_option: "d",
-    solution_text: "Note: 1 quintal = 100 kg. Total quantity = 200 Ã— 100 = 20,000 kg.\nCost of wheat = 200 Ã— 1,200 = â‚¹2,40,000.\nOverhead expenses = â‚¹10,000.\nTotal Cost Price = 2,40,000 + 10,000 = â‚¹2,50,000.\nSelling Price per kg = â‚¹13.\nTotal Selling Price = 20,000 Ã— 13 = â‚¹2,60,000.\nProfit = 2,60,000 - 2,50,000 = â‚¹10,000.\nProfit% = (10,000 / 2,50,000) Ã— 100 = 4%.\nCorrect Answer: Option (d).",
-    solution_text_hi: "1 à¤•à¥à¤µà¤¿à¤‚à¤Ÿà¤² = 100 à¤•à¤¿à¤²à¥‹à¥¤ à¤•à¥à¤² = 20,000 à¤•à¤¿à¤²à¥‹à¥¤\nà¤—à¥‡à¤¹à¥‚à¤‚ à¤•à¥€ à¤²à¤¾à¤—à¤¤ = 200 Ã— 1200 = â‚¹2,40,000à¥¤\nà¤…à¤¤à¤¿à¤°à¤¿à¤•à¥à¤¤ à¤–à¤°à¥à¤š = â‚¹10,000à¥¤\nà¤•à¥à¤² CP = â‚¹2,50,000à¥¤\nà¤•à¥à¤² SP = 20,000 Ã— 13 = â‚¹2,60,000à¥¤\nà¤²à¤¾à¤­ = â‚¹10,000à¥¤\nà¤²à¤¾à¤­% = (10,000 / 2,50,000) Ã— 100 = 4%à¥¤\nà¤…à¤¤à¤ƒ à¤¸à¤¹à¥€ à¤‰à¤¤à¥à¤¤à¤° (d) à¤¹à¥ˆà¥¤",
-    shortcut_text: "CP per kg = (2,40,000 + 10,000) / 20,000 = 250 / 20 = â‚¹12.50.\nProfit% = [(13 - 12.5) / 12.5] Ã— 100 = (0.5 / 12.5) Ã— 100 = 4%.",
-    shortcut_text_hi: "à¤ªà¥à¤°à¤¤à¤¿ à¤•à¤¿à¤²à¥‹ CP = 2,50,000 / 20,000 = â‚¹12.50à¥¤\nà¤²à¤¾à¤­% = (0.5 / 12.5) Ã— 100 = 4%à¥¤"
+    solution_text: "Note: 1 quintal = 100 kg. Total quantity = 200 × 100 = 20,000 kg.\nCost of wheat = 200 × 1,200 = ₹2,40,000.\nOverhead expenses = ₹10,000.\nTotal Cost Price = 2,40,000 + 10,000 = ₹2,50,000.\nSelling Price per kg = ₹13.\nTotal Selling Price = 20,000 × 13 = ₹2,60,000.\nProfit = 2,60,000 - 2,50,000 = ₹10,000.\nProfit% = (10,000 / 2,50,000) × 100 = 4%.\nCorrect Answer: Option (d).",
+    solution_text_hi: "1 क्विंटल = 100 किलो। कुल = 20,000 किलो।\nगेहूं की लागत = 200 × 1200 = ₹2,40,000।\nअतिरिक्त खर्च = ₹10,000।\nकुल CP = ₹2,50,000।\nकुल SP = 20,000 × 13 = ₹2,60,000।\nलाभ = ₹10,000।\nलाभ% = (10,000 / 2,50,000) × 100 = 4%।\nअतः सही उत्तर (d) है।",
+    shortcut_text: "CP per kg = (2,40,000 + 10,000) / 20,000 = 250 / 20 = ₹12.50.\nProfit% = [(13 - 12.5) / 12.5] × 100 = (0.5 / 12.5) × 100 = 4%.",
+    shortcut_text_hi: "प्रति किलो CP = 2,50,000 / 20,000 = ₹12.50।\nलाभ% = (0.5 / 12.5) × 100 = 4%।"
   },
   {
     question_number: 27,
@@ -1619,9 +1619,9 @@ const PROFIT_LOSS_SET_B_QUESTIONS = [
     level_group: "Level 5: PYQ++",
     type_code: "Type 23",
     type_category: "Breakage/Damage in Transit with Remaining Sale",
-    type_category_hi: "à¤ªà¤°à¤¿à¤µà¤¹à¤¨ à¤®à¥‡à¤‚ à¤Ÿà¥‚à¤Ÿ-à¤«à¥‚à¤Ÿ à¤”à¤° à¤¶à¥‡à¤· à¤•à¥€ à¤¬à¤¿à¤•à¥à¤°à¥€",
-    question_text: "Sabiha purchased 240 cups for her shop at â‚¹8 each. During transportation, 24 cups got damaged, and she sold the remaining cups at â‚¹12 each. Find her overall percentage profit.",
-    question_text_hi: "à¤¸à¤¬à¤¿à¤¹à¤¾ à¤¨à¥‡ à¤…à¤ªà¤¨à¥€ à¤¦à¥à¤•à¤¾à¤¨ à¤•à¥‡ à¤²à¤¿à¤ â‚¹8 à¤ªà¥à¤°à¤¤à¤¿ à¤•à¤ª à¤•à¥€ à¤¦à¤° à¤¸à¥‡ 240 à¤•à¤ª à¤–à¤°à¥€à¤¦à¥‡à¥¤ à¤ªà¤°à¤¿à¤µà¤¹à¤¨ à¤•à¥‡ à¤¦à¥Œà¤°à¤¾à¤¨ 24 à¤•à¤ª à¤•à¥à¤·à¤¤à¤¿à¤—à¥à¤°à¤¸à¥à¤¤ à¤¹à¥‹ à¤—à¤, à¤”à¤° à¤‰à¤¸à¤¨à¥‡ à¤¶à¥‡à¤· à¤•à¤ª â‚¹12 à¤ªà¥à¤°à¤¤à¥à¤¯à¥‡à¤• à¤•à¥€ à¤¦à¤° à¤¸à¥‡ à¤¬à¥‡à¤šà¥‡à¥¤ à¤‰à¤¸à¤•à¤¾ à¤•à¥à¤² à¤ªà¥à¤°à¤¤à¤¿à¤¶à¤¤ à¤²à¤¾à¤­ à¤œà¥à¤žà¤¾à¤¤ à¤•à¥€à¤œà¤¿à¤à¥¤",
+    type_category_hi: "परिवहन में टूट-फूट और शेष की बिक्री",
+    question_text: "Sabiha purchased 240 cups for her shop at ₹8 each. During transportation, 24 cups got damaged, and she sold the remaining cups at ₹12 each. Find her overall percentage profit.",
+    question_text_hi: "सबिहा ने अपनी दुकान के लिए ₹8 प्रति कप की दर से 240 कप खरीदे। परिवहन के दौरान 24 कप क्षतिग्रस्त हो गए, और उसने शेष कप ₹12 प्रत्येक की दर से बेचे। उसका कुल प्रतिशत लाभ ज्ञात कीजिए।",
     options: {
       a: "45%",
       b: "30%",
@@ -1635,10 +1635,10 @@ const PROFIT_LOSS_SET_B_QUESTIONS = [
       d: "35%"
     },
     correct_option: "d",
-    solution_text: "Total Cost Price = 240 Ã— 8 = â‚¹1,920.\nRemaining undamaged cups = 240 - 24 = 216 cups.\nTotal Selling Price = 216 Ã— 12 = â‚¹2,592.\nProfit = 2,592 - 1,920 = â‚¹672.\nProfit% = (672 / 1,920) Ã— 100 = 35%.\nCorrect Answer: Option (d).",
-    solution_text_hi: "à¤•à¥à¤² CP = 240 Ã— 8 = â‚¹1,920à¥¤\nà¤¬à¤šà¥‡ à¤•à¤ª = 240 - 24 = 216à¥¤\nà¤•à¥à¤² SP = 216 Ã— 12 = â‚¹2,592à¥¤\nà¤²à¤¾à¤­ = 2,592 - 1,920 = â‚¹672à¥¤\nà¤²à¤¾à¤­% = (672 / 1,920) Ã— 100 = 35%à¥¤\nà¤…à¤¤à¤ƒ à¤¸à¤¹à¥€ à¤‰à¤¤à¥à¤¤à¤° (d) à¤¹à¥ˆà¥¤",
+    solution_text: "Total Cost Price = 240 × 8 = ₹1,920.\nRemaining undamaged cups = 240 - 24 = 216 cups.\nTotal Selling Price = 216 × 12 = ₹2,592.\nProfit = 2,592 - 1,920 = ₹672.\nProfit% = (672 / 1,920) × 100 = 35%.\nCorrect Answer: Option (d).",
+    solution_text_hi: "कुल CP = 240 × 8 = ₹1,920।\nबचे कप = 240 - 24 = 216।\nकुल SP = 216 × 12 = ₹2,592।\nलाभ = 2,592 - 1,920 = ₹672।\nलाभ% = (672 / 1,920) × 100 = 35%।\nअतः सही उत्तर (d) है।",
     shortcut_text: "Ratio SP / CP = 2,592 / 1,920 = 1.35 => 35% profit.",
-    shortcut_text_hi: "SP / CP = 2592 / 1920 = 1.35 => 35% à¤²à¤¾à¤­à¥¤"
+    shortcut_text_hi: "SP / CP = 2592 / 1920 = 1.35 => 35% लाभ।"
   },
   {
     question_number: 28,
@@ -1647,26 +1647,26 @@ const PROFIT_LOSS_SET_B_QUESTIONS = [
     level_group: "Level 5: PYQ++",
     type_code: "Type 6",
     type_category: "Three Variable Simultaneous Sum Reduction",
-    type_category_hi: "à¤¤à¥€à¤¨ à¤šà¤°à¥‹à¤‚ à¤•à¤¾ à¤¯à¥à¤—à¤ªà¤¤ à¤¯à¥‹à¤— à¤¸à¤°à¤²à¥€à¤•à¤°à¤£",
-    question_text: "The cost of 2 pencils, 4 pens and 8 erasers is â‚¹12 and the cost of 8 pens, 10 pencils and 4 erasers is â‚¹36. What will be the cost of 3 pencils, 3 pens and 3 erasers?",
-    question_text_hi: "2 à¤ªà¥‡à¤‚à¤¸à¤¿à¤², 4 à¤ªà¥‡à¤¨ à¤”à¤° 8 à¤‡à¤°à¥‡à¤œà¤¼à¤° à¤•à¥€ à¤•à¥€à¤®à¤¤ â‚¹12 à¤¹à¥ˆ à¤”à¤° 8 à¤ªà¥‡à¤¨, 10 à¤ªà¥‡à¤‚à¤¸à¤¿à¤² à¤”à¤° 4 à¤‡à¤°à¥‡à¤œà¤¼à¤° à¤•à¥€ à¤•à¥€à¤®à¤¤ â‚¹36 à¤¹à¥ˆà¥¤ 3 à¤ªà¥‡à¤‚à¤¸à¤¿à¤², 3 à¤ªà¥‡à¤¨ à¤”à¤° 3 à¤‡à¤°à¥‡à¤œà¤¼à¤° à¤•à¥€ à¤•à¥€à¤®à¤¤ à¤•à¥à¤¯à¤¾ à¤¹à¥‹à¤—à¥€?",
+    type_category_hi: "तीन चरों का युगपत योग सरलीकरण",
+    question_text: "The cost of 2 pencils, 4 pens and 8 erasers is ₹12 and the cost of 8 pens, 10 pencils and 4 erasers is ₹36. What will be the cost of 3 pencils, 3 pens and 3 erasers?",
+    question_text_hi: "2 पेंसिल, 4 पेन और 8 इरेज़र की कीमत ₹12 है और 8 पेन, 10 पेंसिल और 4 इरेज़र की कीमत ₹36 है। 3 पेंसिल, 3 पेन और 3 इरेज़र की कीमत क्या होगी?",
     options: {
-      a: "â‚¹10",
-      b: "â‚¹15",
-      c: "â‚¹12",
-      d: "â‚¹18"
+      a: "₹10",
+      b: "₹15",
+      c: "₹12",
+      d: "₹18"
     },
     options_hi: {
-      a: "â‚¹10",
-      b: "â‚¹15",
-      c: "â‚¹12",
-      d: "â‚¹18"
+      a: "₹10",
+      b: "₹15",
+      c: "₹12",
+      d: "₹18"
     },
     correct_option: "c",
-    solution_text: "Let cost of 1 pencil = x, 1 pen = y, 1 eraser = z.\nEquation 1: 2x + 4y + 8z = 12\nEquation 2: 10x + 8y + 4z = 36\nAdding Equation 1 and Equation 2:\n(2x + 10x) + (4y + 8y) + (8z + 4z) = 12 + 36\n12x + 12y + 12z = 48\nDividing throughout by 12:\nx + y + z = 4.\nCost of 1 pencil + 1 pen + 1 eraser = â‚¹4.\nTherefore, cost of 3 pencils, 3 pens and 3 erasers:\n= 3(x + y + z) = 3 Ã— 4 = â‚¹12.\nCorrect Answer: Option (c).",
-    solution_text_hi: "2x + 4y + 8z = 12  --- (1)\n10x + 8y + 4z = 36  --- (2)\nà¤¦à¥‹à¤¨à¥‹à¤‚ à¤¸à¤®à¥€à¤•à¤°à¤£à¥‹à¤‚ à¤•à¥‹ à¤œà¥‹à¤¡à¤¼à¤¨à¥‡ à¤ªà¤°:\n12x + 12y + 12z = 48 => x + y + z = 4à¥¤\n3 à¤ªà¥‡à¤‚à¤¸à¤¿à¤², 3 à¤ªà¥‡à¤¨ à¤”à¤° 3 à¤‡à¤°à¥‡à¤œà¤¼à¤° à¤•à¥€ à¤•à¥€à¤®à¤¤ = 3 Ã— 4 = â‚¹12à¥¤\nà¤…à¤¤à¤ƒ à¤¸à¤¹à¥€ à¤‰à¤¤à¥à¤¤à¤° (c) à¤¹à¥ˆà¥¤",
-    shortcut_text: "Add both equations: 12(x + y + z) = 48 => (x + y + z) = 4.\n3(x + y + z) = 3 Ã— 4 = â‚¹12.",
-    shortcut_text_hi: "à¤œà¥‹à¤¡à¤¼à¤¨à¥‡ à¤ªà¤°: 12(x+y+z) = 48 => x+y+z = 4 => 3(x+y+z) = â‚¹12à¥¤"
+    solution_text: "Let cost of 1 pencil = x, 1 pen = y, 1 eraser = z.\nEquation 1: 2x + 4y + 8z = 12\nEquation 2: 10x + 8y + 4z = 36\nAdding Equation 1 and Equation 2:\n(2x + 10x) + (4y + 8y) + (8z + 4z) = 12 + 36\n12x + 12y + 12z = 48\nDividing throughout by 12:\nx + y + z = 4.\nCost of 1 pencil + 1 pen + 1 eraser = ₹4.\nTherefore, cost of 3 pencils, 3 pens and 3 erasers:\n= 3(x + y + z) = 3 × 4 = ₹12.\nCorrect Answer: Option (c).",
+    solution_text_hi: "2x + 4y + 8z = 12  --- (1)\n10x + 8y + 4z = 36  --- (2)\nदोनों समीकरणों को जोड़ने पर:\n12x + 12y + 12z = 48 => x + y + z = 4।\n3 पेंसिल, 3 पेन और 3 इरेज़र की कीमत = 3 × 4 = ₹12।\nअतः सही उत्तर (c) है।",
+    shortcut_text: "Add both equations: 12(x + y + z) = 48 => (x + y + z) = 4.\n3(x + y + z) = 3 × 4 = ₹12.",
+    shortcut_text_hi: "जोड़ने पर: 12(x+y+z) = 48 => x+y+z = 4 => 3(x+y+z) = ₹12।"
   },
   {
     question_number: 29,
@@ -1675,9 +1675,9 @@ const PROFIT_LOSS_SET_B_QUESTIONS = [
     level_group: "Level 5: PYQ++",
     type_code: "Type 24",
     type_category: "Bulk Asset Repair and Target Average SP",
-    type_category_hi: "à¤¥à¥‹à¤• à¤ªà¤°à¤¿à¤¸à¤‚à¤ªà¤¤à¥à¤¤à¤¿ à¤®à¤°à¤®à¥à¤®à¤¤ à¤”à¤° à¤”à¤¸à¤¤ à¤µà¤¿à¤•à¥à¤°à¤¯ à¤®à¥‚à¤²à¥à¤¯",
+    type_category_hi: "थोक परिसंपत्ति मरम्मत और औसत विक्रय मूल्य",
     question_text: "John buys four old tractors for 2 lacs. He spent a total of 3 lacs in maintenance and repairing. If he already sells one tractor out of the four tractors for 1 lac, then in order to get a total 40% profit, what will be the average selling price of all the remaining 3 tractors?",
-    question_text_hi: "à¤œà¥‰à¤¨ à¤¨à¥‡ 2 à¤²à¤¾à¤– à¤®à¥‡à¤‚ à¤šà¤¾à¤° à¤ªà¥à¤°à¤¾à¤¨à¥‡ à¤Ÿà¥à¤°à¥ˆà¤•à¥à¤Ÿà¤° à¤–à¤°à¥€à¤¦à¥‡à¥¤ à¤‰à¤¸à¤¨à¥‡ à¤°à¤–à¤°à¤–à¤¾à¤µ à¤”à¤° à¤®à¤°à¤®à¥à¤®à¤¤ à¤®à¥‡à¤‚ à¤•à¥à¤² 3 à¤²à¤¾à¤– à¤–à¤°à¥à¤š à¤•à¤¿à¤à¥¤ à¤¯à¤¦à¤¿ à¤µà¤¹ à¤šà¤¾à¤° à¤Ÿà¥à¤°à¥ˆà¤•à¥à¤Ÿà¤°à¥‹à¤‚ à¤®à¥‡à¤‚ à¤¸à¥‡ à¤à¤• à¤Ÿà¥à¤°à¥ˆà¤•à¥à¤Ÿà¤° à¤•à¥‹ 1 à¤²à¤¾à¤– à¤®à¥‡à¤‚ à¤¬à¥‡à¤š à¤šà¥à¤•à¤¾ à¤¹à¥ˆ, à¤¤à¥‹ à¤•à¥à¤² 40% à¤²à¤¾à¤­ à¤ªà¥à¤°à¤¾à¤ªà¥à¤¤ à¤•à¤°à¤¨à¥‡ à¤•à¥‡ à¤²à¤¿à¤, à¤¶à¥‡à¤· à¤¸à¤­à¥€ 3 à¤Ÿà¥à¤°à¥ˆà¤•à¥à¤Ÿà¤°à¥‹à¤‚ à¤•à¤¾ à¤”à¤¸à¤¤ à¤µà¤¿à¤•à¥à¤°à¤¯ à¤®à¥‚à¤²à¥à¤¯ à¤•à¥à¤¯à¤¾ à¤¹à¥‹à¤—à¤¾?",
+    question_text_hi: "जॉन ने 2 लाख में चार पुराने ट्रैक्टर खरीदे। उसने रखरखाव और मरम्मत में कुल 3 लाख खर्च किए। यदि वह चार ट्रैक्टरों में से एक ट्रैक्टर को 1 लाख में बेच चुका है, तो कुल 40% लाभ प्राप्त करने के लिए, शेष सभी 3 ट्रैक्टरों का औसत विक्रय मूल्य क्या होगा?",
     options: {
       a: "1.5 lacs",
       b: "1.2 lacs",
@@ -1685,16 +1685,16 @@ const PROFIT_LOSS_SET_B_QUESTIONS = [
       d: "2.3 lacs"
     },
     options_hi: {
-      a: "1.5 à¤²à¤¾à¤–",
-      b: "1.2 à¤²à¤¾à¤–",
-      c: "2 à¤²à¤¾à¤–",
-      d: "2.3 à¤²à¤¾à¤–"
+      a: "1.5 लाख",
+      b: "1.2 लाख",
+      c: "2 लाख",
+      d: "2.3 लाख"
     },
     correct_option: "c",
-    solution_text: "Total investment (Cost Price) = 2 lacs + 3 lacs = 5 lacs.\nTarget overall profit = 40%.\nTotal required Selling Price = 5 lacs Ã— (1 + 0.40) = 5 Ã— 1.40 = 7 lacs.\nAmount already realized from selling 1st tractor = 1 lac.\nRemaining amount to be realized from 3 tractors = 7 lacs - 1 lac = 6 lacs.\nAverage selling price of remaining 3 tractors = 6 lacs / 3 = 2 lacs.\nCorrect Answer: Option (c).",
-    solution_text_hi: "à¤•à¥à¤² à¤²à¤¾à¤—à¤¤ = 2 + 3 = 5 à¤²à¤¾à¤–à¥¤\n40% à¤²à¤¾à¤­ à¤•à¥‡ à¤²à¤¿à¤ à¤•à¥à¤² à¤…à¤­à¥€à¤·à¥à¤Ÿ SP = 5 Ã— 1.40 = 7 à¤²à¤¾à¤–à¥¤\n1 à¤Ÿà¥à¤°à¥ˆà¤•à¥à¤Ÿà¤° à¤¸à¥‡ à¤ªà¥à¤°à¤¾à¤ªà¥à¤¤ à¤°à¤¾à¤¶à¤¿ = 1 à¤²à¤¾à¤–à¥¤\nà¤¶à¥‡à¤· 3 à¤Ÿà¥à¤°à¥ˆà¤•à¥à¤Ÿà¤°à¥‹à¤‚ à¤¸à¥‡ à¤ªà¥à¤°à¤¾à¤ªà¥à¤¤ à¤•à¤°à¤¨à¥€ à¤¹à¥‹à¤—à¥€ = 7 - 1 = 6 à¤²à¤¾à¤–à¥¤\nà¤”à¤¸à¤¤ à¤µà¤¿à¤•à¥à¤°à¤¯ à¤®à¥‚à¤²à¥à¤¯ = 6 / 3 = 2 à¤²à¤¾à¤–à¥¤\nà¤…à¤¤à¤ƒ à¤¸à¤¹à¥€ à¤‰à¤¤à¥à¤¤à¤° (c) à¤¹à¥ˆà¥¤",
-    shortcut_text: "Total SP = 5 Ã— 1.4 = 7 lacs.\nRemaining = 7 - 1 = 6 lacs.\nAverage for 3 = 6 / 3 = 2 lacs.",
-    shortcut_text_hi: "à¤•à¥à¤² SP = 7 à¤²à¤¾à¤– => à¤¶à¥‡à¤· 3 à¤•à¤¾ SP = 6 à¤²à¤¾à¤– => à¤”à¤¸à¤¤ = 2 à¤²à¤¾à¤–à¥¤"
+    solution_text: "Total investment (Cost Price) = 2 lacs + 3 lacs = 5 lacs.\nTarget overall profit = 40%.\nTotal required Selling Price = 5 lacs × (1 + 0.40) = 5 × 1.40 = 7 lacs.\nAmount already realized from selling 1st tractor = 1 lac.\nRemaining amount to be realized from 3 tractors = 7 lacs - 1 lac = 6 lacs.\nAverage selling price of remaining 3 tractors = 6 lacs / 3 = 2 lacs.\nCorrect Answer: Option (c).",
+    solution_text_hi: "कुल लागत = 2 + 3 = 5 लाख।\n40% लाभ के लिए कुल अभीष्ट SP = 5 × 1.40 = 7 लाख।\n1 ट्रैक्टर से प्राप्त राशि = 1 लाख।\nशेष 3 ट्रैक्टरों से प्राप्त करनी होगी = 7 - 1 = 6 लाख।\nऔसत विक्रय मूल्य = 6 / 3 = 2 लाख।\nअतः सही उत्तर (c) है।",
+    shortcut_text: "Total SP = 5 × 1.4 = 7 lacs.\nRemaining = 7 - 1 = 6 lacs.\nAverage for 3 = 6 / 3 = 2 lacs.",
+    shortcut_text_hi: "कुल SP = 7 लाख => शेष 3 का SP = 6 लाख => औसत = 2 लाख।"
   },
   {
     question_number: 30,
@@ -1703,26 +1703,26 @@ const PROFIT_LOSS_SET_B_QUESTIONS = [
     level_group: "Level 5: PYQ++",
     type_code: "Type 9",
     type_category: "Three-portion Land Sale with Overall Profit",
-    type_category_hi: "à¤¤à¥€à¤¨ à¤­à¤¾à¤—à¥‹à¤‚ à¤®à¥‡à¤‚ à¤­à¥‚à¤®à¤¿ à¤¬à¤¿à¤•à¥à¤°à¥€ à¤”à¤° à¤•à¥à¤² à¤²à¤¾à¤­",
+    type_category_hi: "तीन भागों में भूमि बिक्री और कुल लाभ",
     question_text: "A man buys a land for 3 lacs. He sells its 25% part at 25% loss and 40% part at 25% profit. In order to earn a total profit of 15%, for how much money should he sell the remaining part of the land?",
-    question_text_hi: "à¤à¤• à¤µà¥à¤¯à¤•à¥à¤¤à¤¿ 3 à¤²à¤¾à¤– à¤®à¥‡à¤‚ à¤à¤• à¤œà¤®à¥€à¤¨ à¤–à¤°à¥€à¤¦à¤¤à¤¾ à¤¹à¥ˆà¥¤ à¤µà¤¹ à¤‡à¤¸à¤•à¤¾ 25% à¤¹à¤¿à¤¸à¥à¤¸à¤¾ 25% à¤¹à¤¾à¤¨à¤¿ à¤ªà¤° à¤”à¤° 40% à¤¹à¤¿à¤¸à¥à¤¸à¤¾ 25% à¤²à¤¾à¤­ à¤ªà¤° à¤¬à¥‡à¤šà¤¤à¤¾ à¤¹à¥ˆà¥¤ à¤•à¥à¤² 15% à¤•à¤¾ à¤²à¤¾à¤­ à¤•à¤®à¤¾à¤¨à¥‡ à¤•à¥‡ à¤²à¤¿à¤ à¤‰à¤¸à¥‡ à¤œà¤®à¥€à¤¨ à¤•à¥‡ à¤¶à¥‡à¤· à¤¹à¤¿à¤¸à¥à¤¸à¥‡ à¤•à¥‹ à¤•à¤¿à¤¤à¤¨à¥‡ à¤ªà¥ˆà¤¸à¥‡ à¤®à¥‡à¤‚ à¤¬à¥‡à¤šà¤¨à¤¾ à¤šà¤¾à¤¹à¤¿à¤?",
+    question_text_hi: "एक व्यक्ति 3 लाख में एक जमीन खरीदता है। वह इसका 25% हिस्सा 25% हानि पर और 40% हिस्सा 25% लाभ पर बेचता है। कुल 15% का लाभ कमाने के लिए उसे जमीन के शेष हिस्से को कितने पैसे में बेचना चाहिए?",
     options: {
-      a: "â‚¹1,37,500",
-      b: "â‚¹1,38,750",
-      c: "â‚¹1,34,500",
-      d: "â‚¹1,45,000"
+      a: "₹1,37,500",
+      b: "₹1,38,750",
+      c: "₹1,34,500",
+      d: "₹1,45,000"
     },
     options_hi: {
-      a: "â‚¹1,37,500",
-      b: "â‚¹1,38,750",
-      c: "â‚¹1,34,500",
-      d: "â‚¹1,45,000"
+      a: "₹1,37,500",
+      b: "₹1,38,750",
+      c: "₹1,34,500",
+      d: "₹1,45,000"
     },
     correct_option: "b",
-    solution_text: "Total Cost Price of land = â‚¹3,00,000.\nTotal required Selling Price for 15% profit = 3,00,000 Ã— 1.15 = â‚¹3,45,000.\nPart 1 (25% of land):\nCost = 3,00,000 Ã— 0.25 = â‚¹75,000.\nSold at 25% loss => SPâ‚ = 75,000 Ã— 0.75 = â‚¹56,250.\nPart 2 (40% of land):\nCost = 3,00,000 Ã— 0.40 = â‚¹1,20,000.\nSold at 25% profit => SPâ‚‚ = 1,20,000 Ã— 1.25 = â‚¹1,50,000.\nTotal SP realized from Part 1 & Part 2 = 56,250 + 1,50,000 = â‚¹2,06,250.\nRemaining Selling Price required = 3,45,000 - 2,06,250 = â‚¹1,38,750.\nCorrect Answer: Option (b).",
-    solution_text_hi: "à¤•à¥à¤² CP = â‚¹3,00,000à¥¤\n15% à¤²à¤¾à¤­ à¤ªà¤° à¤•à¥à¤² SP = 3,00,000 Ã— 1.15 = â‚¹3,45,000à¥¤\nà¤­à¤¾à¤— 1 (25% = â‚¹75,000): 25% à¤¹à¤¾à¤¨à¤¿ à¤ªà¤° SP = 75,000 Ã— 0.75 = â‚¹56,250à¥¤\nà¤­à¤¾à¤— 2 (40% = â‚¹1,20,000): 25% à¤²à¤¾à¤­ à¤ªà¤° SP = 1,20,000 Ã— 1.25 = â‚¹1,50,000à¥¤\nà¤ªà¥à¤°à¤¾à¤ªà¥à¤¤ à¤•à¥à¤² à¤°à¤¾à¤¶à¤¿ = 56,250 + 1,50,000 = â‚¹2,06,250à¥¤\nà¤¶à¥‡à¤· à¤¹à¤¿à¤¸à¥à¤¸à¥‡ à¤•à¥€ à¤µà¤¿à¤•à¥à¤°à¤¯ à¤°à¤¾à¤¶à¤¿ = 3,45,000 - 2,06,250 = â‚¹1,38,750à¥¤\nà¤…à¤¤à¤ƒ à¤¸à¤¹à¥€ à¤‰à¤¤à¥à¤¤à¤° (b) à¤¹à¥ˆà¥¤",
-    shortcut_text: "Total SP = 345,000.\nSPâ‚ + SPâ‚‚ = 56,250 + 150,000 = 206,250.\nRemaining SP = 345,000 - 206,250 = â‚¹1,38,750.",
-    shortcut_text_hi: "à¤¶à¥‡à¤· SP = 3,45,000 - 2,06,250 = â‚¹1,38,750à¥¤"
+    solution_text: "Total Cost Price of land = ₹3,00,000.\nTotal required Selling Price for 15% profit = 3,00,000 × 1.15 = ₹3,45,000.\nPart 1 (25% of land):\nCost = 3,00,000 × 0.25 = ₹75,000.\nSold at 25% loss => SP₁ = 75,000 × 0.75 = ₹56,250.\nPart 2 (40% of land):\nCost = 3,00,000 × 0.40 = ₹1,20,000.\nSold at 25% profit => SP₂ = 1,20,000 × 1.25 = ₹1,50,000.\nTotal SP realized from Part 1 & Part 2 = 56,250 + 1,50,000 = ₹2,06,250.\nRemaining Selling Price required = 3,45,000 - 2,06,250 = ₹1,38,750.\nCorrect Answer: Option (b).",
+    solution_text_hi: "कुल CP = ₹3,00,000।\n15% लाभ पर कुल SP = 3,00,000 × 1.15 = ₹3,45,000।\nभाग 1 (25% = ₹75,000): 25% हानि पर SP = 75,000 × 0.75 = ₹56,250।\nभाग 2 (40% = ₹1,20,000): 25% लाभ पर SP = 1,20,000 × 1.25 = ₹1,50,000।\nप्राप्त कुल राशि = 56,250 + 1,50,000 = ₹2,06,250।\nशेष हिस्से की विक्रय राशि = 3,45,000 - 2,06,250 = ₹1,38,750।\nअतः सही उत्तर (b) है।",
+    shortcut_text: "Total SP = 345,000.\nSP₁ + SP₂ = 56,250 + 150,000 = 206,250.\nRemaining SP = 345,000 - 206,250 = ₹1,38,750.",
+    shortcut_text_hi: "शेष SP = 3,45,000 - 2,06,250 = ₹1,38,750।"
   }
 ];
 
