@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -21,6 +21,9 @@
   <!-- KaTeX for High-Speed Math Rendering -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css" />
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+
+  <!-- Fallback Offline Questions for Mock Test 02 (100 Questions) -->
+  <script src="mock_02_questions.js"></script>
   
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -119,16 +122,29 @@
 
     // --- 2. BUILT-IN FALLBACK LIVE TEST DATA (25 Authenticated Questions) ---
     // Includes Question 1 exactly from user's live exam screenshot!
-    const DEFAULT_LIVE_TEST = {
-      id: "ssc-cgl-2026-live-1",
-      title: "SSC CGL 2026: Quantitative Aptitude - Live Test",
-      examCategory: "SSC CGL 2026",
-      durationMinutes: 15,
-      totalQuestions: 25,
-      marksPerQuestion: 2.0,
-      negativeMarks: 0.5,
-      maximumMarks: 50.0
+    const MOCK_TESTS_METADATA = {
+      "ssc-cgl-2026-live-1": {
+        id: "ssc-cgl-2026-live-1",
+        title: "SSC CGL 2026: Quantitative Aptitude - Live Test",
+        examCategory: "SSC CGL 2026",
+        durationMinutes: 15,
+        totalQuestions: 25,
+        marksPerQuestion: 2.0,
+        negativeMarks: 0.5,
+        maximumMarks: 50.0
+      },
+      "ssc-cgl-2026-mock-02": {
+        id: "ssc-cgl-2026-mock-02",
+        title: "SSC CGL 2026: Full Mock Test 02",
+        examCategory: "SSC CGL 2026",
+        durationMinutes: 60,
+        totalQuestions: 100,
+        marksPerQuestion: 2.0,
+        negativeMarks: 0.5,
+        maximumMarks: 200.0
+      }
     };
+    const DEFAULT_LIVE_TEST = MOCK_TESTS_METADATA["ssc-cgl-2026-live-1"];
 
     const BUILTIN_QUESTIONS = [
       {
@@ -467,9 +483,22 @@
       const [screen, setScreen] = useState('instructions_1');
       const [userProfile, setUserProfile] = useState({ name: 'Nitin', role: 'Quant Specialist' });
       
-      // Test metadata & questions
-      const [testInfo, setTestInfo] = useState(DEFAULT_LIVE_TEST);
-      const [questions, setQuestions] = useState(BUILTIN_QUESTIONS);
+      // URL parameter test_id
+      const urlParams = new URLSearchParams(window.location.search);
+      const initialTestId = urlParams.get('test_id') || 'ssc-cgl-2026-live-1';
+      const [activeTestId, setActiveTestId] = useState(initialTestId);
+
+      const activeMeta = MOCK_TESTS_METADATA[activeTestId] || MOCK_TESTS_METADATA["ssc-cgl-2026-live-1"];
+      const [testInfo, setTestInfo] = useState(activeMeta);
+      
+      const getInitialQuestions = (tid) => {
+        if (tid === 'ssc-cgl-2026-mock-02' && window.MOCK_02_QUESTIONS) {
+          return window.MOCK_02_QUESTIONS;
+        }
+        return BUILTIN_QUESTIONS;
+      };
+
+      const [questions, setQuestions] = useState(getInitialQuestions(initialTestId));
       const [loadingQuestions, setLoadingQuestions] = useState(false);
       
       // Exam State
@@ -480,8 +509,8 @@
       const [agreedDeclaration, setAgreedDeclaration] = useState(false);
       const [questionLangs, setQuestionLangs] = useState({}); // { [qNum]: 'english' | 'hindi' }
       
-      // Timer (15 mins = 900 seconds)
-      const [timeLeft, setTimeLeft] = useState(DEFAULT_LIVE_TEST.durationMinutes * 60);
+      // Timer
+      const [timeLeft, setTimeLeft] = useState(activeMeta.durationMinutes * 60);
       const [timerRunning, setTimerRunning] = useState(false);
       
       // UI Settings
@@ -502,16 +531,54 @@
         });
       }, []);
 
+      // Switch Test Function
+      const handleSwitchTest = (newTestId) => {
+        setActiveTestId(newTestId);
+        const meta = MOCK_TESTS_METADATA[newTestId] || MOCK_TESTS_METADATA["ssc-cgl-2026-live-1"];
+        setTestInfo(meta);
+        setTimeLeft(meta.durationMinutes * 60);
+        setCurrentQIndex(0);
+        setAnswers({});
+        setStatuses({});
+        setQuestions(getInitialQuestions(newTestId));
+        const newUrl = new URL(window.location);
+        newUrl.searchParams.set('test_id', newTestId);
+        window.history.replaceState({}, '', newUrl);
+      };
+
       // Fetch dynamic questions from Supabase if available
       useEffect(() => {
         async function fetchSupabaseQuestions() {
           if (!supabase) return;
           try {
             setLoadingQuestions(true);
+
+            // 1. Fetch test metadata
+            const { data: testData } = await supabase
+              .from('mock_tests')
+              .select('*')
+              .eq('id', activeTestId)
+              .maybeSingle();
+
+            if (testData) {
+              setTestInfo({
+                id: testData.id,
+                title: testData.title,
+                examCategory: "SSC CGL 2026",
+                durationMinutes: testData.duration_minutes || (activeTestId === 'ssc-cgl-2026-mock-02' ? 60 : 15),
+                totalQuestions: testData.duration_minutes === 60 ? 100 : 25,
+                marksPerQuestion: Number(testData.positive_marks) || 2.0,
+                negativeMarks: Number(testData.negative_marks) || 0.5,
+                maximumMarks: Number(testData.maximum_marks) || 50.0
+              });
+              setTimeLeft((testData.duration_minutes || (activeTestId === 'ssc-cgl-2026-mock-02' ? 60 : 15)) * 60);
+            }
+
+            // 2. Fetch questions
             const { data, error } = await supabase
               .from('mock_test_questions')
               .select('*')
-              .eq('test_id', DEFAULT_LIVE_TEST.id)
+              .eq('test_id', activeTestId)
               .order('question_number', { ascending: true });
 
             if (!error && data && data.length > 0) {
@@ -538,16 +605,16 @@
                 solution_text_hi: q.solution_text_hi || q.solution_text || ""
               }));
               setQuestions(formatted);
-              console.log("Loaded questions from Supabase:", formatted.length);
+              console.log("Loaded questions from Supabase for " + activeTestId + ":", formatted.length);
             }
           } catch (err) {
-            console.warn("Supabase questions fetch note (using built-in questions):", err.message);
+            console.warn("Supabase questions fetch note:", err.message);
           } finally {
             setLoadingQuestions(false);
           }
         }
         fetchSupabaseQuestions();
-      }, []);
+      }, [activeTestId]);
 
       // Countdown Timer
       useEffect(() => {
@@ -833,6 +900,19 @@
                 <h1 className="text-sm sm:text-base font-semibold text-gray-700">
                   {testInfo.title}
                 </h1>
+              </div>
+
+              {/* Quick Test Switcher Dropdown */}
+              <div className="flex items-center space-x-2">
+                <span className="text-xs text-gray-500 hidden sm:inline font-semibold">Switch Test:</span>
+                <select
+                  value={activeTestId}
+                  onChange={(e) => handleSwitchTest(e.target.value)}
+                  className="text-xs bg-gray-50 border border-gray-300 rounded-md px-2 py-1 font-bold text-gray-800 hover:bg-gray-100 cursor-pointer shadow-xs focus:ring-2 focus:ring-cyan-500 focus:outline-none"
+                >
+                  <option value="ssc-cgl-2026-live-1">Mock 01: Quant Live Test (25 Qs • 15 Mins)</option>
+                  <option value="ssc-cgl-2026-mock-02">Mock 02: Full Mock Test (100 Qs • 60 Mins)</option>
+                </select>
               </div>
             </header>
 
@@ -1155,7 +1235,7 @@
                   OVERALL TEST SUMMARY
                 </button>
                 <span className="bg-[#15803d] text-white font-bold px-2 py-0.5 rounded text-[11px] uppercase tracking-wide">
-                  PART-A
+                  {currentQ.section_name || "PART-A"}
                 </span>
               </div>
 
@@ -1330,10 +1410,10 @@
                   </div>
                 </div>
 
-                {/* PART-A Analysis Table */}
+                {/* Analysis Table */}
                 <div className="border-t border-gray-200 bg-gray-50 p-2">
                   <div className="bg-gray-200 font-bold text-xs text-gray-800 px-2 py-1 text-center rounded-t">
-                    PART-A Analysis
+                    {currentQ.section_name || "PART-A"} Analysis
                   </div>
                   <div className="border border-gray-200 border-t-0 bg-white text-xs divide-y divide-gray-100 rounded-b">
                     <div className="flex items-center justify-between px-2.5 py-1">
