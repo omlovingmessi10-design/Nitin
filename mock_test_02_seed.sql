@@ -1,15 +1,34 @@
 ﻿-- =========================================================================
 -- SSC CGL 2026: FULL MOCK TEST 02 (4 PARTS x 25 QUESTIONS = 100 QUESTIONS)
--- Part 1: General Intelligence & Reasoning (Q1 - Q25)   [15 Mins]
--- Part 2: General Awareness               (Q26 - Q50)  [15 Mins]
--- Part 3: Quantitative Aptitude           (Q51 - Q75)  [15 Mins]
--- Part 4: English Comprehension           (Q76 - Q100) [15 Mins]
 -- =========================================================================
 
--- Ensure mock_test_questions table exists
-CREATE TABLE IF NOT EXISTS mock_test_questions (
+-- 1. Ensure mock_tests table exists
+CREATE TABLE IF NOT EXISTS public.mock_tests (
+  id TEXT PRIMARY KEY,
+  title TEXT NOT NULL,
+  exam_category TEXT DEFAULT 'SSC CGL 2026',
+  duration_minutes INT DEFAULT 60,
+  total_questions INT DEFAULT 100,
+  marks_per_question NUMERIC DEFAULT 2.0,
+  negative_marks NUMERIC DEFAULT 0.5,
+  maximum_marks NUMERIC DEFAULT 200.0,
+  is_active BOOLEAN DEFAULT TRUE,
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- 2. Register test ID in mock_tests so foreign key constraint is satisfied
+INSERT INTO public.mock_tests (id, title, duration_minutes, total_questions, maximum_marks, is_active)
+VALUES ('ssc-cgl-2026-mock-02', 'SSC CGL 2026: Mock Test 02 (4 Parts x 25 Qs - 15 Min/Part)', 60, 100, 200, true)
+ON CONFLICT (id) DO UPDATE
+SET title = EXCLUDED.title,
+    duration_minutes = EXCLUDED.duration_minutes,
+    total_questions = EXCLUDED.total_questions,
+    maximum_marks = EXCLUDED.maximum_marks;
+
+-- 3. Ensure mock_test_questions table exists
+CREATE TABLE IF NOT EXISTS public.mock_test_questions (
   id BIGSERIAL PRIMARY KEY,
-  test_id TEXT NOT NULL,
+  test_id TEXT NOT NULL REFERENCES public.mock_tests(id) ON DELETE CASCADE,
   question_number INT NOT NULL,
   section_name TEXT NOT NULL,
   section_title TEXT NOT NULL,
@@ -30,40 +49,10 @@ CREATE TABLE IF NOT EXISTS mock_test_questions (
   CONSTRAINT uq_mock_test_qnum UNIQUE (test_id, question_number)
 );
 
--- Delete previous records for mock-02 if re-seeding
-DELETE FROM mock_test_questions WHERE test_id = 'ssc-cgl-2026-mock-02';
+-- 4. Delete previous questions for mock-02 before seeding
+DELETE FROM public.mock_test_questions WHERE test_id = 'ssc-cgl-2026-mock-02';
 
--- =========================================================================
--- SSC CGL 2026: FULL MOCK TEST 02 (4 PARTS × 25 QUESTIONS • 15 MIN TIMER PER PART)
--- Part 1: General Intelligence & Reasoning (Q1 - Q25)   [15 Mins]
--- Part 2: General Awareness               (Q26 - Q50)  [15 Mins]
--- Part 3: Quantitative Aptitude           (Q51 - Q75)  [15 Mins]
--- Part 4: English Comprehension           (Q76 - Q100) [15 Mins]
--- =========================================================================
-
-INSERT INTO public.mock_tests (
-  id,
-  title,
-  subject_id,
-  duration_minutes,
-  maximum_marks,
-  positive_marks,
-  negative_marks,
-  is_active
-) VALUES (
-  'ssc-cgl-2026-mock-02',
-  'SSC CGL 2026: Mock Test 02 (4 Parts x 25 Qs • 15 Min/Part)',
-  'full_mock',
-  60,
-  200,
-  2.0,
-  0.5,
-  true
-)
-ON CONFLICT (id) DO UPDATE
-SET title = EXCLUDED.title,
-    duration_minutes = EXCLUDED.duration_minutes,
-    maximum_marks = EXCLUDED.maximum_marks;
+-- 5. Insert all 100 Questions
 
 INSERT INTO public.mock_test_questions (
   test_id,

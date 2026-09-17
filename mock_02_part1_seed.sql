@@ -2,6 +2,11 @@
 -- SSC CGL 2026 MOCK TEST 02: PART-1 - General Intelligence & Reasoning (Q1 - Q25)
 -- =========================================================================
 
+-- Satisfy Foreign Key in mock_tests
+INSERT INTO public.mock_tests (id, title, duration_minutes, total_questions, maximum_marks, is_active)
+VALUES ('ssc-cgl-2026-mock-02', 'SSC CGL 2026: Mock Test 02 (4 Parts x 25 Qs - 15 Min/Part)', 60, 100, 200, true)
+ON CONFLICT (id) DO NOTHING;
+
 INSERT INTO public.mock_test_questions (
   test_id, question_number, section_name, section_title,
   question_text, question_text_hi,
