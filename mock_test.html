@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>NLP+ | SSC CGL 2026: Quantitative Aptitude - Live Test</title>
+  <title>NLP+ | SSC CGL 2026: Live Real-Exam Portal</title>
   
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -38,8 +38,8 @@
     body {
       margin: 0;
       padding: 0;
-      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-      background-color: #ffffff;
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background-color: #f8fafc;
       color: #1f2937;
       overflow-x: hidden;
     }
@@ -109,19 +109,18 @@
     }
   </style>
 </head>
-<body class="bg-white text-slate-800 antialiased min-h-screen flex flex-col">
-  <div id="root" class="min-h-screen flex flex-col w-full"></div>
+<body>
+  <div id="root"></div>
 
   <script type="text/babel">
     const { useState, useEffect, useMemo, useRef } = React;
 
-    // --- 1. SUPABASE CLIENT CONFIGURATION ---
+    // --- 1. SUPABASE CLIENT CREDENTIALS ---
     const SUPABASE_URL = "https://aehyjzgymhxzcrgxzdly.supabase.co";
     const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFlaHlqemd5bWh4emNyZ3h6ZGx5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODk2MjA4MDcsImV4cCI6MjEwNTE5NjgwN30.1xE3uGOivEwyuFRVh5Eftf5zTbYftjRyBn8JvYM9_Ck";
     const supabase = window.supabase ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY) : null;
 
-    // --- 2. BUILT-IN FALLBACK LIVE TEST DATA (25 Authenticated Questions) ---
-    // Includes Question 1 exactly from user's live exam screenshot!
+    // --- 2. TESTS METADATA CONFIGURATION ---
     const MOCK_TESTS_METADATA = {
       "ssc-cgl-2026-live-1": {
         id: "ssc-cgl-2026-live-1",
@@ -131,7 +130,11 @@
         totalQuestions: 25,
         marksPerQuestion: 2.0,
         negativeMarks: 0.5,
-        maximumMarks: 50.0
+        maximumMarks: 50.0,
+        isMultiPart: false,
+        parts: [
+          { id: 1, name: "PART-A", title: "Quantitative Aptitude", startQ: 1, endQ: 25, durationMinutes: 15 }
+        ]
       },
       "ssc-cgl-2026-mock-02": {
         id: "ssc-cgl-2026-mock-02",
@@ -141,337 +144,103 @@
         totalQuestions: 100,
         marksPerQuestion: 2.0,
         negativeMarks: 0.5,
-        maximumMarks: 200.0
+        maximumMarks: 200.0,
+        isMultiPart: true,
+        parts: [
+          { id: 1, name: "PART-1", title: "General Intelligence & Reasoning", startQ: 1, endQ: 25, durationMinutes: 15 },
+          { id: 2, name: "PART-2", title: "General Awareness", startQ: 26, endQ: 50, durationMinutes: 15 },
+          { id: 3, name: "PART-3", title: "Quantitative Aptitude", startQ: 51, endQ: 75, durationMinutes: 15 },
+          { id: 4, name: "PART-4", title: "English Comprehension", startQ: 76, endQ: 100, durationMinutes: 15 }
+        ]
       }
     };
+
     const DEFAULT_LIVE_TEST = MOCK_TESTS_METADATA["ssc-cgl-2026-live-1"];
 
-    const BUILTIN_QUESTIONS = [
+    // Built-in Mock 01 Questions (25 Questions)
+    const BUILTIN_QUESTIONS_MOCK01 = [
       {
         question_number: 1,
         section_name: "PART-A",
         section_title: "Quantitative Aptitude",
         question_text: "Find the value of 'x' in the following equation:\n$$5\\frac{1}{2} - \\{x \\div (2(15 + \\sqrt{441}))\\} = 5\\frac{1}{4}$$",
-        question_text_hi: "समीकरण में 'x' का मान ज्ञात कीजिए:\n$$5\\frac{1}{2} - \\{x \\div (2(15 + \\sqrt{441}))\\} = 5\\frac{1}{4}$$",
+        question_text_hi: "à¤¸à¤®à¥€à¤•à¤°à¤£ à¤®à¥‡à¤‚ 'x' à¤•à¤¾ à¤®à¤¾à¤¨ à¤œà¥à¤žà¤¾à¤¤ à¤•à¥€à¤œà¤¿à¤:\n$$5\\frac{1}{2} - \\{x \\div (2(15 + \\sqrt{441}))\\} = 5\\frac{1}{4}$$",
         options: { a: "19", b: "24", c: "14", d: "18" },
         options_hi: { a: "19", b: "24", c: "14", d: "18" },
         correct_option: "d",
         solution_text: "\\sqrt{441} = 21. Inside brackets: 2 * (15 + 21) = 2 * 36 = 72.\nEquation: 11/2 - x/72 = 21/4 => x/72 = 11/2 - 21/4 = 1/4 => x = 72/4 = 18.",
-        solution_text_hi: "\\sqrt{441} = 21। 2 * (15 + 21) = 72। समीकरण: 11/2 - x/72 = 21/4 => x/72 = 1/4 => x = 18।"
+        solution_text_hi: "\\sqrt{441} = 21à¥¤ 2 * (15 + 21) = 72à¥¤ à¤¸à¤®à¥€à¤•à¤°à¤£: 11/2 - x/72 = 21/4 => x/72 = 1/4 => x = 18à¥¤"
       },
       {
         question_number: 2,
         section_name: "PART-A",
         section_title: "Quantitative Aptitude",
-        question_text: "If the marked price of an article is ₹800 and two successive discounts of 15% and 10% are given, then find the selling price of the article.",
-        question_text_hi: "यदि किसी वस्तु का अंकित मूल्य ₹800 है और 15% तथा 10% की दो क्रमिक छूट दी जाती हैं, तो वस्तु का विक्रय मूल्य ज्ञात कीजिए।",
-        options: { a: "₹612", b: "₹624", c: "₹600", d: "₹596" },
-        options_hi: { a: "₹612", b: "₹624", c: "₹600", d: "₹596" },
+        question_text: "If the marked price of an article is Rs. 800 and two successive discounts of 15% and 10% are given, then find the selling price of the article.",
+        question_text_hi: "à¤¯à¤¦à¤¿ à¤•à¤¿à¤¸à¥€ à¤µà¤¸à¥à¤¤à¥ à¤•à¤¾ à¤…à¤‚à¤•à¤¿à¤¤ à¤®à¥‚à¤²à¥à¤¯ Rs. 800 à¤¹à¥ˆ à¤”à¤° 15% à¤¤à¤¥à¤¾ 10% à¤•à¥€ à¤¦à¥‹ à¤•à¥à¤°à¤®à¤¿à¤• à¤›à¥‚à¤Ÿ à¤¦à¥€ à¤œà¤¾à¤¤à¥€ à¤¹à¥ˆà¤‚, à¤¤à¥‹ à¤µà¤¸à¥à¤¤à¥ à¤•à¤¾ à¤µà¤¿à¤•à¥à¤°à¤¯ à¤®à¥‚à¤²à¥à¤¯ à¤œà¥à¤žà¤¾à¤¤ à¤•à¥€à¤œà¤¿à¤à¥¤",
+        options: { a: "Rs. 612", b: "Rs. 624", c: "Rs. 600", d: "Rs. 596" },
+        options_hi: { a: "Rs. 612", b: "Rs. 624", c: "Rs. 600", d: "Rs. 596" },
         correct_option: "a",
-        solution_text: "SP = 800 * 0.85 * 0.90 = 800 * 0.765 = ₹612.",
-        solution_text_hi: "विक्रय मूल्य = 800 * 0.85 * 0.90 = ₹612।"
+        solution_text: "SP = 800 * 0.85 * 0.90 = 800 * 0.765 = Rs. 612.",
+        solution_text_hi: "à¤µà¤¿à¤•à¥à¤°à¤¯ à¤®à¥‚à¤²à¥à¤¯ = 800 * 0.85 * 0.90 = Rs. 612à¥¤"
       },
       {
         question_number: 3,
         section_name: "PART-A",
         section_title: "Quantitative Aptitude",
-        question_text: "The ratio of incomes of A and B is 4:3, and their expenditures are in the ratio 3:2. If each saves ₹6,000 at the end of the year, find the annual income of A.",
-        question_text_hi: "A और B की आय का अनुपात 4:3 है, और उनके व्यय का अनुपात 3:2 है। यदि वे दोनों वर्ष के अंत में प्रत्येक ₹6,000 की बचत करते हैं, तो A की वार्षिक आय ज्ञात कीजिए।",
-        options: { a: "₹24,000", b: "₹18,000", c: "₹20,000", d: "₹28,000" },
-        options_hi: { a: "₹24,000", b: "₹18,000", c: "₹20,000", d: "₹28,000" },
+        question_text: "The ratio of incomes of A and B is 4:3, and their expenditures are in the ratio 3:2. If each saves Rs. 6,000 at the end of the year, find the annual income of A.",
+        question_text_hi: "A à¤”à¤° B à¤•à¥€ à¤†à¤¯ à¤•à¤¾ à¤…à¤¨à¥à¤ªà¤¾à¤¤ 4:3 à¤¹à¥ˆ, à¤”à¤° à¤‰à¤¨à¤•à¥‡ à¤µà¥à¤¯à¤¯ à¤•à¤¾ à¤…à¤¨à¥à¤ªà¤¾à¤¤ 3:2 à¤¹à¥ˆà¥¤ à¤¯à¤¦à¤¿ à¤µà¥‡ à¤¦à¥‹à¤¨à¥‹à¤‚ à¤µà¤°à¥à¤· à¤•à¥‡ à¤…à¤‚à¤¤ à¤®à¥‡à¤‚ à¤ªà¥à¤°à¤¤à¥à¤¯à¥‡à¤• Rs. 6,000 à¤•à¥€ à¤¬à¤šà¤¤ à¤•à¤°à¤¤à¥‡ à¤¹à¥ˆà¤‚, à¤¤à¥‹ A à¤•à¥€ à¤µà¤¾à¤°à¥à¤·à¤¿à¤• à¤†à¤¯ à¤œà¥à¤žà¤¾à¤¤ à¤•à¥€à¤œà¤¿à¤à¥¤",
+        options: { a: "Rs. 24,000", b: "Rs. 18,000", c: "Rs. 20,000", d: "Rs. 28,000" },
+        options_hi: { a: "Rs. 24,000", b: "Rs. 18,000", c: "Rs. 20,000", d: "Rs. 28,000" },
         correct_option: "a",
-        solution_text: "Let incomes = 4x, 3x. (4x - 6000)/(3x - 6000) = 3/2 => 8x - 12000 = 9x - 18000 => x = 6000. Income of A = 4 * 6000 = ₹24,000.",
-        solution_text_hi: "(4x - 6000)/(3x - 6000) = 3/2 => x = 6000। A की आय = 4 * 6000 = ₹24,000।"
+        solution_text: "Let incomes = 4x, 3x. (4x - 6000)/(3x - 6000) = 3/2 => 8x - 12000 = 9x - 18000 => x = 6000. Income of A = 4 * 6000 = Rs. 24,000.",
+        solution_text_hi: "(4x - 6000)/(3x - 6000) = 3/2 => x = 6000à¥¤ A à¤•à¥€ à¤†à¤¯ = 4 * 6000 = Rs. 24,000à¥¤"
       },
       {
         question_number: 4,
         section_name: "PART-A",
         section_title: "Quantitative Aptitude",
         question_text: "If the price of petrol increases by 25%, by what percentage should a driver reduce his consumption so that expenditure remains unchanged?",
-        question_text_hi: "यदि पेट्रोल की कीमत में 25% की वृद्धि होती है, तो एक चालक को अपनी खपत में कितने प्रतिशत की कमी करनी चाहिए ताकि उसका खर्च अपरिवर्तित रहे?",
+        question_text_hi: "à¤¯à¤¦à¤¿ à¤ªà¥‡à¤Ÿà¥à¤°à¥‹à¤² à¤•à¥€ à¤•à¥€à¤®à¤¤ à¤®à¥‡à¤‚ 25% à¤•à¥€ à¤µà¥ƒà¤¦à¥à¤§à¤¿ à¤¹à¥‹à¤¤à¥€ à¤¹à¥ˆ, à¤¤à¥‹ à¤à¤• à¤šà¤¾à¤²à¤• à¤•à¥‹ à¤…à¤ªà¤¨à¥€ à¤–à¤ªà¤¤ à¤®à¥‡à¤‚ à¤•à¤¿à¤¤à¤¨à¥‡ à¤ªà¥à¤°à¤¤à¤¿à¤¶à¤¤ à¤•à¥€ à¤•à¤®à¥€ à¤•à¤°à¤¨à¥€ à¤šà¤¾à¤¹à¤¿à¤ à¤¤à¤¾à¤•à¤¿ à¤‰à¤¸à¤•à¤¾ à¤–à¤°à¥à¤š à¤…à¤ªà¤°à¤¿à¤µà¤°à¥à¤¤à¤¿à¤¤ à¤°à¤¹à¥‡?",
         options: { a: "20%", b: "25%", c: "16.67%", d: "15%" },
         options_hi: { a: "20%", b: "25%", c: "16.67%", d: "15%" },
         correct_option: "a",
         solution_text: "Reduction% = [r / (100 + r)] * 100 = (25 / 125) * 100 = 20%.",
-        solution_text_hi: "कमी% = [25 / (100 + 25)] * 100 = 20%।"
+        solution_text_hi: "à¤•à¤®à¥€% = [25 / (100 + 25)] * 100 = 20%à¥¤"
       },
       {
         question_number: 5,
         section_name: "PART-A",
         section_title: "Quantitative Aptitude",
         question_text: "The average weight of 24 students in a class is 45 kg. If the teacher's weight is included, the average weight increases by 400 grams. Find the weight of the teacher.",
-        question_text_hi: "एक कक्षा के 24 छात्रों का औसत वजन 45 किग्रा है। यदि शिक्षक का वजन भी शामिल कर लिया जाए, तो औसत वजन 400 ग्राम बढ़ जाता है। शिक्षक का वजन ज्ञात कीजिए।",
+        question_text_hi: "à¤à¤• à¤•à¤•à¥à¤·à¤¾ à¤•à¥‡ 24 à¤›à¤¾à¤¤à¥à¤°à¥‹à¤‚ à¤•à¤¾ à¤”à¤¸à¤¤ à¤µà¤œà¤¨ 45 à¤•à¤¿à¤—à¥à¤°à¤¾ à¤¹à¥ˆà¥¤ à¤¯à¤¦à¤¿ à¤¶à¤¿à¤•à¥à¤·à¤• à¤•à¤¾ à¤µà¤œà¤¨ à¤­à¥€ à¤¶à¤¾à¤®à¤¿à¤² à¤•à¤° à¤²à¤¿à¤¯à¤¾ à¤œà¤¾à¤, à¤¤à¥‹ à¤”à¤¸à¤¤ à¤µà¤œà¤¨ 400 à¤—à¥à¤°à¤¾à¤® à¤¬à¤¢à¤¼ à¤œà¤¾à¤¤à¤¾ à¤¹à¥ˆà¥¤ à¤¶à¤¿à¤•à¥à¤·à¤• à¤•à¤¾ à¤µà¤œà¤¨ à¤œà¥à¤žà¤¾à¤¤ à¤•à¥€à¤œà¤¿à¤à¥¤",
         options: { a: "55 kg", b: "54.6 kg", c: "55.4 kg", d: "56 kg" },
-        options_hi: { a: "55 किग्रा", b: "54.6 किग्रा", c: "55.4 किग्रा", d: "56 किग्रा" },
+        options_hi: { a: "55 à¤•à¤¿à¤—à¥à¤°à¤¾", b: "54.6 à¤•à¤¿à¤—à¥à¤°à¤¾", c: "55.4 à¤•à¤¿à¤—à¥à¤°à¤¾", d: "56 à¤•à¤¿à¤—à¥à¤°à¤¾" },
         correct_option: "a",
         solution_text: "Teacher's weight = Old Average + (Total persons * Increase) = 45 + (25 * 0.4) = 45 + 10 = 55 kg.",
-        solution_text_hi: "शिक्षक का वजन = 45 + (25 * 0.4 किग्रा) = 45 + 10 = 55 किग्रा।"
-      },
-      {
-        question_number: 6,
-        section_name: "PART-A",
-        section_title: "Quantitative Aptitude",
-        question_text: "A can complete a work in 12 days, and B can complete the same work in 18 days. They worked together for 4 days, then A left. In how many days will B finish the remaining work?",
-        question_text_hi: "A एक कार्य को 12 दिनों में पूरा कर सकता है, और B उसी कार्य को 18 दिनों में पूरा कर सकता है। उन्होंने 4 दिनों तक एक साथ कार्य किया, फिर A ने कार्य छोड़ दिया। B शेष कार्य को कितने दिनों में पूरा करेगा?",
-        options: { a: "8 days", b: "6 days", c: "10 days", d: "5 days" },
-        options_hi: { a: "8 दिन", b: "6 दिन", c: "10 दिन", d: "5 दिन" },
-        correct_option: "a",
-        solution_text: "Total work = 36. Efficiency A = 3, B = 2. Work in 4 days = 4 * 5 = 20. Remaining = 16. Days for B = 16 / 2 = 8 days.",
-        solution_text_hi: "कुल कार्य = 36 इकाइयाँ। 4 दिनों में कार्य = 20। शेष कार्य = 16। B के दिन = 16 / 2 = 8 दिन।"
-      },
-      {
-        question_number: 7,
-        section_name: "PART-A",
-        section_title: "Quantitative Aptitude",
-        question_text: "Pipe A can fill a tank in 6 hours and Pipe B can fill it in 8 hours. An emptying pipe C can empty the full tank in 12 hours. If all three pipes are opened together, in how many hours will the tank be full?",
-        question_text_hi: "पाइप A एक टंकी को 6 घंटे में भर सकता है और पाइप B इसे 8 घंटे में भर सकता है। एक निकासी पाइप C भरी हुई टंकी को 12 घंटे में खाली कर सकता है। यदि तीनों पाइपों को एक साथ खोल दिया जाए, तो टंकी कितने घंटों में भर जाएगी?",
-        options: { a: "4 4/5 hours", b: "4 2/3 hours", c: "5 hours", d: "5 1/4 hours" },
-        options_hi: { a: "4 4/5 घंटे", b: "4 2/3 घंटे", c: "5 घंटे", d: "5 1/4 घंटे" },
-        correct_option: "a",
-        solution_text: "Capacity = 24. Rates: A = +4, B = +3, C = -2. Net = 5. Time = 24 / 5 = 4 4/5 hours.",
-        solution_text_hi: "कुल क्षमता = 24। शुद्ध दर = 4 + 3 - 2 = 5। समय = 24 / 5 = 4 4/5 घंटे।"
-      },
-      {
-        question_number: 8,
-        section_name: "PART-A",
-        section_title: "Quantitative Aptitude",
-        question_text: "A train 240 m long passes a telegraph post in 16 seconds. How long will it take to pass a platform 420 m long?",
-        question_text_hi: "240 मीटर लंबी एक ट्रेन एक टेलीग्राफ पोस्ट को 16 सेकंड में पार करती है। 420 मीटर लंबे प्लेटफॉर्म को पार करने में इसे कितना समय लगेगा?",
-        options: { a: "44 seconds", b: "40 seconds", c: "48 seconds", d: "36 seconds" },
-        options_hi: { a: "44 सेकंड", b: "40 सेकंड", c: "48 सेकंड", d: "36 सेकंड" },
-        correct_option: "a",
-        solution_text: "Speed = 240 / 16 = 15 m/s. Total distance = 240 + 420 = 660 m. Time = 660 / 15 = 44 seconds.",
-        solution_text_hi: "गति = 240 / 16 = 15 मी/से। कुल दूरी = 660 मीटर। समय = 660 / 15 = 44 सेकंड।"
-      },
-      {
-        question_number: 9,
-        section_name: "PART-A",
-        section_title: "Quantitative Aptitude",
-        question_text: "A boat travels 36 km downstream in 3 hours and 24 km upstream in 4 hours. What is the speed of the current?",
-        question_text_hi: "एक नाव धारा के अनुकूल 36 किमी की दूरी 3 घंटे में और धारा के प्रतिकूल 24 किमी की दूरी 4 घंटे में तय करती है। धारा की गति क्या है?",
-        options: { a: "3 km/h", b: "2.5 km/h", c: "4 km/h", d: "2 km/h" },
-        options_hi: { a: "3 किमी/घंटा", b: "2.5 किमी/घंटा", c: "4 किमी/घंटा", d: "2 किमी/घंटा" },
-        correct_option: "a",
-        solution_text: "Downstream speed = 12 km/h. Upstream = 6 km/h. Current speed = (12 - 6) / 2 = 3 km/h.",
-        solution_text_hi: "अनुकूल गति = 12, प्रतिकूल = 6। धारा की गति = (12 - 6)/2 = 3 किमी/घंटा।"
-      },
-      {
-        question_number: 10,
-        section_name: "PART-A",
-        section_title: "Quantitative Aptitude",
-        question_text: "The difference between the compound interest and simple interest on a certain sum of money at 10% per annum for 2 years is ₹144. Find the principal sum.",
-        question_text_hi: "किसी निश्चित धनराशि पर 10% वार्षिक दर से 2 वर्ष के चक्रवृद्धि ब्याज और साधारण ब्याज के बीच का अंतर ₹144 है। मूलधन ज्ञात कीजिए।",
-        options: { a: "₹14,400", b: "₹12,000", c: "₹15,000", d: "₹16,000" },
-        options_hi: { a: "₹14,400", b: "₹12,000", c: "₹15,000", d: "₹16,000" },
-        correct_option: "a",
-        solution_text: "Difference = P * (R/100)^2 => 144 = P * (1/100) => P = ₹14,400.",
-        solution_text_hi: "2 वर्ष का अंतर = P * (R/100)^2 => 144 = P * (1/100) => P = ₹14,400।"
-      },
-      {
-        question_number: 11,
-        section_name: "PART-A",
-        section_title: "Quantitative Aptitude",
-        question_text: "If $$x + \\frac{1}{x} = 5$$, find the value of $$x^3 + \\frac{1}{x^3}$$.",
-        question_text_hi: "यदि $$x + \\frac{1}{x} = 5$$ है, तो $$x^3 + \\frac{1}{x^3}$$ का मान ज्ञात कीजिए।",
-        options: { a: "110", b: "115", c: "125", d: "120" },
-        options_hi: { a: "110", b: "115", c: "125", d: "120" },
-        correct_option: "a",
-        solution_text: "x^3 + 1/x^3 = 5^3 - 3(5) = 125 - 15 = 110.",
-        solution_text_hi: "x^3 + 1/x^3 = 5^3 - 3(5) = 125 - 15 = 110।"
-      },
-      {
-        question_number: 12,
-        section_name: "PART-A",
-        section_title: "Quantitative Aptitude",
-        question_text: "If a + b + c = 0, then find the value of $$\\frac{a^2}{bc} + \\frac{b^2}{ca} + \\frac{c^2}{ab}$$.",
-        question_text_hi: "यदि a + b + c = 0 है, तो $$\\frac{a^2}{bc} + \\frac{b^2}{ca} + \\frac{c^2}{ab}$$ का मान ज्ञात कीजिए।",
-        options: { a: "3", b: "0", c: "1", d: "-3" },
-        options_hi: { a: "3", b: "0", c: "1", d: "-3" },
-        correct_option: "a",
-        solution_text: "Expression = (a^3 + b^3 + c^3) / (abc). Since a+b+c=0, a^3+b^3+c^3 = 3abc. Thus 3abc/abc = 3.",
-        solution_text_hi: "यदि a+b+c=0, तो a^3+b^3+c^3 = 3abc। अतः मान = 3।"
-      },
-      {
-        question_number: 13,
-        section_name: "PART-A",
-        section_title: "Quantitative Aptitude",
-        question_text: "In \\triangle ABC, the bisectors of \\angle B and \\angle C intersect at incenter I inside the triangle. If \\angle BAC = 68^\\circ, what is the measure of \\angle BIC?",
-        question_text_hi: "\\triangle ABC में, \\angle B और \\angle C के समद्विभाजक त्रिभुज के अंदर अंतःकेंद्र I पर प्रतिच्छेद करते हैं। यदि \\angle BAC = 68^\\circ है, तो \\angle BIC का माप क्या है?",
-        options: { a: "124°", b: "118°", c: "136°", d: "112°" },
-        options_hi: { a: "124°", b: "118°", c: "136°", d: "112°" },
-        correct_option: "a",
-        solution_text: "Incenter angle = 90° + A/2 = 90° + 34° = 124°.",
-        solution_text_hi: "अंतःकेंद्र कोण = 90° + 34° = 124°।"
-      },
-      {
-        question_number: 14,
-        section_name: "PART-A",
-        section_title: "Quantitative Aptitude",
-        question_text: "Two concentric circles are of radii 13 cm and 5 cm. Find the length of the chord of the larger circle which touches the smaller circle.",
-        question_text_hi: "दो संकेंद्रीय वृत्तों की त्रिज्याएँ 13 सेमी और 5 सेमी हैं। बड़े वृत्त की उस जीवा की लंबाई ज्ञात कीजिए जो छोटे वृत्त को स्पर्श करती है।",
-        options: { a: "24 cm", b: "20 cm", c: "26 cm", d: "18 cm" },
-        options_hi: { a: "24 सेमी", b: "20 सेमी", c: "26 सेमी", d: "18 सेमी" },
-        correct_option: "a",
-        solution_text: "Half chord = \\sqrt{13^2 - 5^2} = \\sqrt{144} = 12 cm. Full chord = 24 cm.",
-        solution_text_hi: "जीवा का आधा = \\sqrt{169 - 25} = 12 सेमी। पूरी जीवा = 24 सेमी।"
-      },
-      {
-        question_number: 15,
-        section_name: "PART-A",
-        section_title: "Quantitative Aptitude",
-        question_text: "The circumference of a circular field is 352 m. Find the area of the field. (Use \\pi = 22/7)",
-        question_text_hi: "एक वृत्ताकार मैदान की परिधि 352 मीटर है। मैदान का क्षेत्रफल ज्ञात कीजिए। (\\pi = 22/7 का प्रयोग करें)",
-        options: { a: "9,856 m²", b: "9,216 m²", c: "8,856 m²", d: "10,240 m²" },
-        options_hi: { a: "9,856 मी²", b: "9,216 मी²", c: "8,856 मी²", d: "10,240 मी²" },
-        correct_option: "a",
-        solution_text: "2 * (22/7) * r = 352 => r = 56 m. Area = (22/7) * 56 * 56 = 9,856 m².",
-        solution_text_hi: "त्रिज्या = 56 मीटर। क्षेत्रफल = (22/7) * 56 * 56 = 9,856 वर्ग मीटर।"
-      },
-      {
-        question_number: 16,
-        section_name: "PART-A",
-        section_title: "Quantitative Aptitude",
-        question_text: "A solid metallic cylinder of base radius 3 cm and height 5 cm is melted and recast into small solid spheres of radius 0.5 cm each. How many such spheres can be formed?",
-        question_text_hi: "3 सेमी आधार त्रिज्या और 5 सेमी ऊंचाई वाले एक ठोस धातु के बेलन को पिघलाकर 0.5 सेमी त्रिज्या के छोटे ठोस गोले बनाए जाते हैं। ऐसे कितने गोले बनाए जा सकते हैं?",
-        options: { a: "270", b: "240", c: "300", d: "180" },
-        options_hi: { a: "270", b: "240", c: "300", d: "180" },
-        correct_option: "a",
-        solution_text: "Cylinder volume = \\pi * 9 * 5 = 45\\pi. Sphere volume = (4/3)\\pi * (1/8) = \\pi / 6. Spheres = 45 * 6 = 270.",
-        solution_text_hi: "बेलन का आयतन = 45\\pi। गोले का आयतन = \\pi/6। गोलों की संख्या = 45 * 6 = 270।"
-      },
-      {
-        question_number: 17,
-        section_name: "PART-A",
-        section_title: "Quantitative Aptitude",
-        question_text: "If \\tan\\theta = 4/3, find the value of $$\\frac{3\\sin\\theta + 2\\cos\\theta}{3\\sin\\theta - 2\\cos\\theta}$$.",
-        question_text_hi: "यदि \\tan\\theta = 4/3 है, तो $$\\frac{3\\sin\\theta + 2\\cos\\theta}{3\\sin\\theta - 2\\cos\\theta}$$ का मान ज्ञात कीजिए।",
-        options: { a: "3", b: "2", c: "4", d: "1.5" },
-        options_hi: { a: "3", b: "2", c: "4", d: "1.5" },
-        correct_option: "a",
-        solution_text: "Divide by \\cos\\theta: (3*4/3 + 2) / (3*4/3 - 2) = (4 + 2)/(4 - 2) = 6/2 = 3.",
-        solution_text_hi: "अंश व हर को \\cos\\theta से भाग देने पर: (4 + 2) / (4 - 2) = 6 / 2 = 3।"
-      },
-      {
-        question_number: 18,
-        section_name: "PART-A",
-        section_title: "Quantitative Aptitude",
-        question_text: "The angle of elevation of the top of a tower from a point on the ground, which is 30 m away from the foot of the tower, is 30°. Find the height of the tower.",
-        question_text_hi: "जमीन पर एक बिंदु से, जो एक टॉवर के पाद से 30 मीटर की दूरी पर है, टॉवर के शीर्ष का उन्नयन कोण 30° है। टॉवर की ऊंचाई ज्ञात कीजिए।",
-        options: { a: "10√3 m", b: "15√3 m", c: "20 m", d: "15 m" },
-        options_hi: { a: "10√3 मीटर", b: "15√3 मीटर", c: "20 मीटर", d: "15 मीटर" },
-        correct_option: "a",
-        solution_text: "h = 30 * tan(30°) = 30 / √3 = 10√3 m.",
-        solution_text_hi: "ऊंचाई = 30 * tan(30°) = 30 / √3 = 10√3 मीटर।"
-      },
-      {
-        question_number: 19,
-        section_name: "PART-A",
-        section_title: "Quantitative Aptitude",
-        question_text: "Find the distance between the points A(-3, 4) and B(5, -2).",
-        question_text_hi: "बिंदुओं A(-3, 4) और B(5, -2) के बीच की दूरी ज्ञात कीजिए।",
-        options: { a: "10 units", b: "12 units", c: "8 units", d: "2√13 units" },
-        options_hi: { a: "10 इकाइयाँ", b: "12 इकाइयाँ", c: "8 इकाइयाँ", d: "2√13 इकाइयाँ" },
-        correct_option: "a",
-        solution_text: "Distance = \\sqrt{(5 - (-3))^2 + (-2 - 4)^2} = \\sqrt{64 + 36} = 10 units.",
-        solution_text_hi: "दूरी = \\sqrt{64 + 36} = 10 इकाइयाँ।"
-      },
-      {
-        question_number: 20,
-        section_name: "PART-A",
-        section_title: "Quantitative Aptitude",
-        question_text: "If the 6-digit number 4x573y is divisible by 72, find the value of (x + y).",
-        question_text_hi: "यदि 6 अंकों की संख्या 4x573y 72 से विभाज्य है, तो (x + y) का मान ज्ञात कीजिए।",
-        options: { a: "8", b: "9", c: "7", d: "10" },
-        options_hi: { a: "8", b: "9", c: "7", d: "10" },
-        correct_option: "a",
-        solution_text: "73y divisible by 8 => y = 6. Sum = 25 + x divisible by 9 => x = 2. x + y = 2 + 6 = 8.",
-        solution_text_hi: "73y 8 से विभाज्य => y = 6। अंकों का योग = 25 + x 9 से विभाज्य => x = 2। x + y = 8।"
-      },
-      {
-        question_number: 21,
-        section_name: "PART-A",
-        section_title: "Quantitative Aptitude",
-        question_text: "What is the greatest number that will divide 148, 246, and 623 leaving remainders 4, 6, and 11 respectively?",
-        question_text_hi: "वह सबसे बड़ी संख्या कौन सी है जो 148, 246 और 623 को विभाजित करने पर क्रमशः 4, 6 और 11 शेषफल छोड़ती है?",
-        options: { a: "12", b: "16", c: "18", d: "14" },
-        options_hi: { a: "12", b: "16", c: "18", d: "14" },
-        correct_option: "a",
-        solution_text: "HCF(148 - 4, 246 - 6, 623 - 11) = HCF(144, 240, 612) = 12.",
-        solution_text_hi: "HCF(144, 240, 612) = 12।"
-      },
-      {
-        question_number: 22,
-        section_name: "PART-A",
-        section_title: "Quantitative Aptitude",
-        question_text: "A company's car production (in thousands) over 3 years is: 2021: 50, 2022: 65, 2023: 80. What is the average annual production of the company?",
-        question_text_hi: "3 वर्षों में एक कंपनी का कार उत्पादन (हजारों में): 2021: 50, 2022: 65, 2023: 80। कंपनी का औसत वार्षिक उत्पादन क्या है?",
-        options: { a: "65,000", b: "63,333", c: "60,000", d: "62,500" },
-        options_hi: { a: "65,000", b: "63,333", c: "60,000", d: "62,500" },
-        correct_option: "a",
-        solution_text: "Average = (50 + 65 + 80) / 3 = 195 / 3 = 65 thousand = 65,000.",
-        solution_text_hi: "औसत = 195 / 3 = 65 हजार = 65,000।"
-      },
-      {
-        question_number: 23,
-        section_name: "PART-A",
-        section_title: "Quantitative Aptitude",
-        question_text: "If the production of cars was 45 thousand in 2021 and increased to 60 thousand in 2023, find the percentage increase in production.",
-        question_text_hi: "यदि 2021 में कारों का उत्पादन 45 हजार था और 2023 में बढ़कर 60 हजार हो गया, तो उत्पादन में प्रतिशत वृद्धि ज्ञात कीजिए।",
-        options: { a: "33.33%", b: "30%", c: "25%", d: "35%" },
-        options_hi: { a: "33.33%", b: "30%", c: "25%", d: "35%" },
-        correct_option: "a",
-        solution_text: "Increase% = (15 / 45) * 100 = 33.33%.",
-        solution_text_hi: "प्रतिशत वृद्धि = (15 / 45) * 100 = 33.33%।"
-      },
-      {
-        question_number: 24,
-        section_name: "PART-A",
-        section_title: "Quantitative Aptitude",
-        question_text: "Total factory output in year 2021 was 155 thousand units and in 2023 it was 220 thousand units. What is the ratio of output in 2021 to 2023?",
-        question_text_hi: "वर्ष 2021 में कुल कारखाना उत्पादन 155 हजार इकाइयाँ और 2023 में 220 हजार इकाइयाँ था। 2021 से 2023 के उत्पादन का अनुपात क्या है?",
-        options: { a: "31 : 44", b: "30 : 43", c: "31 : 45", d: "29 : 42" },
-        options_hi: { a: "31 : 44", b: "30 : 43", c: "31 : 45", d: "29 : 42" },
-        correct_option: "a",
-        solution_text: "Ratio = 155 : 220 = 31 : 44.",
-        solution_text_hi: "अनुपात = 155 : 220 = 31 : 44।"
-      },
-      {
-        question_number: 25,
-        section_name: "PART-A",
-        section_title: "Quantitative Aptitude",
-        question_text: "A and B enter into a partnership. A invests ₹40,000 for 8 months and B invests ₹60,000 for 6 months. Out of a total profit of ₹34,000, what is A's share?",
-        question_text_hi: "A और B एक साझेदारी में प्रवेश करते हैं। A 8 महीने के लिए ₹40,000 का निवेश करता है और B 6 महीने के लिए ₹60,000 का निवेश करता है। ₹34,000 के कुल लाभ में से A का हिस्सा क्या है?",
-        options: { a: "₹16,000", b: "₹18,000", c: "₹15,000", d: "₹17,000" },
-        options_hi: { a: "₹16,000", b: "₹18,000", c: "₹15,000", d: "₹17,000" },
-        correct_option: "a",
-        solution_text: "Ratio = 320000 : 360000 = 8 : 9. Total = 17. A's share = (8/17) * 34,000 = ₹16,000.",
-        solution_text_hi: "अनुपात = 8 : 9। A का हिस्सा = (8 / 17) * 34,000 = ₹16,000।"
+        solution_text_hi: "à¤¶à¤¿à¤•à¥à¤·à¤• à¤•à¤¾ à¤µà¤œà¤¨ = 45 + (25 * 0.4 à¤•à¤¿à¤—à¥à¤°à¤¾) = 45 + 10 = 55 à¤•à¤¿à¤—à¥à¤°à¤¾à¥¤"
       }
     ];
 
-    // Helper to render KaTeX math in text elements
+    // Helper: Fast KaTeX Renderer
     const renderMathText = (text) => {
       if (!text) return "";
-      // Replace $$formula$$ or $formula$ with rendered span if katex is available
-      if (!window.katex) return text;
-      
-      const parts = text.split(/(\$\$.*?\$\$|\$.*?\$)/gs);
-      return parts.map((part, idx) => {
+      const parts = text.split(/(\$\$[\s\S]*?\$\$|\$[^$]*?\$)/g);
+      return parts.map((part, index) => {
         if (part.startsWith("$$") && part.endsWith("$$")) {
-          const math = part.slice(2, -2).trim();
+          const math = part.slice(2, -2);
           try {
-            const html = window.katex.renderToString(math, { displayMode: true, throwOnError: false });
-            return <span key={idx} dangerouslySetInnerHTML={{ __html: html }} className="my-2 block text-center" />;
+            const html = window.katex ? window.katex.renderToString(math, { displayMode: true, throwOnError: false }) : math;
+            return <span key={index} dangerouslySetInnerHTML={{ __html: html }} className="my-2 block text-center" />;
           } catch (e) {
-            return part;
+            return <span key={index}>{part}</span>;
           }
         } else if (part.startsWith("$") && part.endsWith("$")) {
-          const math = part.slice(1, -1).trim();
+          const math = part.slice(1, -1);
           try {
-            const html = window.katex.renderToString(math, { displayMode: false, throwOnError: false });
-            return <span key={idx} dangerouslySetInnerHTML={{ __html: html }} className="inline-block mx-1" />;
+            const html = window.katex ? window.katex.renderToString(math, { displayMode: false, throwOnError: false }) : math;
+            return <span key={index} dangerouslySetInnerHTML={{ __html: html }} className="inline-block px-0.5" />;
           } catch (e) {
-            return part;
+            return <span key={index}>{part}</span>;
           }
         }
         return part;
@@ -483,7 +252,7 @@
       const [screen, setScreen] = useState('instructions_1');
       const [userProfile, setUserProfile] = useState({ name: 'Nitin', role: 'Quant Specialist' });
       
-      // URL parameter test_id
+      // Test metadata
       const urlParams = new URLSearchParams(window.location.search);
       const initialTestId = urlParams.get('test_id') || 'ssc-cgl-2026-live-1';
       const [activeTestId, setActiveTestId] = useState(initialTestId);
@@ -495,11 +264,30 @@
         if (tid === 'ssc-cgl-2026-mock-02' && window.MOCK_02_QUESTIONS) {
           return window.MOCK_02_QUESTIONS;
         }
-        return BUILTIN_QUESTIONS;
+        return BUILTIN_QUESTIONS_MOCK01;
       };
 
       const [questions, setQuestions] = useState(getInitialQuestions(initialTestId));
       const [loadingQuestions, setLoadingQuestions] = useState(false);
+
+      // Sectional Parts Configuration (4 Parts x 25 Qs - 15 Mins each)
+      const isMultiPart = activeTestId === 'ssc-cgl-2026-mock-02' || questions.length > 25;
+      const partsConfig = useMemo(() => {
+        if (!isMultiPart) {
+          return [
+            { id: 1, name: "PART-A", title: "Quantitative Aptitude", startQ: 1, endQ: 25, durationMinutes: 15 }
+          ];
+        }
+        return [
+          { id: 1, name: "PART-1", title: "General Intelligence & Reasoning", startQ: 1, endQ: 25, durationMinutes: 15 },
+          { id: 2, name: "PART-2", title: "General Awareness", startQ: 26, endQ: 50, durationMinutes: 15 },
+          { id: 3, name: "PART-3", title: "Quantitative Aptitude", startQ: 51, endQ: 75, durationMinutes: 15 },
+          { id: 4, name: "PART-4", title: "English Comprehension", startQ: 76, endQ: 100, durationMinutes: 15 }
+        ];
+      }, [isMultiPart, questions.length]);
+
+      const [currentPartIndex, setCurrentPartIndex] = useState(0);
+      const activePart = partsConfig[currentPartIndex] || partsConfig[0];
       
       // Exam State
       const [currentQIndex, setCurrentQIndex] = useState(0);
@@ -509,14 +297,14 @@
       const [agreedDeclaration, setAgreedDeclaration] = useState(false);
       const [questionLangs, setQuestionLangs] = useState({}); // { [qNum]: 'english' | 'hindi' }
       
-      // Timer
-      const [timeLeft, setTimeLeft] = useState(activeMeta.durationMinutes * 60);
+      // 15-Minute Sectional Timer for Active Part
+      const [timeLeft, setTimeLeft] = useState(activePart.durationMinutes * 60);
       const [timerRunning, setTimerRunning] = useState(false);
       
       // UI Settings
       const [isPaletteCollapsed, setIsPaletteCollapsed] = useState(false);
       const [zoomLevel, setZoomLevel] = useState(1.0);
-      const [activeModal, setActiveModal] = useState(null); // 'symbols' | 'instructions' | 'summary' | 'report' | 'submit_confirm'
+      const [activeModal, setActiveModal] = useState(null); // 'symbols' | 'instructions' | 'summary' | 'report' | 'submit_part_confirm' | 'submit_confirm'
       
       // Test Result
       const [testResult, setTestResult] = useState(null);
@@ -536,7 +324,8 @@
         setActiveTestId(newTestId);
         const meta = MOCK_TESTS_METADATA[newTestId] || MOCK_TESTS_METADATA["ssc-cgl-2026-live-1"];
         setTestInfo(meta);
-        setTimeLeft(meta.durationMinutes * 60);
+        setCurrentPartIndex(0);
+        setTimeLeft(15 * 60); // 15 Mins for Part 1
         setCurrentQIndex(0);
         setAnswers({});
         setStatuses({});
@@ -553,28 +342,7 @@
           try {
             setLoadingQuestions(true);
 
-            // 1. Fetch test metadata
-            const { data: testData } = await supabase
-              .from('mock_tests')
-              .select('*')
-              .eq('id', activeTestId)
-              .maybeSingle();
-
-            if (testData) {
-              setTestInfo({
-                id: testData.id,
-                title: testData.title,
-                examCategory: "SSC CGL 2026",
-                durationMinutes: testData.duration_minutes || (activeTestId === 'ssc-cgl-2026-mock-02' ? 60 : 15),
-                totalQuestions: testData.duration_minutes === 60 ? 100 : 25,
-                marksPerQuestion: Number(testData.positive_marks) || 2.0,
-                negativeMarks: Number(testData.negative_marks) || 0.5,
-                maximumMarks: Number(testData.maximum_marks) || 50.0
-              });
-              setTimeLeft((testData.duration_minutes || (activeTestId === 'ssc-cgl-2026-mock-02' ? 60 : 15)) * 60);
-            }
-
-            // 2. Fetch questions
+            // Fetch questions from Supabase
             const { data, error } = await supabase
               .from('mock_test_questions')
               .select('*')
@@ -584,8 +352,8 @@
             if (!error && data && data.length > 0) {
               const formatted = data.map(q => ({
                 question_number: q.question_number,
-                section_name: q.section_name || "PART-A",
-                section_title: q.section_title || "Quantitative Aptitude",
+                section_name: q.section_name || "PART-1",
+                section_title: q.section_title || "General Section",
                 question_text: q.question_text,
                 question_text_hi: q.question_text_hi || q.question_text,
                 options: {
@@ -608,7 +376,7 @@
               console.log("Loaded questions from Supabase for " + activeTestId + ":", formatted.length);
             }
           } catch (err) {
-            console.warn("Supabase questions fetch note:", err.message);
+            console.warn("Supabase fetch note:", err.message);
           } finally {
             setLoadingQuestions(false);
           }
@@ -616,7 +384,26 @@
         fetchSupabaseQuestions();
       }, [activeTestId]);
 
-      // Countdown Timer
+      // Proceed to Next Part (Called manually or when 15-min timer expires)
+      const handleProceedToNextPart = () => {
+        if (currentPartIndex < partsConfig.length - 1) {
+          const nextIdx = currentPartIndex + 1;
+          const nextPart = partsConfig[nextIdx];
+          setCurrentPartIndex(nextIdx);
+          setTimeLeft(nextPart.durationMinutes * 60); // Reset to 15 Mins!
+          const nextQIdx = nextPart.startQ - 1;
+          setCurrentQIndex(nextQIdx);
+          setStatuses(prev => ({
+            ...prev,
+            [nextPart.startQ]: prev[nextPart.startQ] || 'not_answered'
+          }));
+          setActiveModal(null);
+        } else {
+          handleFinalSubmit();
+        }
+      };
+
+      // 15-Minute Sectional Countdown Timer
       useEffect(() => {
         let interval = null;
         if (timerRunning && screen === 'test' && timeLeft > 0) {
@@ -624,15 +411,23 @@
             setTimeLeft(prev => {
               if (prev <= 1) {
                 clearInterval(interval);
-                handleFinalSubmit(); // Auto-submit when time expires
-                return 0;
+                // Sectional time is up! Auto-advance to next part or submit
+                if (currentPartIndex < partsConfig.length - 1) {
+                  alert(`Time is up for ${activePart.name} (${activePart.title})! Automatically advancing to ${partsConfig[currentPartIndex + 1].name}.`);
+                  handleProceedToNextPart();
+                  return partsConfig[currentPartIndex + 1].durationMinutes * 60;
+                } else {
+                  alert("Time is up for the final part! Submitting test.");
+                  handleFinalSubmit();
+                  return 0;
+                }
               }
               return prev - 1;
             });
           }, 1000);
         }
         return () => clearInterval(interval);
-      }, [timerRunning, screen, timeLeft]);
+      }, [timerRunning, screen, timeLeft, currentPartIndex, partsConfig]);
 
       // Format time as MM : SS
       const formatTime = (secs) => {
@@ -641,13 +436,38 @@
         return `${m < 10 ? '0' + m : m} : ${s < 10 ? '0' + s : s}`;
       };
 
-      // Current Question
+      // Current Question & Part Questions
       const currentQ = questions[currentQIndex] || questions[0];
-      const qNum = currentQ.question_number;
+      const qNum = currentQ ? currentQ.question_number : 1;
       const currentLang = questionLangs[qNum] || defaultLanguage || 'hindi';
 
-      // Counts for Analysis Table
-      const analysisCounts = useMemo(() => {
+      // Active Part Questions (25 Questions of the current section)
+      const currentPartQuestions = useMemo(() => {
+                    Q {activePart.startQ} - {activePart.endQ}
+      }, [questions, activePart]);
+
+      // Active Part Analysis Counts (out of 25)
+      const partAnalysisCounts = useMemo(() => {
+        let answered = 0;
+        let notAnswered = 0;
+        let markedReview = 0;
+        let notVisited = 0;
+        let answeredMarked = 0;
+
+        currentPartQuestions.forEach(q => {
+          const st = statuses[q.question_number];
+          if (st === 'answered') answered++;
+          else if (st === 'not_answered') notAnswered++;
+          else if (st === 'marked_review') markedReview++;
+          else if (st === 'answered_marked_review') answeredMarked++;
+          else notVisited++;
+        });
+
+        return { answered, notAnswered, markedReview, notVisited, answeredMarked };
+      }, [statuses, currentPartQuestions]);
+
+      // Overall Counts for Summary Modal
+      const overallCounts = useMemo(() => {
         let answered = 0;
         let notAnswered = 0;
         let markedReview = 0;
@@ -683,18 +503,19 @@
           initialStatuses[q.question_number] = idx === 0 ? 'not_answered' : 'not_visited';
         });
         setStatuses(initialStatuses);
+        setCurrentPartIndex(0);
+        setTimeLeft(activePart.durationMinutes * 60); // 15 Mins
+        setCurrentQIndex(0);
         setScreen('test');
         setTimerRunning(true);
       };
 
       // Select an Option
       const handleSelectOption = (optKey) => {
-        // Toggle selection if already selected
         if (answers[qNum] === optKey) {
           const nextAnswers = { ...answers };
           delete nextAnswers[qNum];
           setAnswers(nextAnswers);
-          // If status was answered, revert to not_answered
           if (statuses[qNum] === 'answered') {
             setStatuses(prev => ({ ...prev, [qNum]: 'not_answered' }));
           } else if (statuses[qNum] === 'answered_marked_review') {
@@ -726,15 +547,22 @@
           [qNum]: hasAnswer ? 'answered' : 'not_answered'
         }));
 
-        if (currentQIndex < questions.length - 1) {
+        // Move to next question if within active part
+        if (currentQIndex < activePart.endQ - 1) {
           const nextIndex = currentQIndex + 1;
           const nextQNum = questions[nextIndex].question_number;
-          // Mark next question as not_answered if it was not_visited
           setStatuses(prev => ({
             ...prev,
             [nextQNum]: prev[nextQNum] === 'not_visited' || !prev[nextQNum] ? 'not_answered' : prev[nextQNum]
           }));
           setCurrentQIndex(nextIndex);
+        } else {
+          // At the last question of the current part
+          if (currentPartIndex < partsConfig.length - 1) {
+            setActiveModal('submit_part_confirm');
+          } else {
+            setActiveModal('submit_confirm');
+          }
         }
       };
 
@@ -746,7 +574,7 @@
           [qNum]: hasAnswer ? 'answered_marked_review' : 'marked_review'
         }));
 
-        if (currentQIndex < questions.length - 1) {
+        if (currentQIndex < activePart.endQ - 1) {
           const nextIndex = currentQIndex + 1;
           const nextQNum = questions[nextIndex].question_number;
           setStatuses(prev => ({
@@ -757,18 +585,24 @@
         }
       };
 
-      // Jump to a Question from Palette
+      // Jump to a Question from Palette (Within Active Part)
       const handleJumpToQuestion = (targetIndex) => {
-        const targetQNum = questions[targetIndex].question_number;
+        const targetQ = questions[targetIndex];
+        if (!targetQ) return;
+        const targetQNum = targetQ.question_number;
+
+        // Ensure target is within active part
+                    Q {activePart.startQ} - {activePart.endQ}
+          alert(`You can only view questions in active section: ${activePart.name} (${activePart.title}).`);
+          return;
+        }
         
-        // If current question was unvisited and not answered, mark current as not_answered
         setStatuses(prev => {
           const currentStatus = prev[qNum];
           const updated = { ...prev };
           if (!currentStatus || currentStatus === 'not_visited') {
             updated[qNum] = answers[qNum] ? 'answered' : 'not_answered';
           }
-          // Also mark target as not_answered if not visited
           if (!updated[targetQNum] || updated[targetQNum] === 'not_visited') {
             updated[targetQNum] = 'not_answered';
           }
@@ -802,39 +636,63 @@
         setTimerRunning(false);
         setIsSubmitting(true);
 
-        // Calculate score
-        let correct = 0;
-        let incorrect = 0;
-        let attempted = 0;
+        let totalCorrect = 0;
+        let totalIncorrect = 0;
+        let totalAttempted = 0;
 
-        questions.forEach(q => {
-          const chosen = answers[q.question_number];
-          if (chosen) {
-            attempted++;
-            if (chosen.toLowerCase() === q.correct_option.toLowerCase()) {
-              correct++;
-            } else {
-              incorrect++;
+        // Calculate sectional breakdown
+        const partsBreakdown = partsConfig.map(part => {
+          let pAttempted = 0;
+          let pCorrect = 0;
+          let pIncorrect = 0;
+          const partQs = questions.filter(q => q.question_number >= part.startQ && q.question_number <= part.endQ);
+          
+          partQs.forEach(q => {
+            const chosen = answers[q.question_number];
+            if (chosen) {
+              pAttempted++;
+              totalAttempted++;
+              if (chosen.toLowerCase() === q.correct_option.toLowerCase()) {
+                pCorrect++;
+                totalCorrect++;
+              } else {
+                pIncorrect++;
+                totalIncorrect++;
+              }
             }
-          }
+          });
+
+          const pScore = (pCorrect * testInfo.marksPerQuestion) - (pIncorrect * testInfo.negativeMarks);
+          return {
+            ...part,
+            total: partQs.length,
+            attempted: pAttempted,
+            correct: pCorrect,
+            incorrect: pIncorrect,
+            unattempted: partQs.length - pAttempted,
+            score: Math.max(0, Math.round(pScore * 100) / 100),
+            maxMarks: partQs.length * testInfo.marksPerQuestion,
+            accuracy: pAttempted > 0 ? Math.round((pCorrect / pAttempted) * 100) : 0
+          };
         });
 
-        const score = (correct * testInfo.marksPerQuestion) - (incorrect * testInfo.negativeMarks);
+        const totalScore = (totalCorrect * testInfo.marksPerQuestion) - (totalIncorrect * testInfo.negativeMarks);
         const timeTaken = (testInfo.durationMinutes * 60) - timeLeft;
 
         const resultData = {
           userName: userProfile.name,
           testId: testInfo.id,
           totalQuestions: questions.length,
-          attempted,
-          correct,
-          incorrect,
-          unattempted: questions.length - attempted,
-          score: Math.max(0, Math.round(score * 100) / 100),
+          attempted: totalAttempted,
+          correct: totalCorrect,
+          incorrect: totalIncorrect,
+          unattempted: questions.length - totalAttempted,
+          score: Math.max(0, Math.round(totalScore * 100) / 100),
           maximumMarks: testInfo.maximumMarks,
-          accuracy: attempted > 0 ? Math.round((correct / attempted) * 100) : 0,
+          accuracy: totalAttempted > 0 ? Math.round((totalCorrect / totalAttempted) * 100) : 0,
           timeTakenSeconds: timeTaken,
-          submittedAt: new Date().toISOString()
+          submittedAt: new Date().toISOString(),
+          partsBreakdown
         };
 
         setTestResult(resultData);
@@ -846,9 +704,9 @@
               test_id: testInfo.id,
               user_name: userProfile.name,
               total_questions: questions.length,
-              attempted_count: attempted,
-              correct_count: correct,
-              incorrect_count: incorrect,
+              attempted_count: totalAttempted,
+              correct_count: totalCorrect,
+              incorrect_count: totalIncorrect,
               score: resultData.score,
               maximum_marks: testInfo.maximumMarks,
               time_taken_seconds: timeTaken,
@@ -868,18 +726,20 @@
       const handleReattempt = () => {
         setAnswers({});
         setStatuses({});
-        setTimeLeft(testInfo.durationMinutes * 60);
+        setCurrentPartIndex(0);
+        setTimeLeft(activePart.durationMinutes * 60);
         setCurrentQIndex(0);
-        setTestResult(null);
         setScreen('instructions_1');
+        setTestResult(null);
       };
 
-      // Render Active Language Option Text
+      // Active Language Option Text
       const getOptionText = (optKey) => {
+        if (!currentQ) return "";
         if (currentLang === 'hindi' && currentQ.options_hi && currentQ.options_hi[optKey]) {
           return currentQ.options_hi[optKey];
         }
-        return currentQ.options[optKey] || "";
+        return (currentQ.options && currentQ.options[optKey]) || "";
       };
 
       // =========================================================================
@@ -897,21 +757,21 @@
                   </span>
                 </div>
                 <div className="h-4 w-px bg-gray-300"></div>
-                <h1 className="text-sm sm:text-base font-semibold text-gray-700">
+                <h1 className="text-sm sm:text-base font-semibold text-gray-700 truncate max-w-sm sm:max-w-md">
                   {testInfo.title}
                 </h1>
               </div>
 
               {/* Quick Test Switcher Dropdown */}
               <div className="flex items-center space-x-2">
-                <span className="text-xs text-gray-500 hidden sm:inline font-semibold">Switch Test:</span>
+                <span className="text-xs text-gray-500 hidden md:inline font-semibold">Switch Test:</span>
                 <select
                   value={activeTestId}
                   onChange={(e) => handleSwitchTest(e.target.value)}
                   className="text-xs bg-gray-50 border border-gray-300 rounded-md px-2 py-1 font-bold text-gray-800 hover:bg-gray-100 cursor-pointer shadow-xs focus:ring-2 focus:ring-cyan-500 focus:outline-none"
                 >
-                  <option value="ssc-cgl-2026-live-1">Mock 01: Quant Live Test (25 Qs • 15 Mins)</option>
-                  <option value="ssc-cgl-2026-mock-02">Mock 02: Full Mock Test (100 Qs • 60 Mins)</option>
+                  <option value="ssc-cgl-2026-live-1">Mock 01: Quant Live (25 Qs &bull; 15 Mins)</option>
+                  <option value="ssc-cgl-2026-mock-02">Mock 02: 4 Parts &times; 25 Qs (15 Min / Part &bull; 100 Qs)</option>
                 </select>
               </div>
             </header>
@@ -920,8 +780,13 @@
             <main className="max-w-7xl w-full mx-auto p-4 sm:p-6 lg:p-8 flex-1 grid grid-cols-1 lg:grid-cols-12 gap-8">
               {/* LEFT COLUMN: INSTRUCTIONS */}
               <div className="lg:col-span-9 space-y-5 text-sm text-gray-800 leading-relaxed overflow-y-auto max-h-[75vh] pr-2">
-                <h2 className="text-base font-bold text-gray-900 border-b border-gray-200 pb-1.5">
-                  General Instructions:
+                <h2 className="text-base font-bold text-gray-900 border-b border-gray-200 pb-1.5 flex items-center justify-between">
+                  <span>General Instructions:</span>
+                  {isMultiPart && (
+                    <span className="text-xs bg-teal-50 text-teal-800 font-bold px-2 py-0.5 rounded border border-teal-200">
+                      &#9889; 4 Parts &times; 25 Questions (15 Mins Each)
+                    </span>
+                  )}
                 </h2>
                 
                 <ol className="list-decimal pl-5 space-y-3">
@@ -951,7 +816,7 @@
                       <div className="flex items-center space-x-3">
                         <span className="w-7 h-7 status-answered-marked flex items-center justify-center font-bold text-xs shrink-0 relative">
                           5
-                          <span className="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-emerald-500 rounded-full border border-white flex items-center justify-center text-[8px]">✓</span>
+                          <span className="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-emerald-500 rounded-full border border-white flex items-center justify-center text-[8px]">&#10003;</span>
                         </span>
                         <span>You have answered the question, but marked it for review.</span>
                       </div>
@@ -967,7 +832,7 @@
                 <ol className="list-decimal pl-5 space-y-1.5 text-xs text-gray-700" start="3">
                   <li>To answer a question, do the following:
                     <ul className="list-disc pl-5 mt-1 space-y-1">
-                      <li>Click on the question number in the Question Palette at the right of your screen to go to that numbered question directly. Note that using this option does NOT save your answer to the current question.</li>
+                      <li>Click on the question number in the Question Palette at the right of your screen to go to that numbered question directly within the active part.</li>
                       <li>Click on <strong>Save & Next</strong> to save your answer for the current question and then go to the next question.</li>
                       <li>Click on <strong>Mark for Review & Next</strong> to save your answer for the current question and also mark it for review, and then go to the next question.</li>
                     </ul>
@@ -997,7 +862,7 @@
                 <span className="mt-3 text-base font-bold text-gray-800">{userProfile.name}</span>
                 <span className="text-xs text-gray-500 font-medium">{userProfile.role}</span>
                 <span className="mt-1 inline-flex items-center text-[11px] text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">
-                  ● Verified Aspirant
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 mr-1.5 inline-block"></span>Verified Aspirant
                 </span>
               </div>
             </main>
@@ -1008,7 +873,7 @@
                 href="dashboard.html"
                 className="text-xs sm:text-sm font-semibold text-cyan-700 hover:text-cyan-800 flex items-center space-x-1"
               >
-                <span>← Go to Tests</span>
+                <span>&larr; Go to Tests</span>
               </a>
 
               <button
@@ -1023,7 +888,7 @@
       }
 
       // =========================================================================
-      // SCREEN 2: SPECIFIC INSTRUCTIONS & DECLARATION (Matching Screenshot 2)
+      // SCREEN 2: SPECIFIC INSTRUCTIONS & SECTIONAL TIMING (Matching Screenshot 2)
       // =========================================================================
       if (screen === 'instructions_2') {
         return (
@@ -1037,9 +902,20 @@
                   </span>
                 </div>
                 <div className="h-4 w-px bg-gray-300"></div>
-                <h1 className="text-sm sm:text-base font-semibold text-gray-700">
+                <h1 className="text-sm sm:text-base font-semibold text-gray-700 truncate max-w-sm sm:max-w-md">
                   {testInfo.title}
                 </h1>
+              </div>
+
+              <div className="flex items-center space-x-2">
+                <select
+                  value={activeTestId}
+                  onChange={(e) => handleSwitchTest(e.target.value)}
+                  className="text-xs bg-gray-50 border border-gray-300 rounded-md px-2 py-1 font-bold text-gray-800 hover:bg-gray-100 cursor-pointer shadow-xs"
+                >
+                  <option value="ssc-cgl-2026-live-1">Mock 01: Quant Live (25 Qs &bull; 15 Mins)</option>
+                  <option value="ssc-cgl-2026-mock-02">Mock 02: 4 Parts &times; 25 Qs (15 Min / Part &bull; 100 Qs)</option>
+                </select>
               </div>
             </header>
 
@@ -1052,17 +928,37 @@
                 </h2>
 
                 <div className="flex items-center justify-between border-b border-gray-200 pb-2 text-sm font-bold text-gray-800">
-                  <span>Duration: {testInfo.durationMinutes} Mins</span>
+                  <span>
+                    Duration: {isMultiPart ? "15 Mins per Part (60 Mins total)" : "15 Mins"}
+                  </span>
                   <span>Maximum Marks: {testInfo.maximumMarks}</span>
                 </div>
+
+                {/* 4 Parts Breakdown Box */}
+                {isMultiPart && (
+                  <div className="grid grid-cols-1 sm:grid-cols-4 gap-2.5">
+                    {partsConfig.map(part => (
+                      <div key={part.id} className="p-3 bg-blue-50/60 rounded-xl border border-blue-200 text-center">
+                        <span className="bg-blue-600 text-white font-extrabold text-[10px] px-2 py-0.5 rounded-full uppercase tracking-wider">
+                          {part.name}
+                        </span>
+                        <h4 className="font-bold text-xs text-gray-900 mt-1.5 truncate">{part.title}</h4>
+                        <div className="text-[11px] text-gray-600 mt-0.5">25 Questions &bull; <strong>15 Mins</strong></div>
+                        <div className="text-[10px] text-emerald-700 font-bold mt-1">Max 50 Marks (+2 / -0.5)</div>
+                      </div>
+                    ))}
+                  </div>
+                )}
 
                 <div className="space-y-2.5 text-sm text-gray-800">
                   <h3 className="font-bold text-gray-900">Read the following Instructions carefully.</h3>
                   <ol className="list-decimal pl-5 space-y-2">
-                    <li>The test contains <strong>{questions.length}</strong> total questions.</li>
+                    <li>The test contains <strong>{questions.length} total questions</strong>{isMultiPart ? " divided into 4 parts of 25 questions each" : ""}.</li>
                     <li>Each question has 4 options out of which only one is correct.</li>
-                    <li>You have to finish the test in <strong>{testInfo.durationMinutes} minutes</strong>.</li>
-                    <li>You will be awarded <strong>{testInfo.marksPerQuestion} mark</strong> for each correct answer and <strong>{testInfo.negativeMarks}</strong> will be deducted for each wrong answer.</li>
+                    <li>
+                      <strong>Sectional Timing:</strong> {isMultiPart ? "Each part has a strict 15-minute countdown timer. When the 15 minutes expire, you are automatically moved to the next part with a fresh 15-minute timer." : "You have to finish the test in 15 minutes."}
+                    </li>
+                    <li>You will be awarded <strong>{testInfo.marksPerQuestion} marks</strong> for each correct answer and <strong>{testInfo.negativeMarks} marks</strong> will be deducted for each wrong answer.</li>
                     <li>There is no negative marking for the questions that you have not attempted.</li>
                   </ol>
                 </div>
@@ -1076,7 +972,7 @@
                     <select
                       value={defaultLanguage}
                       onChange={(e) => setDefaultLanguage(e.target.value)}
-                      className="border border-gray-300 rounded px-3 py-1.5 text-sm focus:ring-2 focus:ring-cyan-500 focus:outline-none bg-white"
+                      className="border border-gray-300 rounded px-3 py-1.5 text-sm bg-white font-semibold text-gray-700 focus:outline-none focus:ring-2 focus:ring-cyan-500"
                     >
                       <option value="">-- Select --</option>
                       <option value="hindi">Hindi</option>
@@ -1084,22 +980,24 @@
                     </select>
                   </div>
 
-                  <p className="text-xs text-red-600 font-medium">
+                  <p className="text-xs text-rose-600 font-medium">
                     Please note all questions will appear in your default language. This language can be changed for a particular question later on.
                   </p>
                 </div>
 
                 {/* DECLARATION CHECKBOX */}
-                <div className="pt-3 border-t border-gray-200">
-                  <h4 className="text-xs font-bold text-gray-900 uppercase tracking-wider mb-2">Declaration:</h4>
-                  <label className="flex items-start space-x-2.5 cursor-pointer text-xs sm:text-sm text-gray-800">
+                <div className="pt-4 border-t border-gray-200 space-y-2">
+                  <h4 className="text-sm font-bold text-gray-900">Declaration:</h4>
+                  <label className="flex items-start space-x-2 text-xs text-gray-700 cursor-pointer">
                     <input
                       type="checkbox"
                       checked={agreedDeclaration}
                       onChange={(e) => setAgreedDeclaration(e.target.checked)}
-                      className="mt-0.5 h-4 w-4 rounded border-gray-300 text-cyan-600 focus:ring-cyan-500"
+                      className="mt-0.5 rounded text-cyan-600 focus:ring-cyan-500 cursor-pointer"
                     />
-                    <span>I have understood and agree to all the instructions.</span>
+                    <span>
+                      I have understood and agree to all the instructions. I declare that I will strictly abide by the rules and instructions of the examination.
+                    </span>
                   </label>
                 </div>
               </div>
@@ -1118,7 +1016,7 @@
             <footer className="border-t border-gray-200 px-6 py-3 bg-gray-50 flex items-center justify-between">
               <button
                 onClick={() => setScreen('instructions_1')}
-                className="px-5 py-2 bg-blue-100 hover:bg-blue-200 text-blue-800 font-semibold text-xs sm:text-sm rounded transition"
+                className="px-5 py-2 bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold text-xs sm:text-sm rounded transition"
               >
                 Previous
               </button>
@@ -1126,7 +1024,7 @@
               <button
                 onClick={handleStartTest}
                 disabled={!defaultLanguage || !agreedDeclaration}
-                className={`px-6 py-2 font-bold text-sm rounded shadow transition ${
+                className={`px-6 py-2 font-bold text-xs sm:text-sm rounded shadow transition ${
                   defaultLanguage && agreedDeclaration
                     ? 'bg-[#00A8B5] hover:bg-teal-600 text-white cursor-pointer'
                     : 'bg-gray-300 text-gray-500 cursor-not-allowed'
@@ -1140,7 +1038,7 @@
       }
 
       // =========================================================================
-      // SCREEN 3: LIVE EXAM INTERFACE (Matching Screenshot 3)
+      // SCREEN 3: LIVE EXAM INTERFACE WITH SECTIONAL TIMING (Matching Screenshot 3)
       // =========================================================================
       if (screen === 'test') {
         const questionText = currentLang === 'hindi' ? (currentQ.question_text_hi || currentQ.question_text) : currentQ.question_text;
@@ -1182,38 +1080,40 @@
               <div className="hidden lg:block font-bold text-sm text-gray-800 tracking-tight text-center">
                 {testInfo.title}
               </div>
-
-              {/* Right: Fullscreen, Timer & User Avatar */}
+                  &#x26F6;
+              {/* Right: Fullscreen, Sectional Timer & User Avatar */}
               <div className="flex items-center space-x-3">
                 <button
                   onClick={handleToggleFullscreen}
                   className="p-1 text-gray-600 hover:text-gray-900 border border-gray-300 rounded text-sm"
                   title="Toggle Fullscreen"
-                >
-                  ⛶
+                  &#x26F6;
+                  &#x26F6;
                 </button>
-
-                {/* COUNTDOWN TIMER */}
+                  &#x26F6;
+                {/* COUNTDOWN TIMER (15 Mins for Current Part) */}
                 <div className="text-right">
-                  <div className="text-[10px] uppercase font-bold text-gray-500 tracking-wider">Time Left</div>
+                  <div className="text-[10px] uppercase font-bold text-gray-500 tracking-wider">
+                    Time Left ({activePart.name})
+                  </div>
                   <div className={`font-mono text-base sm:text-lg font-black tracking-wider ${timeLeft <= 120 ? 'text-red-600 animate-pulse' : 'text-red-600'}`}>
                     {formatTime(timeLeft)}
                   </div>
                 </div>
 
-                {/* Registration & Captured Photo Placeholders */}
+                {/* Candidate Photos */}
                 <div className="flex items-center space-x-1 pl-1 border-l border-gray-200">
                   <div className="w-8 h-8 rounded bg-gray-200 border border-gray-300 flex flex-col items-center justify-center text-[8px] text-gray-600 font-bold" title="Registration Photo">
-                    <span>👤</span>
+                    <span>&#128100;</span>
                   </div>
                   <div className="w-8 h-8 rounded bg-gray-200 border border-gray-300 flex flex-col items-center justify-center text-[8px] text-gray-600 font-bold" title="Captured Photo">
-                    <span>📷</span>
+                    <span>&#128247;</span>
                   </div>
                 </div>
               </div>
             </header>
 
-            {/* 2. SUB-TOOLBAR RIBBON */}
+            {/* 2. SUB-TOOLBAR RIBBON WITH PART BADGE & ACTIONS */}
             <div className="border-b border-gray-200 px-3 sm:px-5 py-1.5 bg-[#f8fafc] flex flex-wrap items-center justify-between text-xs gap-2">
               <div className="flex items-center space-x-3 sm:space-x-4">
                 <button
@@ -1234,8 +1134,12 @@
                 >
                   OVERALL TEST SUMMARY
                 </button>
-                <span className="bg-[#15803d] text-white font-bold px-2 py-0.5 rounded text-[11px] uppercase tracking-wide">
-                  {currentQ.section_name || "PART-A"}
+
+                {/* Active Part Badge with 15-min label */}
+                <span className="bg-[#15803d] text-white font-bold px-2 py-0.5 rounded text-[11px] uppercase tracking-wide flex items-center space-x-1 shadow-xs">
+                  <span>{activePart.name}:</span>
+                  <span>{activePart.title}</span>
+                  <span className="bg-white/20 text-white text-[9px] px-1 rounded ml-1 font-mono">15m Timer</span>
                 </span>
               </div>
 
@@ -1253,40 +1157,57 @@
                 >
                   Save & Next
                 </button>
-                <button
-                  onClick={() => setActiveModal('submit_confirm')}
-                  className="px-3 py-1 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded text-xs"
-                >
-                  Submit Test
-                </button>
 
-                <div className="font-bold text-gray-700 pl-2">
-                  Total Questions Answered: <span className="bg-yellow-400 text-black px-1.5 py-0.5 rounded font-black">{analysisCounts.answered + analysisCounts.answeredMarked}</span>
+                {/* Submit Part or Submit Test */}
+                {currentPartIndex < partsConfig.length - 1 ? (
+                  <button
+                    onClick={() => setActiveModal('submit_part_confirm')}
+                    className="px-3 py-1 bg-amber-600 hover:bg-amber-700 text-white font-bold rounded text-xs shadow-xs"
+                  >
+                    Submit {activePart.name} & Proceed &rarr;
+                  </button>
+                ) : (
+                  <button
+                    onClick={() => setActiveModal('submit_confirm')}
+                    className="px-3 py-1 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded text-xs shadow-xs"
+                  >
+                    Submit Final Test
+                  </button>
+                )}
+
+                <div className="font-bold text-xs pl-2 border-l border-gray-300">
+                  Part Answered: <span className="text-emerald-700 font-extrabold">{partAnalysisCounts.answered + partAnalysisCounts.answeredMarked} / 25</span>
                 </div>
               </div>
             </div>
 
-            {/* 3. MAIN EXAM SPLIT AREA */}
-            <div className="flex-1 flex flex-row overflow-hidden relative">
+            {/* 3. MAIN SPLIT BODY (Question Pane + Palette) */}
+            <div className="flex-1 flex overflow-hidden relative">
               {/* LEFT: QUESTION PANE */}
               <div
-                className="flex-1 p-4 sm:p-6 overflow-y-auto flex flex-col justify-between transition-all duration-200"
+                className="flex-1 p-4 sm:p-6 overflow-y-auto flex flex-col justify-between"
                 style={{ transform: `scale(${zoomLevel})`, transformOrigin: 'top left' }}
               >
                 <div>
-                  {/* Question Header & Language Selector */}
-                  <div className="flex items-center justify-between border-b border-gray-200 pb-2">
-                    <h2 className="text-base font-bold text-gray-900">
+                  {/* Question Header Bar */}
+                  <div className="flex items-center justify-between border-b border-gray-200 pb-2.5">
+                    <h2 className="text-base sm:text-lg font-bold text-gray-900">
                       Question No. {qNum}
+                      <span className="ml-2 text-xs font-semibold text-gray-500 font-normal">
+                        ({activePart.name} &bull; {activePart.title})
+                      </span>
                     </h2>
 
                     <div className="flex items-center space-x-3 text-xs">
                       <div className="flex items-center space-x-1.5">
-                        <span className="text-gray-600 font-medium">Select Language</span>
+                        <label className="text-gray-600 font-semibold">Select Language</label>
                         <select
                           value={currentLang}
-                          onChange={(e) => setQuestionLangs(prev => ({ ...prev, [qNum]: e.target.value }))}
-                          className="border border-gray-300 rounded px-2 py-0.5 text-xs bg-white focus:outline-none"
+                          onChange={(e) => {
+                            const val = e.target.value;
+                            setQuestionLangs(prev => ({ ...prev, [qNum]: val }));
+                          }}
+                          className="border border-gray-300 rounded px-2 py-0.5 text-xs bg-white font-medium"
                         >
                           <option value="hindi">Hindi</option>
                           <option value="english">English</option>
@@ -1295,15 +1216,15 @@
 
                       <button
                         onClick={() => setActiveModal('report')}
-                        className="text-gray-500 hover:text-red-600 flex items-center space-x-0.5"
+                        className="text-gray-500 hover:text-red-600 font-medium flex items-center space-x-1"
                       >
-                        <span>▲</span>
+                        <span>&#9650;</span>
                         <span>Report</span>
                       </button>
                     </div>
                   </div>
 
-                  {/* Question Statement (Rendered with KaTeX) */}
+                  {/* Question Statement */}
                   <div className="py-4 text-sm sm:text-base text-gray-900 leading-relaxed font-normal">
                     {renderMathText(questionText)}
                   </div>
@@ -1339,7 +1260,7 @@
                   </div>
                 </div>
 
-                {/* Question Bottom Action Bar */}
+                {/* Bottom Action Bar */}
                 <div className="pt-6 border-t border-gray-200 flex items-center justify-between mt-6">
                   <button
                     onClick={handleMarkForReviewAndNext}
@@ -1355,12 +1276,38 @@
                     Clear Response
                   </button>
 
-                  <button
-                    onClick={handleSaveAndNext}
-                    className="px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs sm:text-sm rounded shadow transition"
-                  >
-                    Save & Next
-                  </button>
+                  {/* Save & Next or Submit Part if last question of part */}
+                  {currentQIndex === activePart.endQ - 1 ? (
+                    currentPartIndex < partsConfig.length - 1 ? (
+                      <button
+                        onClick={() => {
+                          handleSaveAndNext();
+                          setActiveModal('submit_part_confirm');
+                        }}
+                        className="px-6 py-2 bg-amber-600 hover:bg-amber-700 text-white font-bold text-xs sm:text-sm rounded shadow transition flex items-center space-x-1"
+                      >
+                        <span>Save & Submit {activePart.name}</span>
+                        <span>&rarr;</span>
+                      </button>
+                    ) : (
+                      <button
+                        onClick={() => {
+                          handleSaveAndNext();
+                          setActiveModal('submit_confirm');
+                        }}
+                        className="px-6 py-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs sm:text-sm rounded shadow transition"
+                      >
+                        Save & Final Submit
+                      </button>
+                    )
+                  ) : (
+                    <button
+                      onClick={handleSaveAndNext}
+                      className="px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs sm:text-sm rounded shadow transition"
+                    >
+                      Save & Next
+                    </button>
+                  )}
                 </div>
               </div>
 
@@ -1370,17 +1317,52 @@
                   isPaletteCollapsed ? 'w-0 overflow-hidden border-l-0' : 'w-72 sm:w-80'
                 }`}
               >
+                {/* 4 Parts Tabs (Multi-Part Progress) */}
+                {isMultiPart && (
+                  <div className="p-2 border-b border-gray-200 bg-gray-50 grid grid-cols-2 gap-1.5 text-[11px]">
+                    {partsConfig.map((part, pIdx) => {
+                      const isActive = pIdx === currentPartIndex;
+                      const isPast = pIdx < currentPartIndex;
+                      return (
+                        <div
+                          key={part.id}
+                          className={`p-1.5 rounded border text-center font-bold transition flex flex-col justify-center ${
+                            isActive
+                              ? 'bg-blue-50 border-blue-500 text-blue-800 shadow-xs'
+                              : isPast
+                              ? 'bg-emerald-50 border-emerald-300 text-emerald-700 opacity-90'
+                              : 'bg-gray-100 border-gray-200 text-gray-400'
+                          }`}
+                        >
+                          <div className="flex items-center justify-center space-x-1">
+                            <span>{part.name}</span>
+                            {isPast && <span className="text-emerald-600">&#10003;</span>}
+                            {isActive && <span className="w-1.5 h-1.5 rounded-full bg-blue-600 animate-pulse"></span>}
+                            {!isPast && !isActive && <span>&#128274;</span>}
+                          </div>
+                          <span className="text-[9px] font-normal truncate">{part.title.split(' ')[0]}</span>
+                        </div>
+                      );
+                    })}
+                  </div>
+                )}
+
                 {/* Palette Header */}
                 <div className="p-3 border-b border-gray-200 bg-gray-50 flex items-center justify-between">
-                  <span className="font-bold text-sm text-gray-800">Test</span>
-                  <span className="text-xs text-gray-500 font-mono">Q 1 to {questions.length}</span>
+                  <span className="font-bold text-xs text-gray-800 truncate max-w-[170px]">
+                    {activePart.name}: {activePart.title}
+                  </span>
+                  <span className="text-[11px] text-gray-500 font-mono">
+                    Q {activePart.startQ} - {activePart.endQ}
+                  </span>
                 </div>
 
-                {/* Palette 5x5 Number Grid */}
+                {/* 25 Questions Number Grid (5x5) */}
                 <div className="p-3 overflow-y-auto flex-1">
                   <div className="grid grid-cols-5 gap-2">
-                    {questions.map((q, idx) => {
+                    {currentPartQuestions.map((q) => {
                       const number = q.question_number;
+                      const idx = number - 1;
                       const status = statuses[number] || 'not_visited';
                       const isCurrent = idx === currentQIndex;
                       
@@ -1401,7 +1383,7 @@
                           {number}
                           {status === 'answered_marked_review' && (
                             <span className="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-emerald-500 rounded-full border border-white flex items-center justify-center text-[7px]">
-                              ✓
+                              &#10003;
                             </span>
                           )}
                         </button>
@@ -1410,65 +1392,53 @@
                   </div>
                 </div>
 
-                {/* Analysis Table */}
+                {/* Active Part Analysis Table */}
                 <div className="border-t border-gray-200 bg-gray-50 p-2">
                   <div className="bg-gray-200 font-bold text-xs text-gray-800 px-2 py-1 text-center rounded-t">
-                    {currentQ.section_name || "PART-A"} Analysis
+                    {activePart.name} Analysis (out of 25)
                   </div>
                   <div className="border border-gray-200 border-t-0 bg-white text-xs divide-y divide-gray-100 rounded-b">
                     <div className="flex items-center justify-between px-2.5 py-1">
                       <span className="text-gray-700 font-medium">Answered</span>
                       <span className="bg-emerald-600 text-white font-bold px-1.5 py-0.2 rounded text-[11px]">
-                        {analysisCounts.answered}
+                        {partAnalysisCounts.answered}
                       </span>
                     </div>
                     <div className="flex items-center justify-between px-2.5 py-1">
                       <span className="text-gray-700 font-medium">Not Answered</span>
                       <span className="bg-rose-600 text-white font-bold px-1.5 py-0.2 rounded text-[11px]">
-                        {analysisCounts.notAnswered}
+                        {partAnalysisCounts.notAnswered}
                       </span>
                     </div>
                     <div className="flex items-center justify-between px-2.5 py-1">
-                      <span className="text-gray-700 font-medium">Mark for Review</span>
+                      <span className="text-gray-700 font-medium">Marked for Review</span>
                       <span className="bg-purple-600 text-white font-bold px-1.5 py-0.2 rounded text-[11px]">
-                        {analysisCounts.markedReview}
+                        {partAnalysisCounts.markedReview}
                       </span>
                     </div>
                     <div className="flex items-center justify-between px-2.5 py-1">
-                      <span className="text-gray-700 font-medium">Ans & Marked for Review</span>
+                      <span className="text-gray-700 font-medium text-[10px]">Ans & Marked</span>
                       <span className="bg-purple-700 text-white font-bold px-1.5 py-0.2 rounded text-[11px]">
-                        {analysisCounts.answeredMarked}
+                        {partAnalysisCounts.answeredMarked}
                       </span>
                     </div>
-                    <div className="flex items-center justify-between px-2.5 py-1">
-                      <span className="text-gray-700 font-medium">Not Visited</span>
-                      <span className="bg-gray-400 text-white font-bold px-1.5 py-0.2 rounded text-[11px]">
-                        {analysisCounts.notVisited}
-                      </span>
+                    <div className="flex items-center justify-between px-2.5 py-1 text-gray-500">
+                      <span>Not Visited</span>
+                      <span className="font-bold">{partAnalysisCounts.notVisited}</span>
                     </div>
                   </div>
                 </div>
               </div>
-
-              {/* Floating Toggle Button for Palette */}
-              <button
-                onClick={() => setIsPaletteCollapsed(prev => !prev)}
-                className="absolute right-0 top-1/2 -translate-y-1/2 z-20 bg-blue-600 text-white w-5 h-10 flex items-center justify-center rounded-l shadow hover:bg-blue-700 text-xs"
-                title={isPaletteCollapsed ? "Show Palette" : "Hide Palette"}
-                style={{ right: isPaletteCollapsed ? '0px' : 'calc(18rem - 1px)' }}
-              >
-                {isPaletteCollapsed ? '◀' : '▶'}
-              </button>
             </div>
 
-            {/* 4. MODALS & POPUPS */}
+            {/* MODALS */}
             {/* Modal: Symbols Legend */}
             {activeModal === 'symbols' && (
               <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
                 <div className="bg-white rounded-lg max-w-md w-full p-5 space-y-4 shadow-xl">
                   <div className="flex items-center justify-between border-b pb-2">
                     <h3 className="font-bold text-base text-gray-900">Palette Symbols Legend</h3>
-                    <button onClick={() => setActiveModal(null)} className="text-gray-500 font-bold hover:text-black">✕</button>
+                    <button onClick={() => setActiveModal(null)} className="text-gray-500 font-bold hover:text-black text-lg">&times;</button>
                   </div>
                   <div className="space-y-3 text-xs">
                     <div className="flex items-center space-x-3">
@@ -1485,14 +1455,14 @@
                     </div>
                     <div className="flex items-center space-x-3">
                       <span className="w-8 h-8 status-marked-review flex items-center justify-center font-bold">4</span>
-                      <span>You have NOT answered the question, but marked for review.</span>
+                      <span>You have marked the question for review.</span>
                     </div>
                     <div className="flex items-center space-x-3">
                       <span className="w-8 h-8 status-answered-marked flex items-center justify-center font-bold relative">
                         5
-                        <span className="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-emerald-500 rounded-full border border-white flex items-center justify-center text-[7px]">✓</span>
+                        <span className="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-emerald-500 rounded-full border border-white flex items-center justify-center text-[8px]">&#10003;</span>
                       </span>
-                      <span>You have answered the question, but marked it for review.</span>
+                      <span>You have answered and marked for review.</span>
                     </div>
                   </div>
                   <button onClick={() => setActiveModal(null)} className="w-full py-2 bg-blue-600 text-white rounded font-bold text-xs">Close</button>
@@ -1506,7 +1476,7 @@
                 <div className="bg-white rounded-lg max-w-md w-full p-5 space-y-4 shadow-xl">
                   <div className="flex items-center justify-between border-b pb-2">
                     <h3 className="font-bold text-base text-gray-900">Overall Test Summary</h3>
-                    <button onClick={() => setActiveModal(null)} className="text-gray-500 font-bold hover:text-black">✕</button>
+                    <button onClick={() => setActiveModal(null)} className="text-gray-500 font-bold hover:text-black text-lg">&times;</button>
                   </div>
                   <div className="space-y-2 text-sm">
                     <div className="flex justify-between py-1 border-b">
@@ -1514,24 +1484,24 @@
                       <span className="font-bold">{questions.length}</span>
                     </div>
                     <div className="flex justify-between py-1 border-b text-emerald-700">
-                      <span>Answered:</span>
-                      <span className="font-bold">{analysisCounts.answered}</span>
+                      <span>Total Answered:</span>
+                      <span className="font-bold">{overallCounts.answered}</span>
                     </div>
                     <div className="flex justify-between py-1 border-b text-rose-700">
                       <span>Not Answered:</span>
-                      <span className="font-bold">{analysisCounts.notAnswered}</span>
+                      <span className="font-bold">{overallCounts.notAnswered}</span>
                     </div>
                     <div className="flex justify-between py-1 border-b text-purple-700">
                       <span>Marked for Review:</span>
-                      <span className="font-bold">{analysisCounts.markedReview}</span>
+                      <span className="font-bold">{overallCounts.markedReview}</span>
                     </div>
                     <div className="flex justify-between py-1 border-b text-purple-900">
                       <span>Answered & Marked for Review:</span>
-                      <span className="font-bold">{analysisCounts.answeredMarked}</span>
+                      <span className="font-bold">{overallCounts.answeredMarked}</span>
                     </div>
                     <div className="flex justify-between py-1 text-gray-600">
                       <span>Not Visited:</span>
-                      <span className="font-bold">{analysisCounts.notVisited}</span>
+                      <span className="font-bold">{overallCounts.notVisited}</span>
                     </div>
                   </div>
                   <button onClick={() => setActiveModal(null)} className="w-full py-2 bg-blue-600 text-white rounded font-bold text-xs">Resume Test</button>
@@ -1539,13 +1509,62 @@
               </div>
             )}
 
-            {/* Modal: Confirm Submit */}
+            {/* Modal: Confirm Submit Part & Proceed */}
+            {activeModal === 'submit_part_confirm' && (
+              <div className="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4">
+                <div className="bg-white rounded-xl max-w-md w-full p-6 space-y-4 shadow-2xl border border-gray-200">
+                  <div className="border-b pb-2">
+                    Submit {activePart.name} & Proceed &rarr;
+                    <p className="text-xs text-gray-500">
+                    Q {activePart.startQ} - {activePart.endQ}
+                    </p>
+                  </div>
+
+                  <div className="bg-amber-50 p-3.5 rounded-lg border border-amber-200 text-xs text-amber-900 space-y-1.5">
+                    <p className="font-bold">&#9888;&#65039; Warning:</p>
+                    <p>
+                      Once you submit <strong>{activePart.name}</strong>, you will proceed to{' '}
+                      <strong>{partsConfig[currentPartIndex + 1]?.name} ({partsConfig[currentPartIndex + 1]?.title})</strong> with a fresh <strong>15-minute timer</strong>.
+                    </p>
+                    <p className="text-amber-800">You will NOT be able to return to {activePart.name} questions.</p>
+                  </div>
+
+                  <div className="bg-gray-50 p-3 rounded border text-xs space-y-1.5">
+                    <div className="flex justify-between">
+                      <span>Questions Answered in this Part:</span>
+                      <span className="font-bold text-emerald-700">{partAnalysisCounts.answered + partAnalysisCounts.answeredMarked} / 25</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span>Unanswered in this Part:</span>
+                      <span className="font-bold text-rose-700">{partAnalysisCounts.notAnswered + partAnalysisCounts.notVisited} / 25</span>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center justify-end space-x-3 pt-2">
+                    <button
+                      onClick={() => setActiveModal(null)}
+                      className="px-4 py-2 border border-gray-300 rounded font-semibold text-xs text-gray-700 hover:bg-gray-100"
+                    >
+                      Return to Questions
+                    </button>
+                    <button
+                      onClick={handleProceedToNextPart}
+                      className="px-5 py-2 bg-amber-600 hover:bg-amber-700 text-white font-bold text-xs rounded shadow"
+                    >
+                      Yes, Proceed to {partsConfig[currentPartIndex + 1]?.name} &rarr;
+                    </button>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* Modal: Confirm Final Submit */}
             {activeModal === 'submit_confirm' && (
               <div className="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4">
                 <div className="bg-white rounded-xl max-w-lg w-full p-6 space-y-5 shadow-2xl border border-gray-200">
                   <div className="border-b pb-2">
                     <h3 className="font-black text-lg text-gray-900">Submit Examination</h3>
-                    <p className="text-xs text-gray-500">Are you sure you want to finish and submit your live test?</p>
+                    <p className="text-xs text-gray-500">Are you sure you want to finish and submit your entire live test?</p>
                   </div>
 
                   <div className="bg-gray-50 p-4 rounded-lg border border-gray-200 text-xs space-y-2">
@@ -1558,16 +1577,12 @@
                       <span className="font-bold">{questions.length}</span>
                     </div>
                     <div className="flex justify-between text-emerald-700">
-                      <span>Questions Answered:</span>
-                      <span className="font-bold">{analysisCounts.answered + analysisCounts.answeredMarked}</span>
+                      <span>Total Questions Answered:</span>
+                      <span className="font-bold">{overallCounts.answered + overallCounts.answeredMarked}</span>
                     </div>
                     <div className="flex justify-between text-rose-700">
                       <span>Questions Not Answered:</span>
-                      <span className="font-bold">{analysisCounts.notAnswered + analysisCounts.notVisited}</span>
-                    </div>
-                    <div className="flex justify-between text-purple-700">
-                      <span>Marked for Review:</span>
-                      <span className="font-bold">{analysisCounts.markedReview + analysisCounts.answeredMarked}</span>
+                      <span className="font-bold">{overallCounts.notAnswered + overallCounts.notVisited}</span>
                     </div>
                   </div>
 
@@ -1594,120 +1609,231 @@
       }
 
       // =========================================================================
-      // SCREEN 4: TEST RESULTS & SCORECARD REVIEW
+      // SCREEN 4: TEST RESULTS & SCORECARD WITH 4-PART BREAKDOWN
       // =========================================================================
       if (screen === 'result' && testResult) {
         return (
-          <div className="min-h-screen bg-gray-50 text-slate-800 flex flex-col justify-between">
-            {/* Header */}
-            <header className="bg-white border-b border-gray-200 px-6 py-3 flex items-center justify-between">
+          <div className="min-h-screen bg-[#f8fafc] text-slate-800 flex flex-col justify-between">
+            {/* TOP HEADER */}
+            <header className="border-b border-gray-200 px-6 py-3 bg-white flex items-center justify-between shadow-xs">
               <div className="flex items-center space-x-3">
-                <span className="text-2xl font-black tracking-tighter text-[#00A8B5]">
+                <span className="text-2xl font-black tracking-tighter text-[#00A8B5] flex items-center">
                   NLP<span className="text-amber-500 font-extrabold text-xl ml-0.5">+</span>
                 </span>
-                <span className="text-sm font-semibold text-gray-700">Official Exam Scorecard</span>
+                <div className="h-4 w-px bg-gray-300"></div>
+                <h1 className="text-sm sm:text-base font-bold text-gray-800">
+                  Examination Scorecard & Performance Analysis
+                </h1>
               </div>
+
               <div className="flex items-center space-x-3">
-                <a
-                  href="dashboard.html"
-                  className="px-4 py-1.5 bg-gray-100 hover:bg-gray-200 text-gray-800 font-bold text-xs rounded border"
-                >
-                  Return to Dashboard
-                </a>
                 <button
                   onClick={handleReattempt}
-                  className="px-4 py-1.5 bg-cyan-600 hover:bg-cyan-700 text-white font-bold text-xs rounded"
+                  className="px-4 py-1.5 bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold rounded-lg transition"
                 >
-                  Re-attempt Test
+                  &#8635; Re-attempt Test
                 </button>
+                <a
+                  href="dashboard.html"
+                  className="px-4 py-1.5 border border-gray-300 hover:bg-gray-100 text-gray-700 text-xs font-bold rounded-lg transition"
+                >
+                  Back to Dashboard
+                </a>
               </div>
             </header>
 
-            {/* Scorecard Content */}
-            <main className="max-w-6xl mx-auto w-full p-4 sm:p-6 lg:p-8 flex-1 space-y-8">
-              {/* Scorecard Hero Card */}
-              <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm grid grid-cols-1 md:grid-cols-4 gap-6 text-center">
-                <div className="border-r border-gray-100 p-2">
-                  <span className="text-xs uppercase font-bold text-gray-500 tracking-wider">Candidate</span>
-                  <div className="text-2xl font-black text-gray-900 mt-1">{testResult.userName}</div>
-                  <span className="text-xs text-gray-500">{userProfile.role}</span>
+            {/* MAIN SCORECARD */}
+            <main className="max-w-6xl w-full mx-auto p-4 sm:p-6 lg:p-8 flex-1 space-y-6">
+              {/* Top Hero Banner */}
+              <div className="bg-gradient-to-r from-slate-900 via-[#182030] to-slate-900 text-white p-6 sm:p-8 rounded-2xl shadow-xl flex flex-col md:flex-row items-center justify-between gap-6">
+                <div className="space-y-2 text-center md:text-left">
+                  <span className="bg-emerald-500/20 border border-emerald-400/30 text-emerald-300 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+                    &#9679; Test Completed Successfully
+                  </span>
+                  <h2 className="text-2xl sm:text-3xl font-black tracking-tight">{testInfo.title}</h2>
+                  <p className="text-xs sm:text-sm text-slate-300">
+                    Aspirant: <strong>{testResult.userName}</strong> &bull; Sync to Supabase: <span className="text-emerald-400 font-bold">Active</span>
+                  </p>
                 </div>
-                <div className="border-r border-gray-100 p-2">
-                  <span className="text-xs uppercase font-bold text-gray-500 tracking-wider">Total Score</span>
-                  <div className="text-3xl font-black text-blue-600 mt-1">
-                    {testResult.score} <span className="text-sm text-gray-500">/ {testResult.maximumMarks}</span>
+
+                {/* Score Big Circle */}
+                <div className="flex items-center space-x-6 shrink-0">
+                  <div className="text-center p-4 bg-white/10 backdrop-blur rounded-2xl border border-white/10">
+                    <div className="text-3xl sm:text-4xl font-black text-amber-400 font-mono">
+                      {testResult.score} <span className="text-sm font-normal text-slate-300">/ {testResult.maximumMarks}</span>
+                    </div>
+                    <div className="text-[11px] uppercase font-bold text-slate-300 tracking-wider mt-1">Final Score</div>
                   </div>
-                  <span className="text-xs text-emerald-600 font-bold">Accuracy: {testResult.accuracy}%</span>
-                </div>
-                <div className="border-r border-gray-100 p-2">
-                  <span className="text-xs uppercase font-bold text-gray-500 tracking-wider">Attempt Breakdown</span>
-                  <div className="flex items-center justify-center space-x-3 mt-2 text-xs font-bold">
-                    <span className="text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded">✓ {testResult.correct} Correct</span>
-                    <span className="text-rose-700 bg-rose-50 px-2 py-0.5 rounded">✗ {testResult.incorrect} Wrong</span>
+
+                  <div className="text-center p-4 bg-white/10 backdrop-blur rounded-2xl border border-white/10">
+                    <div className="text-3xl sm:text-4xl font-black text-emerald-400 font-mono">
+                      {testResult.accuracy}%
+                    </div>
+                    <div className="text-[11px] uppercase font-bold text-slate-300 tracking-wider mt-1">Accuracy</div>
                   </div>
-                  <span className="text-[11px] text-gray-500 mt-1 block">{testResult.unattempted} Unattempted</span>
-                </div>
-                <div className="p-2">
-                  <span className="text-xs uppercase font-bold text-gray-500 tracking-wider">Time Taken</span>
-                  <div className="text-2xl font-black text-gray-800 mt-1">{formatTime(testResult.timeTakenSeconds)}</div>
-                  <span className="text-xs text-emerald-600 font-medium">Live Synced to Supabase</span>
                 </div>
               </div>
 
-              {/* Question-by-Question Solution Review */}
-              <div className="space-y-4">
-                <h2 className="text-xl font-black text-gray-900 tracking-tight">Question-by-Question Solutions & Review</h2>
-                
-                <div className="space-y-4">
+              {/* 4-Part Sectional Performance Breakdown Table */}
+              {testResult.partsBreakdown && testResult.partsBreakdown.length > 1 && (
+                <div className="bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-xs">
+                  <div className="bg-gray-100 px-5 py-3 border-b font-bold text-xs text-gray-800 uppercase tracking-wide flex items-center justify-between">
+                    <span>Sectional Performance Breakdown (15 Mins / 25 Qs Per Part)</span>
+                    <span className="text-gray-500 font-normal lowercase text-[11px]">4 parts &bull; 100 questions total</span>
+                  </div>
+                  <div className="overflow-x-auto">
+                    <table className="w-full text-xs text-left">
+                      <thead className="bg-gray-50 border-b text-gray-600">
+                        <tr>
+                          <th className="py-3 px-5">Section / Part</th>
+                          <th className="py-3 px-3 text-center">Total Qs</th>
+                          <th className="py-3 px-3 text-center">Attempted</th>
+                          <th className="py-3 px-3 text-center text-emerald-700">Correct (+2)</th>
+                          <th className="py-3 px-3 text-center text-rose-700">Wrong (-0.5)</th>
+                          <th className="py-3 px-3 text-center">Accuracy</th>
+                          <th className="py-3 px-5 text-right">Score (Max 50)</th>
+                        </tr>
+                      </thead>
+                      <tbody className="divide-y divide-gray-100 font-medium">
+                        {testResult.partsBreakdown.map((part) => (
+                          <tr key={part.id} className="hover:bg-gray-50/80 transition">
+                            <td className="py-3 px-5 font-bold text-gray-900">
+                              <span className="bg-blue-100 text-blue-800 text-[10px] px-1.5 py-0.5 rounded font-mono mr-2">
+                                {part.name}
+                              </span>
+                              {part.title}
+                            </td>
+                            <td className="py-3 px-3 text-center font-semibold text-gray-600">{part.total}</td>
+                            <td className="py-3 px-3 text-center font-bold text-gray-800">{part.attempted}</td>
+                            <td className="py-3 px-3 text-center font-bold text-emerald-600">+{part.correct}</td>
+                            <td className="py-3 px-3 text-center font-bold text-rose-600">-{part.incorrect}</td>
+                            <td className="py-3 px-3 text-center font-bold text-blue-700">{part.accuracy}%</td>
+                            <td className="py-3 px-5 text-right font-black text-sm text-gray-900">{part.score} / 50</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              )}
+
+              {/* Metric Cards Grid */}
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                <div className="p-4 bg-white rounded-xl border border-gray-200 shadow-xs">
+                  <div className="text-xs font-semibold text-gray-500">Attempted</div>
+                  <div className="text-2xl font-bold text-gray-900 mt-1 font-mono">
+                    {testResult.attempted} <span className="text-xs text-gray-400 font-normal">/ {testResult.totalQuestions}</span>
+                  </div>
+                </div>
+                <div className="p-4 bg-white rounded-xl border border-gray-200 shadow-xs">
+                  <div className="text-xs font-semibold text-emerald-600">Correct Answers</div>
+                  <div className="text-2xl font-bold text-emerald-600 mt-1 font-mono">{testResult.correct}</div>
+                </div>
+                <div className="p-4 bg-white rounded-xl border border-gray-200 shadow-xs">
+                  <div className="text-xs font-semibold text-rose-600">Incorrect Answers</div>
+                  <div className="text-2xl font-bold text-rose-600 mt-1 font-mono">{testResult.incorrect}</div>
+                </div>
+                <div className="p-4 bg-white rounded-xl border border-gray-200 shadow-xs">
+                  <div className="text-xs font-semibold text-gray-500">Unattempted</div>
+                  <div className="text-2xl font-bold text-gray-600 mt-1 font-mono">{testResult.unattempted}</div>
+                </div>
+              </div>
+
+              {/* Question Solutions Review Section */}
+              <div className="bg-white rounded-2xl border border-gray-200 p-6 shadow-xs space-y-6">
+                <div className="border-b pb-3 flex items-center justify-between">
+                  <h3 className="text-lg font-bold text-gray-900">
+                    Question Solutions & Step-by-Step Explanations
+                  </h3>
+                  <span className="text-xs text-gray-500">Bilingual Detailed Analysis</span>
+                </div>
+
+                <div className="space-y-6 divide-y divide-gray-100">
                   {questions.map((q) => {
-                    const qn = q.question_number;
-                    const chosen = answers[qn] || null;
+                    const chosen = answers[q.question_number];
                     const isCorrect = chosen && chosen.toLowerCase() === q.correct_option.toLowerCase();
                     const isUnattempted = !chosen;
 
                     return (
-                      <div key={qn} className="bg-white p-5 rounded-xl border border-gray-200 shadow-xs space-y-3">
-                        <div className="flex items-center justify-between border-b border-gray-100 pb-2">
-                          <span className="font-bold text-sm text-gray-800">Question {qn}</span>
-                          <span className={`text-xs font-bold px-2 py-0.5 rounded ${
-                            isCorrect ? 'bg-emerald-100 text-emerald-800' : (isUnattempted ? 'bg-gray-100 text-gray-600' : 'bg-rose-100 text-rose-800')
-                          }`}>
-                            {isCorrect ? '✓ Correct (+2.0)' : (isUnattempted ? '○ Unattempted (0.0)' : '✗ Incorrect (-0.5)')}
-                          </span>
+                      <div key={q.question_number} className="pt-5 space-y-3">
+                        <div className="flex items-start justify-between">
+                          <div className="flex items-center space-x-2">
+                            <span className="bg-gray-100 text-gray-700 text-xs font-bold px-2 py-0.5 rounded font-mono">
+                              Q{q.question_number}
+                            </span>
+                            <span className="text-[11px] text-gray-500 font-semibold uppercase">
+                              {q.section_name} &bull; {q.section_title}
+                            </span>
+                          </div>
+
+                          <div>
+                            {isCorrect ? (
+                              <span className="bg-emerald-100 text-emerald-800 text-xs font-bold px-2.5 py-0.5 rounded-full">
+                                &#10003; Correct (+{testInfo.marksPerQuestion})
+                              </span>
+                            ) : isUnattempted ? (
+                              <span className="bg-gray-100 text-gray-600 text-xs font-bold px-2.5 py-0.5 rounded-full">
+                                &mdash; Not Attempted (0)
+                              </span>
+                            ) : (
+                              <span className="bg-rose-100 text-rose-800 text-xs font-bold px-2.5 py-0.5 rounded-full">
+                                &times; Incorrect (-{testInfo.negativeMarks})
+                              </span>
+                            )}
+                          </div>
                         </div>
 
-                        {/* Statement */}
-                        <div className="text-sm font-medium text-gray-900">
-                          {renderMathText(q.question_text_hi || q.question_text)}
+                        {/* Statement (English & Hindi) */}
+                        <div className="text-sm font-semibold text-gray-900 space-y-1">
+                          <div>{renderMathText(q.question_text)}</div>
+                          {q.question_text_hi && (
+                            <div className="text-xs text-gray-600 font-normal pt-1 border-t border-gray-100">
+                              {renderMathText(q.question_text_hi)}
+                            </div>
+                          )}
                         </div>
 
                         {/* Options Comparison */}
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
-                          {['a', 'b', 'c', 'd'].map(optKey => {
-                            const isOptChosen = chosen === optKey;
-                            const isOptCorrect = q.correct_option.toLowerCase() === optKey;
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs pt-1">
+                          {['a', 'b', 'c', 'd'].map(opt => {
+                            const isCorrectOpt = q.correct_option.toLowerCase() === opt;
+                            const isUserChosen = chosen && chosen.toLowerCase() === opt;
                             return (
                               <div
-                                key={optKey}
-                                className={`p-2 rounded border flex items-center justify-between ${
-                                  isOptCorrect
-                                    ? 'bg-emerald-50 border-emerald-300 font-bold text-emerald-900'
-                                    : (isOptChosen ? 'bg-rose-50 border-rose-300 font-bold text-rose-900' : 'bg-gray-50 border-gray-200 text-gray-700')
+                                key={opt}
+                                className={`p-2.5 rounded-lg border flex items-center justify-between ${
+                                  isCorrectOpt
+                                    ? 'bg-emerald-50 border-emerald-300 text-emerald-900 font-bold'
+                                    : isUserChosen
+                                    ? 'bg-rose-50 border-rose-300 text-rose-900'
+                                    : 'bg-gray-50/50 border-gray-200 text-gray-700'
                                 }`}
                               >
-                                <span>({optKey.toUpperCase()}) {q.options_hi ? q.options_hi[optKey] : q.options[optKey]}</span>
-                                {isOptCorrect && <span className="text-emerald-700 font-bold">✓ Correct Option</span>}
-                                {isOptChosen && !isOptCorrect && <span className="text-rose-700 font-bold">Your Choice</span>}
+                                <span>
+                                  ({opt.toUpperCase()}) {renderMathText(q.options[opt])}
+                                </span>
+                                {isCorrectOpt && <span className="text-emerald-600 font-bold">&#10003; Correct Answer</span>}
+                                {isUserChosen && !isCorrectOpt && <span className="text-rose-600 font-bold">Your Choice</span>}
                               </div>
                             );
                           })}
                         </div>
 
-                        {/* Solution */}
-                        <div className="bg-blue-50/50 p-3 rounded border border-blue-100 text-xs text-slate-800 space-y-1">
-                          <span className="font-bold text-blue-900 block">Explanation & Solution:</span>
-                          <p>{q.solution_text_hi || q.solution_text}</p>
-                        </div>
+                        {/* Solution Explanation Box */}
+                        {(q.solution_text || q.solution_text_hi) && (
+                          <div className="p-3 bg-amber-50/70 border border-amber-200/80 rounded-xl text-xs space-y-1.5 text-amber-950">
+                            <div className="font-bold text-amber-900 flex items-center space-x-1">
+                              <span>&#128161;</span>
+                              <span>Step-by-Step Solution:</span>
+                            </div>
+                            {q.solution_text && <div>{renderMathText(q.solution_text)}</div>}
+                            {q.solution_text_hi && (
+                              <div className="text-amber-900/90 pt-1 border-t border-amber-200/60 font-normal">
+                                {renderMathText(q.solution_text_hi)}
+                              </div>
+                            )}
+                          </div>
+                        )}
                       </div>
                     );
                   })}
