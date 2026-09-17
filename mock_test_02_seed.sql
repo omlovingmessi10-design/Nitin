@@ -1,4 +1,39 @@
 ﻿-- =========================================================================
+-- SSC CGL 2026: FULL MOCK TEST 02 (4 PARTS x 25 QUESTIONS = 100 QUESTIONS)
+-- Part 1: General Intelligence & Reasoning (Q1 - Q25)   [15 Mins]
+-- Part 2: General Awareness               (Q26 - Q50)  [15 Mins]
+-- Part 3: Quantitative Aptitude           (Q51 - Q75)  [15 Mins]
+-- Part 4: English Comprehension           (Q76 - Q100) [15 Mins]
+-- =========================================================================
+
+-- Ensure mock_test_questions table exists
+CREATE TABLE IF NOT EXISTS mock_test_questions (
+  id BIGSERIAL PRIMARY KEY,
+  test_id TEXT NOT NULL,
+  question_number INT NOT NULL,
+  section_name TEXT NOT NULL,
+  section_title TEXT NOT NULL,
+  question_text TEXT NOT NULL,
+  question_text_hi TEXT,
+  option_a TEXT NOT NULL,
+  option_b TEXT NOT NULL,
+  option_c TEXT NOT NULL,
+  option_d TEXT NOT NULL,
+  option_a_hi TEXT,
+  option_b_hi TEXT,
+  option_c_hi TEXT,
+  option_d_hi TEXT,
+  correct_option VARCHAR(5) NOT NULL,
+  solution_text TEXT,
+  solution_text_hi TEXT,
+  created_at TIMESTAMPTZ DEFAULT NOW(),
+  CONSTRAINT uq_mock_test_qnum UNIQUE (test_id, question_number)
+);
+
+-- Delete previous records for mock-02 if re-seeding
+DELETE FROM mock_test_questions WHERE test_id = 'ssc-cgl-2026-mock-02';
+
+-- =========================================================================
 -- SSC CGL 2026: FULL MOCK TEST 02 (4 PARTS × 25 QUESTIONS • 15 MIN TIMER PER PART)
 -- Part 1: General Intelligence & Reasoning (Q1 - Q25)   [15 Mins]
 -- Part 2: General Awareness               (Q26 - Q50)  [15 Mins]
