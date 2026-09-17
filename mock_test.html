@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -23,6 +23,8 @@
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
 
   <!-- Fallback Offline Questions for Mock Test 02 (100 Questions) -->
+    <!-- Questions for Mock Test 01 (100 Questions) -->
+  <script src="mock_01_questions.js"></script>
   <script src="mock_02_questions.js"></script>
   
   <!-- Google Fonts -->
@@ -122,23 +124,9 @@
 
     // --- 2. TESTS METADATA CONFIGURATION ---
     const MOCK_TESTS_METADATA = {
-      "ssc-cgl-2026-live-1": {
-        id: "ssc-cgl-2026-live-1",
-        title: "SSC CGL 2026: Quantitative Aptitude - Live Test",
-        examCategory: "SSC CGL 2026",
-        durationMinutes: 15,
-        totalQuestions: 25,
-        marksPerQuestion: 2.0,
-        negativeMarks: 0.5,
-        maximumMarks: 50.0,
-        isMultiPart: false,
-        parts: [
-          { id: 1, name: "PART-A", title: "Quantitative Aptitude", startQ: 1, endQ: 25, durationMinutes: 15 }
-        ]
-      },
-      "ssc-cgl-2026-mock-02": {
-        id: "ssc-cgl-2026-mock-02",
-        title: "SSC CGL 2026: Full Mock Test 02",
+      "ssc-cgl-2026-mock-01": {
+        id: "ssc-cgl-2026-mock-01",
+        title: "SSC CGL 2026: Full Mock Test 01 (4 Parts x 25 Qs â€¢ 60 Mins)",
         examCategory: "SSC CGL 2026",
         durationMinutes: 60,
         totalQuestions: 100,
@@ -154,8 +142,11 @@
         ]
       }
     };
+    // Aliases for backward compatibility
+    MOCK_TESTS_METADATA["ssc-cgl-2026-mock-02"] = MOCK_TESTS_METADATA["ssc-cgl-2026-mock-01"];
+    MOCK_TESTS_METADATA["ssc-cgl-2026-live-1"] = MOCK_TESTS_METADATA["ssc-cgl-2026-mock-01"];
 
-    const DEFAULT_LIVE_TEST = MOCK_TESTS_METADATA["ssc-cgl-2026-live-1"];
+    const DEFAULT_LIVE_TEST = MOCK_TESTS_METADATA["ssc-cgl-2026-mock-01"];
 
     // Built-in Mock 01 Questions (25 Questions)
     const BUILTIN_QUESTIONS_MOCK01 = [
@@ -254,10 +245,11 @@
       
       // Test metadata
       const urlParams = new URLSearchParams(window.location.search);
-      const initialTestId = urlParams.get('test_id') || 'ssc-cgl-2026-live-1';
+            const rawTestId = urlParams.get('test_id');
+      const initialTestId = (rawTestId && MOCK_TESTS_METADATA[rawTestId]) ? rawTestId : 'ssc-cgl-2026-mock-01';
       const [activeTestId, setActiveTestId] = useState(initialTestId);
 
-      const activeMeta = MOCK_TESTS_METADATA[activeTestId] || MOCK_TESTS_METADATA["ssc-cgl-2026-live-1"];
+      const activeMeta = MOCK_TESTS_METADATA[activeTestId] || MOCK_TESTS_METADATA["ssc-cgl-2026-mock-01"];
       const [testInfo, setTestInfo] = useState(activeMeta);
       
       const getInitialQuestions = (tid) => {
