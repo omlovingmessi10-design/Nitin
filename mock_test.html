@@ -443,7 +443,7 @@
 
       // Active Part Questions (25 Questions of the current section)
       const currentPartQuestions = useMemo(() => {
-                    Q {activePart.startQ} - {activePart.endQ}
+        return questions.filter(q => q.question_number >= activePart.startQ && q.question_number <= activePart.endQ);
       }, [questions, activePart]);
 
       // Active Part Analysis Counts (out of 25)
@@ -592,7 +592,7 @@
         const targetQNum = targetQ.question_number;
 
         // Ensure target is within active part
-                    Q {activePart.startQ} - {activePart.endQ}
+        if (targetQNum < activePart.startQ || targetQNum > activePart.endQ) {
           alert(`You can only view questions in active section: ${activePart.name} (${activePart.title}).`);
           return;
         }
@@ -1087,10 +1087,11 @@
                   onClick={handleToggleFullscreen}
                   className="p-1 text-gray-600 hover:text-gray-900 border border-gray-300 rounded text-sm"
                   title="Toggle Fullscreen"
-                  &#x26F6;
-                  &#x26F6;
+                >
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 8V4m0 0h4M4 4l5 5m11-5h-4m4 0v4m0-4l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
+                  </svg>
                 </button>
-                  &#x26F6;
                 {/* COUNTDOWN TIMER (15 Mins for Current Part) */}
                 <div className="text-right">
                   <div className="text-[10px] uppercase font-bold text-gray-500 tracking-wider">
@@ -1514,9 +1515,9 @@
               <div className="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4">
                 <div className="bg-white rounded-xl max-w-md w-full p-6 space-y-4 shadow-2xl border border-gray-200">
                   <div className="border-b pb-2">
-                    Submit {activePart.name} & Proceed &rarr;
+                    <h3 className="font-black text-base text-gray-900">Submit {activePart.name} & Proceed</h3>
                     <p className="text-xs text-gray-500">
-                    Q {activePart.startQ} - {activePart.endQ}
+                      {activePart.title} (Questions {activePart.startQ} to {activePart.endQ})
                     </p>
                   </div>
 
