@@ -1129,6 +1129,18 @@
       const [showSubmitConfirmModal, setShowSubmitConfirmModal] = useState(false);
       const [latestTestReport, setLatestTestReport] = useState(null);
 
+      // User Question Attempts & Cross-Device Progress Tracker
+      const [userProgress, setUserProgress] = useState({
+        totalAttempted: 0,
+        totalCorrect: 0,
+        accuracy: 0,
+        byChapter: {},
+        bySet: {},
+        loading: true
+      });
+      const [showProgressModal, setShowProgressModal] = useState(false);
+      const [progressLoadedNotice, setProgressLoadedNotice] = useState(null);
+
       // Dynamically compute Level boundaries for any questions set (25, 40, or 42 Qs)
       const levelRanges = React.useMemo(() => {
         if (!questions || questions.length === 0) return [];
@@ -1280,6 +1292,91 @@
         setViewMode("topics");
       };
 
+      // --- 5.1 FETCH REAL-TIME ATTEMPT PROGRESS FOR ACTIVE USER FROM SUPABASE ---
+      const fetchUserProgress = async (userName) => {
+        if (!userName) return;
+        try {
+          const { data: qData, error } = await supabase
+            .from('user_question_responses')
+            .select('chapter_id, chapter_title, practice_set, question_number, selected_option, is_correct, attempted_at')
+            .eq('user_name', userName)
+            .order('attempted_at', { ascending: true });
+
+          if (qData && qData.length > 0) {
+            const distinctMap = new Map();
+            qData.forEach(item => {
+              const key = `${item.chapter_id}::${item.practice_set}::${item.question_number}`;
+              distinctMap.set(key, item);
+            });
+
+            let correctCount = 0;
+            const byChapter = {};
+            const bySet = {};
+
+            distinctMap.forEach(item => {
+              if (item.is_correct) correctCount++;
+
+              const chap = item.chapter_id || 'general';
+              if (!byChapter[chap]) {
+                byChapter[chap] = {
+                  id: chap,
+                  title: item.chapter_title || chap,
+                  attempted: 0,
+                  correct: 0
+                };
+              }
+              byChapter[chap].attempted++;
+              if (item.is_correct) byChapter[chap].correct++;
+
+              const setKey = `${item.chapter_id}::${item.practice_set}`;
+              if (!bySet[setKey]) {
+                bySet[setKey] = {
+                  chapterId: item.chapter_id,
+                  practiceSet: item.practice_set,
+                  attempted: 0,
+                  correct: 0,
+                  answers: {}
+                };
+              }
+              bySet[setKey].attempted++;
+              if (item.is_correct) bySet[setKey].correct++;
+              if (item.selected_option) {
+                bySet[setKey].answers[item.question_number] = item.selected_option;
+              }
+            });
+
+            const totalAtt = distinctMap.size;
+            const acc = totalAtt > 0 ? Math.round((correctCount / totalAtt) * 100) : 0;
+
+            setUserProgress({
+              totalAttempted: totalAtt,
+              totalCorrect: correctCount,
+              accuracy: acc,
+              byChapter,
+              bySet,
+              loading: false
+            });
+          } else {
+            setUserProgress({
+              totalAttempted: 0,
+              totalCorrect: 0,
+              accuracy: 0,
+              byChapter: {},
+              bySet: {},
+              loading: false
+            });
+          }
+        } catch (err) {
+          console.warn("fetchUserProgress note:", err.message);
+          setUserProgress(prev => ({ ...prev, loading: false }));
+        }
+      };
+
+      // Load user's saved progress on mount or whenever active profile changes
+      useEffect(() => {
+        fetchUserProgress(activeUserName);
+      }, [activeUserName]);
+
       // --- 6. LAUNCH QUIZ FOR TOPIC & SET ---
       const handleStartTopicQuiz = (topicObj, setNumber = "Practice 1") => {
         setSelectedTopicObj(topicObj);
@@ -1294,6 +1391,7 @@
         async function loadQuestions() {
           setLoading(true);
           try {
+            let loadedQs = [];
             if (activeSubjectId === "quant" && selectedTopicObj.isLiveDatabase) {
               // Fetch Quant Time & Work questions from Supabase table
               const { data, error } = await supabase
@@ -1304,20 +1402,69 @@
 
               if (error || !data || data.length === 0) {
                 console.warn("Supabase fetch returned empty, using curated questions.");
-                const fallback = getTopicQuestions(activeSubjectId, selectedTopicObj, practiceSet);
-                setQuestions(fallback);
+                loadedQs = getTopicQuestions(activeSubjectId, selectedTopicObj, practiceSet);
               } else {
-                setQuestions(data);
+                loadedQs = data;
               }
             } else {
               // Load curated questions for the selected topic
-              const dataset = getTopicQuestions(activeSubjectId, selectedTopicObj, practiceSet);
-              setQuestions(dataset);
+              loadedQs = getTopicQuestions(activeSubjectId, selectedTopicObj, practiceSet);
+            }
+            setQuestions(loadedQs);
+
+            // Fetch and Restore User's Saved Progress for this set
+            let restoredAnswers = {};
+            let restoredTimes = {};
+            let restoredReviews = new Set();
+
+            // 1. Try local cache first for instant responsiveness
+            try {
+              const cached = localStorage.getItem(`ssc_prog_${activeUserName}_${selectedTopicObj.id}_${practiceSet}`);
+              if (cached) {
+                const parsed = JSON.parse(cached);
+                if (parsed && parsed.selectedAnswers && Object.keys(parsed.selectedAnswers).length > 0) {
+                  restoredAnswers = { ...parsed.selectedAnswers };
+                  restoredTimes = parsed.questionTimes || {};
+                  if (Array.isArray(parsed.markedForReview)) {
+                    restoredReviews = new Set(parsed.markedForReview);
+                  }
+                }
+              }
+            } catch (_) {}
+
+            // 2. Fetch from Supabase user_question_responses for persistent cross-device progress
+            try {
+              const { data: dbResponses } = await supabase
+                .from('user_question_responses')
+                .select('question_number, selected_option, is_correct, time_spent_seconds, is_marked_review, attempted_at')
+                .eq('user_name', activeUserName)
+                .eq('chapter_id', selectedTopicObj.id)
+                .eq('practice_set', practiceSet)
+                .order('attempted_at', { ascending: true });
+
+              if (dbResponses && dbResponses.length > 0) {
+                dbResponses.forEach(resp => {
+                  const qIdx = loadedQs.findIndex(q => (q.question_number || 0) === resp.question_number);
+                  const targetIdx = qIdx !== -1 ? qIdx : (resp.question_number - 1);
+                  if (resp.selected_option) {
+                    restoredAnswers[targetIdx] = String(resp.selected_option).toLowerCase();
+                  }
+                  if (resp.time_spent_seconds) {
+                    restoredTimes[targetIdx] = resp.time_spent_seconds;
+                  }
+                  if (resp.is_marked_review) {
+                    restoredReviews.add(targetIdx);
+                  }
+                });
+              }
+            } catch (dbErr) {
+              console.warn("Could not fetch remote progress:", dbErr.message);
             }
 
-            // Reset quiz states for fresh set
-            setSelectedAnswers({});
-            setMarkedForReview(new Set());
+            // Apply restored states
+            setSelectedAnswers(restoredAnswers);
+            setMarkedForReview(restoredReviews);
+            setQuestionTimes(restoredTimes);
             setFeedbacks({});
             setCurrentIndex(0);
             setSubmitted(false);
@@ -1325,10 +1472,15 @@
             setShowSubmitConfirmModal(false);
             setLatestTestReport(null);
             setTimeLeft(35 * 60);
-            setQuestionTimes({});
             setCurrentQuestionTime(0);
             setShownMilestoneLevels(new Set());
             setActiveLevelMilestone(null);
+
+            const countRestored = Object.keys(restoredAnswers).length;
+            if (countRestored > 0) {
+              setProgressLoadedNotice(`Resumed Progress: ${countRestored} of ${loadedQs.length} questions restored from your account`);
+              setTimeout(() => setProgressLoadedNotice(null), 6000);
+            }
 
             // Pre-load user's existing 1-10 star ratings from Supabase question_ratings
             try {
@@ -1386,8 +1538,39 @@
         const newAnswers = { ...selectedAnswers, [currentIndex]: optionKey };
         setSelectedAnswers(newAnswers);
 
+        // Save local progress cache immediately
+        try {
+          localStorage.setItem(`ssc_prog_${activeUserName}_${selectedTopicObj.id}_${practiceSet}`, JSON.stringify({
+            selectedAnswers: newAnswers,
+            questionTimes: { ...questionTimes, [currentIndex]: currentQuestionTime },
+            markedForReview: Array.from(markedForReview),
+            updatedAt: Date.now()
+          }));
+        } catch (_) {}
+
         // Instantly save question response to Supabase
         saveQuestionResponseToSupabase(questions[currentIndex], optionKey, currentIndex, markedForReview.has(currentIndex));
+
+        // Update in-memory userProgress stats
+        setUserProgress(prev => {
+          const setKey = `${selectedTopicObj.id}::${practiceSet}`;
+          const prevSet = prev.bySet[setKey] || { attempted: 0, correct: 0, answers: {} };
+          const qNumber = questions[currentIndex]?.question_number || (currentIndex + 1);
+          const wasAttempted = prevSet.answers && prevSet.answers[qNumber] !== undefined;
+
+          return {
+            ...prev,
+            totalAttempted: wasAttempted ? prev.totalAttempted : prev.totalAttempted + 1,
+            bySet: {
+              ...prev.bySet,
+              [setKey]: {
+                ...prevSet,
+                attempted: wasAttempted ? prevSet.attempted : prevSet.attempted + 1,
+                answers: { ...prevSet.answers, [qNumber]: optionKey }
+              }
+            }
+          };
+        });
 
         // Level-wise Milestone Calculation dynamically matching level boundaries
         const curRange = levelRanges.find(r => currentIndex >= r.startIdx && currentIndex < r.endIdx) || {
@@ -1512,6 +1695,24 @@
         if (updated.has(currentIndex)) updated.delete(currentIndex);
         else updated.add(currentIndex);
         setMarkedForReview(updated);
+      };
+
+      const handleResetCurrentSet = () => {
+        if (window.confirm(`Reset progress for ${selectedTopicObj.title} - ${practiceSet}? All your saved answers for this set will be cleared so you can re-attempt fresh.`)) {
+          setSelectedAnswers({});
+          setMarkedForReview(new Set());
+          setQuestionTimes({});
+          setCurrentQuestionTime(0);
+          setTimeLeft(35 * 60);
+          setSubmitted(false);
+          setShowReportCard(false);
+          setCurrentIndex(0);
+          try {
+            localStorage.removeItem(`ssc_prog_${activeUserName}_${selectedTopicObj.id}_${practiceSet}`);
+          } catch (_) {}
+          setProgressLoadedNotice("Set answers reset. You can now re-attempt fresh!");
+          setTimeout(() => setProgressLoadedNotice(null), 4000);
+        }
       };
 
       // --- 9.1 INSTANT QUESTION RESPONSE LOGGING TO SUPABASE ---
@@ -1953,6 +2154,10 @@
           } else if (chapId.includes('time') || chapId.includes('work') || chapTitle.includes('work')) {
             supabase.from('time_work_chapter_responses').insert(chapterBatch).then(() => { });
           }
+
+          setTimeout(() => {
+            fetchUserProgress(activeUserName);
+          }, 800);
         } catch (batchErr) {
           console.warn("Batch responses sync error:", batchErr);
         }
@@ -2320,6 +2525,24 @@
                   )}
                 </button>
 
+                {/* Live User Questions Progress Pill */}
+                <button
+                  onClick={() => setShowProgressModal(true)}
+                  className="flex items-center space-x-1.5 bg-white hover:bg-[#FAF8F5] border border-[#DDD7CC] text-slate-800 px-2.5 sm:px-3.5 py-1.5 rounded-full text-xs font-bold shadow-2xs transition shrink-0 group cursor-pointer"
+                  title="View your saved question attempts & progress from Supabase"
+                >
+                  <span className="text-amber-500 text-xs">📊</span>
+                  <span className="font-mono text-slate-900 font-extrabold">
+                    {userProgress.totalAttempted} Qs
+                  </span>
+                  <span className="text-slate-500 text-[10px] hidden md:inline">Attempted</span>
+                  {userProgress.totalAttempted > 0 && (
+                    <span className="font-mono text-[10px] text-emerald-700 bg-emerald-50 border border-emerald-200 px-1.5 py-0.2 rounded-full font-bold hidden sm:inline">
+                      {userProgress.accuracy}%
+                    </span>
+                  )}
+                </button>
+
                 {/* Dark Analytics Widget Pill */}
                 <button
                   onClick={() => {
@@ -2556,19 +2779,34 @@
                       </div>
 
                       <div className={`grid gap-2 w-full ${(topic.sets?.length || 2) === 4 ? 'grid-cols-2 sm:grid-cols-4' : (topic.sets?.length || 2) === 3 ? 'grid-cols-3' : 'grid-cols-2'}`}>
-                        {(topic.sets || ["Practice 1", "Practice 2"]).map((s, sIdx) => (
-                          <button
-                            key={s}
-                            onClick={() => handleStartTopicQuiz(topic, s)}
-                            className={`py-2.5 px-2 rounded-xl text-xs font-bold transition flex items-center justify-center space-x-1 w-full min-w-0 ${sIdx === 0
-                              ? "bg-[#182030] hover:bg-slate-800 text-white shadow-sm"
-                              : "bg-[#F4F0E8] hover:bg-[#EAE5DA] text-[#182030] border border-[#DDD7CC]"
+                        {(topic.sets || ["Practice 1", "Practice 2"]).map((s, sIdx) => {
+                          const setKey = `${topic.id}::${s}`;
+                          const setStat = userProgress.bySet[setKey];
+                          const hasAttempted = setStat && setStat.attempted > 0;
+                          return (
+                            <button
+                              key={s}
+                              onClick={() => handleStartTopicQuiz(topic, s)}
+                              className={`py-2.5 px-2 rounded-xl text-xs font-bold transition flex items-center justify-between space-x-1 w-full min-w-0 ${
+                                hasAttempted
+                                  ? "bg-emerald-50 hover:bg-emerald-100 text-emerald-950 border border-emerald-300 shadow-2xs"
+                                  : sIdx === 0
+                                    ? "bg-[#182030] hover:bg-slate-800 text-white shadow-sm"
+                                    : "bg-[#F4F0E8] hover:bg-[#EAE5DA] text-[#182030] border border-[#DDD7CC]"
                               }`}
-                          >
-                            <span className="truncate">{s.replace("Practice", "Set")}</span>
-                            <span className="text-[11px] font-mono">→</span>
-                          </button>
-                        ))}
+                              title={hasAttempted ? `${setStat.attempted} questions attempted by ${activeUserObj.displayName}` : `Start ${s}`}
+                            >
+                              <span className="truncate">{s.replace("Practice", "Set")}</span>
+                              {hasAttempted ? (
+                                <span className="font-mono text-[10px] bg-emerald-600 text-white px-1.5 py-0.5 rounded-md font-black shrink-0">
+                                  {setStat.attempted} Qs
+                                </span>
+                              ) : (
+                                <span className="text-[11px] font-mono opacity-60">→</span>
+                              )}
+                            </button>
+                          );
+                        })}
                       </div>
                     </div>
                   </div>
@@ -2619,8 +2857,8 @@
                         <span className="font-mono text-[9px] sm:text-[10px] font-bold text-[#8C827A] tracking-wider uppercase truncate">
                           {currentSubject.name} • {practiceSet}
                         </span>
-                        <span className="hidden sm:inline-block text-[10px] bg-slate-100 text-slate-700 px-1.5 py-0.2 rounded font-mono font-bold">
-                          {questions.length} Questions
+                        <span className="text-[10px] bg-emerald-50 text-emerald-800 border border-emerald-200 px-1.5 py-0.2 rounded font-mono font-bold">
+                          {Object.keys(selectedAnswers).length} / {questions.length} Attempted
                         </span>
                       </div>
                       <h2 className="font-serif text-base sm:text-lg font-black text-[#182030] truncate">
@@ -2630,7 +2868,7 @@
                   </div>
 
                   {/* Right: Language Switch [ 🇬🇧 English | 🇮🇳 हिन्दी ] & Bookmark/Save */}
-                  <div className="flex items-center space-x-2 shrink-0">
+                  <div className="flex items-center space-x-1.5 sm:space-x-2 shrink-0">
                     {/* Language Switch */}
                     <div className="inline-flex items-center bg-[#FAF8F5] border border-[#DDD7CC] p-0.5 rounded-full shadow-2xs">
                       <button
@@ -2672,6 +2910,16 @@
                       <span className="hidden sm:inline">Save</span>
                     </button>
 
+                    {/* Restart Set Button */}
+                    <button
+                      onClick={handleResetCurrentSet}
+                      className="px-2.5 sm:px-3 py-1 rounded-full border border-slate-300 bg-[#FAF8F5] hover:bg-white text-slate-600 hover:text-slate-900 text-xs font-semibold transition flex items-center space-x-1"
+                      title="Clear saved answers for this set and restart fresh"
+                    >
+                      <span>🔄</span>
+                      <span className="hidden md:inline">Restart</span>
+                    </button>
+
                     {/* Top Submit Test / Report Card CTA Button */}
                     {submitted ? (
                       <button
@@ -2694,6 +2942,22 @@
                   </div>
 
                 </div>
+
+                {/* Saved Progress Resumed Banner */}
+                {progressLoadedNotice && (
+                  <div className="mx-3 sm:mx-6 mt-2.5 p-2 sm:p-2.5 bg-emerald-50 border border-emerald-300 text-emerald-950 rounded-xl flex items-center justify-between text-xs font-bold animate-fade-in shadow-2xs shrink-0">
+                    <div className="flex items-center space-x-2 min-w-0">
+                      <span className="text-emerald-700 text-sm">💾</span>
+                      <span className="truncate">{progressLoadedNotice}</span>
+                    </div>
+                    <button
+                      onClick={handleResetCurrentSet}
+                      className="text-[11px] underline hover:text-emerald-800 text-emerald-900 font-extrabold cursor-pointer shrink-0 ml-2"
+                    >
+                      Start Fresh
+                    </button>
+                  </div>
+                )}
 
                 {/* 2. ABOVE QUESTION: CURRENT LEVEL & ON ITS SIDE TYPE */}
                 <div className="px-3.5 sm:px-6 py-2.5 bg-[#FAF8F5] border-b border-[#E2DDD3] flex items-center justify-between shrink-0 flex-wrap gap-2">
@@ -4293,6 +4557,253 @@
                     className="w-full sm:w-auto px-5 py-2 bg-[#182030] hover:bg-slate-800 text-white rounded-xl text-xs font-bold transition shadow-sm"
                   >
                     Close Diagnostics Tool
+                  </button>
+                </div>
+
+              </div>
+            </div>
+          )}
+
+          {/* ============================================================ */}
+          {/* USER SAVED QUESTIONS PROGRESS MODAL */}
+          {/* ============================================================ */}
+          {showProgressModal && (
+            <div className="fixed inset-0 z-50 flex items-center justify-center p-2.5 sm:p-6 bg-slate-950/60 backdrop-blur-sm animate-fade-in">
+              <div className="bg-[#F8F6F0] border border-[#DDD7CC] rounded-3xl w-full max-w-4xl max-h-[92vh] flex flex-col shadow-2xl overflow-hidden text-slate-800">
+
+                {/* Modal Header */}
+                <div className="p-4 sm:p-6 bg-white border-b border-[#E2DDD3] flex items-center justify-between gap-3 shrink-0">
+                  <div className="flex items-center space-x-3 min-w-0">
+                    <div className="w-11 h-11 rounded-2xl bg-[#182030] text-white flex items-center justify-center text-xl shadow-xs shrink-0">
+                      {activeUserObj.avatar || "👤"}
+                    </div>
+                    <div className="min-w-0">
+                      <div className="flex items-center space-x-2">
+                        <span className="font-mono text-[10px] font-bold text-[#8C827A] tracking-wider uppercase">
+                          CANDIDATE QUESTION LOG
+                        </span>
+                        <span className="inline-flex items-center space-x-1 font-mono text-[9px] bg-emerald-50 text-emerald-800 border border-emerald-200 px-2 py-0.2 rounded-full font-bold">
+                          <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                          <span>Supabase Cloud Synced</span>
+                        </span>
+                      </div>
+                      <h2 className="font-serif text-xl sm:text-2xl font-black text-[#182030] tracking-tight truncate">
+                        {activeUserObj.displayName}'s Practice Progress
+                      </h2>
+                    </div>
+                  </div>
+
+                  {/* Close Button */}
+                  <button
+                    onClick={() => setShowProgressModal(false)}
+                    className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-[#FAF8F5] hover:bg-[#EAE5DA] text-slate-700 flex items-center justify-center transition border border-[#DDD7CC] text-xs sm:text-sm font-bold shrink-0"
+                    title="Close Progress"
+                  >
+                    ✕
+                  </button>
+                </div>
+
+                {/* Top Metrics Cards Grid */}
+                <div className="p-4 sm:p-6 bg-[#FAF8F5] border-b border-[#DDD7CC] shrink-0">
+                  <div className="grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-4">
+                    {/* 1. Total Attempted */}
+                    <div className="bg-white border border-[#E2DDD3] p-3.5 sm:p-4 rounded-2xl shadow-2xs">
+                      <div className="flex items-center justify-between text-[#8C827A]">
+                        <span className="font-mono text-[10px] font-bold uppercase tracking-wider">Attempted</span>
+                        <span className="text-base">📝</span>
+                      </div>
+                      <p className="font-serif text-2xl sm:text-3xl font-black text-[#182030] mt-1">
+                        {userProgress.totalAttempted}
+                      </p>
+                      <p className="text-[10px] font-mono text-slate-500 mt-0.5">
+                        Questions answered
+                      </p>
+                    </div>
+
+                    {/* 2. Total Correct */}
+                    <div className="bg-white border border-[#E2DDD3] p-3.5 sm:p-4 rounded-2xl shadow-2xs">
+                      <div className="flex items-center justify-between text-[#8C827A]">
+                        <span className="font-mono text-[10px] font-bold uppercase tracking-wider">Correct</span>
+                        <span className="text-base">✅</span>
+                      </div>
+                      <p className="font-serif text-2xl sm:text-3xl font-black text-emerald-700 mt-1">
+                        {userProgress.totalCorrect}
+                      </p>
+                      <p className="text-[10px] font-mono text-emerald-600 mt-0.5">
+                        Accurate solutions
+                      </p>
+                    </div>
+
+                    {/* 3. Overall Accuracy */}
+                    <div className="bg-white border border-[#E2DDD3] p-3.5 sm:p-4 rounded-2xl shadow-2xs">
+                      <div className="flex items-center justify-between text-[#8C827A]">
+                        <span className="font-mono text-[10px] font-bold uppercase tracking-wider">Accuracy</span>
+                        <span className="text-base">🎯</span>
+                      </div>
+                      <p className="font-serif text-2xl sm:text-3xl font-black text-[#182030] mt-1">
+                        {userProgress.accuracy}%
+                      </p>
+                      <div className="w-full bg-[#EAE5DA] rounded-full h-1.5 mt-2 overflow-hidden">
+                        <div
+                          className="bg-emerald-600 h-1.5 rounded-full transition-all duration-500"
+                          style={{ width: `${Math.min(100, userProgress.accuracy)}%` }}
+                        ></div>
+                      </div>
+                    </div>
+
+                    {/* 4. Active Sets */}
+                    <div className="bg-white border border-[#E2DDD3] p-3.5 sm:p-4 rounded-2xl shadow-2xs">
+                      <div className="flex items-center justify-between text-[#8C827A]">
+                        <span className="font-mono text-[10px] font-bold uppercase tracking-wider">Active Sets</span>
+                        <span className="text-base">📚</span>
+                      </div>
+                      <p className="font-serif text-2xl sm:text-3xl font-black text-[#182030] mt-1">
+                        {Object.keys(userProgress.bySet).length}
+                      </p>
+                      <p className="text-[10px] font-mono text-slate-500 mt-0.5">
+                        Practice sets engaged
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Scrollable Progress Breakdown Content */}
+                <div className="p-4 sm:p-6 overflow-y-auto flex-1 space-y-5">
+                  <div>
+                    <div className="flex items-center justify-between mb-3">
+                      <div>
+                        <h3 className="font-serif text-base sm:text-lg font-bold text-[#182030]">
+                          Progress by Subject & Chapter
+                        </h3>
+                        <p className="text-xs text-[#8C827A]">
+                          Select any set below to instantly resume where you left off.
+                        </p>
+                      </div>
+                      <span className="font-mono text-[10px] bg-slate-100 text-slate-600 px-2 py-0.5 rounded-full border border-slate-200">
+                        Candidate: {activeUserObj.displayName}
+                      </span>
+                    </div>
+
+                    {/* Grid of Chapter Cards with Set Statuses */}
+                    <div className="space-y-3">
+                      {Object.values(SYLLABUS_DATA).map(subject => {
+                        return (
+                          <div key={subject.id} className="bg-white border border-[#E2DDD3] rounded-2xl p-4 shadow-2xs space-y-3">
+                            <div className="flex items-center justify-between border-b border-[#F0EBE1] pb-2">
+                              <div className="flex items-center space-x-2">
+                                <span className="font-mono text-xs font-bold px-2 py-0.5 rounded-md bg-[#182030] text-white">
+                                  {subject.shortName}
+                                </span>
+                                <h4 className="font-serif font-bold text-sm sm:text-base text-[#182030]">
+                                  {subject.name}
+                                </h4>
+                              </div>
+                            </div>
+
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                              {subject.topics.map(topic => {
+                                const chapStat = userProgress.byChapter[topic.id] || { attempted: 0, correct: 0 };
+                                const sets = topic.sets || ["Practice 1", "Practice 2"];
+                                return (
+                                  <div key={topic.id} className="bg-[#FAF8F5] border border-[#DDD7CC] rounded-xl p-3 flex flex-col justify-between space-y-2">
+                                    <div className="flex items-start justify-between gap-2">
+                                      <div>
+                                        <h5 className="font-bold text-xs sm:text-sm text-[#182030]">
+                                          {topic.title}
+                                        </h5>
+                                        <span className="font-mono text-[10px] text-slate-500">
+                                          {chapStat.attempted > 0 ? (
+                                            <span className="text-emerald-700 font-bold">
+                                              ✓ {chapStat.attempted} Qs Attempted ({chapStat.correct} Correct)
+                                            </span>
+                                          ) : (
+                                            <span className="text-slate-400">Not started yet</span>
+                                          )}
+                                        </span>
+                                      </div>
+                                    </div>
+
+                                    {/* Set Buttons */}
+                                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-1.5 pt-1">
+                                      {sets.map(s => {
+                                        const setKey = `${topic.id}::${s}`;
+                                        const setStat = userProgress.bySet[setKey];
+                                        const hasAttempted = setStat && setStat.attempted > 0;
+                                        return (
+                                          <button
+                                            key={s}
+                                            onClick={() => {
+                                              setShowProgressModal(false);
+                                              handleStartTopicQuiz(topic, s);
+                                            }}
+                                            className={`px-2 py-1.5 rounded-lg text-[10px] font-bold transition flex items-center justify-between ${
+                                              hasAttempted
+                                                ? "bg-emerald-600 hover:bg-emerald-700 text-white shadow-2xs"
+                                                : "bg-white hover:bg-[#EFEAE1] text-slate-700 border border-[#DDD7CC]"
+                                            }`}
+                                            title={hasAttempted ? `${setStat.attempted} Qs attempted - click to resume` : `Start ${s}`}
+                                          >
+                                            <span className="truncate">{s.replace("Practice", "Set")}</span>
+                                            {hasAttempted ? (
+                                              <span className="font-mono text-[9px] bg-emerald-800 px-1 py-0.2 rounded text-white ml-1">
+                                                {setStat.attempted}
+                                              </span>
+                                            ) : (
+                                              <span className="opacity-50">→</span>
+                                            )}
+                                          </button>
+                                        );
+                                      })}
+                                    </div>
+                                  </div>
+                                );
+                              })}
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+
+                  {/* Information Banner on How Cloud Progress Persistence Works */}
+                  <div className="p-4 bg-white border border-[#DDD7CC] rounded-2xl space-y-2">
+                    <h4 className="font-serif font-bold text-sm text-[#182030] flex items-center space-x-1.5">
+                      <span>💡</span>
+                      <span>How Progress Saving & Restoration Works</span>
+                    </h4>
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 text-xs text-slate-600 font-normal">
+                      <div className="bg-[#FAF8F5] p-2.5 rounded-xl border border-[#EAE5DA]">
+                        <strong className="block text-[#182030] font-semibold mb-0.5">1. Auto-Saved on Click</strong>
+                        Every option you click is immediately saved to Supabase under your profile (<strong>{activeUserObj.displayName}</strong>) and cached locally.
+                      </div>
+                      <div className="bg-[#FAF8F5] p-2.5 rounded-xl border border-[#EAE5DA]">
+                        <strong className="block text-[#182030] font-semibold mb-0.5">2. Resumed Automatically</strong>
+                        When you open any set, your previous answers, timer records, and review marks are fetched back from the database automatically.
+                      </div>
+                      <div className="bg-[#FAF8F5] p-2.5 rounded-xl border border-[#EAE5DA]">
+                        <strong className="block text-[#182030] font-semibold mb-0.5">3. Fresh Re-attempts</strong>
+                        Want to practice again? Click the "🔄 Restart" button in the quiz top bar to reset answers and practice with a clean slate.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Modal Footer Toolbar */}
+                <div className="p-4 bg-white border-t border-[#E2DDD3] flex items-center justify-between gap-3 shrink-0">
+                  <button
+                    onClick={() => fetchUserProgress(activeUserName)}
+                    className="py-2 px-3.5 bg-[#FAF8F5] hover:bg-[#EAE5DA] text-slate-700 rounded-xl text-xs font-bold border border-[#DDD7CC] transition flex items-center space-x-1.5"
+                    title="Re-query Supabase for latest question responses"
+                  >
+                    <span>🔄</span>
+                    <span>Sync & Refresh Progress</span>
+                  </button>
+
+                  <button
+                    onClick={() => setShowProgressModal(false)}
+                    className="px-5 py-2 bg-[#182030] hover:bg-slate-800 text-white rounded-xl text-xs font-bold transition shadow-sm"
+                  >
+                    Close Progress
                   </button>
                 </div>
 

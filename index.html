@@ -120,6 +120,33 @@
 
       const [loading, setLoading] = useState(false);
       const [message, setMessage] = useState(null);
+      const [userAttemptCounts, setUserAttemptCounts] = useState({});
+
+      useEffect(() => {
+        async function fetchCounts() {
+          try {
+            const { data } = await supabase
+              .from('user_question_responses')
+              .select('user_name, chapter_id, practice_set, question_number');
+            if (data && data.length > 0) {
+              const counts = { Nitin: new Set(), Om: new Set(), '$H': new Set() };
+              data.forEach(item => {
+                if (counts[item.user_name]) {
+                  counts[item.user_name].add(`${item.chapter_id}::${item.practice_set}::${item.question_number}`);
+                }
+              });
+              setUserAttemptCounts({
+                Nitin: counts.Nitin ? counts.Nitin.size : 0,
+                Om: counts.Om ? counts.Om.size : 0,
+                '$H': counts['$H'] ? counts['$H'].size : 0
+              });
+            }
+          } catch (e) {
+            console.warn("Could not load user stats:", e);
+          }
+        }
+        fetchCounts();
+      }, []);
 
       const activeUserObj = AUTHORIZED_USERS.find(u => u.id === selectedUserId) || AUTHORIZED_USERS[0];
 
@@ -314,13 +341,18 @@
                             {user.avatar}
                           </div>
                           <div>
-                            <div className="flex items-center space-x-2">
+                            <div className="flex items-center space-x-2 flex-wrap gap-y-1">
                               <h4 className="font-serif font-black text-lg text-[#182030] leading-none">
                                 {user.displayName}
                               </h4>
                               <span className="font-mono text-[10px] font-bold px-2 py-0.5 rounded-full bg-[#EAE5DA] text-[#4A453E] border border-[#DDD7CC]">
                                 {user.badge}
                               </span>
+                              {userAttemptCounts[user.id] > 0 && (
+                                <span className="font-mono text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200">
+                                  📊 {userAttemptCounts[user.id]} Qs Attempted
+                                </span>
+                              )}
                             </div>
                             <p className="text-xs font-semibold text-[#8C827A] mt-1">
                               {user.role} • <span className="font-normal text-[#4A453E]">{user.specialty}</span>
