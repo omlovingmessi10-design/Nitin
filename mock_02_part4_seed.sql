@@ -3,8 +3,8 @@
 -- =========================================================================
 
 -- Satisfy Foreign Key in mock_tests
-INSERT INTO public.mock_tests (id, title, duration_minutes, total_questions, maximum_marks, is_active)
-VALUES ('ssc-cgl-2026-mock-02', 'SSC CGL 2026: Mock Test 02 (4 Parts x 25 Qs - 15 Min/Part)', 60, 100, 200, true)
+INSERT INTO public.mock_tests (id, title, duration_minutes, maximum_marks, is_active)
+VALUES ('ssc-cgl-2026-mock-02', 'SSC CGL 2026: Mock Test 02 (4 Parts x 25 Qs - 15 Min/Part)', 60, 200, true)
 ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO public.mock_test_questions (
