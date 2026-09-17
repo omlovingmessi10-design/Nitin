@@ -21,8 +21,8 @@ CREATE TABLE IF NOT EXISTS public.app_users (
 -- Pre-seed the 3 designated users: Nitin, Om, $H
 INSERT INTO public.app_users (user_name, display_name, avatar, role)
 VALUES 
-  ('Nitin', 'Nitin Solanki', '🧑‍💻', 'SSC Aspirant - Quant Specialist'),
-  ('Om', 'Om Solanki', '⚡', 'SSC Aspirant - Speed Master'),
+  ('Nitin', 'Nitin', '🧑‍💻', 'SSC Aspirant - Quant Specialist'),
+  ('Om', 'Om', '⚡', 'SSC Aspirant - Speed Master'),
   ('$H', '$H', '👑', 'SSC Aspirant - Ranker')
 ON CONFLICT (user_name) DO UPDATE 
 SET display_name = EXCLUDED.display_name,
