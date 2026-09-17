@@ -20,8 +20,8 @@
   <script src="percentage_questions.js"></script>
   <!-- Ratio & Proportion Questions Dataset (Sets A, B, C & D, Levels 1-6, English & Hindi) -->
   <script src="ratio_questions.js?v=set_d"></script>
-  <!-- Profit, Loss & Discount Questions Dataset (Sets A, B, C & D, Levels 1-6, English & Hindi) -->
-  <script src="profit_loss_questions.js?v=fixed_hi_2"></script>
+  <!-- Profit, Loss & Discount Questions Dataset (Sets A, B, C, D & E, Levels 1-6, English & Hindi) -->
+  <script src="profit_loss_questions.js?v=set_e"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
@@ -199,9 +199,9 @@
             category: "Arithmetic",
             weightage: "High Weightage (2-3 Qs)",
             isHighWeightage: true,
-            sets: ["SET A", "SET B", "SET C", "SET D"],
-            totalQuestions: 120,
-            desc: "Complete 120 Questions (SET A: 30 Qs, SET B: 30 Qs, SET C: 30 Qs & SET D: 30 Qs across Levels 1-6): CP-SP Fundamentals, Successive Discounts, Dishonest Shopkeeper False Weights, Profit Equivalence, Articles Ratio, Adulteration, and Mains Level Advanced Multi-step Transactions."
+            sets: ["SET A", "SET B", "SET C", "SET D", "SET E"],
+            totalQuestions: 150,
+            desc: "Complete 150 Questions (Sets A, B, C, D & E with 30 Qs each across Levels 1-6): CP-SP Fundamentals, Successive Discounts, Dishonest Shopkeeper False Weights, Profit Equivalence, Articles Ratio, Installment Schemes, Adulteration, and Mains Level Advanced Multi-step Transactions."
           },
           {
             id: "ratio-proportion",
@@ -724,10 +724,18 @@
       }
 
       if ((subjectId === "quant" || !subjectId) && (topicObj.id === "profit-loss" || (topicObj.title && (topicObj.title.toLowerCase().includes("profit") || topicObj.title.toLowerCase().includes("loss"))))) {
+        const isSetE = practiceSet === "SET E" || practiceSet === "Set E" || practiceSet === "Practice 5" || practiceSet === "Set 5";
         const isSetD = practiceSet === "SET D" || practiceSet === "Set D" || practiceSet === "Practice 4" || practiceSet === "Set 4";
         const isSetC = practiceSet === "SET C" || practiceSet === "Set C" || practiceSet === "Practice 3" || practiceSet === "Set 3";
         const isSetB = practiceSet === "SET B" || practiceSet === "Set B" || practiceSet === "Practice 2" || practiceSet === "Set 2";
-        if (isSetD) {
+        if (isSetE) {
+          if (typeof window !== "undefined" && window.PROFIT_LOSS_SET_E_QUESTIONS && window.PROFIT_LOSS_SET_E_QUESTIONS.length > 0) {
+            return window.PROFIT_LOSS_SET_E_QUESTIONS;
+          }
+          if (typeof PROFIT_LOSS_SET_E_QUESTIONS !== "undefined" && PROFIT_LOSS_SET_E_QUESTIONS.length > 0) {
+            return PROFIT_LOSS_SET_E_QUESTIONS;
+          }
+        } else if (isSetD) {
           if (typeof window !== "undefined" && window.PROFIT_LOSS_SET_D_QUESTIONS && window.PROFIT_LOSS_SET_D_QUESTIONS.length > 0) {
             return window.PROFIT_LOSS_SET_D_QUESTIONS;
           }

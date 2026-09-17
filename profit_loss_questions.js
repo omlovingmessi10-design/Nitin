@@ -3450,15 +3450,875 @@ const PROFIT_LOSS_SET_D_QUESTIONS = [
   }
 ];
 
+const PROFIT_LOSS_SET_E_QUESTIONS = [
+  // ==========================================
+  // LEVEL 1: MODERATE (Q1 to Q7)
+  // ==========================================
+  {
+    question_number: 1,
+    practice_set: "SET E",
+    level: "Level 1: Moderate",
+    level_group: "Level 1: Moderate",
+    type_code: "Type 1",
+    type_category: "Target SP for Desired Profit from Loss",
+    type_category_hi: "हानि से अभीष्ट लाभ के लिए लक्षित विक्रय मूल्य",
+    question_text: "On selling a product at ₹360, a shopkeeper makes a loss of 10%. Find the selling price at which he makes a profit of 30%.",
+    question_text_hi: "किसी उत्पाद को ₹360 में बेचने पर, एक दुकानदार को 10% की हानि होती है। वह विक्रय मूल्य ज्ञात कीजिए जिस पर उसे 30% का लाभ हो।",
+    options: {
+      a: "₹600",
+      b: "₹480",
+      c: "₹520",
+      d: "₹740"
+    },
+    options_hi: {
+      a: "₹600",
+      b: "₹480",
+      c: "₹520",
+      d: "₹740"
+    },
+    correct_option: "c",
+    solution_text: "Selling Price (SP1) = ₹360 at 10% loss.\nCost Price (CP) = SP1 / (1 - 0.10) = 360 / 0.90 = ₹400.\nTo make a profit of 30%:\nRequired Selling Price (SP2) = CP × (1 + 0.30) = 400 × 1.30 = ₹520.\nCorrect Answer: Option (c).",
+    solution_text_hi: "CP = 360 / 0.90 = ₹400।\n30% लाभ पर SP = 400 × 1.30 = ₹520।\nअतः सही उत्तर (c) है।",
+    shortcut_text: "SP2 = SP1 × (100 + P2) / (100 - L1) = 360 × 130 / 90 = 4 × 130 = ₹520.",
+    shortcut_text_hi: "SP2 = 360 × (130 / 90) = ₹520।"
+  },
+  {
+    question_number: 2,
+    practice_set: "SET E",
+    level: "Level 1: Moderate",
+    level_group: "Level 1: Moderate",
+    type_code: "Type 1",
+    type_category: "Target SP for Desired Profit from Loss",
+    type_category_hi: "हानि से अभीष्ट लाभ के लिए लक्षित विक्रय मूल्य",
+    question_text: "A seller gets 22% loss on selling a set of books for ₹1,755. What should be its selling price for getting 6% profit?",
+    question_text_hi: "एक विक्रेता को पुस्तकों का एक सेट ₹1,755 में बेचने पर 22% की हानि होती है। 6% लाभ प्राप्त करने के लिए इसका विक्रय मूल्य क्या होना चाहिए?",
+    options: {
+      a: "₹2,375",
+      b: "₹2,385",
+      c: "₹2,355",
+      d: "₹2,365"
+    },
+    options_hi: {
+      a: "₹2,375",
+      b: "₹2,385",
+      c: "₹2,355",
+      d: "₹2,365"
+    },
+    correct_option: "b",
+    solution_text: "Selling Price (SP1) = ₹1,755 at 22% loss.\nCost Price (CP) = 1,755 / (1 - 0.22) = 1,755 / 0.78 = ₹2,250.\nRequired Selling Price for 6% profit:\nSP2 = 2,250 × (1 + 0.06) = 2,250 × 1.06 = ₹2,385.\nCorrect Answer: Option (b).",
+    solution_text_hi: "CP = 1,755 / 0.78 = ₹2,250।\n6% लाभ पर SP = 2,250 × 1.06 = ₹2,385।\nअतः सही उत्तर (b) है।",
+    shortcut_text: "SP2 = 1,755 × (106 / 78) = 22.5 × 106 = ₹2,385.",
+    shortcut_text_hi: "SP2 = 1,755 × (106 / 78) = ₹2,385।"
+  },
+  {
+    question_number: 3,
+    practice_set: "SET E",
+    level: "Level 1: Moderate",
+    level_group: "Level 1: Moderate",
+    type_code: "Type 4",
+    type_category: "Quantity to Rupee Inverse Rate",
+    type_category_hi: "मात्रा से रुपया व्युत्क्रम दर लाभ",
+    question_text: "A man buys 5 pens for ₹1 and sells 4 pens for ₹1. Find his profit %.",
+    question_text_hi: "एक व्यक्ति ₹1 में 5 पेन खरीदता है और ₹1 में 4 पेन बेचता है। उसका लाभ % ज्ञात कीजिए।",
+    options: {
+      a: "25%",
+      b: "40%",
+      c: "50%",
+      d: "20%"
+    },
+    options_hi: {
+      a: "25%",
+      b: "40%",
+      c: "50%",
+      d: "20%"
+    },
+    correct_option: "a",
+    solution_text: "Cost Price of 1 pen = ₹1 / 5 = ₹0.20.\nSelling Price of 1 pen = ₹1 / 4 = ₹0.25.\nProfit per pen = 0.25 - 0.20 = ₹0.05.\nProfit% = (0.05 / 0.20) × 100 = 25%.\nCorrect Answer: Option (a).",
+    solution_text_hi: "1 पेन का CP = ₹1/5 = ₹0.20।\n1 पेन का SP = ₹1/4 = ₹0.25।\nलाभ% = (0.05 / 0.20) × 100 = 25%।\nअतः सही उत्तर (a) है।",
+    shortcut_text: "Profit% = [(Bought - Sold) / Sold] × 100 = [(5 - 4) / 4] × 100 = 25%.",
+    shortcut_text_hi: "लाभ% = (5 - 4) / 4 × 100 = 25%।"
+  },
+  {
+    question_number: 4,
+    practice_set: "SET E",
+    level: "Level 1: Moderate",
+    level_group: "Level 1: Moderate",
+    type_code: "Type 18",
+    type_category: "Down Payment and Installment Profit %",
+    type_category_hi: "डाउन पेमेंट और किश्त योजना लाभ %",
+    question_text: "A refrigerator is sold for ₹10,000 cash or ₹2,000 down payment and 3 equal monthly installments of ₹3,000. Find the profit percentage made by the seller under the installment plan if the actual cost price for the seller is ₹8,000.",
+    question_text_hi: "एक रेफ्रिजरेटर ₹10,000 नकद या ₹2,000 के डाउन पेमेंट और ₹3,000 की 3 समान मासिक किश्तों पर बेचा जाता है। यदि विक्रेता के लिए वास्तविक क्रय मूल्य ₹8,000 है, तो किश्त योजना के तहत विक्रेता द्वारा कमाया गया लाभ प्रतिशत ज्ञात कीजिए।",
+    options: {
+      a: "37.5%",
+      b: "25%",
+      c: "30%",
+      d: "40%"
+    },
+    options_hi: {
+      a: "37.5%",
+      b: "25%",
+      c: "30%",
+      d: "40%"
+    },
+    correct_option: "a",
+    solution_text: "Total amount received under the installment plan = Down payment + (3 × Installment)\n= 2,000 + (3 × 3,000) = 2,000 + 9,000 = ₹11,000.\nActual Cost Price (CP) for the seller = ₹8,000.\nTotal Profit = 11,000 - 8,000 = ₹3,000.\nProfit% = (3,000 / 8,000) × 100 = 37.5%.\nCorrect Answer: Option (a).",
+    solution_text_hi: "किश्त योजना के तहत कुल प्राप्त राशि = 2,000 + (3 × 3,000) = ₹11,000।\nवास्तविक क्रय मूल्य = ₹8,000।\nलाभ = 11,000 - 8,000 = ₹3,000।\nलाभ% = (3,000 / 8,000) × 100 = 37.5%।\nअतः सही उत्तर (a) है।",
+    shortcut_text: "Profit% = (11,000 - 8,000) / 8,000 × 100 = 3/8 × 100 = 37.5%.",
+    shortcut_text_hi: "लाभ% = 3,000 / 8,000 × 100 = 37.5%।"
+  },
+  {
+    question_number: 5,
+    practice_set: "SET E",
+    level: "Level 1: Moderate",
+    level_group: "Level 1: Moderate",
+    type_code: "Type 12",
+    type_category: "Weighted Cost and Individual Profit SP",
+    type_category_hi: "भारित लागत और व्यक्तिगत लाभ कुल विक्रय मूल्य",
+    question_text: "The cost price of 5 kg of wheat and 10 kg of lentil were at ₹70 and ₹80 per kg respectively. On selling, he gained 10% profit on wheat and 20% profit on lentil. What was the total selling price of all items?",
+    question_text_hi: "5 किलो गेहूं और 10 किलो दाल का क्रय मूल्य क्रमशः ₹70 और ₹80 प्रति किलो था। बेचने पर, उसे गेहूं पर 10% और दाल पर 20% का लाभ हुआ। सभी वस्तुओं का कुल विक्रय मूल्य क्या था?",
+    options: {
+      a: "₹1,375",
+      b: "₹1,345",
+      c: "₹1,400",
+      d: "₹1,350"
+    },
+    options_hi: {
+      a: "₹1,375",
+      b: "₹1,345",
+      c: "₹1,400",
+      d: "₹1,350"
+    },
+    correct_option: "b",
+    solution_text: "Cost of wheat = 5 × 70 = ₹350.\nSelling price of wheat (at 10% profit) = 350 × 1.10 = ₹385.\nCost of lentil = 10 × 80 = ₹800.\nSelling price of lentil (at 20% profit) = 800 × 1.20 = ₹960.\nTotal Selling Price = 385 + 960 = ₹1,345.\nCorrect Answer: Option (b).",
+    solution_text_hi: "गेहूं का SP = 5 × 70 × 1.10 = ₹385।\nदाल का SP = 10 × 80 × 1.20 = ₹960।\nकुल विक्रय मूल्य = 385 + 960 = ₹1,345।\nअतः सही उत्तर (b) है।",
+    shortcut_text: "Total SP = 350 × 1.10 + 800 × 1.20 = 385 + 960 = ₹1,345.",
+    shortcut_text_hi: "कुल SP = 385 + 960 = ₹1,345।"
+  },
+  {
+    question_number: 6,
+    practice_set: "SET E",
+    level: "Level 1: Moderate",
+    level_group: "Level 1: Moderate",
+    type_code: "Type 3",
+    type_category: "Same SP Symmetrical Gain Loss %",
+    type_category_hi: "समान विक्रय मूल्य सममित लाभ हानि %",
+    question_text: "A shopkeeper sold two toys for ₹990 each. On the first toy he gained 10% and on the second he lost 10%. Find the total percentage gain or loss.",
+    question_text_hi: "एक दुकानदार ने दो खिलौने ₹990 प्रत्येक में बेचे। पहले खिलौने पर उसे 10% का लाभ हुआ और दूसरे पर उसे 10% की हानि हुई। कुल लाभ या हानि प्रतिशत ज्ञात कीजिए।",
+    options: {
+      a: "10% Loss",
+      b: "10% Gain",
+      c: "1% Loss",
+      d: "1% Gain"
+    },
+    options_hi: {
+      a: "10% हानि",
+      b: "10% लाभ",
+      c: "1% हानि",
+      d: "1% लाभ"
+    },
+    correct_option: "c",
+    solution_text: "When two items are sold at the same selling price, one at a gain of x% and the other at a loss of x%, there is always an overall loss given by:\nNet Loss% = x² / 100 = 10² / 100 = 1% Loss.\nCorrect Answer: Option (c).",
+    solution_text_hi: "जब दो वस्तुएँ समान विक्रय मूल्य पर बेची जाती हैं, एक पर x% लाभ और दूसरी पर x% हानि होती है, तो हमेशा हानि होती है:\nकुल हानि% = x² / 100 = 10² / 100 = 1% हानि।\nअतः सही उत्तर (c) है।",
+    shortcut_text: "Loss% = 10² / 100 = 1% Loss.",
+    shortcut_text_hi: "हानि% = 10² / 100 = 1% हानि।"
+  },
+  {
+    question_number: 7,
+    practice_set: "SET E",
+    level: "Level 1: Moderate",
+    level_group: "Level 1: Moderate",
+    type_code: "Type 11",
+    type_category: "Time-Weighted Capital Investment Sharing",
+    type_category_hi: "समय-भारित पूंजी निवेश लाभ विभाजन",
+    question_text: "A and B start a business investing ₹15,000 and ₹20,000 respectively. After 6 months, C joins with ₹10,000. If the total profit at the end of the year is ₹18,000, what is A's share in the profit?",
+    question_text_hi: "A और B क्रमशः ₹15,000 और ₹20,000 का निवेश करके एक व्यवसाय शुरू करते हैं। 6 महीने बाद, C ₹10,000 के साथ जुड़ता है। यदि वर्ष के अंत में कुल लाभ ₹18,000 है, तो लाभ में A का हिस्सा क्या है?",
+    options: {
+      a: "₹6,750",
+      b: "₹9,000",
+      c: "₹5,400",
+      d: "₹8,100"
+    },
+    options_hi: {
+      a: "₹6,750",
+      b: "₹9,000",
+      c: "₹5,400",
+      d: "₹8,100"
+    },
+    correct_option: "a",
+    solution_text: "Ratio of profit sharing = (Capital × Time in months):\nA = 15,000 × 12 = 180,000\nB = 20,000 × 12 = 240,000\nC = 10,000 × 6 = 60,000\nRatio A : B : C = 180 : 240 : 60 = 3 : 4 : 1.\nSum of ratio terms = 3 + 4 + 1 = 8 units.\nTotal Profit = ₹18,000.\nA's share = (3 / 8) × 18,000 = ₹6,750.\nCorrect Answer: Option (a).",
+    solution_text_hi: "लाभ अनुपात = (15,000 × 12) : (20,000 × 12) : (10,000 × 6) = 3 : 4 : 1।\nA का हिस्सा = (3 / 8) × 18,000 = ₹6,750।\nअतः सही उत्तर (a) है।",
+    shortcut_text: "Ratio = 3 : 4 : 1. A's share = (3 / 8) × 18,000 = ₹6,750.",
+    shortcut_text_hi: "A का हिस्सा = 3/8 × 18,000 = ₹6,750।"
+  },
+
+  // ==========================================
+  // LEVEL 2: MORE THAN MODERATE (Q8 to Q14)
+  // ==========================================
+  {
+    question_number: 8,
+    practice_set: "SET E",
+    level: "Level 2: More Than Moderate",
+    level_group: "Level 2: More Than Moderate",
+    type_code: "Type 1",
+    type_category: "Target SP for Gain from Loss",
+    type_category_hi: "हानि से लाभ के लिए लक्षित विक्रय मूल्य",
+    question_text: "When the selling price of a TV is ₹18,700, the shopkeeper incurred a loss of 15%. What should be the selling price of that TV to gain 15%?",
+    question_text_hi: "जब एक टीवी का विक्रय मूल्य ₹18,700 होता है, तो दुकानदार को 15% की हानि होती है। 15% लाभ प्राप्त करने के लिए उस टीवी का विक्रय मूल्य क्या होना चाहिए?",
+    options: {
+      a: "₹25,300",
+      b: "₹34,200",
+      c: "₹43,200",
+      d: "₹19,800"
+    },
+    options_hi: {
+      a: "₹25,300",
+      b: "₹34,200",
+      c: "₹43,200",
+      d: "₹19,800"
+    },
+    correct_option: "a",
+    solution_text: "SP1 = ₹18,700 at 15% loss.\nCP = 18,700 / (1 - 0.15) = 18,700 / 0.85 = ₹22,000.\nTo gain 15%, Required SP = CP × 1.15 = 22,000 × 1.15 = ₹25,300.\nCorrect Answer: Option (a).",
+    solution_text_hi: "CP = 18,700 / 0.85 = ₹22,000।\n15% लाभ पर SP = 22,000 × 1.15 = ₹25,300।\nअतः सही उत्तर (a) है।",
+    shortcut_text: "SP2 = 18,700 × (115 / 85) = 18,700 × (23 / 17) = 1,100 × 23 = ₹25,300.",
+    shortcut_text_hi: "SP2 = 1,100 × 23 = ₹25,300।"
+  },
+  {
+    question_number: 9,
+    practice_set: "SET E",
+    level: "Level 2: More Than Moderate",
+    level_group: "Level 2: More Than Moderate",
+    type_code: "Type 1",
+    type_category: "Aggregate Profit from Per-Unit Cost",
+    type_category_hi: "प्रति इकाई क्रय मूल्य से कुल लाभ",
+    question_text: "If Reena sells 12 mobile phones for ₹1,88,160, whose cost price is ₹14,056 per phone, then how much total profit he earned?",
+    question_text_hi: "यदि रीना 12 मोबाइल फोन ₹1,88,160 में बेचती है, जिनका क्रय मूल्य ₹14,056 प्रति फोन है, तो उसने कुल कितना लाभ कमाया?",
+    options: {
+      a: "₹19,488",
+      b: "₹18,958",
+      c: "₹21,014",
+      d: "₹17,621"
+    },
+    options_hi: {
+      a: "₹19,488",
+      b: "₹18,958",
+      c: "₹21,014",
+      d: "₹17,621"
+    },
+    correct_option: "a",
+    solution_text: "Cost Price of 1 phone = ₹14,056.\nTotal Cost Price for 12 phones = 12 × 14,056 = ₹1,68,672.\nTotal Selling Price = ₹1,88,160.\nTotal Profit = 1,88,160 - 1,68,672 = ₹19,488.\nCorrect Answer: Option (a).",
+    solution_text_hi: "12 फोनों का कुल CP = 12 × 14,056 = ₹1,68,672।\nकुल लाभ = 1,88,160 - 1,68,672 = ₹19,488।\nअतः सही उत्तर (a) है।",
+    shortcut_text: "Profit = 1,88,160 - (12 × 14,056) = ₹19,488.",
+    shortcut_text_hi: "लाभ = 1,88,160 - 1,68,672 = ₹19,488।"
+  },
+  {
+    question_number: 10,
+    practice_set: "SET E",
+    level: "Level 2: More Than Moderate",
+    level_group: "Level 2: More Than Moderate",
+    type_code: "Type 8",
+    type_category: "Annual Value Appreciation Profit %",
+    type_category_hi: "वार्षिक मूल्य वृद्धि कुल लाभ प्रतिशत",
+    question_text: "An antique vase's value appreciates by 20% annually. If a collector bought it for ₹10,000 and sold it after 3 years, find his overall profit percentage.",
+    question_text_hi: "एक प्राचीन फूलदान के मूल्य में सालाना 20% की वृद्धि होती है। यदि एक कलेक्टर ने इसे ₹10,000 में खरीदा और 3 साल बाद बेच दिया, तो उसका कुल लाभ प्रतिशत ज्ञात कीजिए।",
+    options: {
+      a: "60%",
+      b: "72.8%",
+      c: "66.4%",
+      d: "80%"
+    },
+    options_hi: {
+      a: "60%",
+      b: "72.8%",
+      c: "66.4%",
+      d: "80%"
+    },
+    correct_option: "b",
+    solution_text: "Cost Price = ₹10,000.\nAnnual appreciation rate = 20%.\nSelling Price after 3 years = 10,000 × (1 + 0.20)³ = 10,000 × 1.728 = ₹17,280.\nTotal Profit = 17,280 - 10,000 = ₹7,280.\nOverall Profit% = (7,280 / 10,000) × 100 = 72.8%.\nCorrect Answer: Option (b).",
+    solution_text_hi: "3 वर्ष बाद SP = 10,000 × (1.20)³ = ₹17,280।\nलाभ = 17,280 - 10,000 = ₹7,280 => लाभ% = 72.8%।\nअतः सही उत्तर (b) है।",
+    shortcut_text: "Overall% = (1.20)³ - 1 = 1.728 - 1 = 72.8%.",
+    shortcut_text_hi: "कुल लाभ% = (1.20)³ - 1 = 72.8%।"
+  },
+  {
+    question_number: 11,
+    practice_set: "SET E",
+    level: "Level 2: More Than Moderate",
+    level_group: "Level 2: More Than Moderate",
+    type_code: "Type 13",
+    type_category: "Item Count Ratio under Fixed Budget",
+    type_category_hi: "निश्चित बजट में वस्तु गणना अनुपात",
+    question_text: "Vishnu spends ₹5000 to buy 12 tables and some chairs. The cost of one table is ₹50 and that of the one chair is ₹40. What is the ratio of the numbers of the chairs to the number of tables purchased?",
+    question_text_hi: "विष्णु 12 मेज और कुछ कुर्सियां खरीदने के लिए ₹5000 खर्च करता है। एक मेज की कीमत ₹50 है और एक कुर्सी की कीमत ₹40 है। खरीदी गई कुर्सियों की संख्या और मेजों की संख्या का अनुपात क्या है?",
+    options: {
+      a: "5:2",
+      b: "55:6",
+      c: "5:1",
+      d: "55:4"
+    },
+    options_hi: {
+      a: "5:2",
+      b: "55:6",
+      c: "5:1",
+      d: "55:4"
+    },
+    correct_option: "b",
+    solution_text: "Cost of 12 tables = 12 × 50 = ₹600.\nTotal money spent = ₹5,000.\nAmount spent on chairs = 5,000 - 600 = ₹4,400.\nNumber of chairs = 4,400 / 40 = 110 chairs.\nRatio of chairs to tables = 110 : 12 = 55 : 6.\nCorrect Answer: Option (b).",
+    solution_text_hi: "कुर्सियों पर खर्च = 5000 - (12 × 50) = ₹4400।\nकुर्सियों की संख्या = 4400 / 40 = 110।\nअनुपात = 110 : 12 = 55 : 6।\nअतः सही उत्तर (b) है।",
+    shortcut_text: "Chairs = (5000 - 600) / 40 = 110. Ratio = 110 : 12 = 55 : 6.",
+    shortcut_text_hi: "अनुपात = 110 : 12 = 55 : 6।"
+  },
+  {
+    question_number: 12,
+    practice_set: "SET E",
+    level: "Level 2: More Than Moderate",
+    level_group: "Level 2: More Than Moderate",
+    type_code: "Type 4",
+    type_category: "Unit Rate Purchase from Gain and Quantity",
+    type_category_hi: "लाभ और मात्रा से प्रति रुपया क्रय दर",
+    question_text: "A vendor sells 15 lemons for 3 rupees gaining 60%. How many did he buy for a rupee?",
+    question_text_hi: "एक विक्रेता 60% लाभ प्राप्त करते हुए 3 रुपये में 15 नींबू बेचता है। उसने एक रुपये में कितने नींबू खरीदे थे?",
+    options: {
+      a: "7",
+      b: "8",
+      c: "10",
+      d: "9"
+    },
+    options_hi: {
+      a: "7",
+      b: "8",
+      c: "10",
+      d: "9"
+    },
+    correct_option: "b",
+    solution_text: "Selling Price of 15 lemons = ₹3 => SP of 1 lemon = ₹3 / 15 = ₹1/5.\nGain = 60% => SP = 1.60 × CP.\nCP of 1 lemon = (1/5) / 1.60 = 1 / (5 × 1.6) = ₹1/8.\nTherefore, he bought 8 lemons for ₹1.\nCorrect Answer: Option (b).",
+    solution_text_hi: "1 नींबू का SP = 3/15 = ₹1/5।\n1 नींबू का CP = (1/5) / 1.60 = ₹1/8।\nअतः उसने 1 रुपये में 8 नींबू खरीदे थे।\nअतः सही उत्तर (b) है।",
+    shortcut_text: "CP of 1 = (3 / 15) / 1.60 = 1/8 => 8 lemons per rupee.",
+    shortcut_text_hi: "नींबू प्रति रुपया = 1 / (1/8) = 8।"
+  },
+  {
+    question_number: 13,
+    practice_set: "SET E",
+    level: "Level 2: More Than Moderate",
+    level_group: "Level 2: More Than Moderate",
+    type_code: "Type 11",
+    type_category: "Dynamic Monthly Capital Investment Sharing",
+    type_category_hi: "परिवर्तनशील मासिक पूंजी साझेदारी लाभ",
+    question_text: "P, Q, and R invest in a business in the ratio 3:4:5. After 4 months, P doubles his investment, and Q halves his investment. At the end of the year, the total profit is ₹38,000. Find R's share.",
+    question_text_hi: "P, Q और R 3:4:5 के अनुपात में एक व्यवसाय में निवेश करते हैं। 4 महीने बाद, P अपना निवेश दोगुना कर देता है, और Q अपना निवेश आधा कर देता है। वर्ष के अंत में, कुल लाभ ₹38,000 है। R का हिस्सा ज्ञात कीजिए।",
+    options: {
+      a: "₹10,000",
+      b: "₹15,000",
+      c: "₹12,000",
+      d: "₹18,000"
+    },
+    options_hi: {
+      a: "₹10,000",
+      b: "₹15,000",
+      c: "₹12,000",
+      d: "₹18,000"
+    },
+    correct_option: "b",
+    solution_text: "Let initial investments be 3, 4, 5 units respectively.\nP's effective capital = (3 × 4) + (6 × 8) = 12 + 48 = 60.\nQ's effective capital = (4 × 4) + (2 × 8) = 16 + 16 = 32.\nR's effective capital = 5 × 12 = 60.\nRatio P : Q : R = 60 : 32 : 60 = 15 : 8 : 15.\nTotal parts = 15 + 8 + 15 = 38 parts.\nTotal Profit = ₹38,000.\nR's share = (15 / 38) × 38,000 = ₹15,000.\nCorrect Answer: Option (b).",
+    solution_text_hi: "प्रभावी पूंजी अनुपात = (12+48) : (16+16) : 60 = 60 : 32 : 60 = 15 : 8 : 15।\nR का हिस्सा = (15 / 38) × 38,000 = ₹15,000।\nअतः सही उत्तर (b) है।",
+    shortcut_text: "Ratio = 15 : 8 : 15 => Total 38 units = 38000. R = 15 units = ₹15,000.",
+    shortcut_text_hi: "R का हिस्सा = 15 × 1000 = ₹15,000।"
+  },
+  {
+    question_number: 14,
+    practice_set: "SET E",
+    level: "Level 2: More Than Moderate",
+    level_group: "Level 2: More Than Moderate",
+    type_code: "Type 4",
+    type_category: "Target Absolute Profit Required Quantity",
+    type_category_hi: "लक्षित पूर्ण लाभ के लिए आवश्यक मात्रा",
+    question_text: "A person buys apples at the rate 8 for ₹34 and sells them at the rate of 12 for ₹57. How many apples will he have to be sold to earn a net profit of ₹45?",
+    question_text_hi: "एक व्यक्ति ₹34 में 8 की दर से सेब खरीदता है और उन्हें ₹57 में 12 की दर से बेचता है। ₹45 का शुद्ध लाभ कमाने के लिए उसे कितने सेब बेचने होंगे?",
+    options: {
+      a: "90",
+      b: "150",
+      c: "100",
+      d: "135"
+    },
+    options_hi: {
+      a: "90",
+      b: "150",
+      c: "100",
+      d: "135"
+    },
+    correct_option: "a",
+    solution_text: "Cost Price of 1 apple = 34 / 8 = ₹4.25.\nSelling Price of 1 apple = 57 / 12 = ₹4.75.\nProfit per apple = 4.75 - 4.25 = ₹0.50.\nTarget net profit = ₹45.\nNumber of apples required = 45 / 0.50 = 90 apples.\nCorrect Answer: Option (a).",
+    solution_text_hi: "1 सेब का CP = 34 / 8 = ₹4.25।\n1 सेब का SP = 57 / 12 = ₹4.75।\nप्रति सेब लाभ = ₹0.50।\nआवश्यक सेब = 45 / 0.50 = 90 सेब।\nअतः सही उत्तर (a) है।",
+    shortcut_text: "Apples = 45 / (57/12 - 34/8) = 45 / 0.50 = 90.",
+    shortcut_text_hi: "सेब = 45 / 0.50 = 90।"
+  },
+
+  // ==========================================
+  // LEVEL 3: INSPIRED FROM PYQS (Q15 to Q21)
+  // ==========================================
+  {
+    question_number: 15,
+    practice_set: "SET E",
+    level: "Level 3: Inspired from PYQs",
+    level_group: "Level 3: Inspired from PYQs",
+    type_code: "Type 28",
+    type_category: "Cost Escalation and Target Margin New SP",
+    type_category_hi: "लागत वृद्धि और लक्षित मार्जिन नया विक्रय मूल्य",
+    question_text: "A television manufacturer earns a profit of 10% by selling one TV set for ₹24,750. If the production cost is increased by 15%, then what would be the new selling price of the TV set so as to gain a profit of 15%?",
+    question_text_hi: "एक टेलीविजन निर्माता एक टीवी सेट ₹24,750 में बेचकर 10% का लाभ कमाता है। यदि उत्पादन लागत में 15% की वृद्धि हो जाती है, तो 15% का लाभ प्राप्त करने के लिए टीवी सेट का नया विक्रय मूल्य क्या होगा?",
+    options: {
+      a: "₹28,756.25",
+      b: "₹27,756.25",
+      c: "₹29,756.25",
+      d: "₹26,756.26"
+    },
+    options_hi: {
+      a: "₹28,756.25",
+      b: "₹27,756.25",
+      c: "₹29,756.25",
+      d: "₹26,756.26"
+    },
+    correct_option: "c",
+    solution_text: "Initial Selling Price = ₹24,750 at 10% profit.\nInitial Cost Price = 24,750 / 1.10 = ₹22,500.\nNew Cost Price (increased by 15%) = 22,500 × 1.15 = ₹25,875.\nNew Selling Price for 15% profit = 25,875 × 1.15 = ₹29,756.25.\nCorrect Answer: Option (c).",
+    solution_text_hi: "मूल CP = 24,750 / 1.10 = ₹22,500।\nनया CP = 22,500 × 1.15 = ₹25,875।\nनया SP = 25,875 × 1.15 = ₹29,756.25।\nअतः सही उत्तर (c) है।",
+    shortcut_text: "New SP = (24,750 / 1.10) × 1.15² = 22,500 × 1.3225 = ₹29,756.25.",
+    shortcut_text_hi: "नया SP = 22,500 × 1.3225 = ₹29,756.25।"
+  },
+  {
+    question_number: 16,
+    practice_set: "SET E",
+    level: "Level 3: Inspired from PYQs",
+    level_group: "Level 3: Inspired from PYQs",
+    type_code: "Type 10",
+    type_category: "Circular / Buy-Back Chained Transaction Gain",
+    type_category_hi: "चक्रीय / पुनर्खरीद श्रृंखला लेनदेन लाभ",
+    question_text: "X purchases a car at ₹1,50,000 and then sold it to Y at a profit of 5%. Y later sold it back to X at a loss of 2%. Find the overall profit or loss for X in the entire transaction.",
+    question_text_hi: "X एक कार ₹1,50,000 में खरीदता है और फिर उसे Y को 5% के लाभ पर बेचता है। Y बाद में इसे X को 2% की हानि पर वापस बेच देता है। पूरे लेन-देन में X का कुल लाभ या हानि ज्ञात कीजिए।",
+    options: {
+      a: "X loss ₹4,350",
+      b: "X gain ₹3,150",
+      c: "X gain ₹4,350",
+      d: "X gain ₹4,500"
+    },
+    options_hi: {
+      a: "X को ₹4,350 की हानि",
+      b: "X को ₹3,150 का लाभ",
+      c: "X को ₹4,350 का लाभ",
+      d: "X को ₹4,500 का लाभ"
+    },
+    correct_option: "b",
+    solution_text: "X buys car for ₹1,50,000.\nX sells to Y at 5% profit: SP1 = 150,000 × 1.05 = ₹1,57,500.\nY sells it back to X at 2% loss: Price paid by X = 157,500 × (1 - 0.02) = 157,500 × 0.98 = ₹1,54,350.\nX originally had the car; now he has the car again plus the difference in cash:\nNet gain for X = 157,500 - 154,350 = ₹3,150 gain.\nCorrect Answer: Option (b).",
+    solution_text_hi: "Y को बिक्री = 1,50,000 × 1.05 = ₹1,57,500।\nX द्वारा पुनः खरीद = 1,57,500 × 0.98 = ₹1,54,350।\nX का कुल लाभ = 1,57,500 - 1,54,350 = ₹3,150 लाभ।\nअतः सही उत्तर (b) है।",
+    shortcut_text: "Net gain for X = 157,500 × 0.02 = ₹3,150.",
+    shortcut_text_hi: "शुद्ध लाभ = 1,57,500 × 0.02 = ₹3,150।"
+  },
+  {
+    question_number: 17,
+    practice_set: "SET E",
+    level: "Level 3: Inspired from PYQs",
+    level_group: "Level 3: Inspired from PYQs",
+    type_code: "Type 14",
+    type_category: "Partial Spoilage and Salvage Value Profit %",
+    type_category_hi: "आंशिक खराबी और अवशिष्ट मूल्य लाभ %",
+    question_text: "Rahim purchased 20 kg of oranges at the rate of ₹45/kg and sold them at the rate of ₹54/kg. During this period 1.5 kg oranges got spoiled. He sold the spoiled oranges at the rate of ₹10/kg. His net gain or loss percent is?",
+    question_text_hi: "रहीम ने ₹45/किलो की दर से 20 किलो संतरे खरीदे और उन्हें ₹54/किलो की दर से बेचा। इस अवधि के दौरान 1.5 किलो संतरे खराब हो गए। उसने खराब संतरों को ₹10/किलो की दर से बेचा। उसका शुद्ध लाभ या हानि प्रतिशत क्या है?",
+    options: {
+      a: "14% loss",
+      b: "14% gain",
+      c: "12 2/3% gain",
+      d: "12 2/3% loss"
+    },
+    options_hi: {
+      a: "14% हानि",
+      b: "14% लाभ",
+      c: "12 2/3% लाभ",
+      d: "12 2/3% हानि"
+    },
+    correct_option: "c",
+    solution_text: "Total Cost Price = 20 × 45 = ₹900.\nGood oranges = 20 - 1.5 = 18.5 kg sold at ₹54/kg:\nRevenue from good oranges = 18.5 × 54 = ₹999.\nRevenue from spoiled oranges = 1.5 × 10 = ₹15.\nTotal Selling Price = 999 + 15 = ₹1,014.\nTotal Profit = 1,014 - 900 = ₹114.\nNet Profit% = (114 / 900) × 100 = 38 / 3 = 12 2/3% gain.\nCorrect Answer: Option (c).",
+    solution_text_hi: "कुल CP = 20 × 45 = ₹900।\nकुल SP = (18.5 × 54) + (1.5 × 10) = 999 + 15 = ₹1,014।\nलाभ = 1,014 - 900 = ₹114 => लाभ% = (114 / 900) × 100 = 12 2/3% लाभ।\nअतः सही उत्तर (c) है।",
+    shortcut_text: "Profit% = (1014 - 900) / 900 × 100 = 114 / 9 = 12 2/3% gain.",
+    shortcut_text_hi: "लाभ% = 114 / 9 = 12 2/3% लाभ।"
+  },
+  {
+    question_number: 18,
+    practice_set: "SET E",
+    level: "Level 3: Inspired from PYQs",
+    level_group: "Level 3: Inspired from PYQs",
+    type_code: "Type 27",
+    type_category: "Multi-item Weighted Profit and Loss %",
+    type_category_hi: "बहु-वस्तु भारित लाभ और हानि %",
+    question_text: "A person buys 4 different items for ₹200, ₹300, ₹400, and ₹500. He sells the first two items at a combined profit of 15% and the last two at a combined loss of 10%. Find his net profit or loss percentage.",
+    question_text_hi: "एक व्यक्ति 4 अलग-अलग वस्तुएँ ₹200, ₹300, ₹400 और ₹500 में खरीदता है। वह पहली दो वस्तुओं को 15% के संयुक्त लाभ पर और अंतिम दो को 10% की संयुक्त हानि पर बेचता है। उसका शुद्ध लाभ या हानि प्रतिशत ज्ञात कीजिए।",
+    options: {
+      a: "1.07% Loss",
+      b: "2.14% Profit",
+      c: "1.5% Loss",
+      d: "3.05% Profit"
+    },
+    options_hi: {
+      a: "1.07% हानि",
+      b: "2.14% लाभ",
+      c: "1.5% हानि",
+      d: "3.05% लाभ"
+    },
+    correct_option: "a",
+    solution_text: "Total Cost Price = 200 + 300 + 400 + 500 = ₹1,400.\nFirst group cost = 200 + 300 = ₹500.\nSP of first group (15% profit) = 500 × 1.15 = ₹575.\nSecond group cost = 400 + 500 = ₹900.\nSP of second group (10% loss) = 900 × 0.90 = ₹810.\nTotal Selling Price = 575 + 810 = ₹1,385.\nNet Loss = 1,400 - 1,385 = ₹15.\nLoss% = (15 / 1,400) × 100 ≈ 1.07% Loss.\nCorrect Answer: Option (a).",
+    solution_text_hi: "कुल CP = ₹1,400।\nकुल SP = (500 × 1.15) + (900 × 0.90) = 575 + 810 = ₹1,385।\nहानि = 1,400 - 1,385 = ₹15 => हानि% = 15 / 1400 × 100 ≈ 1.07% हानि।\nअतः सही उत्तर (a) है।",
+    shortcut_text: "Net = (500 × 15 - 900 × 10) / 1400 = -1500 / 1400 = -1.07% Loss.",
+    shortcut_text_hi: "शुद्ध प्रभाव = -1500 / 1400 = -1.07% हानि।"
+  },
+  {
+    question_number: 19,
+    practice_set: "SET E",
+    level: "Level 3: Inspired from PYQs",
+    level_group: "Level 3: Inspired from PYQs",
+    type_code: "Type 14",
+    type_category: "Transit Damage Loss and Markup Recovery",
+    type_category_hi: "परिवहन क्षति और मार्कअप वसूली लाभ",
+    question_text: "Sabiha purchased 240 cups for her shop at ₹8 each. During transportation, 24 cups got damaged, and she sold the remaining cups at ₹12 each. Find her overall percentage profit.",
+    question_text_hi: "सबिहा ने अपनी दुकान के लिए ₹8 प्रति कप की दर से 240 कप खरीदे। परिवहन के दौरान 24 कप क्षतिग्रस्त हो गए, और उसने शेष कप ₹12 प्रत्येक की दर से बेचे। उसका कुल प्रतिशत लाभ ज्ञात कीजिए।",
+    options: {
+      a: "45%",
+      b: "30%",
+      c: "40%",
+      d: "35%"
+    },
+    options_hi: {
+      a: "45%",
+      b: "30%",
+      c: "40%",
+      d: "35%"
+    },
+    correct_option: "d",
+    solution_text: "Total Cost Price = 240 × 8 = ₹1,920.\nRemaining undamaged cups = 240 - 24 = 216 cups.\nTotal Selling Price = 216 × 12 = ₹2,592.\nTotal Profit = 2,592 - 1,920 = ₹672.\nProfit% = (672 / 1,920) × 100 = 35%.\nCorrect Answer: Option (d).",
+    solution_text_hi: "कुल CP = 240 × 8 = ₹1,920।\nबचे हुए कप = 240 - 24 = 216।\nकुल SP = 216 × 12 = ₹2,592।\nलाभ% = (2,592 - 1,920) / 1,920 × 100 = 35%।\nअतः सही उत्तर (d) है।",
+    shortcut_text: "Profit% = (216 × 12 - 1920) / 1920 × 100 = 672 / 1920 × 100 = 35%.",
+    shortcut_text_hi: "लाभ% = 672 / 1920 × 100 = 35%।"
+  },
+  {
+    question_number: 20,
+    practice_set: "SET E",
+    level: "Level 3: Inspired from PYQs",
+    level_group: "Level 3: Inspired from PYQs",
+    type_code: "Type 27",
+    type_category: "Weighted Target Aggregate Profit Balance",
+    type_category_hi: "भारित लक्षित कुल लाभ संतुलन",
+    question_text: "A man sold two bicycles at a total profit of 20%. If he had bought them for ₹3500 each and the first one sold them at a profit of 5%, then what is the profit % he should have from the second?",
+    question_text_hi: "एक व्यक्ति ने दो साइकिलें कुल 20% के लाभ पर बेचीं। यदि उसने उन्हें ₹3500 प्रत्येक में खरीदा था और पहली को 5% के लाभ पर बेचा था, तो दूसरी से उसे कितना प्रतिशत लाभ होना चाहिए?",
+    options: {
+      a: "20%",
+      b: "35%",
+      c: "25%",
+      d: "30%"
+    },
+    options_hi: {
+      a: "20%",
+      b: "35%",
+      c: "25%",
+      d: "30%"
+    },
+    correct_option: "b",
+    solution_text: "Since cost prices of both bicycles are equal (₹3,500 each):\nOverall Profit% = (P1 + P2) / 2\n=> 20% = (5% + P2) / 2\n=> 5% + P2 = 40%\n=> P2 = 35%.\nCorrect Answer: Option (b).",
+    solution_text_hi: "दोनों का क्रय मूल्य समान है, अतः:\nऔसत लाभ = (5% + P2) / 2 = 20%\n=> P2 = 40% - 5% = 35%।\nअतः सही उत्तर (b) है।",
+    shortcut_text: "P2 = 2 × 20% - 5% = 35%.",
+    shortcut_text_hi: "P2 = 2 × 20% - 5% = 35%।"
+  },
+  {
+    question_number: 21,
+    practice_set: "SET E",
+    level: "Level 3: Inspired from PYQs",
+    level_group: "Level 3: Inspired from PYQs",
+    type_code: "Type 18",
+    type_category: "EMI Scheme True Seller Margin",
+    type_category_hi: "ईएमआई योजना वास्तविक विक्रेता मार्जिन",
+    question_text: "A mobile phone costs ₹15,000. A customer buys it on EMI paying ₹3,000 as a down payment and 6 monthly EMIs of ₹2,500 each. Find the total profit percentage for the seller if his original cost price was ₹12,000.",
+    question_text_hi: "एक मोबाइल फोन की कीमत ₹15,000 है। एक ग्राहक इसे EMI पर ₹3,000 के डाउन पेमेंट और प्रत्येक ₹2,500 की 6 मासिक EMI का भुगतान करके खरीदता है। विक्रेता के लिए कुल लाभ प्रतिशत ज्ञात कीजिए यदि उसका मूल क्रय मूल्य ₹12,000 था।",
+    options: {
+      a: "40%",
+      b: "45%",
+      c: "50%",
+      d: "55%"
+    },
+    options_hi: {
+      a: "40%",
+      b: "45%",
+      c: "50%",
+      d: "55%"
+    },
+    correct_option: "c",
+    solution_text: "Total amount collected by seller = Down payment + (6 × 2,500) = 3,000 + 15,000 = ₹18,000.\nOriginal Cost Price = ₹12,000.\nTotal Profit = 18,000 - 12,000 = ₹6,000.\nProfit% = (6,000 / 12,000) × 100 = 50%.\nCorrect Answer: Option (c).",
+    solution_text_hi: "कुल प्राप्त राशि = 3,000 + (6 × 2,500) = ₹18,000।\nक्रय मूल्य = ₹12,000।\nलाभ = 18,000 - 12,000 = ₹6,000 => लाभ% = 50%।\nअतः सही उत्तर (c) है।",
+    shortcut_text: "Profit% = (18,000 - 12,000) / 12,000 × 100 = 50%.",
+    shortcut_text_hi: "लाभ% = 6,000 / 12,000 × 100 = 50%।"
+  },
+
+  // ==========================================
+  // LEVEL 4: PYQ+ (Q22 to Q30)
+  // ==========================================
+  {
+    question_number: 22,
+    practice_set: "SET E",
+    level: "Level 4: PYQ+",
+    level_group: "Level 4: PYQ+",
+    type_code: "Type 27",
+    type_category: "Three-portion Inventory Realization",
+    type_category_hi: "तीन भागों में वस्तु सूची विक्रय लाभ",
+    question_text: "Arvind bought 120 m cloth for ₹15000. He sold 45% of it at a gain of 40%, 25% of it at a loss of 10% and the remaining cloth at the cost price. His profit (in ₹) in the entire transaction is:",
+    question_text_hi: "अरविंद ने ₹15000 में 120 मीटर कपड़ा खरीदा। उसने इसका 45% हिस्सा 40% के लाभ पर, इसका 25% हिस्सा 10% की हानि पर और शेष कपड़ा क्रय मूल्य पर बेच दिया। पूरे लेन-देन में उसका लाभ (₹ में) है:",
+    options: {
+      a: "₹4075",
+      b: "₹2325",
+      c: "₹4180",
+      d: "₹2035"
+    },
+    options_hi: {
+      a: "₹4075",
+      b: "₹2325",
+      c: "₹4180",
+      d: "₹2035"
+    },
+    correct_option: "b",
+    solution_text: "Total investment = ₹15,000.\nNet profit percentage on total cost:\n= (45% × 40%) - (25% × 10%) + (30% × 0%)\n= 18% - 2.5% + 0 = 15.5% profit.\nTotal profit in ₹ = 15,000 × 15.5% = ₹2,325.\nCorrect Answer: Option (b).",
+    solution_text_hi: "शुद्ध लाभ% = (0.45 × 40%) - (0.25 × 10%) = 18% - 2.5% = 15.5%।\nकुल लाभ = 15,000 × 15.5% = ₹2,325।\nअतः सही उत्तर (b) है।",
+    shortcut_text: "Profit = 15,000 × (0.18 - 0.025) = 15,000 × 0.155 = ₹2,325.",
+    shortcut_text_hi: "लाभ = 15,000 × 0.155 = ₹2,325।"
+  },
+  {
+    question_number: 23,
+    practice_set: "SET E",
+    level: "Level 4: PYQ+",
+    level_group: "Level 4: PYQ+",
+    type_code: "Type 20",
+    type_category: "Dishonest Dealer Successive Cheating %",
+    type_category_hi: "बेईमान दुकानदार क्रमिक बेईमानी प्रतिशत",
+    question_text: "A shopkeeper cheats up to 7% by using under-weight in buying and selling fruits, then his total profit percentage is:",
+    question_text_hi: "एक दुकानदार फलों को खरीदने और बेचने में कम वजन का उपयोग करके 7% तक की बेईमानी करता है, तो उसका कुल लाभ प्रतिशत है:",
+    options: {
+      a: "14.25",
+      b: "14.49",
+      c: "14.75",
+      d: "14.55"
+    },
+    options_hi: {
+      a: "14.25",
+      b: "14.49",
+      c: "14.75",
+      d: "14.55"
+    },
+    correct_option: "b",
+    solution_text: "Using standard formula for successive cheating percentages (x% in buying, y% in selling):\nOverall Profit% = x + y + (xy / 100)\n= 7 + 7 + (7 × 7 / 100) = 14 + 0.49 = 14.49%.\nCorrect Answer: Option (b).",
+    solution_text_hi: "क्रमिक बेईमानी सूत्र = x + y + (xy / 100)\n= 7 + 7 + (49 / 100) = 14.49%।\nअतः सही उत्तर (b) है।",
+    shortcut_text: "Profit% = 7 + 7 + 0.49 = 14.49%.",
+    shortcut_text_hi: "लाभ% = 7 + 7 + 0.49 = 14.49%।"
+  },
+  {
+    question_number: 24,
+    practice_set: "SET E",
+    level: "Level 4: PYQ+",
+    level_group: "Level 4: PYQ+",
+    type_code: "Type 9",
+    type_category: "Hypothetical Reduced Cost and Selling Price Target",
+    type_category_hi: "काल्पनिक कम क्रय मूल्य और विक्रय मूल्य लक्ष्य",
+    question_text: "Hrithik sells a table at a profit of 37.5%. If he had bought it at 12.5% less and sold it for ₹330 less, he would have gained 10%. The cost price of the table is what percentage less than ₹1000?",
+    question_text_hi: "ऋतिक एक मेज 37.5% के लाभ पर बेचता है। यदि उसने इसे 12.5% कम पर खरीदा होता और इसे ₹330 कम में बेचा होता, तो उसे 10% का लाभ होता। मेज का क्रय मूल्य ₹1000 से कितने प्रतिशत कम है?",
+    options: {
+      a: "21%",
+      b: "20%",
+      c: "23%",
+      d: "22%"
+    },
+    options_hi: {
+      a: "21%",
+      b: "20%",
+      c: "23%",
+      d: "22%"
+    },
+    correct_option: "b",
+    solution_text: "Let original CP = x. Original SP = 1.375x.\nNew CP = (1 - 0.125)x = 0.875x.\nNew SP = 1.375x - 330.\nGiven new gain is 10%:\n1.375x - 330 = 1.10 × 0.875x = 0.9625x\n=> (1.375 - 0.9625)x = 330\n=> 0.4125x = 330\n=> x = 330 / 0.4125 = ₹800.\nCost price of the table = ₹800.\nDifference from ₹1,000 = 1,000 - 800 = ₹200.\nPercentage less than ₹1,000 = (200 / 1,000) × 100 = 20%.\nCorrect Answer: Option (b).",
+    solution_text_hi: "1.375x - 330 = 1.10 × 0.875x = 0.9625x।\n0.4125x = 330 => x = ₹800।\n₹1000 से प्रतिशत कमी = (200 / 1000) × 100 = 20%।\nअतः सही उत्तर (b) है।",
+    shortcut_text: "0.4125x = 330 => x = ₹800 => (1000 - 800)/10 = 20% less.",
+    shortcut_text_hi: "x = ₹800 => 20% कम।"
+  },
+  {
+    question_number: 25,
+    practice_set: "SET E",
+    level: "Level 4: PYQ+",
+    level_group: "Level 4: PYQ+",
+    type_code: "Type 16",
+    type_category: "Equal Quantity Dual Purchase Consolidated Loss",
+    type_category_hi: "समान मात्रा दोहरी खरीद संयुक्त हानि",
+    question_text: "A man bought a number of apples at 5 for ₹50 and equal number at 6 for ₹50. If he sells them at 11 for ₹100. What would be his percentage profit or loss?",
+    question_text_hi: "एक व्यक्ति ने ₹50 में 5 की दर से कुछ सेब खरीदे और उतनी ही संख्या में ₹50 में 6 की दर से खरीदे। यदि वह उन्हें ₹100 में 11 की दर से बेचता है। उसका लाभ या हानि प्रतिशत क्या होगा?",
+    options: {
+      a: "100/121% loss",
+      b: "100/121% profit",
+      c: "121/100% profit",
+      d: "121/100% loss"
+    },
+    options_hi: {
+      a: "100/121% हानि",
+      b: "100/121% लाभ",
+      c: "121/100% लाभ",
+      d: "121/100% हानि"
+    },
+    correct_option: "a",
+    solution_text: "Let the number of apples bought of each variety be 330 (LCM of 5, 6, 11 = 330).\nCost of 330 apples of 1st type = (330 / 5) × 50 = ₹3,300.\nCost of 330 apples of 2nd type = (330 / 6) × 50 = ₹2,750.\nTotal Cost Price for 660 apples = 3,300 + 2,750 = ₹6,050.\nSelling Price of 660 apples at 11 for ₹100 = (660 / 11) × 100 = ₹6,000.\nNet Loss = 6,050 - 6,000 = ₹50.\nLoss% = (50 / 6,050) × 100 = 500 / 605 = 100/121% loss.\nCorrect Answer: Option (a).",
+    solution_text_hi: "माना प्रत्येक प्रकार के 330 सेब खरीदे गए।\nकुल CP (660 सेब) = 3,300 + 2,750 = ₹6,050।\nकुल SP (660 सेब) = 60 × 100 = ₹6,000।\nहानि = ₹50 => हानि% = (50 / 6050) × 100 = 100/121% हानि।\nअतः सही उत्तर (a) है।",
+    shortcut_text: "Loss% = [(55/6 - 100/11) / (55/6)] × 100 = (5/66) / (55/6) × 100 = 100/121% loss.",
+    shortcut_text_hi: "हानि% = 100/121% हानि।"
+  },
+  {
+    question_number: 26,
+    practice_set: "SET E",
+    level: "Level 4: PYQ+",
+    level_group: "Level 4: PYQ+",
+    type_code: "Type 14",
+    type_category: "Defective Stock Target Margin Rate per Dozen",
+    type_category_hi: "खराब स्टॉक लक्षित मार्जिन प्रति दर्जन दर",
+    question_text: "A man purchased 20 dozen mangoes for ₹1,000. Out of these, 40 mangoes were rotten and could not be sold. At what rate per dozen should he sell the remaining mangoes to make a profit of 30%?",
+    question_text_hi: "एक व्यक्ति ने ₹1,000 में 20 दर्जन आम खरीदे। इनमें से 40 आम सड़े हुए थे और उन्हें बेचा नहीं जा सका। 30% का लाभ कमाने के लिए उसे शेष आमों को प्रति दर्जन किस दर पर बेचना चाहिए?",
+    options: {
+      a: "₹78",
+      b: "₹80",
+      c: "₹72",
+      d: "₹70"
+    },
+    options_hi: {
+      a: "₹78",
+      b: "₹80",
+      c: "₹72",
+      d: "₹70"
+    },
+    correct_option: "a",
+    solution_text: "Total mangoes purchased = 20 × 12 = 240 mangoes.\nUsable mangoes = 240 - 40 = 200 mangoes.\nTarget total revenue for 30% profit = 1,000 × 1.30 = ₹1,300.\nSelling price per mango = 1,300 / 200 = ₹6.50.\nSelling price per dozen = 6.50 × 12 = ₹78.\nCorrect Answer: Option (a).",
+    solution_text_hi: "बचे हुए आम = 240 - 40 = 200 आम।\n30% लाभ पर कुल SP = 1000 × 1.30 = ₹1,300।\nप्रति आम SP = 1300 / 200 = ₹6.50।\nप्रति दर्जन दर = 6.50 × 12 = ₹78।\nअतः सही उत्तर (a) है।",
+    shortcut_text: "SP per dozen = (1,300 / 200) × 12 = 6.5 × 12 = ₹78.",
+    shortcut_text_hi: "दर प्रति दर्जन = 6.5 × 12 = ₹78।"
+  },
+  {
+    question_number: 27,
+    practice_set: "SET E",
+    level: "Level 4: PYQ+",
+    level_group: "Level 4: PYQ+",
+    type_code: "Type 4",
+    type_category: "Cross Multiplying Units Rate Profit %",
+    type_category_hi: "तिर्यक गुणन इकाई दर लाभ प्रतिशत",
+    question_text: "Vikas buys 5 bananas for ₹4 and sells 4 bananas for ₹5. Find his profit%.",
+    question_text_hi: "विकास ₹4 में 5 केले खरीदता है और ₹5 में 4 केले बेचता है। उसका लाभ % ज्ञात कीजिए।",
+    options: {
+      a: "55.56%",
+      b: "53.25%",
+      c: "45.50%",
+      d: "56.25%"
+    },
+    options_hi: {
+      a: "55.56%",
+      b: "53.25%",
+      c: "45.50%",
+      d: "56.25%"
+    },
+    correct_option: "d",
+    solution_text: "Cost Price of 1 banana = ₹4 / 5 = ₹0.80.\nSelling Price of 1 banana = ₹5 / 4 = ₹1.25.\nProfit per banana = 1.25 - 0.80 = ₹0.45.\nProfit% = (0.45 / 0.80) × 100 = 56.25%.\nCorrect Answer: Option (d).",
+    solution_text_hi: "1 केले का CP = 4/5 = ₹0.80।\n1 केले का SP = 5/4 = ₹1.25।\nलाभ% = (0.45 / 0.80) × 100 = 56.25%।\nअतः सही उत्तर (d) है।",
+    shortcut_text: "Profit% = [(5² - 4²) / 4²] × 100 = 9 / 16 × 100 = 56.25%.",
+    shortcut_text_hi: "लाभ% = (25 - 16) / 16 × 100 = 56.25%।"
+  },
+  {
+    question_number: 28,
+    practice_set: "SET E",
+    level: "Level 4: PYQ+",
+    level_group: "Level 4: PYQ+",
+    type_code: "Type 5",
+    type_category: "Successive Discount Backward Marked Price",
+    type_category_hi: "क्रमिक छूट व्युत्क्रम अंकित दर",
+    question_text: "A salesman offers 20% additional discount, after offering an initial discount of 25% on the labelled rate of a laptop. If the final sale price of the laptop is ₹18,000, then what was its labelled rate?",
+    question_text_hi: "एक सेल्समैन लैपटॉप की अंकित दर पर 25% की प्रारंभिक छूट देने के बाद 20% की अतिरिक्त छूट प्रदान करता है। यदि लैपटॉप का अंतिम विक्रय मूल्य ₹18,000 है, तो इसकी अंकित दर क्या थी?",
+    options: {
+      a: "₹35,000",
+      b: "₹40,000",
+      c: "₹30,000",
+      d: "₹28,000"
+    },
+    options_hi: {
+      a: "₹35,000",
+      b: "₹40,000",
+      c: "₹30,000",
+      d: "₹28,000"
+    },
+    correct_option: "c",
+    solution_text: "Let the labelled rate = x.\nAfter 25% discount: price = 0.75x.\nAfter additional 20% discount: price = 0.75x × (1 - 0.20) = 0.75x × 0.80 = 0.60x.\nGiven final price = ₹18,000:\n0.60x = 18,000\n=> x = 18,000 / 0.60 = ₹30,000.\nCorrect Answer: Option (c).",
+    solution_text_hi: "अंकित मूल्य = x।\nx × 0.75 × 0.80 = 18,000 => 0.60x = 18,000 => x = ₹30,000।\nअतः सही उत्तर (c) है।",
+    shortcut_text: "Labelled Rate = 18,000 / (0.75 × 0.80) = 18,000 / 0.60 = ₹30,000.",
+    shortcut_text_hi: "अंकित दर = 18,000 / 0.60 = ₹30,000।"
+  },
+  {
+    question_number: 29,
+    practice_set: "SET E",
+    level: "Level 4: PYQ+",
+    level_group: "Level 4: PYQ+",
+    type_code: "Type 20",
+    type_category: "Markup Discount and Faulty Weight Combined Profit",
+    type_category_hi: "मार्कअप छूट और गलत वजन संयुक्त लाभ",
+    question_text: "A trader marks his goods 25% above the cost price and allows a discount of 10% on the marked price. In addition, he uses a faulty weight that measures 900 grams instead of 1 kg. What is his overall profit percentage?",
+    question_text_hi: "एक व्यापारी अपने सामान पर क्रय मूल्य से 25% अधिक मूल्य अंकित करता है और अंकित मूल्य पर 10% की छूट देता है। इसके अतिरिक्त, वह एक गलत वजन का उपयोग करता है जो 1 किग्रा के स्थान पर 900 ग्राम तोलता है। उसका कुल लाभ प्रतिशत क्या है?",
+    options: {
+      a: "25%",
+      b: "22.5%",
+      c: "28%",
+      d: "20%"
+    },
+    options_hi: {
+      a: "25%",
+      b: "22.5%",
+      c: "28%",
+      d: "20%"
+    },
+    correct_option: "a",
+    solution_text: "Let the cost price of 1000g = ₹100 (₹0.10 per gram).\nMarked Price of 1000g with 25% markup = 100 × 1.25 = ₹125.\nAfter 10% discount, selling price charged for 1000g = 125 × 0.90 = ₹112.50.\nInstead of 1000g, he delivers 900g to the customer.\nActual cost of 900g to the trader = 900 × 0.10 = ₹90.\nProfit = SP - CP = 112.50 - 90 = ₹22.50.\nOverall Profit% = (22.50 / 90) × 100 = 25%.\nCorrect Answer: Option (a).",
+    solution_text_hi: "1000 ग्राम का CP = ₹100। MP = ₹125।\n10% छूट के बाद SP = 125 × 0.90 = ₹112.50।\n900 ग्राम की वास्तविक लागत = ₹90।\nलाभ = 112.50 - 90 = ₹22.50 => लाभ% = (22.50 / 90) × 100 = 25%।\nअतः सही उत्तर (a) है।",
+    shortcut_text: "Net Multiplier = 1.25 × 0.90 × (1000 / 900) = 1.125 × (10 / 9) = 1.25 => 25% profit.",
+    shortcut_text_hi: "कुल गुणक = 1.25 × 0.90 × (10/9) = 1.25 => 25% लाभ।"
+  },
+  {
+    question_number: 30,
+    practice_set: "SET E",
+    level: "Level 4: PYQ+",
+    level_group: "Level 4: PYQ+",
+    type_code: "Type 3",
+    type_category: "Equal Selling Price Asymmetric Gain and Loss Absolute Net",
+    type_category_hi: "समान विक्रय मूल्य असममित लाभ और हानि कुल राशि",
+    question_text: "A dealer sells two machines at ₹12,000 each. On one he gains 20% and on the other he loses 25%. What is his overall gain or loss in the entire transaction?",
+    question_text_hi: "एक डीलर दो मशीनें ₹12,000 प्रत्येक में बेचता है। एक पर उसे 20% का लाभ होता है और दूसरी पर 25% की हानि होती है। पूरे लेन-देन में उसका कुल लाभ या हानि (रुपये में) क्या है?",
+    options: {
+      a: "₹2,000 loss",
+      b: "₹2,000 gain",
+      c: "₹1,500 loss",
+      d: "₹1,500 gain"
+    },
+    options_hi: {
+      a: "₹2,000 हानि",
+      b: "₹2,000 लाभ",
+      c: "₹1,500 हानि",
+      d: "₹1,500 लाभ"
+    },
+    correct_option: "a",
+    solution_text: "Selling Price of each machine = ₹12,000.\nTotal Selling Price = 12,000 + 12,000 = ₹24,000.\nFirst machine (20% gain): CP1 = 12,000 / 1.20 = ₹10,000.\nSecond machine (25% loss): CP2 = 12,000 / (1 - 0.25) = 12,000 / 0.75 = ₹16,000.\nTotal Cost Price = CP1 + CP2 = 10,000 + 16,000 = ₹26,000.\nNet Result = Total SP - Total CP = 24,000 - 26,000 = -₹2,000 (Loss of ₹2,000).\nCorrect Answer: Option (a).",
+    solution_text_hi: "कुल SP = 12,000 + 12,000 = ₹24,000।\nCP1 = 12,000 / 1.20 = ₹10,000।\nCP2 = 12,000 / 0.75 = ₹16,000।\nकुल CP = 10,000 + 16,000 = ₹26,000।\nकुल हानि = 26,000 - 24,000 = ₹2,000 हानि।\nअतः सही उत्तर (a) है।",
+    shortcut_text: "Total CP = 10,000 + 16,000 = 26,000. Total SP = 24,000 => Net Loss = ₹2,000.",
+    shortcut_text_hi: "कुल CP = 26,000, कुल SP = 24,000 => ₹2,000 हानि।"
+  }
+];
+
 if (typeof window !== "undefined") {
   window.PROFIT_LOSS_SET_A_QUESTIONS = PROFIT_LOSS_SET_A_QUESTIONS;
   window.PROFIT_LOSS_SET_B_QUESTIONS = PROFIT_LOSS_SET_B_QUESTIONS;
   window.PROFIT_LOSS_SET_C_QUESTIONS = PROFIT_LOSS_SET_C_QUESTIONS;
   window.PROFIT_LOSS_SET_D_QUESTIONS = PROFIT_LOSS_SET_D_QUESTIONS;
+  window.PROFIT_LOSS_SET_E_QUESTIONS = PROFIT_LOSS_SET_E_QUESTIONS;
   window.PROFIT_LOSS_PRACTICE_1_QUESTIONS = PROFIT_LOSS_SET_A_QUESTIONS;
   window.PROFIT_LOSS_PRACTICE_2_QUESTIONS = PROFIT_LOSS_SET_B_QUESTIONS;
   window.PROFIT_LOSS_PRACTICE_3_QUESTIONS = PROFIT_LOSS_SET_C_QUESTIONS;
   window.PROFIT_LOSS_PRACTICE_4_QUESTIONS = PROFIT_LOSS_SET_D_QUESTIONS;
+  window.PROFIT_LOSS_PRACTICE_5_QUESTIONS = PROFIT_LOSS_SET_E_QUESTIONS;
 }
 if (typeof module !== "undefined" && module.exports) {
   module.exports = {
@@ -3466,9 +4326,11 @@ if (typeof module !== "undefined" && module.exports) {
     PROFIT_LOSS_SET_B_QUESTIONS,
     PROFIT_LOSS_SET_C_QUESTIONS,
     PROFIT_LOSS_SET_D_QUESTIONS,
+    PROFIT_LOSS_SET_E_QUESTIONS,
     PROFIT_LOSS_PRACTICE_1_QUESTIONS: PROFIT_LOSS_SET_A_QUESTIONS,
     PROFIT_LOSS_PRACTICE_2_QUESTIONS: PROFIT_LOSS_SET_B_QUESTIONS,
     PROFIT_LOSS_PRACTICE_3_QUESTIONS: PROFIT_LOSS_SET_C_QUESTIONS,
     PROFIT_LOSS_PRACTICE_4_QUESTIONS: PROFIT_LOSS_SET_D_QUESTIONS,
+    PROFIT_LOSS_PRACTICE_5_QUESTIONS: PROFIT_LOSS_SET_E_QUESTIONS,
   };
 }
