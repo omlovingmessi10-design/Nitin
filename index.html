@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SSC Practice Platform - Login & Registration</title>
+  <title>SSC Practice Platform - Select Aspirant Profile</title>
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- React & ReactDOM -->
@@ -48,6 +48,13 @@
       border: 1px solid #E2DDD3;
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
     }
+    @keyframes pulse-subtle {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.92; transform: scale(1.02); }
+    }
+    .animate-pulse-subtle {
+      animation: pulse-subtle 2.5s infinite ease-in-out;
+    }
   </style>
 </head>
 <body class="bg-[#F3EFE6] text-slate-800 min-h-screen relative overflow-x-hidden flex flex-col justify-between w-full max-w-full">
@@ -61,35 +68,60 @@
     const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpneHNrcHFzanlsYndyaGhyemltIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODczODY0MDIsImV4cCI6MjEwMjk2MjQwMn0.1RSVtWx8gxJhQcmDfJMvRfRLMvl4ju9GuwxgiKn5f8w";
     const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-    function AuthApp() {
-      const [authMode, setAuthMode] = useState("login"); // 'login' | 'signup'
-      const [fullName, setFullName] = useState("");
-      const [email, setEmail] = useState("");
-      const [password, setPassword] = useState("");
-      const [confirmPassword, setConfirmPassword] = useState("");
-      const [showPassword, setShowPassword] = useState(false);
-      
-      const [loading, setLoading] = useState(false);
-      const [message, setMessage] = useState(null); // { type: 'success' | 'error' | 'info', text: '' }
-      const [showForgotModal, setShowForgotModal] = useState(false);
-      const [resetEmail, setResetEmail] = useState("");
-      const [resetLoading, setResetLoading] = useState(false);
-      const [existingUser, setExistingUser] = useState(null);
+    // --- 2. THREE DESIGNATED USERS: NITIN, OM, $H ---
+    const AUTHORIZED_USERS = [
+      {
+        id: "Nitin",
+        name: "Nitin",
+        displayName: "Nitin Solanki",
+        avatar: "🧑‍💻",
+        role: "Quant Specialist",
+        specialty: "Advanced Mathematics & Incomes Analysis",
+        badge: "Rank 1 Aspirant",
+        borderActive: "border-[#182030]",
+        bgActive: "bg-[#182030] text-white",
+        tagBg: "bg-blue-100 text-blue-800"
+      },
+      {
+        id: "Om",
+        name: "Om",
+        displayName: "Om Solanki",
+        avatar: "⚡",
+        role: "Speed Master",
+        specialty: "35-Minute Speed Drills & Rapid Shortcuts",
+        badge: "Accuracy Specialist",
+        borderActive: "border-amber-600",
+        bgActive: "bg-amber-600 text-white",
+        tagBg: "bg-amber-100 text-amber-800"
+      },
+      {
+        id: "$H",
+        name: "$H",
+        displayName: "$H",
+        avatar: "👑",
+        role: "Exam Ranker",
+        specialty: "Target 50/50 in Quant Tier-1 & Mains",
+        badge: "PYQ+ Ranker",
+        borderActive: "border-emerald-700",
+        bgActive: "bg-emerald-700 text-white",
+        tagBg: "bg-emerald-100 text-emerald-800"
+      }
+    ];
 
-      // Check if user is already authenticated
-      useEffect(() => {
-        async function checkActiveSession() {
-          try {
-            const { data: { session } } = await supabase.auth.getSession();
-            if (session?.user) {
-              setExistingUser(session.user);
-            }
-          } catch (e) {
-            console.warn("Session retrieval failed:", e);
-          }
+    function AuthApp() {
+      // Default to last logged in user or Nitin
+      const [selectedUserId, setSelectedUserId] = useState(() => {
+        const saved = localStorage.getItem("ssc_active_user");
+        if (saved && (saved === "Nitin" || saved === "Om" || saved === "$H")) {
+          return saved;
         }
-        checkActiveSession();
-      }, []);
+        return "Nitin";
+      });
+
+      const [loading, setLoading] = useState(false);
+      const [message, setMessage] = useState(null);
+
+      const activeUserObj = AUTHORIZED_USERS.find(u => u.id === selectedUserId) || AUTHORIZED_USERS[0];
 
       const showAlert = (type, text, duration = 4000) => {
         setMessage({ type, text });
@@ -98,95 +130,43 @@
         }
       };
 
-      // --- SUBMIT HANDLER ---
-      const handleSubmit = async (e) => {
-        e.preventDefault();
-        setMessage(null);
-
-        if (!email.trim() || !password.trim()) {
-          showAlert("error", "Please fill in all required fields.");
-          return;
-        }
-
-        if (authMode === "signup") {
-          if (password.length < 6) {
-            showAlert("error", "Password must be at least 6 characters long.");
-            return;
-          }
-          if (password !== confirmPassword) {
-            showAlert("error", "Passwords do not match.");
-            return;
-          }
-        }
-
+      // Handle user login and redirect
+      const handleLogin = async (userObj) => {
         setLoading(true);
+        showAlert("info", `Authenticating profile for ${userObj.displayName}...`);
 
         try {
-          if (authMode === "login") {
-            // Sign in
-            const { data, error } = await supabase.auth.signInWithPassword({
-              email: email.trim(),
-              password: password
-            });
+          // 1. Save active user to localStorage for instant cross-tab recognition
+          localStorage.setItem("ssc_active_user", userObj.name);
+          localStorage.setItem("ssc_user_profile", JSON.stringify(userObj));
 
-            if (error) throw error;
-
-            showAlert("success", "Login successful! Redirecting to dashboard...");
-            setTimeout(() => {
-              window.location.href = "dashboard.html";
-            }, 1000);
-          } else {
-            // Sign up
-            const { data, error } = await supabase.auth.signUp({
-              email: email.trim(),
-              password: password,
-              options: {
-                data: {
-                  full_name: fullName.trim() || "SSC Aspirant"
-                }
-              }
-            });
-
-            if (error) throw error;
-
-            if (data?.session) {
-              showAlert("success", "Account created successfully! Redirecting...");
-              setTimeout(() => {
-                window.location.href = "dashboard.html";
-              }, 1200);
-            } else {
-              showAlert("info", "Account registered! Please check your email inbox to confirm your account or sign in directly if confirmations are disabled.", 7000);
-            }
+          // 2. Sync / touch user session in Supabase `app_users` table
+          try {
+            await supabase
+              .from('app_users')
+              .upsert({
+                user_name: userObj.name,
+                display_name: userObj.displayName,
+                avatar: userObj.avatar,
+                role: userObj.role,
+                last_active_at: new Date().toISOString()
+              }, { onConflict: 'user_name' });
+          } catch (dbErr) {
+            console.warn("Supabase user heartbeat warning:", dbErr.message);
           }
+
+          showAlert("success", `Welcome back, ${userObj.name}! Opening practice portal...`);
+          setTimeout(() => {
+            window.location.href = "dashboard.html";
+          }, 600);
         } catch (err) {
-          console.error("Auth error:", err);
-          showAlert("error", err.message || "Authentication failed. Please check your credentials.");
+          console.error("Login process error:", err);
+          showAlert("error", "Error setting active session. Redirecting to dashboard...");
+          setTimeout(() => {
+            window.location.href = "dashboard.html";
+          }, 1000);
         } finally {
           setLoading(false);
-        }
-      };
-
-      // --- FORGOT PASSWORD HANDLER ---
-      const handleResetPassword = async (e) => {
-        e.preventDefault();
-        if (!resetEmail.trim()) {
-          showAlert("error", "Please enter your registered email address.");
-          return;
-        }
-
-        setResetLoading(true);
-        try {
-          const { error } = await supabase.auth.resetPasswordForEmail(resetEmail.trim(), {
-            redirectTo: window.location.origin + window.location.pathname
-          });
-          if (error) throw error;
-          showAlert("success", "Password reset instructions have been sent to your email!");
-          setShowForgotModal(false);
-          setResetEmail("");
-        } catch (err) {
-          showAlert("error", err.message || "Failed to send reset link.");
-        } finally {
-          setResetLoading(false);
         }
       };
 
@@ -196,73 +176,50 @@
           {/* TOP NAV BAR */}
           <header className="max-w-6xl mx-auto w-full flex items-center justify-between py-2 border-b border-[#E2DDD3] pb-4">
             <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 rounded-full bg-[#FDE68A] border border-[#E5DFD5] flex items-center justify-center text-lg shadow-sm">
-                🧑‍🎓
+              <div className="w-10 h-10 rounded-2xl bg-[#182030] text-white border border-[#DDD7CC] flex items-center justify-center text-lg shadow-sm">
+                📚
               </div>
               <div>
                 <span className="font-extrabold text-base text-[#182030] tracking-tight">Practice<span className="text-[#8C827A]">Pro</span></span>
-                <span className="block font-mono text-[10px] font-bold text-[#8C827A] tracking-wider uppercase -mt-0.5">SSC Aspirant's Exam Portal</span>
+                <span className="block font-mono text-[10px] font-bold text-[#8C827A] tracking-wider uppercase -mt-0.5">SSC Aspirants Official Portal</span>
               </div>
             </div>
 
-            <div className="flex items-center space-x-3">
-              <a
-                href="dashboard.html"
-                className="inline-flex items-center space-x-1.5 text-xs font-bold text-[#182030] bg-[#EAE5DA] hover:bg-white border border-[#DDD7CC] px-4 py-2 rounded-full transition-all shadow-xs"
-              >
-                <span>Guest Practice Mode</span>
-                <span className="font-mono text-sm">→</span>
-              </a>
+            <div className="flex items-center space-x-2">
+              <span className="inline-flex items-center space-x-1.5 text-xs font-bold text-[#182030] bg-[#EAE5DA] border border-[#DDD7CC] px-3.5 py-1.5 rounded-full font-mono">
+                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                <span>3 Registered Profiles Active</span>
+              </span>
             </div>
           </header>
 
-          {/* MAIN CONTAINER: 2-COLUMN LAYOUT */}
+          {/* MAIN CONTAINER */}
           <main className="max-w-6xl mx-auto w-full my-auto py-8 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
             
-            {/* LEFT COLUMN: HERO VALUE PROPOSITION */}
-            <div className="lg:col-span-7 space-y-6 text-left">
+            {/* LEFT COLUMN: HERO VALUE PROPOSITION & CAPABILITIES */}
+            <div className="lg:col-span-6 space-y-6 text-left">
               <div className="inline-flex items-center space-x-2 bg-[#EAE5DA] border border-[#DDD7CC] px-3.5 py-1 rounded-full text-xs font-bold text-[#4A453E]">
                 <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                <span>SSC CGL, CHSL, CPO & MTS Prep 2025</span>
+                <span>Live Supabase Cloud Sync Enabled</span>
               </div>
 
               <h1 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-black text-[#182030] leading-tight tracking-tight">
-                Master Quant, Reasoning & English with <span className="underline decoration-[#CFC6B8] decoration-2 underline-offset-4">Real Exam Simulation</span>
+                Welcome to the Personalized SSC Exam & Practice Portal
               </h1>
 
               <p className="text-[#4A453E] text-sm sm:text-base leading-relaxed max-w-xl">
-                Practice chapter-wise problem sets across Quantitative Aptitude, Reasoning, and English with standard SSC negative marking (+2, -0.5), bilingual toggles, step-by-step solutions, and weak topic diagnostic analytics.
+                Every question response, time per question, 10-star difficulty rating, and final test score is tracked individually in Supabase for <strong>Nitin</strong>, <strong>Om</strong>, and <strong>$H</strong>.
               </p>
 
               {/* Feature Badges */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
                 <div className="flex items-start space-x-3 bg-white border border-[#E2DDD3] p-3.5 rounded-2xl shadow-xs">
                   <div className="w-8 h-8 rounded-xl bg-[#FAF8F5] border border-[#E5DFD5] text-slate-700 flex items-center justify-center shrink-0 text-sm">
-                    ⏱️
+                    ⭐
                   </div>
                   <div>
-                    <h2 className="text-xs font-bold text-[#182030]">Official Exam Timers</h2>
-                    <p className="text-[11px] text-[#8C827A]">Strict 35-min countdown with automatic submit.</p>
-                  </div>
-                </div>
-
-                <div className="flex items-start space-x-3 bg-white border border-[#E2DDD3] p-3.5 rounded-2xl shadow-xs">
-                  <div className="w-8 h-8 rounded-xl bg-[#FAF8F5] border border-[#E5DFD5] text-slate-700 flex items-center justify-center shrink-0 text-sm">
-                    🌐
-                  </div>
-                  <div>
-                    <h2 className="text-xs font-bold text-[#182030]">100% Bilingual Questions</h2>
-                    <p className="text-[11px] text-[#8C827A]">Seamless switch between English and हिन्दी.</p>
-                  </div>
-                </div>
-
-                <div className="flex items-start space-x-3 bg-white border border-[#E2DDD3] p-3.5 rounded-2xl shadow-xs">
-                  <div className="w-8 h-8 rounded-xl bg-[#FAF8F5] border border-[#E5DFD5] text-slate-700 flex items-center justify-center shrink-0 text-sm">
-                    🎯
-                  </div>
-                  <div>
-                    <h2 className="text-xs font-bold text-[#182030]">Real Marking (+2, -0.5)</h2>
-                    <p className="text-[11px] text-[#8C827A]">Exact Tier-1 score & palette review.</p>
+                    <h2 className="text-xs font-bold text-[#182030]">10-Star Question Ratings</h2>
+                    <p className="text-[11px] text-[#8C827A]">Rate question quality 1 to 10 on every question.</p>
                   </div>
                 </div>
 
@@ -271,75 +228,52 @@
                     📊
                   </div>
                   <div>
-                    <h2 className="text-xs font-bold text-[#182030]">Weak Topic Diagnostics</h2>
-                    <p className="text-[11px] text-[#8C827A]">Live error tracking & focused targeted practice.</p>
+                    <h2 className="text-xs font-bold text-[#182030]">Chapter Tables in Supabase</h2>
+                    <p className="text-[11px] text-[#8C827A]">Dedicated tables for Ratio, Average, Percentages & Work.</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start space-x-3 bg-white border border-[#E2DDD3] p-3.5 rounded-2xl shadow-xs">
+                  <div className="w-8 h-8 rounded-xl bg-[#FAF8F5] border border-[#E5DFD5] text-slate-700 flex items-center justify-center shrink-0 text-sm">
+                    🎯
+                  </div>
+                  <div>
+                    <h2 className="text-xs font-bold text-[#182030]">Real SSC Tier-1 Marking</h2>
+                    <p className="text-[11px] text-[#8C827A]">+2 for Correct, -0.5 for Wrong with All India Ranks.</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start space-x-3 bg-white border border-[#E2DDD3] p-3.5 rounded-2xl shadow-xs">
+                  <div className="w-8 h-8 rounded-xl bg-[#FAF8F5] border border-[#E5DFD5] text-slate-700 flex items-center justify-center shrink-0 text-sm">
+                    🌐
+                  </div>
+                  <div>
+                    <h2 className="text-xs font-bold text-[#182030]">100% Bilingual Sets</h2>
+                    <p className="text-[11px] text-[#8C827A]">Instant toggle between English and हिन्दी for all sets.</p>
                   </div>
                 </div>
               </div>
-
-              {/* Already Logged In Session Prompt */}
-              {existingUser && (
-                <div className="bg-white border border-[#E2DDD3] p-4 rounded-2xl flex items-center justify-between gap-3 shadow-xs animate-fade-in">
-                  <div className="flex items-center space-x-3">
-                    <div className="w-8 h-8 rounded-full bg-[#182030] text-white font-bold flex items-center justify-center text-xs">
-                      {existingUser.email?.charAt(0).toUpperCase()}
-                    </div>
-                    <div>
-                      <p className="text-xs font-bold text-[#182030]">Active Session Detected</p>
-                      <p className="text-[11px] text-[#8C827A]">{existingUser.email}</p>
-                    </div>
-                  </div>
-                  <a
-                    href="dashboard.html"
-                    className="bg-[#182030] hover:bg-slate-800 text-white text-xs font-bold px-4 py-2 rounded-xl transition shadow-xs flex items-center space-x-1"
-                  >
-                    <span>Go to Dashboard</span>
-                    <span className="font-mono">→</span>
-                  </a>
-                </div>
-              )}
             </div>
 
-            {/* RIGHT COLUMN: AUTH CARD */}
-            <div className="lg:col-span-5 w-full">
+            {/* RIGHT COLUMN: 3-USER PROFILE SELECTION CARD */}
+            <div className="lg:col-span-6 w-full">
               <div className="bg-white rounded-3xl p-6 sm:p-8 shadow-[0_4px_24px_rgba(0,0,0,0.04)] border border-[#E2DDD3] text-slate-800 relative">
                 
-                {/* Switcher Tabs */}
-                <div className="grid grid-cols-2 bg-[#EAE5DA] p-1 rounded-full mb-6 border border-[#DDD7CC]">
-                  <button
-                    type="button"
-                    onClick={() => { setAuthMode("login"); setMessage(null); }}
-                    className={`py-2 text-xs font-bold rounded-full transition-all ${
-                      authMode === "login"
-                        ? "bg-[#182030] text-white shadow-xs"
-                        : "text-[#4A453E] hover:text-slate-900"
-                    }`}
-                  >
-                    Sign In
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => { setAuthMode("signup"); setMessage(null); }}
-                    className={`py-2 text-xs font-bold rounded-full transition-all ${
-                      authMode === "signup"
-                        ? "bg-[#182030] text-white shadow-xs"
-                        : "text-[#4A453E] hover:text-slate-900"
-                    }`}
-                  >
-                    Create Account
-                  </button>
-                </div>
-
-                {/* Card Title */}
-                <div className="mb-5">
-                  <h3 className="font-serif text-xl font-bold text-[#182030]">
-                    {authMode === "login" ? "Welcome Back, Aspirant!" : "Join SSC Practice Pro"}
+                {/* Header */}
+                <div className="mb-5 text-left">
+                  <div className="flex items-center justify-between mb-1">
+                    <span className="font-mono text-[10px] uppercase font-bold text-[#8C827A] tracking-wider">
+                      SELECT ASPIRANT PROFILE
+                    </span>
+                    <span className="font-mono text-[10px] text-emerald-800 font-bold bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">
+                      ✓ Zero Guest Access
+                    </span>
+                  </div>
+                  <h3 className="font-serif text-2xl font-black text-[#182030]">
+                    Who is practicing today?
                   </h3>
                   <p className="text-xs text-[#8C827A] mt-1">
-                    {authMode === "login" 
-                      ? "Enter your credentials to access your saved test progress."
-                      : "Create your account to track your weak areas and test scores."
-                    }
+                    Choose your account below. Your test submissions, question answers, and 10-star ratings will be logged under your name.
                   </p>
                 </div>
 
@@ -357,119 +291,78 @@
                   </div>
                 )}
 
-                {/* Auth Form */}
-                <form onSubmit={handleSubmit} className="space-y-4">
-                  
-                  {authMode === "signup" && (
-                    <div>
-                      <label className="block font-mono text-[10px] font-bold text-[#8C827A] uppercase tracking-wider mb-1.5">
-                        Full Name
-                      </label>
-                      <input
-                        type="text"
-                        required
-                        value={fullName}
-                        onChange={(e) => setFullName(e.target.value)}
-                        placeholder="e.g. Om Solanki"
-                        className="w-full px-4 py-2.5 bg-[#FAF8F5] border border-[#DDD7CC] rounded-xl text-sm font-medium text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-700 transition"
-                      />
-                    </div>
-                  )}
-
-                  <div>
-                    <label className="block font-mono text-[10px] font-bold text-[#8C827A] uppercase tracking-wider mb-1.5">
-                      Email Address
-                    </label>
-                    <input
-                      type="email"
-                      required
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      placeholder="you@example.com"
-                      className="w-full px-4 py-2.5 bg-[#FAF8F5] border border-[#DDD7CC] rounded-xl text-sm font-medium text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-700 transition"
-                    />
-                  </div>
-
-                  <div>
-                    <div className="flex items-center justify-between mb-1.5">
-                      <label className="block font-mono text-[10px] font-bold text-[#8C827A] uppercase tracking-wider">
-                        Password
-                      </label>
-                      {authMode === "login" && (
-                        <button
-                          type="button"
-                          onClick={() => { setShowForgotModal(true); setResetEmail(email); }}
-                          className="font-mono text-[10px] font-bold text-[#182030] hover:underline transition"
-                        >
-                          Forgot Password?
-                        </button>
-                      )}
-                    </div>
-                    <div className="relative">
-                      <input
-                        type={showPassword ? "text" : "password"}
-                        required
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        placeholder="••••••••"
-                        className="w-full px-4 pr-10 py-2.5 bg-[#FAF8F5] border border-[#DDD7CC] rounded-xl text-sm font-medium text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-700 transition"
-                      />
-                      <button
-                        type="button"
-                        onClick={() => setShowPassword(!showPassword)}
-                        className="absolute inset-y-0 right-0 pr-3.5 flex items-center text-slate-400 hover:text-slate-600 transition text-xs font-bold"
+                {/* Three Profile Option Cards */}
+                <div className="space-y-3 mb-6">
+                  {AUTHORIZED_USERS.map((user) => {
+                    const isSelected = selectedUserId === user.id;
+                    return (
+                      <div
+                        key={user.id}
+                        onClick={() => setSelectedUserId(user.id)}
+                        className={`p-4 rounded-2xl border-2 transition-all cursor-pointer flex items-center justify-between gap-3 text-left ${
+                          isSelected
+                            ? "border-[#182030] bg-[#FAF8F5] shadow-sm scale-[1.01]"
+                            : "border-[#EAE5DA] bg-white hover:border-[#DDD7CC] hover:bg-[#FAF8F5]"
+                        }`}
                       >
-                        {showPassword ? "Hide" : "Show"}
-                      </button>
-                    </div>
-                  </div>
+                        <div className="flex items-center space-x-3.5">
+                          <div className={`w-12 h-12 rounded-2xl flex items-center justify-center text-2xl border shadow-xs transition ${
+                            isSelected
+                              ? "bg-[#182030] text-white border-[#182030]"
+                              : "bg-[#F4F0E8] border-[#DDD7CC]"
+                          }`}>
+                            {user.avatar}
+                          </div>
+                          <div>
+                            <div className="flex items-center space-x-2">
+                              <h4 className="font-serif font-black text-lg text-[#182030] leading-none">
+                                {user.displayName}
+                              </h4>
+                              <span className="font-mono text-[10px] font-bold px-2 py-0.5 rounded-full bg-[#EAE5DA] text-[#4A453E] border border-[#DDD7CC]">
+                                {user.badge}
+                              </span>
+                            </div>
+                            <p className="text-xs font-semibold text-[#8C827A] mt-1">
+                              {user.role} • <span className="font-normal text-[#4A453E]">{user.specialty}</span>
+                            </p>
+                          </div>
+                        </div>
 
-                  {authMode === "signup" && (
-                    <div>
-                      <label className="block font-mono text-[10px] font-bold text-[#8C827A] uppercase tracking-wider mb-1.5">
-                        Confirm Password
-                      </label>
-                      <input
-                        type={showPassword ? "text" : "password"}
-                        required
-                        value={confirmPassword}
-                        onChange={(e) => setConfirmPassword(e.target.value)}
-                        placeholder="••••••••"
-                        className="w-full px-4 py-2.5 bg-[#FAF8F5] border border-[#DDD7CC] rounded-xl text-sm font-medium text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-700 transition"
-                      />
-                    </div>
-                  )}
-
-                  <button
-                    type="submit"
-                    disabled={loading}
-                    className="w-full mt-2 py-3 px-4 rounded-xl bg-[#182030] hover:bg-slate-800 text-white font-bold text-sm transition shadow-sm flex items-center justify-center space-x-2 disabled:opacity-60"
-                  >
-                    {loading ? (
-                      <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                    ) : (
-                      <>
-                        <span>{authMode === "login" ? "Sign In to Portal" : "Create My Account"}</span>
-                        <span className="font-mono">→</span>
-                      </>
-                    )}
-                  </button>
-                </form>
-
-                {/* Divider */}
-                <div className="my-5 flex items-center space-x-3">
-                  <div className="h-[1px] bg-[#E2DDD3] flex-1"></div>
-                  <span className="font-mono text-[10px] font-bold text-[#8C827A] uppercase tracking-wider">Or</span>
-                  <div className="h-[1px] bg-[#E2DDD3] flex-1"></div>
+                        {/* Radio Check Indicator */}
+                        <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center transition shrink-0 ${
+                          isSelected
+                            ? "border-[#182030] bg-[#182030] text-white"
+                            : "border-[#DDD7CC] bg-white"
+                        }`}>
+                          {isSelected && <span className="text-xs font-bold">✓</span>}
+                        </div>
+                      </div>
+                    );
+                  })}
                 </div>
 
-                {/* Quick Guest Demo Button */}
-                <a
-                  href="dashboard.html"
-                  className="w-full py-2.5 px-4 rounded-xl bg-[#FAF8F5] hover:bg-[#EAE5DA] text-slate-700 font-bold text-xs transition border border-[#DDD7CC] flex items-center justify-center space-x-2"
+                {/* Primary Launch Button */}
+                <button
+                  type="button"
+                  disabled={loading}
+                  onClick={() => handleLogin(activeUserObj)}
+                  className="w-full py-3.5 px-5 rounded-2xl bg-[#182030] hover:bg-slate-800 text-white font-bold text-sm transition shadow-sm flex items-center justify-center space-x-2 disabled:opacity-60"
                 >
-                  <span>⚡ Instant Guest Access (No Login)</span>
-                </a>
+                  {loading ? (
+                    <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                  ) : (
+                    <>
+                      <span>Enter Portal as {activeUserObj.name}</span>
+                      <span className="text-base font-mono">→</span>
+                    </>
+                  )}
+                </button>
+
+                {/* Footer Note */}
+                <div className="mt-4 pt-3 border-t border-[#F0EBE1] flex items-center justify-between text-[11px] font-mono text-[#8C827A]">
+                  <span>Active Profile: <strong>{activeUserObj.name}</strong></span>
+                  <span>Responses sync to Supabase</span>
+                </div>
 
               </div>
             </div>
@@ -477,63 +370,15 @@
 
           {/* FOOTER */}
           <footer className="max-w-6xl mx-auto w-full text-center py-4 border-t border-[#E2DDD3] font-mono text-[11px] text-[#8C827A]">
-            <p>© {new Date().getFullYear()} SSC Practice Platform • Quantitative Aptitude, Reasoning & English Modules</p>
+            <p>© {new Date().getFullYear()} SSC Practice Platform • Dedicated to Nitin, Om & $H</p>
           </footer>
-
-          {/* FORGOT PASSWORD MODAL */}
-          {showForgotModal && (
-            <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/60 backdrop-blur-sm animate-fade-in">
-              <div className="bg-[#F8F6F0] rounded-3xl p-6 max-w-md w-full shadow-2xl border border-[#DDD7CC] text-slate-800">
-                <div className="flex items-center justify-between mb-4">
-                  <h3 className="font-serif text-lg font-bold text-[#182030]">Reset Your Password</h3>
-                  <button
-                    onClick={() => setShowForgotModal(false)}
-                    className="w-7 h-7 rounded-full bg-white border border-[#DDD7CC] text-slate-600 hover:text-slate-900 flex items-center justify-center text-xs font-bold"
-                  >
-                    ✕
-                  </button>
-                </div>
-                <p className="text-xs text-[#8C827A] mb-4">
-                  Enter your registered email address and we'll send you a password recovery link.
-                </p>
-                <form onSubmit={handleResetPassword} className="space-y-4">
-                  <div>
-                    <label className="block font-mono text-[10px] font-bold text-[#8C827A] uppercase mb-1">Email Address</label>
-                    <input
-                      type="email"
-                      required
-                      value={resetEmail}
-                      onChange={(e) => setResetEmail(e.target.value)}
-                      placeholder="you@example.com"
-                      className="w-full px-3.5 py-2 bg-white border border-[#DDD7CC] rounded-xl text-sm font-medium text-slate-800 focus:outline-none focus:ring-2 focus:ring-slate-700"
-                    />
-                  </div>
-                  <div className="flex items-center justify-end space-x-2 pt-2">
-                    <button
-                      type="button"
-                      onClick={() => setShowForgotModal(false)}
-                      className="px-4 py-2 rounded-xl text-xs font-bold text-slate-600 hover:bg-[#EAE5DA]"
-                    >
-                      Cancel
-                    </button>
-                    <button
-                      type="submit"
-                      disabled={resetLoading}
-                      className="px-4 py-2 rounded-xl text-xs font-bold bg-[#182030] hover:bg-slate-800 text-white shadow-sm disabled:opacity-60"
-                    >
-                      {resetLoading ? "Sending..." : "Send Reset Link"}
-                    </button>
-                  </div>
-                </form>
-              </div>
-            </div>
-          )}
 
         </div>
       );
     }
 
-    ReactDOM.createRoot(document.getElementById("root")).render(<AuthApp />);
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<AuthApp />);
   </script>
 </body>
 </html>

@@ -95,6 +95,60 @@
     const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpneHNrcHFzanlsYndyaGhyemltIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODczODY0MDIsImV4cCI6MjEwMjk2MjQwMn0.1RSVtWx8gxJhQcmDfJMvRfRLMvl4ju9GuwxgiKn5f8w";
     const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
+    // --- 1.1 THREE AUTHORIZED ASPIRANT PROFILES (Nitin, Om, $H) ---
+    const AUTHORIZED_USERS = [
+      {
+        id: "Nitin",
+        name: "Nitin",
+        displayName: "Nitin Solanki",
+        avatar: "🧑‍💻",
+        role: "Quant Specialist",
+        specialty: "Advanced Mathematics & Incomes Analysis",
+        badge: "Rank 1 Aspirant",
+        borderActive: "border-[#182030]",
+        bgActive: "bg-[#182030] text-white",
+        tagBg: "bg-blue-100 text-blue-800"
+      },
+      {
+        id: "Om",
+        name: "Om",
+        displayName: "Om Solanki",
+        avatar: "⚡",
+        role: "Speed Master",
+        specialty: "35-Minute Speed Drills & Rapid Shortcuts",
+        badge: "Accuracy Specialist",
+        borderActive: "border-amber-600",
+        bgActive: "bg-amber-600 text-white",
+        tagBg: "bg-amber-100 text-amber-800"
+      },
+      {
+        id: "$H",
+        name: "$H",
+        displayName: "$H",
+        avatar: "👑",
+        role: "Exam Ranker",
+        specialty: "Target 50/50 in Quant Tier-1 & Mains",
+        badge: "PYQ+ Ranker",
+        borderActive: "border-emerald-700",
+        bgActive: "bg-emerald-700 text-white",
+        tagBg: "bg-emerald-100 text-emerald-800"
+      }
+    ];
+
+    // --- 1.2 10-STAR QUESTION QUALITY RATING LABELS ---
+    const RATING_LABELS = {
+      1: "1/10 Poor Quality / Defective",
+      2: "2/10 Very Basic / Formula Only",
+      3: "3/10 Below Average Standard",
+      4: "4/10 Fair / Routine Level",
+      5: "5/10 Average Tier-1 Standard",
+      6: "6/10 Good Typical PYQ",
+      7: "7/10 Solid Exam Challenge",
+      8: "8/10 Great Multi-Concept PYQ",
+      9: "9/10 High Difficulty / Speed Trap",
+      10: "10/10 Masterpiece / Mains Ranker"
+    };
+
     // --- 2. OFFICIAL TESTBOOK-ALIGNED SSC SYLLABUS DATA ---
     const SYLLABUS_DATA = {
       quant: {
@@ -1012,9 +1066,41 @@
     ];
 
     function App() {
+      // Active Aspirant Profile State (Nitin, Om, $H)
+      const [activeUserName, setActiveUserName] = useState(() => {
+        const saved = localStorage.getItem("ssc_active_user");
+        if (saved && (saved === "Nitin" || saved === "Om" || saved === "$H")) {
+          return saved;
+        }
+        return "Nitin";
+      });
+      const [showUserDropdown, setShowUserDropdown] = useState(false);
+      const activeUserObj = useMemo(() => {
+        return AUTHORIZED_USERS.find(u => u.name === activeUserName) || AUTHORIZED_USERS[0];
+      }, [activeUserName]);
+
+      const handleSwitchUser = (name) => {
+        setActiveUserName(name);
+        localStorage.setItem("ssc_active_user", name);
+        const uObj = AUTHORIZED_USERS.find(u => u.name === name);
+        if (uObj) {
+          localStorage.setItem("ssc_user_profile", JSON.stringify(uObj));
+          try {
+            supabase.from('app_users').upsert({
+              user_name: uObj.name,
+              display_name: uObj.displayName,
+              avatar: uObj.avatar,
+              role: uObj.role,
+              last_active_at: new Date().toISOString()
+            }, { onConflict: 'user_name' }).then(() => {}).catch(console.warn);
+          } catch (_) {}
+        }
+        setShowUserDropdown(false);
+      };
+
       // User Auth State
       const [currentUser, setCurrentUser] = useState(null);
-      const [authLoading, setAuthLoading] = useState(true);
+      const [authLoading, setAuthLoading] = useState(false);
 
       // Main Navigation State: 
       // 'hub': Subject Overview Landing
@@ -1075,9 +1161,10 @@
         });
       }, [questions]);
 
-      // Feedback States
+      // 10-Star Rating & Feedback States
       const [feedbacks, setFeedbacks] = useState({});
       const [feedbackStatus, setFeedbackStatus] = useState(null);
+      const [hoveredStar, setHoveredStar] = useState(null);
 
       // Top Bar States
       const [language, setLanguage] = useState("EN");
@@ -1242,6 +1329,25 @@
             setCurrentQuestionTime(0);
             setShownMilestoneLevels(new Set());
             setActiveLevelMilestone(null);
+
+            // Pre-load user's existing 1-10 star ratings from Supabase question_ratings
+            try {
+              supabase
+                .from('question_ratings')
+                .select('question_number, stars_rating')
+                .eq('user_name', activeUserName)
+                .eq('chapter_id', selectedTopicObj.id)
+                .eq('practice_set', practiceSet)
+                .then(({ data: rData }) => {
+                  if (rData && rData.length > 0) {
+                    const rMap = {};
+                    rData.forEach(item => {
+                      rMap[item.question_number] = item.stars_rating;
+                    });
+                    setFeedbacks(rMap);
+                  }
+                });
+            } catch (_) {}
           } catch (err) {
             console.error("Fetch error:", err.message);
           } finally {
@@ -1279,6 +1385,9 @@
         if (submitted) return;
         const newAnswers = { ...selectedAnswers, [currentIndex]: optionKey };
         setSelectedAnswers(newAnswers);
+
+        // Instantly save question response to Supabase
+        saveQuestionResponseToSupabase(questions[currentIndex], optionKey, currentIndex, markedForReview.has(currentIndex));
 
         // Level-wise Milestone Calculation dynamically matching level boundaries
         const curRange = levelRanges.find(r => currentIndex >= r.startIdx && currentIndex < r.endIdx) || {
@@ -1405,24 +1514,110 @@
         setMarkedForReview(updated);
       };
 
-      // --- 10. SUBMIT FEEDBACK TO SUPABASE ---
-      const handleFeedbackSubmit = async (rating) => {
-        const currentQNum = questions[currentIndex]?.question_number;
-        if (!currentQNum) return;
+      // --- 9.1 INSTANT QUESTION RESPONSE LOGGING TO SUPABASE ---
+      const saveQuestionResponseToSupabase = async (qObj, chosenOpt, qIndex, isReview = false) => {
+        if (!qObj) return;
+        const isCorrect = (chosenOpt || '').toLowerCase() === (qObj.correct_option || '').toLowerCase();
+        const timeSpent = questionTimes[qIndex] || currentQuestionTime || 0;
+        const qNum = qObj.question_number || (qIndex + 1);
 
-        setFeedbacks(prev => ({ ...prev, [currentQNum]: rating }));
-        setFeedbackStatus("saving");
+        const payload = {
+          user_name: activeUserName,
+          subject: activeSubjectId,
+          chapter_id: selectedTopicObj.id,
+          chapter_title: selectedTopicObj.title,
+          practice_set: practiceSet,
+          question_number: qNum,
+          level: qObj.level || (qObj.level_group || 'Moderate'),
+          type_code: qObj.type_code || (qObj.type || ''),
+          type_category: qObj.type_category || '',
+          selected_option: chosenOpt,
+          correct_option: qObj.correct_option,
+          is_correct: isCorrect,
+          time_spent_seconds: timeSpent,
+          is_marked_review: !!isReview,
+          attempted_at: new Date().toISOString()
+        };
 
         try {
-          const { error } = await supabase
-            .from('question_feedback')
-            .insert([{
-              practice_set: `${currentSubject.shortName} - ${selectedTopicObj.title} - ${practiceSet}`,
-              question_number: currentQNum,
-              rating: rating
-            }]);
+          // 1. Insert into master responses table
+          await supabase.from('user_question_responses').insert([payload]);
 
-          if (error) throw error;
+          // 2. Direct insert to chapter specific table
+          const chapId = (selectedTopicObj.id || '').toLowerCase();
+          const chapTitle = (selectedTopicObj.title || '').toLowerCase();
+          const chapterPayload = {
+            user_name: activeUserName,
+            practice_set: practiceSet,
+            question_number: qNum,
+            level: payload.level,
+            type_code: payload.type_code,
+            type_category: payload.type_category,
+            selected_option: chosenOpt,
+            correct_option: qObj.correct_option,
+            is_correct: isCorrect,
+            time_spent_seconds: timeSpent,
+            is_marked_review: !!isReview,
+            attempted_at: payload.attempted_at
+          };
+
+          if (chapId.includes('ratio') || chapTitle.includes('ratio')) {
+            await supabase.from('ratio_chapter_responses').insert([chapterPayload]);
+          } else if (chapId.includes('avg') || chapTitle.includes('average')) {
+            await supabase.from('average_chapter_responses').insert([chapterPayload]);
+          } else if (chapId.includes('percent') || chapTitle.includes('percentage')) {
+            await supabase.from('percentage_chapter_responses').insert([chapterPayload]);
+          } else if (chapId.includes('time') || chapId.includes('work') || chapTitle.includes('work')) {
+            await supabase.from('time_work_chapter_responses').insert([chapterPayload]);
+          }
+        } catch (dbErr) {
+          console.warn("Supabase live response tracking error:", dbErr.message);
+        }
+      };
+
+      // --- 10. SUBMIT 10-STAR RATING & FEEDBACK TO SUPABASE ---
+      const handleFeedbackSubmit = async (stars, optionalComment = "") => {
+        const currentQNum = questions[currentIndex]?.question_number || (currentIndex + 1);
+        if (!currentQNum) return;
+
+        const starVal = Number(stars);
+        setFeedbacks(prev => ({ ...prev, [currentQNum]: starVal }));
+        setFeedbackStatus("saving");
+
+        const ratingLabel = RATING_LABELS[starVal] || `${starVal}/10 Stars`;
+
+        try {
+          // 1. Save / Upsert to dedicated `question_ratings` table in Supabase
+          const { error } = await supabase
+            .from('question_ratings')
+            .upsert({
+              user_name: activeUserName,
+              subject: activeSubjectId,
+              chapter_id: selectedTopicObj.id,
+              chapter_title: selectedTopicObj.title,
+              practice_set: practiceSet,
+              question_number: currentQNum,
+              stars_rating: starVal,
+              rating_label: ratingLabel,
+              feedback_comment: optionalComment || null,
+              rated_at: new Date().toISOString()
+            }, { onConflict: 'user_name,chapter_id,practice_set,question_number' });
+
+          if (error) {
+            console.warn("Supabase question_ratings warning:", error.message);
+          }
+
+          // 2. Legacy table fallback
+          try {
+            await supabase
+              .from('question_feedback')
+              .insert([{
+                practice_set: `${currentSubject.shortName} - ${selectedTopicObj.title} - ${practiceSet}`,
+                question_number: currentQNum,
+                rating: `${starVal}/10 Stars (${ratingLabel})`
+              }]);
+          } catch (_) {}
+
           setFeedbackStatus("saved");
           setTimeout(() => setFeedbackStatus(null), 2500);
         } catch (err) {
@@ -1676,6 +1871,91 @@
           }
           return updated;
         });
+
+        // --- 11.1 SYNC COMPLETE TEST SCORECARD & ALL QUESTION RESPONSES TO SUPABASE ---
+        try {
+          supabase.from('test_submissions').insert([{
+            user_name: activeUserName,
+            subject: activeSubjectId,
+            chapter_id: selectedTopicObj.id,
+            chapter_title: selectedTopicObj.title,
+            practice_set: practiceSet,
+            total_questions: questions.length,
+            attempted: attempted,
+            correct: correct,
+            incorrect: incorrect,
+            unattempted: unattempted,
+            score: score,
+            accuracy_percent: accuracy,
+            percentile: percentile,
+            rank: rank,
+            time_taken_seconds: timeTakenSeconds,
+            breakdown_by_level: levelBreakdown,
+            breakdown_by_type: typeBreakdown,
+            submitted_at: new Date().toISOString()
+          }]).then(({ error }) => {
+            if (error) console.warn("test_submissions sync note:", error.message);
+          });
+        } catch (subErr) {
+          console.warn("Test submission sync error:", subErr);
+        }
+
+        try {
+          const finalBatch = questions.map((q, idx) => {
+            const userAns = selectedAnswers[idx] || null;
+            const isCorr = userAns ? String(userAns).toLowerCase() === String(q.correct_option || '').toLowerCase() : false;
+            return {
+              user_name: activeUserName,
+              subject: activeSubjectId,
+              chapter_id: selectedTopicObj.id,
+              chapter_title: selectedTopicObj.title,
+              practice_set: practiceSet,
+              question_number: q.question_number || (idx + 1),
+              level: q.level || (q.level_group || 'Moderate'),
+              type_code: q.type_code || (q.type || ''),
+              type_category: q.type_category || '',
+              selected_option: userAns,
+              correct_option: q.correct_option,
+              is_correct: isCorr,
+              time_spent_seconds: questionTimes[idx] || 0,
+              is_marked_review: markedForReview.has(idx),
+              attempted_at: new Date().toISOString()
+            };
+          });
+
+          // Insert into master log
+          supabase.from('user_question_responses').insert(finalBatch).then(() => {});
+
+          // Insert into specific chapter table
+          const chapId = (selectedTopicObj.id || '').toLowerCase();
+          const chapTitle = (selectedTopicObj.title || '').toLowerCase();
+          const chapterBatch = finalBatch.map(r => ({
+            user_name: r.user_name,
+            practice_set: r.practice_set,
+            question_number: r.question_number,
+            level: r.level,
+            type_code: r.type_code,
+            type_category: r.type_category,
+            selected_option: r.selected_option,
+            correct_option: r.correct_option,
+            is_correct: r.is_correct,
+            time_spent_seconds: r.time_spent_seconds,
+            is_marked_review: r.is_marked_review,
+            attempted_at: r.attempted_at
+          }));
+
+          if (chapId.includes('ratio') || chapTitle.includes('ratio')) {
+            supabase.from('ratio_chapter_responses').insert(chapterBatch).then(() => {});
+          } else if (chapId.includes('avg') || chapTitle.includes('average')) {
+            supabase.from('average_chapter_responses').insert(chapterBatch).then(() => {});
+          } else if (chapId.includes('percent') || chapTitle.includes('percentage')) {
+            supabase.from('percentage_chapter_responses').insert(chapterBatch).then(() => {});
+          } else if (chapId.includes('time') || chapId.includes('work') || chapTitle.includes('work')) {
+            supabase.from('time_work_chapter_responses').insert(chapterBatch).then(() => {});
+          }
+        } catch (batchErr) {
+          console.warn("Batch responses sync error:", batchErr);
+        }
       };
 
       const handleResetAnalytics = () => {
@@ -1904,22 +2184,98 @@
                   </svg>
                 </button>
 
-                <div
-                  onClick={() => setViewMode("topics")}
-                  className="flex items-center space-x-2.5 cursor-pointer group"
-                >
-                  {/* Round Emoji Avatar */}
-                  <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#FDE68A] border-2 border-[#E5DFD5] flex items-center justify-center text-lg shadow-sm shrink-0 group-hover:scale-105 transition">
-                    🧑‍🎓
+                {/* Active User Avatar & Quick Aspirant Switcher (Nitin, Om, $H) */}
+                <div className="relative">
+                  <div
+                    onClick={() => setShowUserDropdown(prev => !prev)}
+                    className="flex items-center space-x-2 sm:space-x-2.5 cursor-pointer group bg-white hover:bg-[#FAF8F5] border border-[#DDD7CC] hover:border-slate-400 px-2 sm:px-2.5 py-1 rounded-2xl shadow-xs transition select-none"
+                    title="Click to Switch Aspirant Profile (Nitin, Om, $H)"
+                  >
+                    {/* Round Emoji Avatar */}
+                    <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-[#FDE68A] border-2 border-[#E5DFD5] flex items-center justify-center text-base sm:text-lg shadow-xs shrink-0 group-hover:scale-105 transition">
+                      {activeUserObj.avatar}
+                    </div>
+                    <div className="text-left min-w-0 pr-1">
+                      <div className="flex items-center space-x-1">
+                        <span className="font-extrabold text-xs sm:text-sm text-slate-900 tracking-tight block uppercase truncate max-w-[100px] sm:max-w-[140px]">
+                          {activeUserObj.displayName}
+                        </span>
+                        <svg className={`w-3 h-3 text-slate-500 transition-transform ${showUserDropdown ? "rotate-180" : ""}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M19 9l-7 7-7-7" />
+                        </svg>
+                      </div>
+                      <span className="font-mono text-[9px] sm:text-[10px] text-[#8C827A] font-bold tracking-wider block -mt-0.5 truncate max-w-[120px]">
+                        {activeUserObj.role}
+                      </span>
+                    </div>
                   </div>
-                  <div className="text-left min-w-0">
-                    <span className="font-extrabold text-xs sm:text-sm text-slate-900 tracking-tight block uppercase truncate">
-                      {currentUser ? userName : "OM SOLANKI"}
-                    </span>
-                    <span className="font-mono text-[9px] sm:text-[10px] text-[#8C827A] font-bold tracking-wider block -mt-0.5">
-                      CSE 2027 • SSC ASPIRANT
-                    </span>
-                  </div>
+
+                  {/* Profile Switcher Dropdown Modal */}
+                  {showUserDropdown && (
+                    <div className="absolute left-0 mt-2 w-72 bg-white rounded-2xl shadow-2xl border border-slate-200 py-2.5 px-2 z-50 animate-fade-in">
+                      <div className="px-2.5 py-1.5 border-b border-slate-100 mb-1.5 flex items-center justify-between">
+                        <span className="text-[11px] font-extrabold text-slate-400 uppercase tracking-wider font-mono">
+                          Switch Active Aspirant
+                        </span>
+                        <span className="text-[10px] bg-emerald-100 text-emerald-800 font-bold px-2 py-0.5 rounded-full">
+                          Supabase Live
+                        </span>
+                      </div>
+
+                      <div className="space-y-1">
+                        {AUTHORIZED_USERS.map(u => {
+                          const isSelected = u.name === activeUserName;
+                          return (
+                            <button
+                              key={u.id}
+                              onClick={() => handleSwitchUser(u.name)}
+                              className={`w-full text-left p-2 rounded-xl flex items-center justify-between transition ${
+                                isSelected ? "bg-slate-900 text-white" : "hover:bg-slate-100 text-slate-800"
+                              }`}
+                            >
+                              <div className="flex items-center space-x-2.5 min-w-0">
+                                <span className="text-xl shrink-0">{u.avatar}</span>
+                                <div className="min-w-0">
+                                  <div className="flex items-center space-x-1.5">
+                                    <span className="font-bold text-xs truncate">{u.displayName}</span>
+                                    {isSelected && (
+                                      <span className="text-[9px] bg-emerald-500 text-white font-extrabold px-1.5 py-0.2 rounded">
+                                        ACTIVE
+                                      </span>
+                                    )}
+                                  </div>
+                                  <span className={`text-[10px] block truncate ${isSelected ? "text-slate-300" : "text-slate-500"}`}>
+                                    {u.specialty}
+                                  </span>
+                                </div>
+                              </div>
+                              {isSelected ? (
+                                <span className="text-emerald-400 text-sm font-bold ml-1">✓</span>
+                              ) : (
+                                <span className="text-slate-300 text-xs">→</span>
+                              )}
+                            </button>
+                          );
+                        })}
+                      </div>
+
+                      <div className="mt-2 pt-2 border-t border-slate-100 flex items-center justify-between px-1">
+                        <a
+                          href="index.html"
+                          className="text-[11px] text-blue-700 hover:text-blue-900 font-bold flex items-center space-x-1 py-1"
+                        >
+                          <span>🔄</span>
+                          <span>Full Profile Portal</span>
+                        </a>
+                        <button
+                          onClick={() => setShowUserDropdown(false)}
+                          className="text-[11px] text-slate-500 hover:text-slate-700 font-semibold px-2 py-1 rounded-md hover:bg-slate-100"
+                        >
+                          Close
+                        </button>
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
 
@@ -2708,41 +3064,86 @@
                         </div>
                       )}
 
-                      {/* QUALITY FEEDBACK RATING BAR */}
-                      <div className="pt-2 flex items-center justify-between gap-2 bg-white p-3 rounded-xl border border-[#DDD7CC] text-xs">
-                        <div className="flex items-center space-x-1.5 text-slate-700 font-semibold">
-                          <span>⭐</span>
-                          <span>Question Quality:</span>
+                      {/* 10-STAR QUESTION QUALITY RATING & SUPABASE FEEDBACK BAR */}
+                      <div className="pt-2 bg-white p-3 sm:p-4 rounded-xl sm:rounded-2xl border border-[#DDD7CC] shadow-xs text-xs space-y-2.5">
+                        <div className="flex flex-wrap items-center justify-between gap-2">
+                          <div className="flex items-center space-x-2 text-slate-800 font-bold">
+                            <span className="text-amber-500 text-base">⭐</span>
+                            <span className="font-bold text-xs sm:text-sm text-slate-900">Question Quality Rating:</span>
+                            <span className="font-mono text-[11px] font-extrabold px-2 py-0.5 rounded-lg bg-amber-50 text-amber-900 border border-amber-200 shadow-2xs">
+                              {hoveredStar ? `${hoveredStar}/10` : (currentFeedback ? `${currentFeedback}/10` : "Out of 10")}
+                            </span>
+                          </div>
+
+                          {/* Dynamic Feedback Save Status & Descriptor */}
+                          <div className="flex items-center space-x-2">
+                            {feedbackStatus === "saving" && (
+                              <span className="inline-flex items-center space-x-1.5 text-blue-600 bg-blue-50 border border-blue-200 px-2 py-0.5 rounded-full font-bold text-[11px] animate-pulse">
+                                <svg className="w-3 h-3 animate-spin" fill="none" viewBox="0 0 24 24">
+                                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
+                                </svg>
+                                <span>Saving to Supabase...</span>
+                              </span>
+                            )}
+                            {feedbackStatus === "saved" && (
+                              <span className="inline-flex items-center space-x-1 text-emerald-700 bg-emerald-50 border border-emerald-200 px-2.5 py-0.5 rounded-full font-bold text-[11px] animate-fade-in">
+                                <span>✓</span>
+                                <span>Saved ({currentFeedback}/10)</span>
+                              </span>
+                            )}
+                            {feedbackStatus === "error" && (
+                              <span className="text-rose-600 bg-rose-50 border border-rose-200 px-2 py-0.5 rounded-full font-bold text-[11px]">
+                                ⚠️ Sync Failed
+                              </span>
+                            )}
+                            {!feedbackStatus && (
+                              <span className="text-slate-500 italic text-[11px] font-medium hidden sm:inline">
+                                {hoveredStar 
+                                  ? RATING_LABELS[hoveredStar] 
+                                  : (currentFeedback ? RATING_LABELS[currentFeedback] : "Click 1 to 10 stars to record quality")}
+                              </span>
+                            )}
+                          </div>
                         </div>
 
-                        <div className="flex items-center space-x-1.5">
-                          <button
-                            onClick={() => handleFeedbackSubmit('Good')}
-                            className={`py-1 px-2.5 rounded-lg text-xs font-bold border transition ${currentFeedback === 'Good'
-                              ? "bg-emerald-600 text-white border-emerald-600"
-                              : "bg-slate-50 text-slate-700 border-slate-200 hover:bg-slate-100"
-                              }`}
-                          >
-                            Good
-                          </button>
-                          <button
-                            onClick={() => handleFeedbackSubmit('Neutral')}
-                            className={`py-1 px-2.5 rounded-lg text-xs font-bold border transition ${currentFeedback === 'Neutral'
-                              ? "bg-slate-800 text-white border-slate-800"
-                              : "bg-slate-50 text-slate-700 border-slate-200 hover:bg-slate-100"
-                              }`}
-                          >
-                            Neutral
-                          </button>
-                          <button
-                            onClick={() => handleFeedbackSubmit('Bad')}
-                            className={`py-1 px-2.5 rounded-lg text-xs font-bold border transition ${currentFeedback === 'Bad'
-                              ? "bg-rose-600 text-white border-rose-600"
-                              : "bg-slate-50 text-slate-700 border-slate-200 hover:bg-slate-100"
-                              }`}
-                          >
-                            Bad
-                          </button>
+                        {/* 10 Interactive Star Buttons (1 to 10) */}
+                        <div 
+                          className="flex items-center justify-between sm:justify-start gap-1 sm:gap-1.5 py-1.5 px-2 rounded-xl bg-slate-50 border border-slate-200 overflow-x-auto select-none"
+                          onMouseLeave={() => setHoveredStar(null)}
+                        >
+                          {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(starNum => {
+                            const isFilled = hoveredStar ? starNum <= hoveredStar : (currentFeedback && starNum <= currentFeedback);
+                            return (
+                              <button
+                                key={starNum}
+                                type="button"
+                                onMouseEnter={() => setHoveredStar(starNum)}
+                                onClick={() => handleFeedbackSubmit(starNum)}
+                                className={`flex flex-col items-center justify-center p-1 sm:px-2 sm:py-1 rounded-lg transition-all duration-150 transform hover:scale-115 active:scale-95 cursor-pointer ${
+                                  isFilled ? "text-amber-500 scale-105" : "text-slate-300 hover:text-amber-300"
+                                }`}
+                                title={`${starNum}/10 - ${RATING_LABELS[starNum]}`}
+                              >
+                                <svg 
+                                  className="w-5 h-5 sm:w-6 sm:h-6 drop-shadow-2xs" 
+                                  fill={isFilled ? "currentColor" : "none"} 
+                                  stroke="currentColor" 
+                                  strokeWidth={isFilled ? "1" : "1.75"} 
+                                  viewBox="0 0 24 24"
+                                >
+                                  <path 
+                                    strokeLinecap="round" 
+                                    strokeLinejoin="round" 
+                                    d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" 
+                                  />
+                                </svg>
+                                <span className={`text-[9px] font-mono mt-0.5 ${isFilled ? "font-bold text-amber-800" : "text-slate-400"}`}>
+                                  {starNum}
+                                </span>
+                              </button>
+                            );
+                          })}
                         </div>
                       </div>
 
