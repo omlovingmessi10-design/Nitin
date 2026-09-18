@@ -1,4 +1,4 @@
-﻿-- ==============================================================================
+-- ==============================================================================
 -- SSC CGL 2026: COMPLETE FRESH START MOCK TEST SCHEMA & SEED QUERY
 -- Drops previous mock tables, recreates them with RLS & Policies,
 -- and seeds Mock Test 01 (100 Questions: 4 Parts x 25 Qs, 15 Mins per Part)
@@ -83,7 +83,7 @@ INSERT INTO public.mock_tests (
   marks_per_question, negative_marks, maximum_marks, is_active
 ) VALUES (
   'ssc-cgl-2026-mock-01',
-  'SSC CGL 2026: Full Mock Test 01 (4 Parts x 25 Qs â€¢ 60 Mins)',
+  'SSC CGL 2026: Full Mock Test 01 (4 Parts x 25 Qs - 60 Mins)',
   'SSC CGL 2026',
   60, 100, 2.0, 0.5, 200.0, true
 );

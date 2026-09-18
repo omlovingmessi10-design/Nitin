@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -253,7 +253,10 @@
       const [testInfo, setTestInfo] = useState(activeMeta);
       
       const getInitialQuestions = (tid) => {
-        if (tid === 'ssc-cgl-2026-mock-02' && window.MOCK_02_QUESTIONS) {
+        if (window.MOCK_01_QUESTIONS && window.MOCK_01_QUESTIONS.length > 0) {
+          return window.MOCK_01_QUESTIONS;
+        }
+        if (tid === 'ssc-cgl-2026-mock-02' && window.MOCK_02_QUESTIONS && window.MOCK_02_QUESTIONS.length > 0) {
           return window.MOCK_02_QUESTIONS;
         }
         return BUILTIN_QUESTIONS_MOCK01;
@@ -263,20 +266,13 @@
       const [loadingQuestions, setLoadingQuestions] = useState(false);
 
       // Sectional Parts Configuration (4 Parts x 25 Qs - 15 Mins each)
-      const isMultiPart = activeTestId === 'ssc-cgl-2026-mock-02' || questions.length > 25;
-      const partsConfig = useMemo(() => {
-        if (!isMultiPart) {
-          return [
-            { id: 1, name: "PART-A", title: "Quantitative Aptitude", startQ: 1, endQ: 25, durationMinutes: 15 }
-          ];
-        }
-        return [
-          { id: 1, name: "PART-1", title: "General Intelligence & Reasoning", startQ: 1, endQ: 25, durationMinutes: 15 },
-          { id: 2, name: "PART-2", title: "General Awareness", startQ: 26, endQ: 50, durationMinutes: 15 },
-          { id: 3, name: "PART-3", title: "Quantitative Aptitude", startQ: 51, endQ: 75, durationMinutes: 15 },
-          { id: 4, name: "PART-4", title: "English Comprehension", startQ: 76, endQ: 100, durationMinutes: 15 }
-        ];
-      }, [isMultiPart, questions.length]);
+      const isMultiPart = true;
+      const partsConfig = useMemo(() => [
+        { id: 1, name: "PART-1", title: "General Intelligence & Reasoning", startQ: 1, endQ: 25, durationMinutes: 15 },
+        { id: 2, name: "PART-2", title: "General Awareness", startQ: 26, endQ: 50, durationMinutes: 15 },
+        { id: 3, name: "PART-3", title: "Quantitative Aptitude", startQ: 51, endQ: 75, durationMinutes: 15 },
+        { id: 4, name: "PART-4", title: "English Comprehension", startQ: 76, endQ: 100, durationMinutes: 15 }
+      ], []);
 
       const [currentPartIndex, setCurrentPartIndex] = useState(0);
       const activePart = partsConfig[currentPartIndex] || partsConfig[0];
@@ -754,17 +750,15 @@
                 </h1>
               </div>
 
-              {/* Quick Test Switcher Dropdown */}
+              {/* Back to All Mock Tests Link */}
               <div className="flex items-center space-x-2">
-                <span className="text-xs text-gray-500 hidden md:inline font-semibold">Switch Test:</span>
-                <select
-                  value={activeTestId}
-                  onChange={(e) => handleSwitchTest(e.target.value)}
-                  className="text-xs bg-gray-50 border border-gray-300 rounded-md px-2 py-1 font-bold text-gray-800 hover:bg-gray-100 cursor-pointer shadow-xs focus:ring-2 focus:ring-cyan-500 focus:outline-none"
+                <a
+                  href="mock_tests.html"
+                  className="inline-flex items-center space-x-1.5 text-xs bg-gray-50 hover:bg-gray-100 border border-gray-300 rounded-md px-2.5 py-1 font-bold text-gray-700 transition"
                 >
-                  <option value="ssc-cgl-2026-live-1">Mock 01: Quant Live (25 Qs &bull; 15 Mins)</option>
-                  <option value="ssc-cgl-2026-mock-02">Mock 02: 4 Parts &times; 25 Qs (15 Min / Part &bull; 100 Qs)</option>
-                </select>
+                  <span>&larr;</span>
+                  <span>All Mock Tests</span>
+                </a>
               </div>
             </header>
 
@@ -900,14 +894,13 @@
               </div>
 
               <div className="flex items-center space-x-2">
-                <select
-                  value={activeTestId}
-                  onChange={(e) => handleSwitchTest(e.target.value)}
-                  className="text-xs bg-gray-50 border border-gray-300 rounded-md px-2 py-1 font-bold text-gray-800 hover:bg-gray-100 cursor-pointer shadow-xs"
+                <a
+                  href="mock_tests.html"
+                  className="inline-flex items-center space-x-1.5 text-xs bg-gray-50 hover:bg-gray-100 border border-gray-300 rounded-md px-2.5 py-1 font-bold text-gray-700 transition"
                 >
-                  <option value="ssc-cgl-2026-live-1">Mock 01: Quant Live (25 Qs &bull; 15 Mins)</option>
-                  <option value="ssc-cgl-2026-mock-02">Mock 02: 4 Parts &times; 25 Qs (15 Min / Part &bull; 100 Qs)</option>
-                </select>
+                  <span>&larr;</span>
+                  <span>All Mock Tests</span>
+                </a>
               </div>
             </header>
 
