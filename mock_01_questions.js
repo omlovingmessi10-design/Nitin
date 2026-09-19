@@ -2300,4 +2300,3 @@
                        }
     }
 ];
-window.MOCK_02_QUESTIONS = window.MOCK_01_QUESTIONS;
