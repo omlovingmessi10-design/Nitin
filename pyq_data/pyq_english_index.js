@@ -1,15 +1,15 @@
 /**
- * YCT SSC General English 2024 (TCS Pattern Chapter-wise & Subtopic-wise)
+ * SSC General English 25K+ (Chapter-wise & Subtopic-wise PYQ Bank)
  * Master Book Index & Metadata
- * Total Book Pages: 913 | Total Claimed Questions: ~27,000
+ * Total Book Pages: 913 | Total Claimed Questions: 25,000+
  */
 
 const YCT_ENGLISH_INDEX = {
-  book_title: "YCT SSC General English 2024 TCS Pattern Chapter-Wise & SubTopic-Wise",
-  publisher: "Youth Competition Times (YCT)",
-  edition: "2024-25 TCS Pattern",
+  book_title: "SSC General English 25K+ Chapter-Wise & SubTopic-Wise PYQ Bank",
+  publisher: "SSC PYQ Bank",
+  edition: "2024-25 Exam Pattern",
   total_pages: 913,
-  total_questions_claimed: 27000,
+  total_questions_claimed: 25000,
   covered_exams: [
     { code: "CGL", name: "SSC CGL (Tier-1 & Tier-2)", years: "2018–2024", badge: "Graduation" },
     { code: "CHSL", name: "SSC CHSL (Tier-1 & Tier-2)", years: "2019–2024", badge: "10+2" },

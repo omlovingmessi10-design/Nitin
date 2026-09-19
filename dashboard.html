@@ -58,6 +58,18 @@
       background-color: #F3EFE6;
     }
 
+    .scrollbar-none::-webkit-scrollbar,
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+      width: 0;
+      height: 0;
+    }
+    .scrollbar-none,
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
     .font-serif {
       font-family: 'Newsreader', Georgia, serif;
     }
@@ -2492,8 +2504,8 @@
             {/* Top Tier: Brand, Avatar & Circular Tool Buttons */}
             <div className="w-full max-w-7xl mx-auto px-3 sm:px-6 py-2.5 flex items-center justify-between gap-2 border-b border-[#E8E3D8] min-w-0">
 
-              {/* Left Side: Menu Icon & User Avatar Card (Matching screenshot) */}
-              <div className="flex items-center space-x-2.5 min-w-0">
+              {/* Left Side: Menu Icon & User Avatar Card */}
+              <div className="flex items-center space-x-2 shrink-0">
                 <button
                   onClick={() => setViewMode("topics")}
                   className="p-1.5 rounded-xl text-slate-700 hover:bg-[#EAE5DA] transition"
@@ -2504,32 +2516,15 @@
                   </svg>
                 </button>
 
-                {/* Active User Avatar & Quick Aspirant Switcher (Nitin, Om, $H) */}
+                {/* Active User Avatar Quick Switcher (Profile name removed from header for clean space) */}
                 <div className="relative">
-                  <div
+                  <button
                     onClick={() => setShowUserDropdown(prev => !prev)}
-                    className="flex items-center space-x-2 sm:space-x-2.5 cursor-pointer group bg-white hover:bg-[#FAF8F5] border border-[#DDD7CC] hover:border-slate-400 px-2 sm:px-2.5 py-1 rounded-2xl shadow-xs transition select-none"
-                    title="Click to Switch Aspirant Profile (Nitin, Om, $H)"
+                    className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-[#FDE68A] border-2 border-[#E5DFD5] hover:border-slate-400 flex items-center justify-center text-base sm:text-lg shadow-xs transition select-none cursor-pointer transform hover:scale-105 shrink-0"
+                    title={`Active Aspirant: ${activeUserObj.displayName} - Click to Switch Profile`}
                   >
-                    {/* Round Emoji Avatar */}
-                    <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-[#FDE68A] border-2 border-[#E5DFD5] flex items-center justify-center text-base sm:text-lg shadow-xs shrink-0 group-hover:scale-105 transition">
-                      {activeUserObj.avatar}
-                    </div>
-                    <div className="text-left min-w-0 pr-1">
-                      <div className="flex items-center space-x-1">
-                        <span className="font-extrabold text-xs sm:text-sm text-slate-900 tracking-tight block uppercase truncate max-w-[100px] sm:max-w-[140px]">
-                          {activeUserObj.displayName}
-                        </span>
-                        <svg className={`w-3 h-3 text-slate-500 transition-transform ${showUserDropdown ? "rotate-180" : ""}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M19 9l-7 7-7-7" />
-                        </svg>
-                      </div>
-                      <span className="font-mono text-[9px] sm:text-[10px] text-[#8C827A] font-bold tracking-wider block -mt-0.5 truncate max-w-[120px]">
-                        {activeUserObj.role}
-                      </span>
-                    </div>
-                  </div>
-
+                    {activeUserObj.avatar}
+                  </button>
                   {/* Profile Switcher Dropdown Modal */}
                   {showUserDropdown && (
                     <div className="absolute left-0 mt-2 w-72 bg-white rounded-2xl shadow-2xl border border-slate-200 py-2.5 px-2 z-50 animate-fade-in">
@@ -2599,9 +2594,9 @@
               </div>
 
               {/* Right Side: Circular Tools & Diagnostics Pill */}
-              <div className="flex items-center space-x-1.5 sm:space-x-2 min-w-0 shrink-0 overflow-x-auto scrollbar-none py-0.5">
+              <div className="flex items-center space-x-1.5 sm:space-x-2 min-w-0 overflow-x-auto scrollbar-none py-0.5">
 
-                {/* ✨ Blinking Monthly Recap Pill (Spotify / YouTube Music Style) */}
+                {/* ✨ Blinking Monthly Recap Pill */}
                 <a
                   href={`recap.html?user=${encodeURIComponent(activeUserName)}`}
                   className="relative flex items-center space-x-1.5 bg-gradient-to-r from-violet-600 via-fuchsia-600 to-pink-500 hover:from-violet-500 hover:to-pink-400 text-white px-2.5 sm:px-3.5 py-1.5 rounded-full text-xs font-black shadow-md hover:shadow-lg transition-all transform hover:scale-105 active:scale-95 animate-pulse shrink-0 border border-white/40"
@@ -2609,33 +2604,22 @@
                 >
                   <span className="text-xs">✨</span>
                   <span className="hidden sm:inline font-black tracking-tight">Your Recap is Here!</span>
-                  <span className="sm:hidden font-black">Recap '26</span>
-                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
-                </a>
-
-                {/* 📚 27,000+ PYQ Hub Button */}
-                <a
-                  href="pyq.html"
-                  className="flex items-center space-x-1.5 bg-gradient-to-r from-teal-600 to-[#00A8B5] hover:from-teal-700 hover:to-[#00909c] text-white px-2.5 sm:px-3.5 py-1.5 rounded-full text-xs font-black shadow-md hover:shadow-lg transition shrink-0 border border-teal-400/50 transform hover:scale-105"
-                  title="Browse 27,000+ Chapter-wise SSC PYQs (YCT English TCS Pattern)"
-                >
-                  <span className="text-xs">📚</span>
-                  <span className="font-extrabold">27k PYQ Hub</span>
-                  <span className="bg-amber-400 text-slate-900 text-[9px] font-black px-1.5 py-0.2 rounded-full uppercase">New</span>
+                  <span className="sm:hidden font-black">Recap</span>
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
                 </a>
 
                 {/* Live Mock Test Button (NLP+) */}
                 <a
                   href="mock_tests.html"
                   className="flex items-center space-x-1.5 bg-[#00A8B5] hover:bg-[#00909c] text-white px-2.5 sm:px-3 py-1.5 rounded-full text-xs font-bold shadow-sm transition shrink-0"
-                  title="Real Exam Condition Mock Test (TCS iON / NLP+)"
+                  title="Real Exam Condition Mock Test (NLP+)"
                 >
                   <span className="text-amber-300 text-xs">⚡</span>
-                  <span className="hidden sm:inline">Live Mock</span>
+                  <span>Live Mock</span>
                   <span className="bg-amber-400 text-slate-900 text-[9px] font-extrabold px-1 py-0.2 rounded uppercase">NLP+</span>
                 </a>
 
-                {/* Fullscreen / Focus Icon */}
+                {/* Fullscreen / Focus Icon — hidden on mobile to save space */}
                 <button
                   onClick={() => {
                     if (!document.fullscreenElement) {
@@ -2644,28 +2628,28 @@
                       document.exitFullscreen().catch(() => { });
                     }
                   }}
-                  className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white border border-[#E2DDD3] flex items-center justify-center text-slate-700 shadow-sm hover:bg-[#FAF8F5] transition text-sm"
+                  className="hidden sm:flex w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white border border-[#E2DDD3] items-center justify-center text-slate-700 shadow-sm hover:bg-[#FAF8F5] transition text-sm"
                   title="Focus / Fullscreen Mode"
                 >
                   ⛶
                 </button>
 
-                {/* Font / Language Toggle */}
+                {/* Font / Language Toggle — hidden on mobile to save space */}
                 <button
                   onClick={() => setLanguage(l => l === 'EN' ? 'HI' : 'EN')}
-                  className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white border border-[#E2DDD3] flex items-center justify-center text-slate-700 font-bold text-xs shadow-sm hover:bg-[#FAF8F5] transition"
+                  className="hidden sm:flex w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white border border-[#E2DDD3] items-center justify-center text-slate-700 font-bold text-xs shadow-sm hover:bg-[#FAF8F5] transition"
                   title={`Toggle Language (${language})`}
                 >
                   Aa
                 </button>
 
-                {/* Notifications / Weak Alert Bell */}
+                {/* Notifications / Weak Alert Bell — hidden on mobile to save space */}
                 <button
                   onClick={() => {
                     setAnalyticsSubjectFilter("all");
                     setShowAnalyticsModal(true);
                   }}
-                  className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white border border-[#E2DDD3] flex items-center justify-center text-slate-700 shadow-sm hover:bg-[#FAF8F5] transition text-xs relative"
+                  className="hidden sm:flex w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white border border-[#E2DDD3] items-center justify-center text-slate-700 shadow-sm hover:bg-[#FAF8F5] transition text-xs relative"
                   title="Diagnostics Notifications"
                 >
                   🔔
@@ -2674,10 +2658,10 @@
                   )}
                 </button>
 
-                {/* Live User Questions Progress Pill */}
+                {/* Live User Questions Progress Pill — hidden on mobile to keep header clean */}
                 <button
                   onClick={() => setShowProgressModal(true)}
-                  className="flex items-center space-x-1.5 bg-white hover:bg-[#FAF8F5] border border-[#DDD7CC] text-slate-800 px-2.5 sm:px-3.5 py-1.5 rounded-full text-xs font-bold shadow-2xs transition shrink-0 group cursor-pointer"
+                  className="hidden sm:flex items-center space-x-1.5 bg-white hover:bg-[#FAF8F5] border border-[#DDD7CC] text-slate-800 px-2.5 sm:px-3.5 py-1.5 rounded-full text-xs font-bold shadow-2xs transition shrink-0 group cursor-pointer"
                   title="View your saved question attempts & progress from Supabase"
                 >
                   <span className="text-amber-500 text-xs">📊</span>
@@ -2692,13 +2676,13 @@
                   )}
                 </button>
 
-                {/* Dark Analytics Widget Pill */}
+                {/* Dark Analytics Widget Pill — hidden on mobile to keep header clean */}
                 <button
                   onClick={() => {
                     setAnalyticsSubjectFilter("all");
                     setShowAnalyticsModal(true);
                   }}
-                  className="flex items-center space-x-1.5 bg-[#182030] hover:bg-slate-800 text-white px-3 sm:px-3.5 py-1.5 rounded-full text-xs font-bold shadow-sm transition shrink-0"
+                  className="hidden sm:flex items-center space-x-1.5 bg-[#182030] hover:bg-slate-800 text-white px-3 sm:px-3.5 py-1.5 rounded-full text-xs font-bold shadow-sm transition shrink-0"
                   title="Open Performance, Accuracy & Weak Types Diagnostics Tool"
                 >
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
@@ -2731,34 +2715,33 @@
 
             </div>
 
-            {/* Bottom Tier: 4-Subject Segmented Pill Switcher (Quant | Reasoning | English | 📚 27k PYQs) */}
-            <div className="px-3 sm:px-6 py-2 bg-[#F3EFE6]">
-              <div className="max-w-xl mx-auto grid grid-cols-4 bg-[#EAE5DA] p-1 rounded-full border border-[#DDD7CC] shadow-inner gap-1 w-full">
+            {/* Bottom Tier: 4-Subject Segmented Pill Switcher (Quant | Reasoning | English | 📚 25K+ PYQs) */}
+            <div className="px-2 sm:px-6 py-2 bg-[#F3EFE6] w-full max-w-full overflow-hidden">
+              <div className="max-w-xl mx-auto grid grid-cols-4 bg-[#EAE5DA] p-1 rounded-full border border-[#DDD7CC] shadow-inner gap-1 w-full text-center">
                 {Object.values(SYLLABUS_DATA).map((subj) => {
                   const isActive = activeSubjectId === subj.id;
                   return (
                     <button
                       key={subj.id}
                       onClick={() => handleSelectSubject(subj.id)}
-                      className={`w-full py-1.5 rounded-full text-xs sm:text-sm font-bold transition-all duration-200 text-center truncate ${isActive
+                      className={`w-full min-w-0 py-1.5 px-0.5 sm:px-2 rounded-full text-[11px] sm:text-sm font-bold transition-all duration-200 text-center truncate ${isActive
                         ? "bg-[#182030] text-white shadow-sm"
                         : "text-[#5A544C] hover:text-slate-900 hover:bg-white/60"
                         }`}
                     >
-                      <span>{subj.shortName}</span>
+                      <span className="truncate block">{subj.shortName}</span>
                     </button>
                   );
                 })}
 
-                {/* 4th Tab: 📚 27k PYQs (YCT English TCS Pattern) */}
+                {/* 4th Tab: 📚 25K+ PYQs (PYQ Bank) */}
                 <a
                   href="pyq.html"
-                  className="w-full py-1.5 rounded-full text-xs sm:text-sm font-black transition-all duration-200 text-center truncate bg-gradient-to-r from-teal-600 to-[#00A8B5] hover:from-teal-700 hover:to-[#00909c] text-white shadow-sm flex items-center justify-center space-x-1 border border-teal-500/40"
-                  title="Open 27,000+ PYQ Explorer (YCT English Chapter-wise TCS Pattern)"
+                  className="w-full min-w-0 py-1.5 px-0.5 sm:px-2 rounded-full text-[11px] sm:text-sm font-black transition-all duration-200 text-center truncate bg-gradient-to-r from-teal-600 to-[#00A8B5] hover:from-teal-700 hover:to-[#00909c] text-white shadow-sm flex items-center justify-center space-x-1 border border-teal-500/40"
+                  title="Open 25,000+ Chapter-wise SSC PYQ Bank"
                 >
-                  <span>📚</span>
-                  <span>27k PYQs</span>
-                  <span className="bg-amber-400 text-slate-900 text-[9px] font-black px-1 rounded-full ml-0.5 animate-pulse">New</span>
+                  <span className="text-xs shrink-0">📚</span>
+                  <span className="truncate">25K+ PYQs</span>
                 </a>
               </div>
             </div>
@@ -2770,26 +2753,27 @@
           <main className="max-w-6xl mx-auto w-full p-3.5 sm:p-6 lg:p-8 space-y-6 flex-1 animate-fade-in overflow-hidden">
 
             {/* ============================================================ */}
-            {/* 🌟 UNMISSABLE 27,000+ TCS PYQ EXPLORER HERO BANNER */}
+            {/* ============================================================ */}
+            {/* 🌟 25,000+ PYQ BANK HERO BANNER */}
             {/* ============================================================ */}
             <div className="bg-gradient-to-r from-[#111927] via-[#1a2b3c] to-[#0d3b45] rounded-3xl p-5 sm:p-6 text-white shadow-lg border border-teal-500/30 relative overflow-hidden flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
               <div className="relative z-10 space-y-1.5 max-w-2xl">
                 <div className="flex flex-wrap items-center gap-2">
                   <span className="bg-teal-500/20 text-teal-300 border border-teal-400/40 text-[10px] font-mono font-bold px-2.5 py-0.5 rounded-full uppercase tracking-wider">
-                    Official YCT SSC English • 27,000+ Questions
+                    SSC English • 25K+ PYQs
                   </span>
                   <span className="bg-amber-400 text-slate-900 text-[10px] font-black px-2 py-0.5 rounded-full">
-                    TCS Pattern
+                    PYQ Bank
                   </span>
-                  <span className="bg-emerald-500/20 text-emerald-300 border border-emerald-400/40 text-[10px] font-mono font-bold px-2 py-0.5 rounded-full">
+                  <span className="bg-emerald-500/20 text-emerald-300 border border-emerald-400/40 text-[10px] font-mono font-bold px-2.5 py-0.5 rounded-full">
                     13 Chapters Indexed
                   </span>
                 </div>
                 <h2 className="text-xl sm:text-2xl font-serif font-black text-white tracking-tight">
-                  Chapter-Wise 27,000+ PYQ Explorer
+                  Chapter-Wise 25K+ PYQ Bank
                 </h2>
                 <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
-                  Browse questions across all 13 chapters (Spotting Errors, Sentence Improvement, Cloze Test, Idioms, Synonyms, etc.). Filter by TCS Exam (CGL, CHSL, CPO, MTS), Jump to any Question #, Study vs Practice mode!
+                  Browse questions across all 13 chapters (Spotting Errors, Sentence Improvement, Cloze Test, Idioms, Synonyms, etc.). Filter by Exam (CGL, CHSL, CPO, MTS), Jump to any Question #, Study vs Practice mode!
                 </p>
               </div>
               <div className="relative z-10 shrink-0 w-full md:w-auto">
@@ -2797,7 +2781,7 @@
                   href="pyq.html"
                   className="inline-flex items-center justify-center space-x-2 w-full md:w-auto px-6 py-3 rounded-2xl bg-gradient-to-r from-[#00A8B5] to-emerald-500 hover:from-[#00909c] hover:to-emerald-600 text-white font-black text-sm shadow-md hover:shadow-xl transition transform hover:scale-105 active:scale-95"
                 >
-                  <span>📚 Open 27k PYQ Explorer</span>
+                  <span>📚 Open 25K+ PYQ Bank</span>
                   <span>➔</span>
                 </a>
               </div>
@@ -2936,15 +2920,15 @@
                   <div className="flex items-center space-x-3">
                     <span className="text-3xl shrink-0">📖</span>
                     <div>
-                      <h4 className="text-sm font-black text-teal-950">Complete 27,000+ YCT SSC English PYQ Bank</h4>
-                      <p className="text-xs text-teal-800">Explore all 13 chapters (Spotting Errors, Sentence Improvement, Cloze Test, Idioms, Antonyms, Synonyms, etc.) with TCS exam tags, answer keys, and bilingual solutions.</p>
+                      <h4 className="text-sm font-black text-teal-950">Complete 25K+ SSC English PYQ Bank</h4>
+                      <p className="text-xs text-teal-800">Explore all 13 chapters (Spotting Errors, Sentence Improvement, Cloze Test, Idioms, Antonyms, Synonyms, etc.) with official exam tags, answer keys, and bilingual solutions.</p>
                     </div>
                   </div>
                   <a
                     href="pyq.html"
                     className="px-4 py-2.5 bg-gradient-to-r from-teal-600 to-[#00A8B5] hover:from-teal-700 hover:to-[#00909c] text-white text-xs font-black rounded-xl transition shadow-xs whitespace-nowrap shrink-0 flex items-center space-x-1.5 transform hover:scale-105"
                   >
-                    <span>Browse 27k English PYQs</span>
+                    <span>Browse 25K+ PYQ Bank</span>
                     <span>➔</span>
                   </a>
                 </div>
@@ -5029,11 +5013,11 @@
           <a
             href="pyq.html"
             className="fixed bottom-6 right-6 z-40 bg-gradient-to-r from-teal-600 to-[#00A8B5] hover:from-teal-500 hover:to-[#00B4C4] text-white px-4 py-2.5 rounded-full font-black text-xs sm:text-sm shadow-2xl flex items-center space-x-2 border-2 border-white/60 hover:scale-105 active:scale-95 transition-all"
-            title="Open 27,000+ Chapter-wise PYQ Explorer"
+            title="Open 25,000+ Chapter-wise PYQ Bank"
           >
             <span className="text-base">📚</span>
-            <span>27k PYQ Hub</span>
-            <span className="bg-amber-400 text-slate-900 text-[9px] font-black px-1.5 py-0.2 rounded-full uppercase">New</span>
+            <span>25K+ PYQs</span>
+            <span className="bg-amber-400 text-slate-900 text-[9px] font-black px-1.5 py-0.2 rounded-full uppercase">Bank</span>
           </a>
 
           {/* FOOTER */}
