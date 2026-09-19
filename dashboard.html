@@ -23,6 +23,8 @@
   <script src="ratio_questions.js?v=set_d"></script>
   <!-- Profit, Loss & Discount Questions Dataset (Sets A, B, C, D & E, Levels 1-6, English & Hindi) -->
   <script src="profit_loss_questions.js?v=set_e"></script>
+  <!-- Spotting the Errors Practice Questions Dataset (Sets A, B, C, D & E, Levels 1-5, English & Hindi) -->
+  <script src="spotting_errors_questions.js?v=set_e"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
@@ -518,13 +520,13 @@
           {
             id: "spotting-errors",
             title: "Spotting the Error",
-            titleHi: "व्याकरण त्रुटि पहचान",
+            titleHi: "त्रुटि पहचान (Spotting the Errors)",
             category: "Grammar",
             weightage: "High Weightage (3-4 Qs)",
             isHighWeightage: true,
-            sets: ["Practice 1", "Practice 2"],
-            totalQuestions: 80,
-            desc: "Subject-Verb agreement, tense consistency, prepositions, articles, conditional clauses, and conjunction errors."
+            sets: ["SET A", "SET B", "SET C", "SET D", "SET E"],
+            totalQuestions: 125,
+            desc: "Complete 125 Questions (Sets A, B, C, D & E with 25 Qs each across Levels 1-5): Subject-Verb Agreement, Verb Tenses & Participles, Prepositions & Phrasals, Correlative Conjunctions, Articles, Pronouns & Modifiers, Conditionals, Noun Cases & Voice."
           },
           {
             id: "sentence-improvement",
@@ -847,6 +849,49 @@
       }
 
       if (subjectId === "english") {
+        if (topicObj.id === "spotting-errors" || (topicObj.title && (topicObj.title.toLowerCase().includes("spotting") || topicObj.title.toLowerCase().includes("error")))) {
+          const isSetE = practiceSet === "SET E" || practiceSet === "Set E" || practiceSet === "Practice 5" || practiceSet === "Set 5";
+          const isSetD = practiceSet === "SET D" || practiceSet === "Set D" || practiceSet === "Practice 4" || practiceSet === "Set 4";
+          const isSetC = practiceSet === "SET C" || practiceSet === "Set C" || practiceSet === "Practice 3" || practiceSet === "Set 3";
+          const isSetB = practiceSet === "SET B" || practiceSet === "Set B" || practiceSet === "Practice 2" || practiceSet === "Set 2";
+          if (isSetE) {
+            if (typeof window !== "undefined" && window.SPOTTING_ERRORS_SET_E_QUESTIONS && window.SPOTTING_ERRORS_SET_E_QUESTIONS.length > 0) {
+              return window.SPOTTING_ERRORS_SET_E_QUESTIONS;
+            }
+            if (typeof SPOTTING_ERRORS_SET_E_QUESTIONS !== "undefined" && SPOTTING_ERRORS_SET_E_QUESTIONS.length > 0) {
+              return SPOTTING_ERRORS_SET_E_QUESTIONS;
+            }
+          } else if (isSetD) {
+            if (typeof window !== "undefined" && window.SPOTTING_ERRORS_SET_D_QUESTIONS && window.SPOTTING_ERRORS_SET_D_QUESTIONS.length > 0) {
+              return window.SPOTTING_ERRORS_SET_D_QUESTIONS;
+            }
+            if (typeof SPOTTING_ERRORS_SET_D_QUESTIONS !== "undefined" && SPOTTING_ERRORS_SET_D_QUESTIONS.length > 0) {
+              return SPOTTING_ERRORS_SET_D_QUESTIONS;
+            }
+          } else if (isSetC) {
+            if (typeof window !== "undefined" && window.SPOTTING_ERRORS_SET_C_QUESTIONS && window.SPOTTING_ERRORS_SET_C_QUESTIONS.length > 0) {
+              return window.SPOTTING_ERRORS_SET_C_QUESTIONS;
+            }
+            if (typeof SPOTTING_ERRORS_SET_C_QUESTIONS !== "undefined" && SPOTTING_ERRORS_SET_C_QUESTIONS.length > 0) {
+              return SPOTTING_ERRORS_SET_C_QUESTIONS;
+            }
+          } else if (isSetB) {
+            if (typeof window !== "undefined" && window.SPOTTING_ERRORS_SET_B_QUESTIONS && window.SPOTTING_ERRORS_SET_B_QUESTIONS.length > 0) {
+              return window.SPOTTING_ERRORS_SET_B_QUESTIONS;
+            }
+            if (typeof SPOTTING_ERRORS_SET_B_QUESTIONS !== "undefined" && SPOTTING_ERRORS_SET_B_QUESTIONS.length > 0) {
+              return SPOTTING_ERRORS_SET_B_QUESTIONS;
+            }
+          } else {
+            if (typeof window !== "undefined" && window.SPOTTING_ERRORS_SET_A_QUESTIONS && window.SPOTTING_ERRORS_SET_A_QUESTIONS.length > 0) {
+              return window.SPOTTING_ERRORS_SET_A_QUESTIONS;
+            }
+            if (typeof SPOTTING_ERRORS_SET_A_QUESTIONS !== "undefined" && SPOTTING_ERRORS_SET_A_QUESTIONS.length > 0) {
+              return SPOTTING_ERRORS_SET_A_QUESTIONS;
+            }
+          }
+        }
+
         return [
           {
             question_number: 1,
@@ -1148,17 +1193,32 @@
       const [currentUser, setCurrentUser] = useState(null);
       const [authLoading, setAuthLoading] = useState(false);
 
+      // Parse URL parameters for direct deep-linking
+      const urlParams = typeof window !== "undefined" ? new URLSearchParams(window.location.search) : null;
+      const initialSub = (urlParams && urlParams.get("subject") && SYLLABUS_DATA[urlParams.get("subject")])
+        ? urlParams.get("subject")
+        : "quant";
+      const initialTopicId = urlParams ? urlParams.get("topic") : null;
+      const initialSetParam = urlParams ? (urlParams.get("set") || "Practice 1") : "Practice 1";
+      const initialModeParam = urlParams ? (urlParams.get("mode") || (initialTopicId ? "quiz" : "topics")) : "topics";
+
       // Main Navigation State: 
       // 'hub': Subject Overview Landing
       // 'topics': Testbook-Style Topic Breakdown for active subject
       // 'quiz': Practice Workspace & Test Engine
-      const [viewMode, setViewMode] = useState("topics");
+      const [viewMode, setViewMode] = useState(initialModeParam);
 
       // App Hierarchy States
       const [exam] = useState("SSC Practice");
-      const [activeSubjectId, setActiveSubjectId] = useState("quant");
-      const [selectedTopicObj, setSelectedTopicObj] = useState(SYLLABUS_DATA.quant.topics[0]);
-      const [practiceSet, setPracticeSet] = useState("Practice 1");
+      const [activeSubjectId, setActiveSubjectId] = useState(initialSub);
+      const [selectedTopicObj, setSelectedTopicObj] = useState(() => {
+        if (initialTopicId && SYLLABUS_DATA[initialSub]) {
+          const matched = SYLLABUS_DATA[initialSub].topics.find(t => t.id === initialTopicId);
+          if (matched) return matched;
+        }
+        return SYLLABUS_DATA[initialSub].topics[0];
+      });
+      const [practiceSet, setPracticeSet] = useState(initialSetParam);
 
       // Topic Screen Filter & Search
       const [activeCategory, setActiveCategory] = useState("All");
@@ -1225,7 +1285,8 @@
       const [hoveredStar, setHoveredStar] = useState(null);
 
       // Top Bar States
-      const [language, setLanguage] = useState("EN");
+      const initialLang = (urlParams && urlParams.get("lang") && urlParams.get("lang").toUpperCase() === "HI") ? "HI" : "EN";
+      const [language, setLanguage] = useState(initialLang);
       const [timeLeft, setTimeLeft] = useState(35 * 60);
 
       // Per-Question Mini Stopwatch States
@@ -1818,6 +1879,8 @@
             await supabase.from('time_work_chapter_responses').insert([chapterPayload]);
           } else if (chapId.includes('profit') || chapTitle.includes('profit') || chapTitle.includes('loss')) {
             await supabase.from('profit_loss_chapter_responses').insert([chapterPayload]);
+          } else if (chapId.includes('spotting') || chapTitle.includes('spotting') || chapTitle.includes('error')) {
+            await supabase.from('spotting_errors_chapter_responses').insert([chapterPayload]);
           }
         } catch (dbErr) {
           console.warn("Supabase live response tracking error:", dbErr.message);
@@ -2203,6 +2266,8 @@
             supabase.from('time_work_chapter_responses').insert(chapterBatch).then(() => { });
           } else if (chapId.includes('profit') || chapTitle.includes('profit') || chapTitle.includes('loss')) {
             supabase.from('profit_loss_chapter_responses').insert(chapterBatch).then(() => { });
+          } else if (chapId.includes('spotting') || chapTitle.includes('spotting') || chapTitle.includes('error')) {
+            supabase.from('spotting_errors_chapter_responses').insert(chapterBatch).then(() => { });
           }
 
           setTimeout(() => {

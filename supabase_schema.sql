@@ -149,6 +149,25 @@ CREATE TABLE IF NOT EXISTS public.profit_loss_chapter_responses (
 CREATE INDEX IF NOT EXISTS idx_pl_user ON public.profit_loss_chapter_responses(user_name);
 CREATE INDEX IF NOT EXISTS idx_pl_set_q ON public.profit_loss_chapter_responses(practice_set, question_number);
 
+-- 8.1 CHAPTER TABLE: SPOTTING THE ERRORS (ENGLISH) RESPONSES
+CREATE TABLE IF NOT EXISTS public.spotting_errors_chapter_responses (
+  id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  user_name TEXT NOT NULL,
+  practice_set TEXT NOT NULL,
+  question_number INT NOT NULL,
+  level TEXT,
+  type_code TEXT,
+  type_category TEXT,
+  selected_option TEXT,
+  correct_option TEXT,
+  is_correct BOOLEAN NOT NULL DEFAULT FALSE,
+  time_spent_seconds INT DEFAULT 0,
+  is_marked_review BOOLEAN DEFAULT FALSE,
+  attempted_at TIMESTAMPTZ DEFAULT NOW()
+);
+CREATE INDEX IF NOT EXISTS idx_se_user ON public.spotting_errors_chapter_responses(user_name);
+CREATE INDEX IF NOT EXISTS idx_se_set_q ON public.spotting_errors_chapter_responses(practice_set, question_number);
+
 -- 9. 10-STAR QUESTION RATINGS & FEEDBACK TABLE
 CREATE TABLE IF NOT EXISTS public.question_ratings (
   id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
