@@ -27,6 +27,7 @@
   <script src="mock_01_questions.js"></script>
   <script src="mock_02_questions.js"></script>
   <script src="mock_03_questions.js"></script>
+  <script src="mock_04_questions.js"></script>
   
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -175,6 +176,23 @@
           { id: 3, name: "PART-3", title: "Quantitative Aptitude", startQ: 51, endQ: 75, durationMinutes: 15 },
           { id: 4, name: "PART-4", title: "English Comprehension", startQ: 76, endQ: 100, durationMinutes: 15 }
         ]
+      },
+      "ssc-cgl-2026-mock-04": {
+        id: "ssc-cgl-2026-mock-04",
+        title: "SSC CGL 2026: Full Mock Test 04 (4 Parts x 25 Qs - 60 Mins)",
+        examCategory: "SSC CGL 2026",
+        durationMinutes: 60,
+        totalQuestions: 100,
+        marksPerQuestion: 2.0,
+        negativeMarks: 0.5,
+        maximumMarks: 200.0,
+        isMultiPart: true,
+        parts: [
+          { id: 1, name: "PART-1", title: "General Intelligence & Reasoning", startQ: 1, endQ: 25, durationMinutes: 15 },
+          { id: 2, name: "PART-2", title: "General Awareness", startQ: 26, endQ: 50, durationMinutes: 15 },
+          { id: 3, name: "PART-3", title: "Quantitative Aptitude", startQ: 51, endQ: 75, durationMinutes: 15 },
+          { id: 4, name: "PART-4", title: "English Comprehension", startQ: 76, endQ: 100, durationMinutes: 15 }
+        ]
       }
     };
     // Aliases for backward compatibility
@@ -225,6 +243,9 @@
       const [testInfo, setTestInfo] = useState(activeMeta);
       
       const getInitialQuestions = (tid) => {
+        if (tid === 'ssc-cgl-2026-mock-04' && window.MOCK_04_QUESTIONS && window.MOCK_04_QUESTIONS.length > 0) {
+          return window.MOCK_04_QUESTIONS;
+        }
         if (tid === 'ssc-cgl-2026-mock-03' && window.MOCK_03_QUESTIONS && window.MOCK_03_QUESTIONS.length > 0) {
           return window.MOCK_03_QUESTIONS;
         }
@@ -234,7 +255,7 @@
         if (tid === 'ssc-cgl-2026-mock-01' && window.MOCK_01_QUESTIONS && window.MOCK_01_QUESTIONS.length > 0) {
           return window.MOCK_01_QUESTIONS;
         }
-        return window.MOCK_01_QUESTIONS || window.MOCK_02_QUESTIONS || window.MOCK_03_QUESTIONS || [];
+        return window.MOCK_01_QUESTIONS || window.MOCK_02_QUESTIONS || window.MOCK_03_QUESTIONS || window.MOCK_04_QUESTIONS || [];
       };
 
       const [questions, setQuestions] = useState(getInitialQuestions(initialTestId));
@@ -302,6 +323,12 @@
       useEffect(() => {
         async function fetchSupabaseQuestions() {
           // If offline mock or code-only mock, use local questions and skip Supabase
+          if (activeTestId === 'ssc-cgl-2026-mock-04') {
+            if (window.MOCK_04_QUESTIONS && window.MOCK_04_QUESTIONS.length > 0) {
+              setQuestions(window.MOCK_04_QUESTIONS);
+            }
+            return;
+          }
           if (activeTestId === 'ssc-cgl-2026-mock-03') {
             if (window.MOCK_03_QUESTIONS && window.MOCK_03_QUESTIONS.length > 0) {
               setQuestions(window.MOCK_03_QUESTIONS);
