@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NLP+ | SSC General English PYQ Explorer (YCT TCS Pattern 27,000+)</title>
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- React 18 & ReactDOM -->
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  
+  <!-- Babel for JSX -->
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Master Index & Chapter Data -->
+  <script src="pyq_data/pyq_english_index.js"></script>
+  <script src="pyq_data/pyq_english_ch01_spotting_errors.js"></script>
+
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background-color: #f8fafc;
+      color: #0f172a;
+    }
+    .font-mono {
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .font-hindi {
+      font-family: 'Noto Sans Devanagari', 'Plus Jakarta Sans', sans-serif;
+    }
+    .scrollbar-thin::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    .scrollbar-thin::-webkit-scrollbar-track {
+      background: #f1f5f9;
+    }
+    .scrollbar-thin::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 9999px;
+    }
+    .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col bg-slate-50">
+  <div id="root"></div>
+
+  <script type="text/babel">
+    const { useState, useEffect, useMemo, useRef } = React;
+
+    function PYQApp() {
+      // 1. Data Sources
+      const bookIndex = window.YCT_ENGLISH_INDEX || (typeof YCT_ENGLISH_INDEX !== 'undefined' ? YCT_ENGLISH_INDEX : { sections: [] });
+      
+      // Active chapter selection
+      const [selectedChapterId, setSelectedChapterId] = useState("ch01");
+      const [allQuestions, setAllQuestions] = useState(() => {
+        return window.PYQ_CH01_QUESTIONS || (typeof PYQ_CH01_QUESTIONS !== 'undefined' ? PYQ_CH01_QUESTIONS : []);
+      });
+      const [isDataLoading, setIsDataLoading] = useState(false);
+
+      // Modes: 'study' (solutions visible) vs 'practice' (interactive quiz)
+      const [appMode, setAppMode] = useState("study"); // 'study' | 'practice'
+
+      // Filters & Search
+      const [searchQuery, setSearchQuery] = useState("");
+      const [selectedExam, setSelectedExam] = useState("ALL");
+      const [selectedYear, setSelectedYear] = useState("ALL");
+      const [selectedSubtopic, setSelectedSubtopic] = useState("ALL");
+      const [statusFilter, setStatusFilter] = useState("ALL"); // ALL, BOOKMARKED, ATTEMPTED, INCORRECT
+
+      // Jump to question input
+      const [jumpInput, setJumpInput] = useState("");
+
+      // Pagination
+      const [currentPage, setCurrentPage] = useState(1);
+      const pageSize = 25;
+
+      // Question palette drawer
+      const [isPaletteOpen, setIsPaletteOpen] = useState(false);
+
+      // Bookmarks & User Attempts persisted in localStorage
+      const [bookmarks, setBookmarks] = useState(() => {
+        try {
+          const saved = localStorage.getItem("ssc_pyq_bookmarks");
+          return saved ? JSON.parse(saved) : {};
+        } catch (e) {
+          return {};
+        }
+      });
+
+      const [userAttempts, setUserAttempts] = useState(() => {
+        try {
+          const saved = localStorage.getItem("ssc_pyq_attempts");
+          return saved ? JSON.parse(saved) : {};
+        } catch (e) {
+          return {};
+        }
+      });
+
+      // Show/hide explanation overrides per question in study mode
+      const [expandedExpl, setExpandedExpl] = useState({});
+
+      // Save bookmarks to localStorage
+      useEffect(() => {
+        try {
+          localStorage.setItem("ssc_pyq_bookmarks", JSON.stringify(bookmarks));
+        } catch (e) {}
+      }, [bookmarks]);
+
+      // Save attempts to localStorage
+      useEffect(() => {
+        try {
+          localStorage.setItem("ssc_pyq_attempts", JSON.stringify(userAttempts));
+        } catch (e) {}
+      }, [userAttempts]);
+
+      // Load active chapter questions
+      useEffect(() => {
+        setIsDataLoading(true);
+        if (selectedChapterId === "ch01") {
+          const ch01Data = window.PYQ_CH01_QUESTIONS || [];
+          setAllQuestions(ch01Data);
+          setIsDataLoading(false);
+        } else {
+          // Placeholder for future chapters
+          setAllQuestions([]);
+          setIsDataLoading(false);
+        }
+        setCurrentPage(1);
+        setSearchQuery("");
+        setSelectedExam("ALL");
+        setSelectedYear("ALL");
+        setSelectedSubtopic("ALL");
+        setStatusFilter("ALL");
+      }, [selectedChapterId]);
+
+      // Active Chapter Metadata
+      const currentChapterMeta = useMemo(() => {
+        for (const sec of bookIndex.sections || []) {
+          for (const ch of sec.chapters || []) {
+            if (ch.id === selectedChapterId) return ch;
+          }
+        }
+        return null;
+      }, [bookIndex, selectedChapterId]);
+
+      // Filtered questions
+      const filteredQuestions = useMemo(() => {
+        return allQuestions.filter(q => {
+          // Search filter
+          if (searchQuery.trim()) {
+            const query = searchQuery.toLowerCase();
+            const inText = (q.question_text || "").toLowerCase().includes(query);
+            const inExpl = (q.explanation || "").toLowerCase().includes(query);
+            const inExam = (q.exam_tag || "").toLowerCase().includes(query);
+            const inCrux = (q.crux || "").toLowerCase().includes(query);
+            if (!inText && !inExpl && !inExam && !inCrux) return false;
+          }
+
+          // Exam filter
+          if (selectedExam !== "ALL") {
+            if ((q.exam_name || "").toUpperCase() !== selectedExam.toUpperCase()) return false;
+          }
+
+          // Year filter
+          if (selectedYear !== "ALL") {
+            if (String(q.exam_year) !== String(selectedYear)) return false;
+          }
+
+          // Subtopic filter
+          if (selectedSubtopic !== "ALL") {
+            if (q.subtopic !== selectedSubtopic) return false;
+          }
+
+          // Status filter
+          if (statusFilter === "BOOKMARKED") {
+            if (!bookmarks[q.id]) return false;
+          } else if (statusFilter === "ATTEMPTED") {
+            if (!userAttempts[q.id]) return false;
+          } else if (statusFilter === "INCORRECT") {
+            const att = userAttempts[q.id];
+            if (!att || att.isCorrect) return false;
+          }
+
+          return true;
+        });
+      }, [allQuestions, searchQuery, selectedExam, selectedYear, selectedSubtopic, statusFilter, bookmarks, userAttempts]);
+
+      // Paginated slice
+      const paginatedQuestions = useMemo(() => {
+        const start = (currentPage - 1) * pageSize;
+        return filteredQuestions.slice(start, start + pageSize);
+      }, [filteredQuestions, currentPage]);
+
+      const totalPages = Math.ceil(filteredQuestions.length / pageSize) || 1;
+
+      // Toggle Bookmark
+      const toggleBookmark = (qId) => {
+        setBookmarks(prev => {
+          const next = { ...prev };
+          if (next[qId]) {
+            delete next[qId];
+          } else {
+            next[qId] = true;
+          }
+          return next;
+        });
+      };
+
+      // Handle Option Selection in Practice Mode
+      const handleSelectOption = (q, selectedOpt) => {
+        if (appMode !== "practice") return;
+        const isCorrect = (selectedOpt.toLowerCase() === (q.correct_option || "").toLowerCase());
+        setUserAttempts(prev => ({
+          ...prev,
+          [q.id]: {
+            selectedOption: selectedOpt.toLowerCase(),
+            isCorrect: isCorrect,
+            timestamp: Date.now()
+          }
+        }));
+      };
+
+      // Toggle Explanation Expansion in Study Mode
+      const toggleExpl = (qId) => {
+        setExpandedExpl(prev => ({
+          ...prev,
+          [qId]: !prev[qId]
+        }));
+      };
+
+      // Jump to Question Number
+      const handleJump = (e) => {
+        e.preventDefault();
+        const targetNum = parseInt(jumpInput.trim(), 10);
+        if (isNaN(targetNum)) return;
+
+        // Find index in filtered questions or all questions
+        const foundIdx = filteredQuestions.findIndex(q => q.q_num === targetNum);
+        if (foundIdx !== -1) {
+          const targetPage = Math.floor(foundIdx / pageSize) + 1;
+          setCurrentPage(targetPage);
+          setTimeout(() => {
+            const el = document.getElementById(`q-card-${targetNum}`);
+            if (el) {
+              el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+              el.classList.add('ring-2', 'ring-[#00A8B5]');
+              setTimeout(() => el.classList.remove('ring-2', 'ring-[#00A8B5]'), 2000);
+            }
+          }, 150);
+        } else {
+          alert(`Question #${targetNum} not found in the current filtered view.`);
+        }
+        setJumpInput("");
+      };
+
+      // Available subtopics in current dataset
+      const availableSubtopics = useMemo(() => {
+        const set = new Set();
+        allQuestions.forEach(q => {
+          if (q.subtopic) set.add(q.subtopic);
+        });
+        return Array.from(set).sort();
+      }, [allQuestions]);
+
+      return (
+        <div class="min-h-screen flex flex-col">
+          {/* HEADER */}
+          <header class="sticky top-0 z-40 bg-white/95 backdrop-blur border-b border-slate-200 px-4 sm:px-6 py-3 shadow-xs">
+            <div class="max-w-7xl mx-auto flex items-center justify-between gap-3">
+              {/* Brand & Breadcrumbs */}
+              <div class="flex items-center space-x-3">
+                <a href="dashboard.html" class="flex items-center group">
+                  <span class="text-2xl font-black tracking-tighter text-[#00A8B5]">
+                    NLP<span class="text-amber-500 font-extrabold text-2xl ml-0.5">+</span>
+                  </span>
+                </a>
+                <div class="h-5 w-px bg-slate-200"></div>
+                <div class="hidden md:flex items-center space-x-1.5 text-xs text-slate-500">
+                  <span class="font-bold text-slate-700">YCT SSC English</span>
+                  <span>/</span>
+                  <span class="text-slate-500">Chapter {currentChapterMeta?.chapter_number || 1}</span>
+                  <span>/</span>
+                  <span class="font-extrabold text-[#00A8B5]">{currentChapterMeta?.title || "Spotting Errors"}</span>
+                </div>
+              </div>
+
+              {/* Center: Search & Quick Jump */}
+              <div class="flex-1 max-w-md hidden sm:flex items-center space-x-2">
+                <div class="relative w-full">
+                  <input
+                    type="text"
+                    placeholder="Search question, grammar rule, or exam..."
+                    value={searchQuery}
+                    onChange={(e) => { setSearchQuery(e.target.value); setCurrentPage(1); }}
+                    class="w-full pl-8 pr-3 py-1.5 bg-slate-100 border border-slate-200 rounded-lg text-xs focus:bg-white focus:outline-none focus:ring-1 focus:ring-[#00A8B5] text-slate-800"
+                  />
+                  <svg class="w-3.5 h-3.5 text-slate-400 absolute left-2.5 top-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                  </svg>
+                </div>
+
+                <form onSubmit={handleJump} class="flex items-center space-x-1 shrink-0">
+                  <input
+                    type="number"
+                    placeholder="Q#"
+                    value={jumpInput}
+                    onChange={(e) => setJumpInput(e.target.value)}
+                    class="w-16 px-2 py-1.5 bg-slate-100 border border-slate-200 rounded-lg text-xs font-mono text-center focus:bg-white focus:outline-none focus:ring-1 focus:ring-[#00A8B5]"
+                  />
+                  <button type="submit" class="bg-[#00A8B5] text-white px-2.5 py-1.5 rounded-lg text-xs font-bold hover:bg-[#008f9a] transition">
+                    Go
+                  </button>
+                </form>
+              </div>
+
+              {/* Right Controls: Mode Toggle, Palette Button & Back Link */}
+              <div class="flex items-center space-x-2 sm:space-x-3">
+                {/* Mode Selector */}
+                <div class="bg-slate-100 p-0.5 rounded-lg flex items-center border border-slate-200">
+                  <button
+                    onClick={() => setAppMode("study")}
+                    class={`px-2.5 py-1 rounded-md text-xs font-bold transition-all flex items-center space-x-1 ${
+                      appMode === "study"
+                        ? "bg-white text-[#00A8B5] shadow-xs"
+                        : "text-slate-600 hover:text-slate-900"
+                    }`}
+                  >
+                    <span>📖</span>
+                    <span>Study</span>
+                  </button>
+                  <button
+                    onClick={() => setAppMode("practice")}
+                    class={`px-2.5 py-1 rounded-md text-xs font-bold transition-all flex items-center space-x-1 ${
+                      appMode === "practice"
+                        ? "bg-white text-amber-600 shadow-xs"
+                        : "text-slate-600 hover:text-slate-900"
+                    }`}
+                  >
+                    <span>🎯</span>
+                    <span>Practice</span>
+                  </button>
+                </div>
+
+                {/* Palette Drawer Toggle */}
+                <button
+                  onClick={() => setIsPaletteOpen(!isPaletteOpen)}
+                  class="bg-white border border-slate-200 hover:border-slate-300 text-slate-700 px-2.5 py-1.5 rounded-lg text-xs font-bold flex items-center space-x-1.5 shadow-xs transition"
+                >
+                  <span class="font-mono text-[#00A8B5]">#{allQuestions.length}</span>
+                  <span class="hidden sm:inline">Palette</span>
+                </button>
+
+                {/* Return to Dashboard */}
+                <a
+                  href="dashboard.html"
+                  class="text-xs font-bold text-slate-500 hover:text-slate-800 transition px-2 py-1.5"
+                >
+                  Dashboard ➔
+                </a>
+              </div>
+            </div>
+          </header>
+
+          {/* MAIN CONTAINER: SIDEBAR + CONTENT */}
+          <div class="max-w-7xl w-full mx-auto flex-1 flex px-3 sm:px-6 py-5 gap-6">
+            
+            {/* LEFT SIDEBAR: BOOK CHAPTER NAVIGATOR */}
+            <aside class="w-72 shrink-0 hidden lg:block bg-white border border-slate-200 rounded-2xl shadow-xs p-4 h-[calc(100vh-100px)] sticky top-20 overflow-y-auto scrollbar-thin">
+              <div class="mb-4 pb-3 border-b border-slate-100">
+                <div class="flex items-center justify-between">
+                  <span class="text-[10px] uppercase tracking-wider font-extrabold px-2 py-0.5 rounded bg-[#00A8B5]/10 text-[#00A8B5]">
+                    27,000+ TCS PYQ Book
+                  </span>
+                  <span class="text-[10px] font-mono text-slate-400">913 Pages</span>
+                </div>
+                <h2 class="text-sm font-extrabold text-slate-900 mt-1.5 leading-snug">
+                  YCT General English
+                </h2>
+                <p class="text-[11px] text-slate-500 font-hindi">अध्यायवार विगत वर्ष प्रश्न संग्रह</p>
+              </div>
+
+              {/* Sections Accordion */}
+              <div class="space-y-4">
+                {(bookIndex.sections || []).map((sec) => (
+                  <div key={sec.id} class="space-y-1.5">
+                    <div class="text-[11px] font-extrabold uppercase tracking-wider text-slate-400 px-2 flex items-center justify-between">
+                      <span>{sec.title}</span>
+                    </div>
+
+                    <div class="space-y-1">
+                      {(sec.chapters || []).map((ch) => {
+                        const isSelected = (ch.id === selectedChapterId);
+                        const isReady = (ch.status === "ready");
+
+                        return (
+                          <button
+                            key={ch.id}
+                            onClick={() => isReady && setSelectedChapterId(ch.id)}
+                            disabled={!isReady}
+                            class={`w-full text-left p-2.5 rounded-xl text-xs font-semibold transition-all flex items-start space-x-2.5 ${
+                              isSelected
+                                ? "bg-[#00A8B5] text-white shadow-sm ring-1 ring-[#00A8B5]"
+                                : isReady
+                                ? "bg-slate-50 hover:bg-slate-100 text-slate-700"
+                                : "bg-slate-50/50 text-slate-400 cursor-not-allowed opacity-75"
+                            }`}
+                          >
+                            <span class="text-sm shrink-0">{ch.icon}</span>
+                            <div class="flex-1 min-w-0">
+                              <div class="flex items-center justify-between">
+                                <span class="font-bold truncate">
+                                  Ch {ch.chapter_number}. {ch.title}
+                                </span>
+                              </div>
+                              <div class={`text-[10px] mt-0.5 flex items-center justify-between ${isSelected ? 'text-teal-100' : 'text-slate-400'}`}>
+                                <span>p. {ch.page_start}–{ch.page_end}</span>
+                                <span class="font-mono">
+                                  {isReady ? `${ch.question_count} Qs` : 'Queued'}
+                                </span>
+                              </div>
+                            </div>
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </aside>
+
+            {/* MAIN CONTENT AREA */}
+            <main class="flex-1 min-w-0 flex flex-col space-y-4">
+              
+              {/* CHAPTER BANNER & FILTER BAR */}
+              <div class="bg-white border border-slate-200 rounded-2xl p-4 sm:p-5 shadow-xs">
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-3 pb-3.5 border-b border-slate-100">
+                  <div>
+                    <div class="flex items-center space-x-2">
+                      <span class="text-xs font-bold text-[#00A8B5] uppercase tracking-wider">
+                        Chapter {currentChapterMeta?.chapter_number || 1} • {currentChapterMeta?.total_pages || 90} Pages
+                      </span>
+                      <span class="w-1 h-1 rounded-full bg-slate-300"></span>
+                      <span class="text-xs font-semibold text-slate-500">
+                        {allQuestions.length} Extracted Questions
+                      </span>
+                    </div>
+                    <h1 class="text-xl sm:text-2xl font-black text-slate-900 mt-0.5">
+                      {currentChapterMeta?.title || "Spotting the Errors"}
+                    </h1>
+                    <p class="text-xs text-slate-500 font-hindi mt-0.5">
+                      {currentChapterMeta?.hindi_title} (TCS Pattern CGL, CHSL, CPO, MTS, GD 2018–2024)
+                    </p>
+                  </div>
+
+                  {/* Mode Indicator & Stats */}
+                  <div class="flex items-center gap-2">
+                    <div class="bg-slate-50 border border-slate-200 px-3 py-1.5 rounded-xl text-center">
+                      <span class="text-[10px] uppercase font-bold text-slate-400 block">Filtered</span>
+                      <span class="text-sm font-black text-slate-800 font-mono">
+                        {filteredQuestions.length}
+                      </span>
+                    </div>
+                    <div class="bg-slate-50 border border-slate-200 px-3 py-1.5 rounded-xl text-center">
+                      <span class="text-[10px] uppercase font-bold text-slate-400 block">Bookmarks</span>
+                      <span class="text-sm font-black text-amber-600 font-mono">
+                        {Object.keys(bookmarks).length}
+                      </span>
+                    </div>
+                    <div class="bg-slate-50 border border-slate-200 px-3 py-1.5 rounded-xl text-center">
+                      <span class="text-[10px] uppercase font-bold text-slate-400 block">Solved</span>
+                      <span class="text-sm font-black text-emerald-600 font-mono">
+                        {Object.keys(userAttempts).length}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* FILTERS ROW */}
+                <div class="pt-3.5 flex flex-wrap items-center gap-2">
+                  {/* Exam Tag Filter */}
+                  <select
+                    value={selectedExam}
+                    onChange={(e) => { setSelectedExam(e.target.value); setCurrentPage(1); }}
+                    class="bg-slate-50 border border-slate-200 text-slate-700 text-xs font-bold rounded-lg px-2.5 py-1.5 focus:outline-none focus:ring-1 focus:ring-[#00A8B5]"
+                  >
+                    <option value="ALL">All Exams (CGL, CHSL, CPO...)</option>
+                    <option value="SSC CGL">SSC CGL</option>
+                    <option value="SSC CHSL">SSC CHSL</option>
+                    <option value="SSC CPO">SSC CPO</option>
+                    <option value="SSC MTS">SSC MTS</option>
+                    <option value="SSC GD">SSC GD</option>
+                    <option value="SSC Steno">SSC Stenographer</option>
+                  </select>
+
+                  {/* Year Filter */}
+                  <select
+                    value={selectedYear}
+                    onChange={(e) => { setSelectedYear(e.target.value); setCurrentPage(1); }}
+                    class="bg-slate-50 border border-slate-200 text-slate-700 text-xs font-bold rounded-lg px-2.5 py-1.5 focus:outline-none focus:ring-1 focus:ring-[#00A8B5]"
+                  >
+                    <option value="ALL">All Years (2018–2024)</option>
+                    <option value="2024">2024</option>
+                    <option value="2023">2023</option>
+                    <option value="2022">2022</option>
+                    <option value="2021">2021</option>
+                    <option value="2020">2020</option>
+                    <option value="2019">2019</option>
+                  </select>
+
+                  {/* Subtopic Filter */}
+                  {availableSubtopics.length > 0 && (
+                    <select
+                      value={selectedSubtopic}
+                      onChange={(e) => { setSelectedSubtopic(e.target.value); setCurrentPage(1); }}
+                      class="bg-slate-50 border border-slate-200 text-slate-700 text-xs font-bold rounded-lg px-2.5 py-1.5 focus:outline-none focus:ring-1 focus:ring-[#00A8B5] max-w-xs truncate"
+                    >
+                      <option value="ALL">All Subtopics</option>
+                      {availableSubtopics.map(st => (
+                        <option key={st} value={st}>{st}</option>
+                      ))}
+                    </select>
+                  )}
+
+                  {/* Status Pills */}
+                  <div class="flex items-center space-x-1 ml-auto">
+                    {[
+                      { id: "ALL", label: "All" },
+                      { id: "BOOKMARKED", label: "⭐ Starred" },
+                      { id: "ATTEMPTED", label: "Solved" },
+                      { id: "INCORRECT", label: "❌ Review" }
+                    ].map(st => (
+                      <button
+                        key={st.id}
+                        onClick={() => { setStatusFilter(st.id); setCurrentPage(1); }}
+                        class={`text-xs font-bold px-2.5 py-1 rounded-lg transition-all ${
+                          statusFilter === st.id
+                            ? "bg-slate-900 text-white"
+                            : "bg-slate-100 text-slate-600 hover:bg-slate-200"
+                        }`}
+                      >
+                        {st.label}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* QUESTIONS LIST */}
+              {isDataLoading ? (
+                <div class="p-12 text-center bg-white rounded-2xl border border-slate-200">
+                  <div class="inline-block animate-spin w-8 h-8 border-4 border-[#00A8B5] border-t-transparent rounded-full mb-3"></div>
+                  <p class="text-sm font-bold text-slate-600">Loading Chapter Questions...</p>
+                </div>
+              ) : paginatedQuestions.length === 0 ? (
+                <div class="p-12 text-center bg-white rounded-2xl border border-slate-200">
+                  <span class="text-4xl block mb-2">🔍</span>
+                  <h3 class="text-base font-extrabold text-slate-800">No questions match your filter</h3>
+                  <p class="text-xs text-slate-500 mt-1">Try resetting the exam, year, or search query.</p>
+                  <button
+                    onClick={() => {
+                      setSearchQuery("");
+                      setSelectedExam("ALL");
+                      setSelectedYear("ALL");
+                      setSelectedSubtopic("ALL");
+                      setStatusFilter("ALL");
+                    }}
+                    class="mt-4 bg-[#00A8B5] text-white text-xs font-bold px-4 py-2 rounded-xl hover:bg-[#008f9a] transition"
+                  >
+                    Reset All Filters
+                  </button>
+                </div>
+              ) : (
+                <div class="space-y-4">
+                  {paginatedQuestions.map((q) => {
+                    const isStarred = !!bookmarks[q.id];
+                    const attempt = userAttempts[q.id];
+                    const isSolved = !!attempt;
+                    const isExpanded = expandedExpl[q.id] || (appMode === "study");
+
+                    return (
+                      <div
+                        key={q.id}
+                        id={`q-card-${q.q_num}`}
+                        class="bg-white border border-slate-200 rounded-2xl p-5 shadow-xs transition hover:border-slate-300"
+                      >
+                        {/* Top Bar: Question #, Subtopic, Exam Tag, Bookmark */}
+                        <div class="flex items-start justify-between gap-2 mb-3 pb-3 border-b border-slate-100">
+                          <div class="flex flex-wrap items-center gap-2">
+                            <span class="font-mono text-xs font-black bg-slate-100 text-slate-800 px-2 py-0.5 rounded-md">
+                              Q{q.q_num}
+                            </span>
+                            <span class="text-[11px] font-bold text-[#00A8B5] bg-[#00A8B5]/10 px-2 py-0.5 rounded-md">
+                              {q.subtopic || "Grammar Rule"}
+                            </span>
+                            <span class="text-[11px] font-semibold text-slate-600 bg-amber-50 border border-amber-200/60 px-2 py-0.5 rounded-md">
+                              {q.exam_tag}
+                            </span>
+                          </div>
+
+                          {/* Bookmark Star */}
+                          <button
+                            onClick={() => toggleBookmark(q.id)}
+                            class={`p-1 rounded-lg transition ${
+                              isStarred
+                                ? "text-amber-500 hover:text-amber-600 bg-amber-50"
+                                : "text-slate-300 hover:text-slate-500 hover:bg-slate-50"
+                            }`}
+                            title={isStarred ? "Remove Bookmark" : "Add to Bookmarks"}
+                          >
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20">
+                              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                          </button>
+                        </div>
+
+                        {/* Question Text */}
+                        <div class="text-sm font-semibold text-slate-800 leading-relaxed mb-4">
+                          {q.question_text}
+                        </div>
+
+                        {/* Options Grid */}
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-4">
+                          {['a', 'b', 'c', 'd'].map((optKey) => {
+                            const optText = q.options ? q.options[optKey] : "";
+                            const isCorrectOpt = (optKey === (q.correct_option || "").toLowerCase());
+                            const isUserPick = attempt && (attempt.selectedOption === optKey);
+
+                            let btnStyle = "bg-slate-50 hover:bg-slate-100 text-slate-700 border-slate-200";
+
+                            if (appMode === "study") {
+                              if (isCorrectOpt) {
+                                btnStyle = "bg-emerald-50 text-emerald-900 border-emerald-300 font-bold";
+                              }
+                            } else if (appMode === "practice" && attempt) {
+                              if (isCorrectOpt) {
+                                btnStyle = "bg-emerald-100 text-emerald-900 border-emerald-400 font-bold";
+                              } else if (isUserPick) {
+                                btnStyle = "bg-rose-100 text-rose-900 border-rose-400 font-bold";
+                              } else {
+                                btnStyle = "bg-slate-50 text-slate-400 border-slate-200 opacity-60";
+                              }
+                            }
+
+                            return (
+                              <button
+                                key={optKey}
+                                onClick={() => handleSelectOption(q, optKey)}
+                                class={`w-full text-left p-2.5 rounded-xl border text-xs transition flex items-start space-x-2 ${btnStyle}`}
+                              >
+                                <span class={`font-mono font-bold uppercase w-5 h-5 rounded-md flex items-center justify-center shrink-0 ${
+                                  isCorrectOpt && (appMode === 'study' || attempt)
+                                    ? "bg-emerald-600 text-white"
+                                    : isUserPick && !isCorrectOpt
+                                    ? "bg-rose-600 text-white"
+                                    : "bg-slate-200 text-slate-700"
+                                }`}>
+                                  {optKey}
+                                </span>
+                                <span class="flex-1 leading-snug">{optText}</span>
+                                {isCorrectOpt && (appMode === 'study' || attempt) && (
+                                  <span class="text-emerald-600 text-xs">✓</span>
+                                )}
+                                {isUserPick && !isCorrectOpt && (
+                                  <span class="text-rose-600 text-xs">✗</span>
+                                )}
+                              </button>
+                            );
+                          })}
+                        </div>
+
+                        {/* Action Bar / Toggle Solution */}
+                        <div class="flex items-center justify-between pt-2 border-t border-slate-100">
+                          <button
+                            onClick={() => toggleExpl(q.id)}
+                            class="text-xs font-extrabold text-[#00A8B5] hover:text-[#008f9a] transition flex items-center space-x-1"
+                          >
+                            <span>{isExpanded ? "Hide Solution" : "Show Solution & Grammatical Crux"}</span>
+                            <span class="text-[10px]">{isExpanded ? "▲" : "▼"}</span>
+                          </button>
+
+                          <div class="flex items-center space-x-2 text-[11px] text-slate-400">
+                            <span>Ans: <strong class="uppercase text-slate-700 font-mono">({q.correct_option})</strong></span>
+                          </div>
+                        </div>
+
+                        {/* Collapsible Solution Drawer */}
+                        {isExpanded && (
+                          <div class="mt-3.5 pt-3.5 border-t border-slate-100 bg-slate-50/70 p-3.5 rounded-xl space-y-2.5 text-xs">
+                            {/* Grammatical Crux Tag */}
+                            {q.crux && (
+                              <div class="bg-amber-50 border border-amber-200/80 rounded-lg p-2 flex items-start space-x-2">
+                                <span class="text-amber-600 font-bold shrink-0">⚡ Crux:</span>
+                                <span class="text-amber-900 font-semibold">{q.crux}</span>
+                              </div>
+                            )}
+
+                            {/* Detailed Explanation */}
+                            <div class="text-slate-700 font-normal leading-relaxed font-hindi">
+                              <span class="font-bold text-slate-900 block mb-1">Official Solution & Rule:</span>
+                              {q.explanation}
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
+
+              {/* PAGINATION CONTROLS */}
+              {totalPages > 1 && (
+                <div class="bg-white border border-slate-200 rounded-2xl p-4 shadow-xs flex items-center justify-between">
+                  <button
+                    onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+                    disabled={currentPage === 1}
+                    class="px-3 py-1.5 bg-slate-100 hover:bg-slate-200 disabled:opacity-40 disabled:cursor-not-allowed text-xs font-bold text-slate-700 rounded-lg transition"
+                  >
+                    ◀ Previous
+                  </button>
+
+                  <div class="text-xs font-bold text-slate-600 font-mono">
+                    Page <span class="text-[#00A8B5] font-extrabold">{currentPage}</span> of {totalPages}
+                  </div>
+
+                  <button
+                    onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
+                    disabled={currentPage === totalPages}
+                    class="px-3 py-1.5 bg-slate-100 hover:bg-slate-200 disabled:opacity-40 disabled:cursor-not-allowed text-xs font-bold text-slate-700 rounded-lg transition"
+                  >
+                    Next ▶
+                  </button>
+                </div>
+              )}
+            </main>
+          </div>
+
+          {/* QUESTION PALETTE DRAWER (MODAL OVERLAY) */}
+          {isPaletteOpen && (
+            <div class="fixed inset-0 z-50 bg-slate-900/40 backdrop-blur-xs flex justify-end">
+              <div class="w-full max-w-sm bg-white h-full shadow-2xl p-5 flex flex-col">
+                <div class="flex items-center justify-between pb-3 border-b border-slate-100">
+                  <div>
+                    <h3 class="text-sm font-extrabold text-slate-900">Question Palette</h3>
+                    <p class="text-xs text-slate-400 font-mono">{allQuestions.length} Questions in Chapter</p>
+                  </div>
+                  <button
+                    onClick={() => setIsPaletteOpen(false)}
+                    class="w-7 h-7 rounded-full bg-slate-100 text-slate-600 hover:bg-slate-200 flex items-center justify-center font-bold text-sm"
+                  >
+                    ✕
+                  </button>
+                </div>
+
+                {/* Legend */}
+                <div class="grid grid-cols-3 gap-1.5 py-3 text-[10px] font-semibold text-slate-600 border-b border-slate-100">
+                  <div class="flex items-center space-x-1.5">
+                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+                    <span>Solved</span>
+                  </div>
+                  <div class="flex items-center space-x-1.5">
+                    <span class="w-2.5 h-2.5 rounded-full bg-amber-400"></span>
+                    <span>Starred</span>
+                  </div>
+                  <div class="flex items-center space-x-1.5">
+                    <span class="w-2.5 h-2.5 rounded-full bg-slate-200"></span>
+                    <span>Unread</span>
+                  </div>
+                </div>
+
+                {/* Questions Numbers Grid */}
+                <div class="flex-1 overflow-y-auto py-3 scrollbar-thin">
+                  <div class="grid grid-cols-5 gap-2">
+                    {allQuestions.map((q) => {
+                      const isStarred = !!bookmarks[q.id];
+                      const attempt = userAttempts[q.id];
+                      const isCorrect = attempt?.isCorrect;
+
+                      let btnStyle = "bg-slate-100 text-slate-700 hover:bg-slate-200";
+                      if (isStarred) {
+                        btnStyle = "bg-amber-100 text-amber-900 font-bold ring-1 ring-amber-400";
+                      } else if (attempt) {
+                        btnStyle = isCorrect
+                          ? "bg-emerald-500 text-white font-bold"
+                          : "bg-rose-500 text-white font-bold";
+                      }
+
+                      return (
+                        <button
+                          key={q.id}
+                          onClick={() => {
+                            // Find page and jump
+                            const targetIdx = filteredQuestions.findIndex(item => item.id === q.id);
+                            if (targetIdx !== -1) {
+                              setCurrentPage(Math.floor(targetIdx / pageSize) + 1);
+                            }
+                            setIsPaletteOpen(false);
+                            setTimeout(() => {
+                              const el = document.getElementById(`q-card-${q.q_num}`);
+                              if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                            }, 200);
+                          }}
+                          class={`h-8 rounded-lg text-xs font-mono font-bold transition flex items-center justify-center ${btnStyle}`}
+                        >
+                          {q.q_num}
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* FOOTER */}
+          <footer class="bg-white border-t border-slate-200 py-4 px-4 text-center text-xs text-slate-500">
+            NLP+ SSC Preparation System • YCT SSC General English 2024 TCS-Pattern Complete Chapter-wise Engine
+          </footer>
+        </div>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById('root')).render(<PYQApp />);
+  </script>
+</body>
+</html>

@@ -5,6 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SSC Practice Platform - Topic Explorer & Exam Workspace</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📚</text></svg>">
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- React & ReactDOM -->
@@ -2422,7 +2423,7 @@
           {/* ============================================================ */}
           {/* TOP GLOBAL NAVBAR WITH EDITORIAL AVATAR & 3-SUBJECT SWITCHER */}
           {/* ============================================================ */}
-          <header className="bg-[#F3EFE6] text-slate-800 border-b border-[#E2DDD3] sticky top-0 z-30 shadow-sm w-full max-w-full overflow-hidden">
+          <header className="bg-[#F3EFE6] text-slate-800 border-b border-[#E2DDD3] sticky top-0 z-30 shadow-sm w-full max-w-full">
             {/* Top Tier: Brand, Avatar & Circular Tool Buttons */}
             <div className="w-full max-w-7xl mx-auto px-3 sm:px-6 py-2.5 flex items-center justify-between gap-2 border-b border-[#E8E3D8] min-w-0">
 
@@ -2533,7 +2534,7 @@
               </div>
 
               {/* Right Side: Circular Tools & Diagnostics Pill */}
-              <div className="flex items-center space-x-1.5 sm:space-x-2 min-w-0 shrink-0">
+              <div className="flex items-center space-x-1.5 sm:space-x-2 min-w-0 shrink-0 overflow-x-auto scrollbar-none py-0.5">
 
                 {/* ✨ Blinking Monthly Recap Pill (Spotify / YouTube Music Style) */}
                 <a
@@ -2545,6 +2546,17 @@
                   <span className="hidden sm:inline font-black tracking-tight">Your Recap is Here!</span>
                   <span className="sm:hidden font-black">Recap '26</span>
                   <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+                </a>
+
+                {/* 📚 27,000+ PYQ Hub Button */}
+                <a
+                  href="pyq.html"
+                  className="flex items-center space-x-1.5 bg-gradient-to-r from-teal-600 to-[#00A8B5] hover:from-teal-700 hover:to-[#00909c] text-white px-2.5 sm:px-3.5 py-1.5 rounded-full text-xs font-black shadow-md hover:shadow-lg transition shrink-0 border border-teal-400/50 transform hover:scale-105"
+                  title="Browse 27,000+ Chapter-wise SSC PYQs (YCT English TCS Pattern)"
+                >
+                  <span className="text-xs">📚</span>
+                  <span className="font-extrabold">27k PYQ Hub</span>
+                  <span className="bg-amber-400 text-slate-900 text-[9px] font-black px-1.5 py-0.2 rounded-full uppercase">New</span>
                 </a>
 
                 {/* Live Mock Test Button (NLP+) */}
@@ -2654,9 +2666,9 @@
 
             </div>
 
-            {/* Bottom Tier: 3-Subject Segmented Pill Switcher (Quant | Reasoning | English) */}
+            {/* Bottom Tier: 4-Subject Segmented Pill Switcher (Quant | Reasoning | English | 📚 27k PYQs) */}
             <div className="px-3 sm:px-6 py-2 bg-[#F3EFE6]">
-              <div className="max-w-md mx-auto grid grid-cols-3 bg-[#EAE5DA] p-1 rounded-full border border-[#DDD7CC] shadow-inner gap-1 w-full">
+              <div className="max-w-xl mx-auto grid grid-cols-4 bg-[#EAE5DA] p-1 rounded-full border border-[#DDD7CC] shadow-inner gap-1 w-full">
                 {Object.values(SYLLABUS_DATA).map((subj) => {
                   const isActive = activeSubjectId === subj.id;
                   return (
@@ -2672,6 +2684,17 @@
                     </button>
                   );
                 })}
+
+                {/* 4th Tab: 📚 27k PYQs (YCT English TCS Pattern) */}
+                <a
+                  href="pyq.html"
+                  className="w-full py-1.5 rounded-full text-xs sm:text-sm font-black transition-all duration-200 text-center truncate bg-gradient-to-r from-teal-600 to-[#00A8B5] hover:from-teal-700 hover:to-[#00909c] text-white shadow-sm flex items-center justify-center space-x-1 border border-teal-500/40"
+                  title="Open 27,000+ PYQ Explorer (YCT English Chapter-wise TCS Pattern)"
+                >
+                  <span>📚</span>
+                  <span>27k PYQs</span>
+                  <span className="bg-amber-400 text-slate-900 text-[9px] font-black px-1 rounded-full ml-0.5 animate-pulse">New</span>
+                </a>
               </div>
             </div>
           </header>
@@ -2680,6 +2703,40 @@
           {/* MAIN DASHBOARD: SYLLABUS & ASPIRANT HUB (ALWAYS PERSISTENT) */}
           {/* ============================================================ */}
           <main className="max-w-6xl mx-auto w-full p-3.5 sm:p-6 lg:p-8 space-y-6 flex-1 animate-fade-in overflow-hidden">
+
+            {/* ============================================================ */}
+            {/* 🌟 UNMISSABLE 27,000+ TCS PYQ EXPLORER HERO BANNER */}
+            {/* ============================================================ */}
+            <div className="bg-gradient-to-r from-[#111927] via-[#1a2b3c] to-[#0d3b45] rounded-3xl p-5 sm:p-6 text-white shadow-lg border border-teal-500/30 relative overflow-hidden flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+              <div className="relative z-10 space-y-1.5 max-w-2xl">
+                <div className="flex flex-wrap items-center gap-2">
+                  <span className="bg-teal-500/20 text-teal-300 border border-teal-400/40 text-[10px] font-mono font-bold px-2.5 py-0.5 rounded-full uppercase tracking-wider">
+                    Official YCT SSC English • 27,000+ Questions
+                  </span>
+                  <span className="bg-amber-400 text-slate-900 text-[10px] font-black px-2 py-0.5 rounded-full">
+                    TCS Pattern
+                  </span>
+                  <span className="bg-emerald-500/20 text-emerald-300 border border-emerald-400/40 text-[10px] font-mono font-bold px-2 py-0.5 rounded-full">
+                    13 Chapters Indexed
+                  </span>
+                </div>
+                <h2 className="text-xl sm:text-2xl font-serif font-black text-white tracking-tight">
+                  Chapter-Wise 27,000+ PYQ Explorer
+                </h2>
+                <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                  Browse questions across all 13 chapters (Spotting Errors, Sentence Improvement, Cloze Test, Idioms, Synonyms, etc.). Filter by TCS Exam (CGL, CHSL, CPO, MTS), Jump to any Question #, Study vs Practice mode!
+                </p>
+              </div>
+              <div className="relative z-10 shrink-0 w-full md:w-auto">
+                <a
+                  href="pyq.html"
+                  className="inline-flex items-center justify-center space-x-2 w-full md:w-auto px-6 py-3 rounded-2xl bg-gradient-to-r from-[#00A8B5] to-emerald-500 hover:from-[#00909c] hover:to-emerald-600 text-white font-black text-sm shadow-md hover:shadow-xl transition transform hover:scale-105 active:scale-95"
+                >
+                  <span>📚 Open 27k PYQ Explorer</span>
+                  <span>➔</span>
+                </a>
+              </div>
+            </div>
 
             {/* TOP CARD: "TODAY'S REGISTER" / ASPIRANT STATUS (1:1 MATCH WITH SCREENSHOT) */}
             <div className="bg-white rounded-3xl p-5 sm:p-7 border border-[#E2DDD3] shadow-[0_2px_12px_rgba(0,0,0,0.03)] space-y-4 w-full">
@@ -2807,6 +2864,26 @@
                   </button>
                 ))}
               </div>
+
+              {/* Contextual English PYQ Banner */}
+              {activeSubjectId === 'english' && (
+                <div className="bg-gradient-to-r from-teal-50 to-emerald-50 border-2 border-teal-300/80 rounded-2xl p-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 shadow-xs">
+                  <div className="flex items-center space-x-3">
+                    <span className="text-3xl shrink-0">📖</span>
+                    <div>
+                      <h4 className="text-sm font-black text-teal-950">Complete 27,000+ YCT SSC English PYQ Bank</h4>
+                      <p className="text-xs text-teal-800">Explore all 13 chapters (Spotting Errors, Sentence Improvement, Cloze Test, Idioms, Antonyms, Synonyms, etc.) with TCS exam tags, answer keys, and bilingual solutions.</p>
+                    </div>
+                  </div>
+                  <a
+                    href="pyq.html"
+                    className="px-4 py-2.5 bg-gradient-to-r from-teal-600 to-[#00A8B5] hover:from-teal-700 hover:to-[#00909c] text-white text-xs font-black rounded-xl transition shadow-xs whitespace-nowrap shrink-0 flex items-center space-x-1.5 transform hover:scale-105"
+                  >
+                    <span>Browse 27k English PYQs</span>
+                    <span>➔</span>
+                  </a>
+                </div>
+              )}
 
               {/* TOPIC MODULE CARDS GRID */}
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 pt-2">
@@ -4882,6 +4959,17 @@
               </div>
             </div>
           )}
+
+          {/* Floating Quick PYQ Hub Launcher */}
+          <a
+            href="pyq.html"
+            className="fixed bottom-6 right-6 z-40 bg-gradient-to-r from-teal-600 to-[#00A8B5] hover:from-teal-500 hover:to-[#00B4C4] text-white px-4 py-2.5 rounded-full font-black text-xs sm:text-sm shadow-2xl flex items-center space-x-2 border-2 border-white/60 hover:scale-105 active:scale-95 transition-all"
+            title="Open 27,000+ Chapter-wise PYQ Explorer"
+          >
+            <span className="text-base">📚</span>
+            <span>27k PYQ Hub</span>
+            <span className="bg-amber-400 text-slate-900 text-[9px] font-black px-1.5 py-0.2 rounded-full uppercase">New</span>
+          </a>
 
           {/* FOOTER */}
           <footer className="bg-[#F3EFE6] border-t border-[#E2DDD3] px-4 py-4 text-center text-[11px] text-[#8C827A] mt-auto font-mono">
