@@ -2535,6 +2535,18 @@
               {/* Right Side: Circular Tools & Diagnostics Pill */}
               <div className="flex items-center space-x-1.5 sm:space-x-2 min-w-0 shrink-0">
 
+                {/* ✨ Blinking Monthly Recap Pill (Spotify / YouTube Music Style) */}
+                <a
+                  href={`recap.html?user=${encodeURIComponent(activeUserName)}`}
+                  className="relative flex items-center space-x-1.5 bg-gradient-to-r from-violet-600 via-fuchsia-600 to-pink-500 hover:from-violet-500 hover:to-pink-400 text-white px-2.5 sm:px-3.5 py-1.5 rounded-full text-xs font-black shadow-md hover:shadow-lg transition-all transform hover:scale-105 active:scale-95 animate-pulse shrink-0 border border-white/40"
+                  title="Your September 2026 Preparation Recap is Ready!"
+                >
+                  <span className="text-xs">✨</span>
+                  <span className="hidden sm:inline font-black tracking-tight">Your Recap is Here!</span>
+                  <span className="sm:hidden font-black">Recap '26</span>
+                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+                </a>
+
                 {/* Live Mock Test Button (NLP+) */}
                 <a
                   href="mock_tests.html"

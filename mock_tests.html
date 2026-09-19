@@ -55,6 +55,19 @@
 
     <!-- Candidate Profile & Back Link -->
     <div class="flex items-center space-x-2 sm:space-x-3">
+      <!-- ✨ Blinking Monthly Recap Pill -->
+      <a
+        id="recapNavBtn"
+        href="recap.html"
+        class="relative inline-flex items-center space-x-1.5 bg-gradient-to-r from-violet-600 via-fuchsia-600 to-pink-500 hover:from-violet-500 hover:to-pink-400 text-white px-2.5 sm:px-3 py-1.5 rounded-full text-xs font-black shadow-md hover:shadow-lg transition transform hover:scale-105 active:scale-95 animate-pulse shrink-0 border border-white/40"
+        title="Your September 2026 Preparation Recap is Ready!"
+      >
+        <span>✨</span>
+        <span class="hidden sm:inline font-extrabold tracking-tight">Your Recap is Here!</span>
+        <span class="sm:hidden font-extrabold">Recap</span>
+        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+      </a>
+
       <div class="hidden sm:flex items-center space-x-2 px-3 py-1 bg-slate-100 rounded-full text-xs font-semibold text-slate-700">
         <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
         <span>Aspirant: <strong id="navUserName">Nitin</strong></span>
@@ -362,11 +375,15 @@
   </footer>
 
   <script>
-    // Set candidate name from localStorage
+    // Set candidate name and recap link from localStorage
     const storedUser = localStorage.getItem("ssc_active_user") || "Nitin";
     const navUser = document.getElementById("navUserName");
     if (navUser) {
       navUser.textContent = storedUser;
+    }
+    const recapBtn = document.getElementById("recapNavBtn");
+    if (recapBtn) {
+      recapBtn.href = `recap.html?user=${encodeURIComponent(storedUser)}`;
     }
   </script>
 </body>
